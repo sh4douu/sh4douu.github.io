@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="0x00 Git概述Git是一个开源的分布式版本控制系统,用于敏捷高效地处理任何或小或大的项目。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-22T06:22:10.111Z">
+<meta property="og:updated_time" content="2019-02-22T06:33:07.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git基本命令及使用">
 <meta name="twitter:description" content="0x00 Git概述Git是一个开源的分布式版本控制系统,用于敏捷高效地处理任何或小或大的项目。">
@@ -310,54 +310,52 @@
 <a id="more"></a>
 <h2 id="0x01-Git安装"><a href="#0x01-Git安装" class="headerlink" title="0x01 Git安装"></a>0x01 Git安装</h2><p>到官网下载安装程序安装即可：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p>
 <h2 id="0x02-基本操作"><a href="#0x02-基本操作" class="headerlink" title="0x02 基本操作"></a>0x02 基本操作</h2><blockquote>
-<p>git   init         #初始化当前目录，表示对当前目录进行版本控制。该步骤是对某一目录进行版本控制的第一步。</p>
+<p><strong><code>git   init</code>  </strong>     #初始化当前目录，表示对当前目录进行版本控制。该步骤是对某一目录进行版本控制的第一步。</p>
 </blockquote>
 <blockquote>
-<p>git status       #查看当前目录文件状态。（红色文件表示未加入版本控制，绿色表示已加入但未提交版本）</p>
+<p><strong><code>git status</code></strong>       #查看当前目录文件状态。（红色文件表示未加入版本控制，绿色表示已加入但未提交版本）</p>
 <ul>
 <li>PS：对文件进行修改变动后，git会自动发现并变为红色，此时又需要git add变为绿色</li>
 </ul>
 </blockquote>
 <blockquote>
-<p>git add  <filename>     #将指定文件加入版本控制。（加入后git status查看红色变为绿色）<br>git add  .            #将当前目录下的所有文件加入版本控制。</filename></p>
+<p><strong><code>git add  &lt;filename&gt;</code></strong>    #将指定文件加入版本控制。（加入后git status查看红色变为绿色）<br><strong><code>git add  .</code></strong>          #将当前目录下的所有文件加入版本控制。</p>
 </blockquote>
 <blockquote>
-<p>git commit -m “详细描述信息”       #提交一个版本。即生成一次版本快照。版本号是随意生成的MD5值。</p>
+<p><strong><code>git commit -m</code></strong> “详细描述信息”       #提交一个版本。即生成一次版本快照。版本号是随意生成的MD5值。</p>
 </blockquote>
 <blockquote>
-<p>git log          #版本创建/变更日志。<br>git reflog     #同上，但更详细。</p>
+<p><strong><code>git log</code></strong>         #版本创建/变更日志。<br><strong><code>git reflog</code></strong>     #同上，但更详细。</p>
 <blockquote>
-<p>可通过这两条命令看到变更的记录，更直白一点就是可以获取版本号。</p>
+<p>可通过这两条命令看到变更的记录，更直白一点就是可以获取版本号用于变更版本。</p>
 </blockquote>
 </blockquote>
 <blockquote>
-<p>git reset –hard &lt;版本号&gt;     #切换状态到指定的版本（快照）</p>
+<p><strong><code>git reset --hard &lt;版本号&gt;</code> </strong>    #切换状态到指定的版本（快照）</p>
 </blockquote>
 <blockquote>
-<p>git branch   #查看分支列表。一个项目可以用众多分支，分支之间拷贝的，即互相独立不影响。默认是master</p>
-<p>git branch &lt;分支名称&gt;         #创建一个新分支。（创建的分支是当前所在分支的拷贝，本质是两份独立的拷贝）<br>git branch -d &lt;分支名称&gt;     #删除指定分支</p>
-<p>git checkout &lt;分支名称&gt;     #进入指定分支</p>
-<p>git merge &lt;分支名称&gt;          #将指定分支与当前所在分支进行合并。</p>
+<p><strong><code>git branch</code>  </strong> #查看分支列表。一个项目可以用众多分支，分支之间拷贝的，即互相独立不影响。默认是master</p>
+<p><strong><code>git branch &lt;分支名称&gt;</code></strong>         #创建一个新分支。（创建的分支是当前所在分支的拷贝，本质是两份独立的拷贝）<br><strong><code>git branch -d &lt;分支名称&gt;</code></strong>     #删除指定分支</p>
+<p><strong><code>git checkout &lt;分支名称&gt;</code></strong>     #进入指定分支</p>
+<p><strong><code>git merge &lt;分支名称&gt;</code></strong>          #将指定分支与当前所在分支进行合并。</p>
 </blockquote>
 <h2 id="0x03-连接Github"><a href="#0x03-连接Github" class="headerlink" title="0x03 连接Github"></a>0x03 连接Github</h2><blockquote>
-<p>git remote add  &lt;github仓库地址别名&gt;    &lt;github仓库地址&gt;        </p>
+<p><strong><code>git remote add  &lt;github仓库地址别名&gt;    &lt;github仓库地址&gt;</code></strong>        </p>
 <blockquote>
 <p>别名是为了避免记网址，对应关系会被记录在.git目录的config文件中。</p>
 </blockquote>
-<p>git clone  &lt;github项目网址&gt;      #克隆下载项目</p>
-<p>git pull &lt;github网址别名&gt;  &lt;分支名称&gt;    #从github拉取指定分支代码。</p>
+<p><strong><code>git clone  &lt;github项目网址&gt;</code></strong>      #克隆下载项目</p>
+<p><strong><code>git pull &lt;github网址别名&gt;  &lt;分支名称&gt;</code></strong>    #从github拉取指定分支代码。</p>
 <blockquote>
-<p>上面条等价于下面两条：<br>​        git fetch &lt;github网址别名&gt; &lt;分支名称&gt;<br>​        git merge &lt;github网址别名&gt;/&lt;分支名称&gt;</p>
+<p>上面条等价于下面两条：<br>​        <strong><code>git fetch   &lt;github网址别名&gt;    &lt;分支名称&gt;</code></strong><br>​        <strong><code>git merge   &lt;github网址别名&gt;   &lt;分支名称&gt;</code></strong></p>
 </blockquote>
-<p>git push &lt;github网址别名&gt;   &lt;分支名称&gt;  #将当前所在分支推到github上。</p>
+<p><strong><code>git push &lt;github网址别名&gt;   &lt;分支名称&gt;</code></strong>  #将当前所在分支推到github上。</p>
 </blockquote>
 <h2 id="0x04-将某些文件隔离出版本控制"><a href="#0x04-将某些文件隔离出版本控制" class="headerlink" title="0x04 将某些文件隔离出版本控制"></a>0x04 将某些文件隔离出版本控制</h2><ul>
-<li><p>在工作目录下创建<strong>.gitignore</strong>文件</p>
-</li>
-<li><p>文件的编写格式内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*.sql    #表示所有后缀为.sql的文件都被隔离</span><br><span class="line">*.pyc	 #表示所有后缀为.pyc的文件都被隔离</span><br><span class="line">a.txt	 #表示隔离a.txt</span><br></pre></td></tr></table></figure>
-</li>
+<li>在工作目录下创建<strong>.gitignore</strong>文件</li>
+<li>文件的编写格式内容</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*.sql    #表示所有后缀为.sql的文件都被隔离</span><br><span class="line">*.pyc	 #表示所有后缀为.pyc的文件都被隔离</span><br><span class="line">a.txt	 #表示隔离a.txt</span><br></pre></td></tr></table></figure>
 <h4 id="教程博客与参考链接"><a href="#教程博客与参考链接" class="headerlink" title="教程博客与参考链接"></a>教程博客与参考链接</h4><ul>
 <li><a href="https://www.cnblogs.com/wupeiqi/p/7295372.html" target="_blank" rel="noopener">https://www.cnblogs.com/wupeiqi/p/7295372.html</a></li>
 <li><a href="http://www.ruanyifeng.com/blog/2018/10/git-internals.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/10/git-internals.html</a></li>
@@ -375,7 +373,7 @@
         <p><span>本文标题:</span><a href="/2019/02/22/GitNote/">Git基本命令及使用</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-02-22, 14:04:26</p>
-        <p><span>最后更新:</span>2019-02-22, 14:22:10</p>
+        <p><span>最后更新:</span>2019-02-22, 14:33:07</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/02/22/GitNote/" title="Git基本命令及使用">https://sakuxa.com/2019/02/22/GitNote/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/22/GitNote/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
