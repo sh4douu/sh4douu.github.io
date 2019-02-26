@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="0x00 概述本博客采用Node.js + Hexo + Yelee + Git Pages方案。 博客运作的原理是，通过Hexo将写好的Markdown文章渲染为静态网页，然后将静态网页托管到Github上，使用Github的Git Pages来部署博客网站。 博客搭建可分为四部分：  Hexo安装及使用 Hexo配置 Hexo联合Git Pages部署 绑定个人域名（可选）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sakuxa.com/2019/02/21/build-blog/build-blog/br.jpg">
-<meta property="og:image" content="https://sakuxa.com/2019/02/21/build-blog/build-blog/cname.jpg">
-<meta property="og:image" content="https://sakuxa.com/2019/02/21/build-blog/build-blog/git.jpg">
+<meta property="og:image" content="https://sakuxa.com/2019/02/21/build-blog/br.jpg">
+<meta property="og:image" content="https://sakuxa.com/2019/02/21/build-blog/cname.jpg">
+<meta property="og:image" content="https://sakuxa.com/2019/02/21/build-blog/git.jpg">
 <meta property="og:updated_time" content="2019-02-25T01:33:39.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客搭建记录 Node.js + Hexo + Yelee + Git Pages">
 <meta name="twitter:description" content="0x00 概述本博客采用Node.js + Hexo + Yelee + Git Pages方案。 博客运作的原理是，通过Hexo将写好的Markdown文章渲染为静态网页，然后将静态网页托管到Github上，使用Github的Git Pages来部署博客网站。 博客搭建可分为四部分：  Hexo安装及使用 Hexo配置 Hexo联合Git Pages部署 绑定个人域名（可选）">
-<meta name="twitter:image" content="https://sakuxa.com/2019/02/21/build-blog/build-blog/br.jpg">
+<meta name="twitter:image" content="https://sakuxa.com/2019/02/21/build-blog/br.jpg">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -361,7 +361,7 @@
 <p><strong>2.Git Pages配置</strong></p>
 <p>首先，注册并拥有Github账号。</p>
 <p>然后，创建一个新的代码仓库。并使用<code>xxx.github.io</code>作为仓库名字。</p>
-<p><img src="build-blog\br.jpg" alt></p>
+<p><img src="/2019/02/21/build-blog/br.jpg" alt></p>
 <p>然后，配置Hexo的部署方式为Git。找到Hexo配置文件_config.yml ，修改<code>deploy</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/sh4douu/sh4douu.github.io.git  #这里是上一步创建的仓库连接。</span><br></pre></td></tr></table></figure>
 <p><strong>3.部署hexo到git pages：</strong></p>
@@ -379,10 +379,10 @@
 <h2 id="0x04-绑定个人域名"><a href="#0x04-绑定个人域名" class="headerlink" title="0x04 绑定个人域名"></a>0x04 绑定个人域名</h2><p>Git Pages分配的域名是<code>xxx.github.io</code>样式的，若想要使用自己的域名，可通过CNAME解析实现。</p>
 <p>首先，注册购买域名，如：sakuxa.com。</p>
 <p>然后设置解析，添加一条CNAME记录即可：</p>
-<p><img src="build-blog\cname.jpg" alt></p>
+<p><img src="/2019/02/21/build-blog/cname.jpg" alt></p>
 <p>然后在source目录下创建一个文件，名称为CNAME，文件无后缀。文件的内容写入域名，如：sakuxa.com</p>
 <p>然后再到Github上，找到前面创建的仓库的<code>settings</code>，进入并找到自定义域名输入框填入自己的域名即可：</p>
-<p><img src="build-blog\git.jpg" alt></p>
+<p><img src="/2019/02/21/build-blog/git.jpg" alt></p>
 <p><strong>参考连接</strong></p>
 <p><a href="https://blog.csdn.net/sinat_37781304/article/details/82729029" target="_blank" rel="noopener">https://blog.csdn.net/sinat_37781304/article/details/82729029</a></p>
 <p><a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" rel="noopener">https://github.com/MOxFIVE/hexo-theme-yelee</a></p>
