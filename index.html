@@ -185,7 +185,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
                     </div>
                 </section>
                 
@@ -263,6 +263,114 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-文件与目录权限" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/02/28/文件与目录权限/" class="article-date">
+      <time datetime="2019-02-28T00:58:56.000Z" itemprop="datePublished">2019-02-28</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/28/文件与目录权限/">文件与目录权限</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="0x00-Windows文件与文件夹权限"><a href="#0x00-Windows文件与文件夹权限" class="headerlink" title="0x00 Windows文件与文件夹权限"></a>0x00 Windows文件与文件夹权限</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对于文件夹</th>
+<th>对于文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读取</td>
+<td>允许查看并列出文件和子文件夹（Viewing、Listing）</td>
+<td>允许查看和访问文件内容（Viewing、Accessing）</td>
+</tr>
+<tr>
+<td>写入</td>
+<td>允许添加文件和子文件夹(Adding)</td>
+<td>允许写入一个文件(Writing)</td>
+</tr>
+<tr>
+<td>读取和执行</td>
+<td>允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excuting）; 由文件和文件夹继承</td>
+<td>允许查看和访问文件的内容以及执行文件（Viewing、Accessing、Excuting）</td>
+</tr>
+<tr>
+<td>列出文件夹内容</td>
+<td>允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excuting）; 仅由文件夹继承</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>允许读取和写入文件和子文件夹（Reading、Writing）; 允许删除文件夹(Delete)</td>
+<td>允许读取和写入文件(Reading、Writing); 允许删除文件（Delete）</td>
+</tr>
+<tr>
+<td>完全控制</td>
+<td>允许读取，写入，更改和删除文件和子文件夹(Reading、Writing、Changing、Deleting)</td>
+<td>允许读取，写入，更改和删除文件(Reading、Writing、Deleting)</td>
+</tr>
+</tbody>
+</table>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件权限/">文件权限</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/02/28/文件与目录权限/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-hack-zico" class="article article-type-post" itemscope itemprop="blogPost">
   

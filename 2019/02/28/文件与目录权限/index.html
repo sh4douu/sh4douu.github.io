@@ -15,17 +15,22 @@
 
 
 
-<meta name="description" content="关于我The quiter you become,the more you are able to hear. Email：wusup3rb@163.com Wechat：WuSup3rb">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://sakuxa.com/about/index.html">
+<meta name="description" content="0x00 Windows文件与文件夹权限   权限 对于文件夹 对于文件     读取 允许查看并列出文件和子文件夹（Viewing、Listing） 允许查看和访问文件内容（Viewing、Accessing）   写入 允许添加文件和子文件夹(Adding) 允许写入一个文件(Writing)   读取和执行 允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excut">
+<meta name="keywords" content="文件权限">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件与目录权限">
+<meta property="og:url" content="https://sakuxa.com/2019/02/28/文件与目录权限/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="关于我The quiter you become,the more you are able to hear. Email：wusup3rb@163.com Wechat：WuSup3rb">
+<meta property="og:description" content="0x00 Windows文件与文件夹权限   权限 对于文件夹 对于文件     读取 允许查看并列出文件和子文件夹（Viewing、Listing） 允许查看和访问文件内容（Viewing、Accessing）   写入 允许添加文件和子文件夹(Adding) 允许写入一个文件(Writing)   读取和执行 允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excut">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-22T02:51:35.225Z">
+<meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228092238.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228101906.png">
+<meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228105825.png">
+<meta property="og:updated_time" content="2019-02-28T03:18:51.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于我The quiter you become,the more you are able to hear. Email：wusup3rb@163.com Wechat：WuSup3rb">
+<meta name="twitter:title" content="文件与目录权限">
+<meta name="twitter:description" content="0x00 Windows文件与文件夹权限   权限 对于文件夹 对于文件     读取 允许查看并列出文件和子文件夹（Viewing、Listing） 允许查看和访问文件内容（Viewing、Accessing）   写入 允许添加文件和子文件夹(Adding) 允许写入一个文件(Writing)   读取和执行 允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excut">
+<meta name="twitter:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228092238.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>about | IT技术学习分享自留地</title>
+<title>文件与目录权限 | IT技术学习分享自留地</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,7 +72,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -261,11 +266,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-文件与目录权限" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/about/index.html" class="article-date">
-      <time datetime="2019-02-21T06:14:25.000Z" itemprop="datePublished">2019-02-21</time>
+      <a href="/2019/02/28/文件与目录权限/" class="article-date">
+      <time datetime="2019-02-28T00:58:56.000Z" itemprop="datePublished">2019-02-28</time>
 </a>
 
 
@@ -280,7 +285,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      about
+      文件与目录权限
     </h1>
   
 
@@ -288,8 +293,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件权限/">文件权限</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -297,28 +310,133 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
-
-
-          
-        <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p><strong>The quiter you become,the more you are able to hear.</strong></p>
-<p>Email：<a href="mailto:wusup3rb@163.com" target="_blank" rel="noopener">wusup3rb@163.com</a></p>
-<p>Wechat：WuSup3rb</p>
+        <h2 id="0x00-Windows文件与文件夹权限"><a href="#0x00-Windows文件与文件夹权限" class="headerlink" title="0x00 Windows文件与文件夹权限"></a>0x00 Windows文件与文件夹权限</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对于文件夹</th>
+<th>对于文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读取</td>
+<td>允许查看并列出文件和子文件夹（Viewing、Listing）</td>
+<td>允许查看和访问文件内容（Viewing、Accessing）</td>
+</tr>
+<tr>
+<td>写入</td>
+<td>允许添加文件和子文件夹(Adding)</td>
+<td>允许写入一个文件(Writing)</td>
+</tr>
+<tr>
+<td>读取和执行</td>
+<td>允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excuting）; 由文件和文件夹继承</td>
+<td>允许查看和访问文件的内容以及执行文件（Viewing、Accessing、Excuting）</td>
+</tr>
+<tr>
+<td>列出文件夹内容</td>
+<td>允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excuting）; 仅由文件夹继承</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>允许读取和写入文件和子文件夹（Reading、Writing）; 允许删除文件夹(Delete)</td>
+<td>允许读取和写入文件(Reading、Writing); 允许删除文件（Delete）</td>
+</tr>
+<tr>
+<td>完全控制</td>
+<td>允许读取，写入，更改和删除文件和子文件夹(Reading、Writing、Changing、Deleting)</td>
+<td>允许读取，写入，更改和删除文件(Reading、Writing、Deleting)</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<ul>
+<li><p><strong>读取(Reading)是运行脚本(Run script)所需的唯一权限。执行（Excuting）权限无关紧要。</strong></p>
+<blockquote>
+<p>Windows依据文件后缀来识别文件类型。如可执行程序：.exe、.bat、.com等。</p>
+<p>Linux通过”x”权限属性标识是否可执行。</p>
+<hr>
+<p>脚本是由脚本语言编写的文件，脚本语言无需进行编译就可以通过解释器解释运行。</p>
+</blockquote>
+</li>
+<li><p><strong>授予用户写入文件但不删除文件的权限不能阻止用户删除文件的内容。用户仍然可以删除内容。</strong></p>
+</li>
+<li><p><strong>如果用户完全控制文件夹，则无论文件的权限如何，用户都可以删除文件夹中的文件。</strong></p>
+</li>
+</ul>
+<p><strong>Windows文件或文件夹权限查看</strong></p>
+<p>右键文件或文件夹 ——&gt; 属性 ——&gt; 安全。</p>
+<p><img src="/2019/02/28/文件与目录权限/QQ截图20190228092238.png" alt></p>
+<p><strong>参考链接：</strong></p>
+<p><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/bb727008(v=technet.10)" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/bb727008(v=technet.10)</a></p>
+<h2 id="0x01-Linux文件及目录权限"><a href="#0x01-Linux文件及目录权限" class="headerlink" title="0x01 Linux文件及目录权限"></a>0x01 Linux文件及目录权限</h2><p>Linux权限是针对文件内容设计的，对于文件和目录而言，文件内容代指不同的东西：</p>
+<ul>
+<li>文件：文件内容是文件存储的data。</li>
+<li>目录：文件内容是目录下的文件名。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">对象</th>
+<th style="text-align:center">文件内容</th>
+<th style="text-align:center">r</th>
+<th style="text-align:center">w</th>
+<th style="text-align:center">x</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">文件内的数据</td>
+<td style="text-align:center">可读取文件内容</td>
+<td style="text-align:center">修改文件内容（编辑、增、改、不能删除文件）</td>
+<td style="text-align:center">执行文件</td>
+</tr>
+<tr>
+<td style="text-align:center">目录</td>
+<td style="text-align:center">目录下的文件名</td>
+<td style="text-align:center">可读取看到目录下的文件名</td>
+<td style="text-align:center">可异动目录结构</td>
+<td style="text-align:center">可进入目录的权限</td>
+</tr>
+</tbody>
+</table>
+<p><strong>权限对于目录：</strong></p>
+<ul>
+<li><p><strong>r</strong></p>
+<blockquote>
+<p>读取文件结构的权限，即可以获得目录下的文件名清单。可执行<code>ls</code>命令。</p>
+</blockquote>
+</li>
+<li><p><strong>w</strong></p>
+<blockquote>
+<p>创建文件或目录。（<code>touch</code>、<code>mkdir</code>）</p>
+<p>删除文件或目录。（不论文件的权限如何）(<code>rm、rmdir</code>)</p>
+<p>重命名文件或目录。（<code>cp</code>）</p>
+<p>移动文件或目录。(<code>mv</code>)</p>
+</blockquote>
+</li>
+<li><p><strong>x</strong></p>
+<blockquote>
+<p>能否作为工作目录。工作目录即用户当前所在的路径就是当前的工作目录。即该权限就是能否进入该目录，即能否<code>cd</code>进去。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>例子：</strong></p>
+<p><img src="/2019/02/28/文件与目录权限/QQ截图20190228101906.png" alt></p>
+<ul>
+<li><p><strong>要操作一个目录下的文件，拥有进入该目录的权限是必需的，“x”权限相当于key。“r”权限不是必需的，就像摸黑到书房取书，进入书房的钥匙是必需的，但是可以不用看到书架上的书名。没有“r”权限，命令里路径将不能补全。</strong></p>
+</li>
+<li><p><strong>因此在搭建WEB服务器时，运行HTTP服务的用户对网站的根目录应该具有”rx”权限。具体权限配置可参考连接：</strong></p>
+<ul>
+<li><code>https://www.cnblogs.com/sochishun/p/7413572.html</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>改变文件权限：</strong></p>
+<p><img src="/2019/02/28/文件与目录权限/QQ截图20190228105825.png" alt></p>
 
       
     </div>
@@ -326,10 +444,59 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/02/28/文件与目录权限/">文件与目录权限</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-02-28, 08:58:56</p>
+        <p><span>最后更新:</span>2019-02-28, 11:18:51</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/02/28/文件与目录权限/" title="文件与目录权限">https://sakuxa.com/2019/02/28/文件与目录权限/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/28/文件与目录权限/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/02/26/hack-zico/">
+                    Vulnhub靶机渗透笔记——Zico2
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-Windows文件与文件夹权限"><span class="toc-number">1.</span> <span class="toc-text">0x00 Windows文件与文件夹权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-Linux文件及目录权限"><span class="toc-number">2.</span> <span class="toc-text">0x01 Linux文件及目录权限</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -347,7 +514,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"about　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"文件与目录权限　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -362,6 +529,24 @@
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/02/26/hack-zico/" title="下一篇: Vulnhub靶机渗透笔记——Zico2">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 
