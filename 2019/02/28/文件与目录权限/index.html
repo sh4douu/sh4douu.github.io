@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228092238.png">
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228101906.png">
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228105825.png">
-<meta property="og:updated_time" content="2019-02-28T03:18:51.234Z">
+<meta property="og:updated_time" content="2019-02-28T03:25:44.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件与目录权限">
 <meta name="twitter:description" content="0x00 Windows文件与文件夹权限   权限 对于文件夹 对于文件     读取 允许查看并列出文件和子文件夹（Viewing、Listing） 允许查看和访问文件内容（Viewing、Accessing）   写入 允许添加文件和子文件夹(Adding) 允许写入一个文件(Writing)   读取和执行 允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excut">
@@ -353,14 +353,15 @@
 </table>
 <a id="more"></a>
 <ul>
-<li><p><strong>读取(Reading)是运行脚本(Run script)所需的唯一权限。执行（Excuting）权限无关紧要。</strong></p>
+<li><strong>读取(Reading)是运行脚本(Run script)所需的唯一权限。执行（Excuting）权限无关紧要。</strong></li>
+</ul>
 <blockquote>
 <p>Windows依据文件后缀来识别文件类型。如可执行程序：.exe、.bat、.com等。</p>
 <p>Linux通过”x”权限属性标识是否可执行。</p>
 <hr>
 <p>脚本是由脚本语言编写的文件，脚本语言无需进行编译就可以通过解释器解释运行。</p>
 </blockquote>
-</li>
+<ul>
 <li><p><strong>授予用户写入文件但不删除文件的权限不能阻止用户删除文件的内容。用户仍然可以删除内容。</strong></p>
 </li>
 <li><p><strong>如果用户完全控制文件夹，则无论文件的权限如何，用户都可以删除文件夹中的文件。</strong></p>
@@ -405,25 +406,26 @@
 </table>
 <p><strong>权限对于目录：</strong></p>
 <ul>
-<li><p><strong>r</strong></p>
+<li><strong>r</strong></li>
+</ul>
 <blockquote>
 <p>读取文件结构的权限，即可以获得目录下的文件名清单。可执行<code>ls</code>命令。</p>
 </blockquote>
-</li>
-<li><p><strong>w</strong></p>
+<ul>
+<li><strong>w</strong></li>
+</ul>
 <blockquote>
 <p>创建文件或目录。（<code>touch</code>、<code>mkdir</code>）</p>
 <p>删除文件或目录。（不论文件的权限如何）(<code>rm、rmdir</code>)</p>
 <p>重命名文件或目录。（<code>cp</code>）</p>
 <p>移动文件或目录。(<code>mv</code>)</p>
 </blockquote>
-</li>
-<li><p><strong>x</strong></p>
+<ul>
+<li><strong>x</strong></li>
+</ul>
 <blockquote>
 <p>能否作为工作目录。工作目录即用户当前所在的路径就是当前的工作目录。即该权限就是能否进入该目录，即能否<code>cd</code>进去。</p>
 </blockquote>
-</li>
-</ul>
 <p><strong>例子：</strong></p>
 <p><img src="/2019/02/28/文件与目录权限/QQ截图20190228101906.png" alt></p>
 <ul>
@@ -448,7 +450,7 @@
         <p><span>本文标题:</span><a href="/2019/02/28/文件与目录权限/">文件与目录权限</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-02-28, 08:58:56</p>
-        <p><span>最后更新:</span>2019-02-28, 11:18:51</p>
+        <p><span>最后更新:</span>2019-02-28, 11:25:44</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/02/28/文件与目录权限/" title="文件与目录权限">https://sakuxa.com/2019/02/28/文件与目录权限/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/28/文件与目录权限/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
