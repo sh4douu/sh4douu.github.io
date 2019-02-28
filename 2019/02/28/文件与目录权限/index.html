@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228092238.png">
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228101906.png">
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/文件与目录权限/QQ截图20190228105825.png">
-<meta property="og:updated_time" content="2019-02-28T03:25:44.416Z">
+<meta property="og:updated_time" content="2019-02-28T03:30:46.029Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件与目录权限">
 <meta name="twitter:description" content="0x00 Windows文件与文件夹权限   权限 对于文件夹 对于文件     读取 允许查看并列出文件和子文件夹（Viewing、Listing） 允许查看和访问文件内容（Viewing、Accessing）   写入 允许添加文件和子文件夹(Adding) 允许写入一个文件(Writing)   读取和执行 允许查看和列出文件和子文件夹以及执行文件（Viewing、Listing、Excut">
@@ -362,10 +362,8 @@
 <p>脚本是由脚本语言编写的文件，脚本语言无需进行编译就可以通过解释器解释运行。</p>
 </blockquote>
 <ul>
-<li><p><strong>授予用户写入文件但不删除文件的权限不能阻止用户删除文件的内容。用户仍然可以删除内容。</strong></p>
-</li>
-<li><p><strong>如果用户完全控制文件夹，则无论文件的权限如何，用户都可以删除文件夹中的文件。</strong></p>
-</li>
+<li><strong>授予用户写入文件但不删除文件的权限不能阻止用户删除文件的内容。用户仍然可以删除内容。</strong></li>
+<li>*如果用户完全控制文件夹，则无论文件的权限如何，用户都可以删除文件夹中的文件。**</li>
 </ul>
 <p><strong>Windows文件或文件夹权限查看</strong></p>
 <p>右键文件或文件夹 ——&gt; 属性 ——&gt; 安全。</p>
@@ -429,10 +427,8 @@
 <p><strong>例子：</strong></p>
 <p><img src="/2019/02/28/文件与目录权限/QQ截图20190228101906.png" alt></p>
 <ul>
-<li><p><strong>要操作一个目录下的文件，拥有进入该目录的权限是必需的，“x”权限相当于key。“r”权限不是必需的，就像摸黑到书房取书，进入书房的钥匙是必需的，但是可以不用看到书架上的书名。没有“r”权限，命令里路径将不能补全。</strong></p>
-</li>
-<li><p><strong>因此在搭建WEB服务器时，运行HTTP服务的用户对网站的根目录应该具有”rx”权限。具体权限配置可参考连接：</strong></p>
-<ul>
+<li><strong>要操作一个目录下的文件，拥有进入该目录的权限是必需的，“x”权限相当于key。“r”权限不是必需的，就像摸黑到书房取书，进入书房的钥匙是必需的，但是可以不用看到书架上的书名。没有“r”权限，命令里路径将不能补全。</strong></li>
+<li><strong>因此在搭建WEB服务器时，运行HTTP服务的用户对网站的根目录应该具有”rx”权限。具体权限配置可参考连接：</strong><ul>
 <li><code>https://www.cnblogs.com/sochishun/p/7413572.html</code></li>
 </ul>
 </li>
@@ -450,7 +446,7 @@
         <p><span>本文标题:</span><a href="/2019/02/28/文件与目录权限/">文件与目录权限</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-02-28, 08:58:56</p>
-        <p><span>最后更新:</span>2019-02-28, 11:25:44</p>
+        <p><span>最后更新:</span>2019-02-28, 11:30:46</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/02/28/文件与目录权限/" title="文件与目录权限">https://sakuxa.com/2019/02/28/文件与目录权限/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/28/文件与目录权限/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
