@@ -24,7 +24,7 @@
 <meta property="og:description" content="0x00 XML概述 XML 指可扩展标记语言（eXtensible Markup Language）。 XML 的设计宗旨是传输数据，而不是显示数据。 XML 标签没有被预定义。 XML 被设计用来结构化、存储以及传输信息，实际上XML没有做任何事情。   XML只是以某种结构化形式组织数据，说它没有做任何事是他不会像HTML被渲染为形象色色的网页。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/02/28/xml/QQ截图20190228152213.png">
-<meta property="og:updated_time" content="2019-02-28T09:04:16.131Z">
+<meta property="og:updated_time" content="2019-03-01T06:54:45.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XML基本知识学习">
 <meta name="twitter:description" content="0x00 XML概述 XML 指可扩展标记语言（eXtensible Markup Language）。 XML 的设计宗旨是传输数据，而不是显示数据。 XML 标签没有被预定义。 XML 被设计用来结构化、存储以及传输信息，实际上XML没有做任何事情。   XML只是以某种结构化形式组织数据，说它没有做任何事是他不会像HTML被渲染为形象色色的网页。">
@@ -187,7 +187,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
                     </div>
                 </section>
                 
@@ -361,21 +361,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>3.DTD实体</strong></p>
 <p><strong>实体</strong>是用于定义引用普通文本或特殊字符的快捷方式的变量。</p>
-<p><strong>实体引用</strong>是对实体的引用。引用后会获得实体指向的实际值。</p>
+<p><strong>实体引用</strong>是对实体的引用。引用后会获得实体指向的实际数据。</p>
 <p><strong>实体声明也是在DTD声明中，与元素声明同级。</strong></p>
 <p>i.在文档内部声明实体的例子：<code>&lt;!ENTITY entity-name &quot;entity-value&quot;&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    #定义此文档是 note 类型的文档。</span><br><span class="line">  &lt;!ELEMENT note (to,from,heading,body)&gt;   #定义note元素有四个元素：&quot;to、from、heading、body&quot;</span><br><span class="line">  &lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT body (#PCDATA)&gt;   #定义body元素为&quot;#PCDATA&quot;类型</span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY entity1 &quot;Be&quot;&gt;      #文档内声明</span><br><span class="line">  &lt;!ENTITY entity2 &quot;back.&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;Mikasa&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Allen&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;&amp;entity1; &amp;entity2;&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p>ii.外部声明引用实体的例子：<code>&lt;!ENTITY entity-name SYSTEM &quot;URI/URL&quot;&gt;</code></p>
-<p>例子1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    #定义此文档是 note 类型的文档。</span><br><span class="line">  &lt;!ELEMENT note (to,from,heading,body)&gt;   #定义note元素有四个元素：&quot;to、from、heading、body&quot;</span><br><span class="line">  &lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT body (#PCDATA)&gt;   #定义body元素为&quot;#PCDATA&quot;类型</span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY entity1 SYSTEM &quot;http://www.sakuxa.com/example.dtd&quot;&gt;  </span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;Mikasa&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Allen&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;&amp;entity1;&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    </span><br><span class="line">  &lt;!ELEMENT note ANY&gt;   #定义note元素可以有任意元素。</span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY entity1 &quot;Be&quot;&gt;      #文档内声明</span><br><span class="line">  &lt;!ENTITY entity2 &quot;back.&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;&amp;entity1; &amp;entity2;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
+<p>ii.外部声明引用实体的例子：<code>&lt;!ENTITY entity-name SYSTEM &quot;URI/URL&quot;&gt;</code> or <code>&lt;!DOCTYPE 根元素 PUBLIC &quot;public_ID&quot; &quot;文件名&quot;&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    </span><br><span class="line">  &lt;!ELEMENT note ANY&gt;   </span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY entity1 SYSTEM &quot;http://www.sakuxa.com/example.xml&quot;&gt;  #system关键字表示外部引用</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt; &amp;entity1;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
+<p>iii.参数实体</p>
+<p>参数实体只用于 DTD 和文档的内部子集中。只有在DTD中才能引用参数实体，参数实体的声明和引用都是以百分号%。并且参数实体的引用在DTD是理解解析的，替换文本将变成DTD的一部分。</p>
+<p><strong>记住：%entity; 会被它指向的数据进行直接替换。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    </span><br><span class="line">  &lt;!ELEMENT note ANY&gt;   </span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY % entity1 SYSTEM &quot;http://www.sakuxa.com/example.dtd&quot;&gt;</span><br><span class="line">  %entity1  #会被example.dtd内容替换</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt; &amp;entity2;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
 <p><code>example.dtd</code>文件内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY entity2 &quot;Be back.&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>例子2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note SYSTEM &quot;note.dtd&quot;&gt;  #引用外部文件note.dtd</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;Mikasa&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Allen&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;&amp;entity1;&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p><code>note.dtd</code>文件内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br><span class="line">&lt;!ENTITY entity1 SYSTEM &quot;http://www.sakuxa.com/example.dtd&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p><code>example.dtd</code>文件内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY entity1 &quot;Be back.&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p><strong>注意：</strong> 一个实体由三部分构成: 一个和号 (&amp;), 一个实体名称, 以及一个分号 (;)。</p>
 
       
@@ -388,7 +385,7 @@
         <p><span>本文标题:</span><a href="/2019/02/28/xml/">XML基本知识学习</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-02-28, 15:10:47</p>
-        <p><span>最后更新:</span>2019-02-28, 17:04:16</p>
+        <p><span>最后更新:</span>2019-03-01, 14:54:45</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/02/28/xml/" title="XML基本知识学习">https://sakuxa.com/2019/02/28/xml/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/28/xml/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -402,6 +399,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/01/XXE/">
+                    XXE（XML External Entity）漏洞
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -474,7 +477,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/03/01/XXE/" title="上一篇: XXE（XML External Entity）漏洞">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -486,7 +491,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 

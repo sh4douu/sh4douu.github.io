@@ -185,7 +185,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
                     </div>
                 </section>
                 
@@ -263,6 +263,75 @@
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-XXE" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/01/XXE/" class="article-date">
+      <time datetime="2019-03-01T00:59:43.000Z" itemprop="datePublished">2019-03-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="0x00-必备XML基础知识"><a href="#0x00-必备XML基础知识" class="headerlink" title="0x00 必备XML基础知识"></a>0x00 必备XML基础知识</h2><p>DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。DTD 可以在 XML 文档内声明，也可以外部引用。</p>
+<p>DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以内部声明或外部引用。实体的声明是在DTD声明里面的，属于DTD声明的一部分。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XXE/">XXE</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/03/01/XXE/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-xml" class="article article-type-post" itemscope itemprop="blogPost">
   
