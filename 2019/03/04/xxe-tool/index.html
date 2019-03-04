@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="一、XXE Payload Cheatsheethttps://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection 二、XXEinjector工具0x00 XXEinjecto">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T08:21:59.214Z">
+<meta property="og:updated_time" content="2019-03-04T08:25:21.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XXE漏洞利用工具及其资源">
 <meta name="twitter:description" content="一、XXE Payload Cheatsheethttps://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20injection 二、XXEinjector工具0x00 XXEinjecto">
@@ -326,7 +326,7 @@
 </blockquote>
 <p><code>--brute</code>：该选项用于爆破文件，用于指定包含<code>文件路径</code>的字典文件。结果在<code>brute.log</code>文件中。</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; s://test.txt</span><br><span class="line">&gt; s://test1.txt</span><br><span class="line">&gt; /etc/passwd</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>s://test.txt<br>s://test1.txt<br>/etc/passwd</p>
 </blockquote>
 <p><strong>工具包含直接和带外两种检索文件的方式。</strong></p>
 <p><strong>默认是带外方式：</strong></p>
@@ -340,7 +340,6 @@
 <p><code>--host</code>：采用带外方式时，必选项。用于指定反连接IP。目标主机会从该IP获取恶意dtd文件，以及会将我们要获取的文件发到该IP的ftp上。</p>
 <p><code>--httpport</code>：<code>--host</code>指定的主机监听的WEB服务端口。默认80</p>
 <p><code>--ftpport</code>：<code>--host</code>指定的主机监听的FTP服务端口。默认21</p>
-<p><code>--direct</code></p>
 <p><strong>直接方式</strong></p>
 <p><code>--direct</code>：表示采用直接方式。还需要用一个独特的字符串作为该参数的值，具体看参数解释。</p>
 <p><strong>其他参数：</strong></p>
@@ -374,7 +373,7 @@
         <p><span>本文标题:</span><a href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-04, 16:02:01</p>
-        <p><span>最后更新:</span>2019-03-04, 16:21:59</p>
+        <p><span>最后更新:</span>2019-03-04, 16:25:21</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/04/xxe-tool/" title="XXE漏洞利用工具及其资源">https://sakuxa.com/2019/03/04/xxe-tool/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/04/xxe-tool/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
