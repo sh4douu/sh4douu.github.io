@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="一、基本前端编码知识0x00 为什么要进行编码：主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会引起歧义。 对于URL，  &amp;amp;用于分割多个参数，倘若有某个参数键值对为name=v&amp;amp;lue，就会因为name参数的值v&amp;amp;lue中携带了&amp;amp;而造成歧义。因此需要对&amp;amp;进行URL编码。  对于HTML，  当浏览器遇到">
+<meta name="keywords" content="XSS,编码与解码,解析器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0x00_XSS学习系列之编码解码">
+<meta property="og:url" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之编码解码/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="一、基本前端编码知识0x00 为什么要进行编码：主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会引起歧义。 对于URL，  &amp;amp;用于分割多个参数，倘若有某个参数键值对为name=v&amp;amp;lue，就会因为name参数的值v&amp;amp;lue中携带了&amp;amp;而造成歧义。因此需要对&amp;amp;进行URL编码。  对于HTML，  当浏览器遇到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之编码解码/QQ截图20190307120011.png">
+<meta property="og:updated_time" content="2019-03-07T09:27:17.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="0x00_XSS学习系列之编码解码">
+<meta name="twitter:description" content="一、基本前端编码知识0x00 为什么要进行编码：主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会引起歧义。 对于URL，  &amp;amp;用于分割多个参数，倘若有某个参数键值对为name=v&amp;amp;lue，就会因为name参数的值v&amp;amp;lue中携带了&amp;amp;而造成歧义。因此需要对&amp;amp;进行URL编码。  对于HTML，  当浏览器遇到">
+<meta name="twitter:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之编码解码/QQ截图20190307120011.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>0x00_XSS学习系列之编码解码 | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/a.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/解析器/">解析器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/a.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-0x00-XSS学习系列之编码解码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/07/0x00-XSS学习系列之编码解码/" class="article-date">
+      <time datetime="2019-03-07T03:59:02.000Z" itemprop="datePublished">2019-03-07</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      0x00_XSS学习系列之编码解码
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/解析器/">解析器</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一、基本前端编码知识"><a href="#一、基本前端编码知识" class="headerlink" title="一、基本前端编码知识"></a>一、基本前端编码知识</h2><h4 id="0x00-为什么要进行编码："><a href="#0x00-为什么要进行编码：" class="headerlink" title="0x00 为什么要进行编码："></a>0x00 为什么要进行编码：</h4><p>主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会<strong>引起歧义</strong>。</p>
+<p>对于URL，</p>
+<blockquote>
+<p><code>&amp;</code>用于分割多个参数，倘若有某个参数键值对为<code>name=v&amp;lue</code>，就会因为<code>name</code>参数的值<code>v&amp;lue</code>中携带了<code>&amp;</code>而造成歧义。因此需要对<code>&amp;</code>进行URL编码。</p>
+</blockquote>
+<p>对于HTML，</p>
+<blockquote>
+<p>当浏览器遇到<code>&lt;</code>会识别为元素定义的开始，<code>&gt;</code>会识别为元素的结束。倘若有<code>&lt;div  id=&quot;1&gt;&quot; &gt;&lt;/div&gt;</code>，由于标签的属性值携带了<code>&gt;</code>，同样会造成歧义。因此需要属性值的<code>&gt;</code>需要进行HTML编码，即使用字符实体。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="0x01-URL编码"><a href="#0x01-URL编码" class="headerlink" title="0x01 URL编码"></a>0x01 URL编码</h4><p>RFC3986文档规定，Url中只允许包含英文字母（a-zA-Z）、数字（0-9）、-_.~4个特殊字符以及所有保留字符。</p>
+<p>编码方式，</p>
+<blockquote>
+<p><code>%</code>加<code>字符在ASCII码表中的十六进制值</code>。</p>
+<p>例如，<code>/</code>在ASCII码表中十六进制为<code>0x2f</code>，那么它对应的URL编码为<code>%2f</code>。</p>
+</blockquote>
+<p>JavaScript中提供了3个函数用来对Url编码以得到合法的Url：</p>
+<ul>
+<li>escape()</li>
+<li>encodeURI（）</li>
+<li>encodeURIComponent（）</li>
+</ul>
+<p>参考连接：<a href="https://www.cnblogs.com/jerrysion/p/5522673.html" target="_blank" rel="noopener">https://www.cnblogs.com/jerrysion/p/5522673.html</a></p>
+<h4 id="0x02-HTML编码（字符实体）"><a href="#0x02-HTML编码（字符实体）" class="headerlink" title="0x02 HTML编码（字符实体）"></a>0x02 HTML编码（字符实体）</h4><p>字符实体是一个预先定义好的转义序列。</p>
+<p>字符实体两种表示方法</p>
+<p>字符实体以<code>&amp;</code>开头+预先定义的<code>实体名称</code>+<code>;</code>分号结束，如“&lt;”的实体名称为<code>&amp;lt;</code></p>
+<p>字符实体还可以以<code>&amp;</code>开头+<code>#</code>符号+<code>字符在ASCII对应的十进制数字</code>+<code>;</code>分号结束，如<code>&lt;</code>的实体编号为<code>&amp;#60;</code>。</p>
+<p><strong>字符都是有实体编号的，但有些字符是没有实体名称的。</strong></p>
+<p><img src="/2019/03/07/0x00-XSS学习系列之编码解码/QQ截图20190307120011.png" alt></p>
+<h4 id="0x03-JavaScript编码"><a href="#0x03-JavaScript编码" class="headerlink" title="0x03 JavaScript编码"></a>0x03 JavaScript编码</h4><p>最常用的如<code>\uXXXX</code>这种写法的Unicode转义序列，表示一个字符，其中<code>xxxx</code>表示一个16进制数字，如<code>&lt;</code>Unicode编码为<code>\u003c</code>。</p>
+<h2 id="二、前端解码"><a href="#二、前端解码" class="headerlink" title="二、前端解码"></a>二、前端解码</h2><p>解析一个HTML文档涉及三个主要过程：HTML解析——&gt;URL解析——&gt;JavaScript解析。</p>
+<p>每一个过程由相应的解析器进行解码解析：HTML解析器、URL解析器、JavaScript解析器。</p>
+<h3 id="0x00-HTML解析器"><a href="#0x00-HTML解析器" class="headerlink" title="0x00 HTML解析器"></a>0x00 HTML解析器</h3><p>HTML解析器以状态机的方式运行，它从文档输入流中消耗字符并根据其转换规则转换到不同的状态。</p>
+<p>当HTML解析器遇到<code>&lt;</code>字符，且字符后不包含<code>/</code>,即不是闭合标签时，状态机就会进入<strong><code>标签打开状态（Tag Open State）</code></strong>，随后再进入<strong><code>标签名称状态（Tag Name State）</code></strong>、<strong><code>属性名称前状态（Before Attribute Name State）</code></strong>……最后进入<strong><code>数据状态（Data State）</code></strong>并且发布当前<strong><code>标签令牌（Token）</code></strong>。状态机处于<strong><code>数据状态（Data State）</code></strong>时，会继续上述的步骤，遇到完整的标签就发出<strong><code>标签令牌（Token）</code></strong>。</p>
+<p>HTML解析器处于<strong><code>数据状态（Data State）</code></strong>、<strong><code>RCDATA 状态（RCDATA State）</code></strong>、<strong><code>属性值状态（Attribute Value State）</code></strong>时，<strong>字符实体</strong>会被解码为对应的字符。</p>
+<p>例子，<strong><code>&lt;div&gt;&amp;#60;img src=x onerror=alert(4)&amp;#62;&lt;/div&gt;</code></strong>，<code>&lt;</code>和<code>&gt;</code>被编码为实体<code>&amp;#60;</code>和<code>&amp;#62;</code>，当HTML解析器遇到完<code>&lt;div&gt;</code>时，会进入<strong><code>数据状态（Data State）</code></strong>并发布标签令牌。接着解析到实体<code>&amp;#60;</code>时因为处在<strong><code>数据状态（Data State）</code></strong>就会对实体进行解码为<code>&lt;</code>，后面的<code>&amp;#62;</code>同样道理被解码为<code>&gt;</code>。</p>
+<p>这里会有个问题，被解码后，<code>img</code>是否会被解析为HTML标签而导致JS执行呢？</p>
+<p>答案是否定的。因为解析器在使用字符引用后不会转换到<strong><code>标签打开状态（Tag Open State）</code></strong>，不进入标签打开状态就不会被发布为HTML标签。因此，不会创建新HTML标签，只会将其作为数据来处理。这也是为什么我们可以使用字符实体来避免用户不安全输入导致XSS的原因。</p>
+<p><strong>RCDATA</strong></p>
+<p>在HTML中，属于<strong><code>RCDATA Elements</code></strong>的标签有两个：<code>textarea</code>、<code>title</code>。</p>
+<p><strong><code>RCDATA Elements</code></strong>类型的标签可以包含文本内容和字符实体。</p>
+<p>解析器解析到<code>textarea</code>、<code>title</code>标签的数据部分时，状态会进入<strong><code>RCDATA State</code></strong>。</p>
+<p>前面我们提到，处于<strong><code>RCDATA State</code></strong>状态时，字符实体是会被解析器解码的。</p>
+<p>例子， <strong><code>&lt;textarea&gt;&amp;#60;script&amp;#62;alert(5)&amp;#60;/script&amp;#62;&lt;/textarea&gt;</code></strong>，<code>&lt;</code>和<code>&gt;</code>被编码为实体<code>&amp;#60;</code>和<code>&amp;#62;</code>，解析器解析到它们时会进行解码，最终得到<strong><code>&lt;textarea&gt;&lt;script&gt;alert(5)&lt;/script&gt;&lt;/textarea&gt;</code></strong>。但是里面的JS同样还是不会被执行，原因还是因为解码字符实体状态机不会进入<strong><code>标签打开状态（Tag Open State）</code></strong>，因此里面的<code>&lt;script&gt;</code>并不会被解析为HTML标签。</p>
+<p>事实上，任何<code>RCDATA</code>（<code>textarea</code>、<code>title</code>里面的数据）都不会使得状态机进入<strong><code>标签打开状态（Tag Open State）</code></strong></p>
+<p>，So if a user input wants to escape out of the CDATA context, it has to use the exact “]]&gt;” sequence without any encoding。</p>
+<p>HTML解析规范：<a href="https://html.spec.whatwg.org/multipage/parsing.html#tokenization" target="_blank" rel="noopener">https://html.spec.whatwg.org/multipage/parsing.html#tokenization</a></p>
+<h3 id="0x01-URL解析器"><a href="#0x01-URL解析器" class="headerlink" title="0x01 URL解析器"></a>0x01 URL解析器</h3><p>URL解析器也被建模为状态机，文档输入流中的字符可以将其导向不同的状态。</p>
+<p>首先，要注意的是URL的<code>Scheme</code>部分（协议部分）必须为ASCII字符，即不能被任何编码，否则URL解析器的状态机将进入<strong><code>No Scheme</code></strong>状态。</p>
+<p>例如，<code>&lt;a href=&quot;%6a%61%76%61%73%63%72%69%70%74:%61%6c%65%72%74%28%31%29&quot;&gt;&lt;/a&gt;</code>，被进行URL编码部分解码得到的是<code>javascript:alert(1)</code>，JS不会被执行，因为<code>Scheme</code>部分的<code>javascript</code>被编码，导致URL解析器状态机进入<strong><code>No Scheme</code></strong>状态。</p>
+<p>同样，URL中的<code>:</code>也不能被以任何方式编码，否则URL解析器的状态机也将进入<strong><code>No Scheme</code></strong>状态。</p>
+<p>例如，<code>&lt;a href=&quot;javascript%3aalert(3)&quot;&gt;&lt;/a&gt;</code>，由于<code>:</code>被URL编码为<code>%3a</code>，导致URL状态机进入<strong><code>No Scheme</code></strong>状态，JS代码不能执行。</p>
+<p>另一个例子：</p>
+<p><code>&lt;a href=&quot;&amp;#x6a;&amp;#x61;&amp;#x76;&amp;#x61;&amp;#x73;&amp;#x63;&amp;#x72;&amp;#x69;&amp;#x70;&amp;#x74;:%61%6c%65%72%74%28%32%29&quot;&gt;</code></p>
+<p><code>javascript</code>被实体化编码，<code>:</code>没有被编码,<code>alert(2)</code>被URL编码。</p>
+<p>例子中的JS被成功执行。那么将产生一个问题。为什么作为URL的<code>Scheme</code>部分的<code>javascript</code>被编码了但JS还是被执行了？</p>
+<p>原因在于，首先，在HTML解析器中我们谈到过，HTML状态机处于<strong><code>属性值状态（Attribute Value State）</code></strong>时，字符实体时会被解码的，此处在<code>href</code>属性中，所以被实体化编码的<code>javascript</code>字符会被解码。其次，HTML解析是在URL解析之前的，所以在进行URL解析之前，<code>Scheme</code>部分的<code>javascript</code>字符已被解码，而并不再是被编码的状态。</p>
+<p>URL解析规范：<a href="https://url.spec.whatwg.org/" target="_blank" rel="noopener">https://url.spec.whatwg.org/</a></p>
+<h3 id="0x02-JavaScript解析器"><a href="#0x02-JavaScript解析器" class="headerlink" title="0x02 JavaScript解析器"></a>0x02 JavaScript解析器</h3><p>JavaScript解析与HTML解析的区别在于JavaScript是上下文自由的。</p>
+<p>在HTML中，属于<strong><code>Raw text elements</code></strong>的标签有两个：<code>script</code>、<code>style</code>。</p>
+<p>在<strong><code>Raw text elements</code></strong>类型标签下的所有块内容都属于该标签。</p>
+<p>第一条特性：<strong><code>Raw text elements</code></strong>类型标签下的所有字符实体编码都不会被HTML解码。HTML解析器解析到<code>script</code>、<code>style</code>标签的数据部分时，状态会进入<strong><code>Script Data State</code></strong>，该状态并不在我们前面说的会解码字符实体的三条状态之中。</p>
+<p>因此，<code>&lt;script&gt;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116&amp;#40;&amp;#57;&amp;#41;&amp;#59&lt;/script&gt;</code>这样字符实体并不会被解码，也就不会执行JS。</p>
+<p>形如 <code>\uXXXX</code>这样的Unicode字符转义序列是否能被解码需要看情况：</p>
+<p>首先，JavaScript中有三个地方可以出现Unicode字符转义序列：</p>
+<p>字符串中（in String）</p>
+<blockquote>
+<p><code>Unicode escape sequences will NEVER break out of the string context in JavaScript because they will always be interpreted as string literals.</code></p>
+<p>即，Unicode转义序列出现在字符串中时，它只会被解释为普通字符串，而不会破坏字符串的上下文。例如<code>\u000A</code>在Java字符串中会被解释为行终止符，但在JavaScript中的字符串只会被解释为普通字符。简单说就是不会被解码。</p>
+</blockquote>
+<p>标识符中（in identifier names）</p>
+<blockquote>
+<p>若Unicode转义序列存在于标识符中，即变量名，它会被进行解码。如函数名等。</p>
+<p>例如，<code>&lt;script&gt;\u0061\u006c\u0065\u0072\u0074(10);&lt;/script&gt;</code></p>
+<p>被编码转义的部分为<code>alert</code>，是函数名，属于在标识符中的情况，因此JS代码会被执行。</p>
+</blockquote>
+<p>控制字符中（in control characters）</p>
+<blockquote>
+<p>若Unicode转义序列存在于控制字符中，那么它会被解码但不会被解释为控制字符，而会被解释为标识符或字符串字符的一部分。</p>
+<p>控制字符即<code>&#39;</code>、<code>&quot;</code>、<code>()</code>等。</p>
+<p>例如，<code>&lt;script&gt; alert\u0028&quot;xss&quot;);&lt;/script&gt;</code>，<code>(</code>进行了Unicode编码，那么解码后它不在是作为控制字符，而是作为标识符的一部分<code>alert(</code>。</p>
+<p>因此函数的括号之类的控制字符进行Unicode转义后是不能被正常解码解释的。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/07/0x00-XSS学习系列之编码解码/">0x00_XSS学习系列之编码解码</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-03-07, 11:59:02</p>
+        <p><span>最后更新:</span>2019-03-07, 17:27:17</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/07/0x00-XSS学习系列之编码解码/" title="0x00_XSS学习系列之编码解码">https://sakuxa.com/2019/03/07/0x00-XSS学习系列之编码解码/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/07/0x00-XSS学习系列之编码解码/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/05/文件上传漏洞/">
+                    文件上传漏洞（File Upload）
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、基本前端编码知识"><span class="toc-number">1.</span> <span class="toc-text">一、基本前端编码知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-为什么要进行编码："><span class="toc-number">1.0.1.</span> <span class="toc-text">0x00 为什么要进行编码：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-URL编码"><span class="toc-number">1.0.2.</span> <span class="toc-text">0x01 URL编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-HTML编码（字符实体）"><span class="toc-number">1.0.3.</span> <span class="toc-text">0x02 HTML编码（字符实体）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-JavaScript编码"><span class="toc-number">1.0.4.</span> <span class="toc-text">0x03 JavaScript编码</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#二、前端解码"><span class="toc-number">2.</span> <span class="toc-text">二、前端解码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-HTML解析器"><span class="toc-number">2.1.</span> <span class="toc-text">0x00 HTML解析器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-URL解析器"><span class="toc-number">2.2.</span> <span class="toc-text">0x01 URL解析器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-JavaScript解析器"><span class="toc-number">2.3.</span> <span class="toc-text">0x02 JavaScript解析器</span></a></li></ol></li>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"0x00_XSS学习系列之编码解码　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/05/文件上传漏洞/" title="下一篇: 文件上传漏洞（File Upload）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之编码解码/">0x00_XSS学习系列之编码解码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
