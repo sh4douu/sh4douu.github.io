@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="一、前端基本编码知识0x00 为什么要进行编码? 主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会引起歧义。  对于URL，  &amp;amp;用于分割多个参数，倘若有某个参数键值对为name=v&amp;amp;lue，就会因为name参数的值v&amp;amp;lue中携带了&amp;amp;而造成歧义。因此需要对&amp;amp;进行URL编码。  对于HTML，  当浏览器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190307120011.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190308105040.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190308105254.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190308105533.png">
-<meta property="og:updated_time" content="2019-03-08T03:26:39.447Z">
+<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190307120011.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105040.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105254.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105533.png">
+<meta property="og:updated_time" content="2019-03-08T05:05:14.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1：XSS学习系列之浏览器解析HTML文档">
 <meta name="twitter:description" content="一、前端基本编码知识0x00 为什么要进行编码? 主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会引起歧义。  对于URL，  &amp;amp;用于分割多个参数，倘若有某个参数键值对为name=v&amp;amp;lue，就会因为name参数的值v&amp;amp;lue中携带了&amp;amp;而造成歧义。因此需要对&amp;amp;进行URL编码。  对于HTML，  当浏览器">
-<meta name="twitter:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190307120011.png">
+<meta name="twitter:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190307120011.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -347,7 +347,7 @@
 </ul>
 </blockquote>
 <p><strong>字符都是有实体编号的，但有些字符是没有实体名称的。</strong></p>
-<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190307120011.png" alt></p>
+<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190307120011.png" alt></p>
 <h3 id="0x03-JavaScript编码"><a href="#0x03-JavaScript编码" class="headerlink" title="0x03 JavaScript编码"></a>0x03 JavaScript编码</h3><p>最常用的如<code>\uXXXX</code>这种写法的Unicode转义序列，表示一个字符，其中<code>xxxx</code>表示一个16进制数字，如<code>&lt;</code>Unicode编码为<code>\u003c</code>。</p>
 <h2 id="二、解析HTML文档"><a href="#二、解析HTML文档" class="headerlink" title="二、解析HTML文档"></a>二、解析HTML文档</h2><p>解析一个HTML文档涉及三个主要过程：HTML解析——&gt;URL解析——JavaScript解析。</p>
 <p>每一个过程由相应的解析器进行解码解析：HTML解析器、URL解析器、JavaScript解析器。</p>
@@ -487,11 +487,11 @@
 &amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x30;&amp;#x25;&amp;#x33;&amp;#x37;&amp;#x25;&amp;#x33;&amp;#x34;&amp;#x28;&amp;#x31;
 &amp;#x35;&amp;#x29;&quot;&gt; &lt;/a&gt;</code></strong></p>
 <p>首先HTML解析器进行解析，解析到<code>href</code>属性的值时，状态机进入<strong><code>属性值状态（Attribute Value State）</code></strong>，该状态会解码字符实体，解码得到结果：</p>
-<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190308105040.png" alt></p>
+<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105040.png" alt></p>
 <p>接着由URL解析器进行解析并解码：</p>
-<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190308105254.png" alt></p>
+<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105254.png" alt></p>
 <p>再接着由于Scheme为javascript，因此由JavaScript解析器解析并解码，加上编码部分是函数名，属于标识符，因此可以正常解码解释：</p>
-<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/0x00-XSS学习系列之编码解码/QQ截图20190308105533.png" alt></p>
+<p><img src="/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105533.png" alt></p>
 <p>经过三轮解析解码后得到结果：<code>&lt;a href=&quot;javascript:alert(15)&quot;&gt;&lt;/a&gt;</code></p>
 <p>参考连接：</p>
 <p><a href="https://www.attacker-domain.com/2013/04/deep-dive-into-browser-parsing-and-xss.html" target="_blank" rel="noopener">https://www.attacker-domain.com/2013/04/deep-dive-into-browser-parsing-and-xss.html</a></p>
@@ -508,7 +508,7 @@
         <p><span>本文标题:</span><a href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-07, 11:59:02</p>
-        <p><span>最后更新:</span>2019-03-08, 11:26:39</p>
+        <p><span>最后更新:</span>2019-03-08, 13:05:14</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/" title="Chapter 1：XSS学习系列之浏览器解析HTML文档">https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
