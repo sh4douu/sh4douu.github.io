@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105040.png">
 <meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105254.png">
 <meta property="og:image" content="https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/QQ截图20190308105533.png">
-<meta property="og:updated_time" content="2019-03-08T05:05:14.122Z">
+<meta property="og:updated_time" content="2019-03-11T07:56:01.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 1：XSS学习系列之浏览器解析HTML文档">
 <meta name="twitter:description" content="一、前端基本编码知识0x00 为什么要进行编码? 主要是因为某些数据不适合传输。原因多种多样，如Size过大，包含隐私数据，另外重要的一点就是有些字符会引起歧义。  对于URL，  &amp;amp;用于分割多个参数，倘若有某个参数键值对为name=v&amp;amp;lue，就会因为name参数的值v&amp;amp;lue中携带了&amp;amp;而造成歧义。因此需要对&amp;amp;进行URL编码。  对于HTML，  当浏览器">
@@ -402,6 +402,7 @@
 <p>原因在于，首先，在HTML解析器中我们谈到过，HTML状态机处于<strong><code>属性值状态（Attribute Value State）</code></strong>时，字符实体时会被解码的，此处在<code>href</code>属性中，所以被实体化编码的<code>&quot;javascript&quot;</code>字符串会被解码。其次，HTML解析是在URL解析之前的，所以在进行URL解析之前，<code>Scheme</code>部分的<code>&quot;javascript&quot;</code>字符串已被解码，而并不再是被实体编码的状态。</p>
 </blockquote>
 <p>URL解析规范：<a href="https://url.spec.whatwg.org/" target="_blank" rel="noopener">https://url.spec.whatwg.org/</a></p>
+<p>URL地址结构：<a href="https://blog.csdn.net/x_nirvana/article/details/50768906" target="_blank" rel="noopener">https://blog.csdn.net/x_nirvana/article/details/50768906</a></p>
 <h3 id="0x02-JavaScript解析器"><a href="#0x02-JavaScript解析器" class="headerlink" title="0x02 JavaScript解析器"></a>0x02 JavaScript解析器</h3><p>JavaScript解析与HTML解析的区别在于JavaScript是上下文自由的。</p>
 <p>在HTML中，属于<strong><code>Raw text elements</code></strong>的标签有两个：<code>script</code>、<code>style</code>。</p>
 <p>在<strong><code>Raw text elements</code></strong>类型标签下的所有内容块都属于该标签。</p>
@@ -415,7 +416,7 @@
 <p>字符串中（in String）</p>
 <blockquote>
 <p><code>Unicode escape sequences will NEVER break out of the string context in JavaScript because they will always be interpreted as string literals.</code></p>
-<p>即，Unicode转义序列出现在字符串中时，它只会被解释为普通字符，而不会破坏字符串的上下文。例如<code>\u000A</code>在Java字符串中会被解释为行终止符，会导致字符串上下文断裂。但在JavaScript中的字符串只会被解释为普通字符。简单说就是不会被解码。</p>
+<p>即，Unicode转义序列出现在字符串中时，它只会被解释为普通字符，而不会破坏字符串的上下文。例如<code>\u000A</code>在Java字符串中会被解释为行终止符，会导致字符串上下文断裂。但在JavaScript中的字符串只会被解释为普通字符。简单说就是会被解码，但只解释为字符串的一部分。</p>
 </blockquote>
 <p>标识符中（in identifier names）</p>
 <blockquote>
@@ -497,6 +498,7 @@
 <p><a href="https://www.attacker-domain.com/2013/04/deep-dive-into-browser-parsing-and-xss.html" target="_blank" rel="noopener">https://www.attacker-domain.com/2013/04/deep-dive-into-browser-parsing-and-xss.html</a></p>
 <p><a href="https://security.yirendai.com/news/share/26" target="_blank" rel="noopener">https://security.yirendai.com/news/share/26</a></p>
 <p><a href="https://xz.aliyun.com/t/1556" target="_blank" rel="noopener">https://xz.aliyun.com/t/1556</a></p>
+<p><a href="https://github.com/JnuSimba/MiscSecNotes/blob/master/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC/%E8%A7%A3%E7%A0%81%E9%A1%BA%E5%BA%8F.md" target="_blank" rel="noopener">https://github.com/JnuSimba/MiscSecNotes/blob/master/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC/%E8%A7%A3%E7%A0%81%E9%A1%BA%E5%BA%8F.md</a></p>
 
       
     </div>
@@ -508,7 +510,7 @@
         <p><span>本文标题:</span><a href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-07, 11:59:02</p>
-        <p><span>最后更新:</span>2019-03-08, 13:05:14</p>
+        <p><span>最后更新:</span>2019-03-11, 15:56:01</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/" title="Chapter 1：XSS学习系列之浏览器解析HTML文档">https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/07/0x00-XSS学习系列之解析HTML文档/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -522,6 +524,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">
+                    Chapter 2：XSS学习系列之漏洞原理
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -594,7 +602,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/03/11/0x01-XSS学习系列之漏洞原理/" title="上一篇: Chapter 2：XSS学习系列之漏洞原理">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -606,7 +616,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">Chapter 2：XSS学习系列之漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 
