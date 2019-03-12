@@ -15,18 +15,13 @@
 
 
 
-<meta name="description" content="0x00 Git概述Git是一个开源的分布式版本控制系统,用于敏捷高效地处理任何或小或大的项目。">
-<meta name="keywords" content="必会技能">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Git基本命令及使用">
-<meta property="og:url" content="https://sakuxa.com/2019/02/22/GitNote/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IT技术学习分享自留地">
+<meta property="og:url" content="https://sakuxa.com/tags/MySQL/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 Git概述Git是一个开源的分布式版本控制系统,用于敏捷高效地处理任何或小或大的项目。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-25T01:33:39.930Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git基本命令及使用">
-<meta name="twitter:description" content="0x00 Git概述Git是一个开源的分布式版本控制系统,用于敏捷高效地处理任何或小或大的项目。">
+<meta name="twitter:title" content="IT技术学习分享自留地">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +53,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Git基本命令及使用 | IT技术学习分享自留地</title>
+<title>Tag: MySQL | IT技术学习分享自留地</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -68,9 +63,9 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: true,
+        isPost: false,
         isArchive: false,
-        isTag: false,
+        isTag: true,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -262,231 +257,60 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-GitNote" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2019/02/22/GitNote/" class="article-date">
-      <time datetime="2019-02-22T06:04:26.000Z" itemprop="datePublished">2019-02-22</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/" class="archive-article-date">
+      <time datetime="2019-03-12T02:14:38.000Z" itemprop="datePublished">03-12</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Git基本命令及使用
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">0x00-SQL注入系列之MySQL基础知识</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Misc/">Misc</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/必会技能/">必会技能</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <h2 id="0x00-Git概述"><a href="#0x00-Git概述" class="headerlink" title="0x00 Git概述"></a>0x00 Git概述</h2><p><em>Git</em>是一个开源的分布式版本控制系统,用于敏捷高效地处理任何或小或大的项目。</p>
-<a id="more"></a>
-<h2 id="0x01-Git安装"><a href="#0x01-Git安装" class="headerlink" title="0x01 Git安装"></a>0x01 Git安装</h2><p>到官网下载安装程序安装即可：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p>
-<h2 id="0x02-基本操作"><a href="#0x02-基本操作" class="headerlink" title="0x02 基本操作"></a>0x02 基本操作</h2><blockquote>
-<p><strong><code>git   init</code>  </strong>     #初始化当前目录，表示对当前目录进行版本控制。该步骤是对某一目录进行版本控制的第一步。</p>
-</blockquote>
-<blockquote>
-<p><strong><code>git status</code></strong>       #查看当前目录文件状态。（红色文件表示未加入版本控制，绿色表示已加入但未提交版本）</p>
-<ul>
-<li>PS：对文件进行修改变动后，git会自动发现并变为红色，此时又需要git add变为绿色</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong><code>git add  &lt;filename&gt;</code></strong>    #将指定文件加入版本控制。（加入后git status查看红色变为绿色）<br><strong><code>git add  .</code></strong>          #将当前目录下的所有文件加入版本控制。</p>
-</blockquote>
-<blockquote>
-<p><strong><code>git commit -m</code></strong> “详细描述信息”       #提交一个版本。即生成一次版本快照。版本号是随意生成的MD5值。</p>
-</blockquote>
-<blockquote>
-<p><strong><code>git log</code></strong>         #版本创建/变更日志。<br><strong><code>git reflog</code></strong>     #同上，但更详细。</p>
-<blockquote>
-<p>可通过这两条命令看到变更的记录，更直白一点就是可以获取版本号用于变更版本。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p><strong><code>git reset --hard &lt;版本号&gt;</code> </strong>    #切换状态到指定的版本（快照）</p>
-</blockquote>
-<blockquote>
-<p><strong><code>git branch</code>  </strong> #查看分支列表。一个项目可以用众多分支，分支之间拷贝的，即互相独立不影响。默认是master</p>
-<p><strong><code>git branch &lt;分支名称&gt;</code></strong>         #创建一个新分支。（创建的分支是当前所在分支的拷贝，本质是两份独立的拷贝）<br><strong><code>git branch -d &lt;分支名称&gt;</code></strong>     #删除指定分支</p>
-<p><strong><code>git checkout &lt;分支名称&gt;</code></strong>     #进入指定分支</p>
-<p><strong><code>git merge &lt;分支名称&gt;</code></strong>          #将指定分支与当前所在分支进行合并。</p>
-</blockquote>
-<h2 id="0x03-连接Github"><a href="#0x03-连接Github" class="headerlink" title="0x03 连接Github"></a>0x03 连接Github</h2><blockquote>
-<p><strong><code>git remote add  &lt;github仓库地址别名&gt;    &lt;github仓库地址&gt;</code></strong>        </p>
-<blockquote>
-<p>别名是为了避免记网址，对应关系会被记录在.git目录的config文件中。</p>
-</blockquote>
-<p><strong><code>git clone  &lt;github项目网址&gt;</code></strong>      #克隆下载项目</p>
-<p><strong><code>git pull &lt;github网址别名&gt;  &lt;分支名称&gt;</code></strong>    #从github拉取指定分支代码。</p>
-<blockquote>
-<p>上面条等价于下面两条：<br>​        <strong><code>git fetch   &lt;github网址别名&gt;    &lt;分支名称&gt;</code></strong><br>​        <strong><code>git merge   &lt;github网址别名&gt;   &lt;分支名称&gt;</code></strong></p>
-</blockquote>
-<p><strong><code>git push &lt;github网址别名&gt;   &lt;分支名称&gt;</code></strong>  #将当前所在分支推到github上。</p>
-</blockquote>
-<h2 id="0x04-将某些文件隔离出版本控制"><a href="#0x04-将某些文件隔离出版本控制" class="headerlink" title="0x04 将某些文件隔离出版本控制"></a>0x04 将某些文件隔离出版本控制</h2><ul>
-<li>在工作目录下创建<strong>.gitignore</strong>文件</li>
-<li>文件的编写格式内容</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*.sql    #表示所有后缀为.sql的文件都被隔离</span><br><span class="line">*.pyc	 #表示所有后缀为.pyc的文件都被隔离</span><br><span class="line">a.txt	 #表示隔离a.txt</span><br></pre></td></tr></table></figure>
-<h4 id="教程博客与参考链接"><a href="#教程博客与参考链接" class="headerlink" title="教程博客与参考链接"></a>教程博客与参考链接</h4><ul>
-<li><a href="https://www.cnblogs.com/wupeiqi/p/7295372.html" target="_blank" rel="noopener">https://www.cnblogs.com/wupeiqi/p/7295372.html</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2018/10/git-internals.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/10/git-internals.html</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-workflow.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/12/git-workflow.html</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a></li>
-</ul>
-
-      
-    </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/22/GitNote/">Git基本命令及使用</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
-        <p><span>发布时间:</span>2019-02-22, 14:04:26</p>
-        <p><span>最后更新:</span>2019-02-25, 09:33:39</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/22/GitNote/" title="Git基本命令及使用">https://sakuxa.com/2019/02/22/GitNote/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/02/22/GitNote/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a>
     </div>
 
 
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/02/25/phpcms9-6-1/">
-                    PHPCMSv9.6.1任意文件下载漏洞复现
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/02/22/干货杂项收集/">
-                    干货杂项收集
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-Git概述"><span class="toc-number">1.</span> <span class="toc-text">0x00 Git概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-Git安装"><span class="toc-number">2.</span> <span class="toc-text">0x01 Git安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-基本操作"><span class="toc-number">3.</span> <span class="toc-text">0x02 基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-连接Github"><span class="toc-number">4.</span> <span class="toc-text">0x03 连接Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-将某些文件隔离出版本控制"><span class="toc-number">5.</span> <span class="toc-text">0x04 将某些文件隔离出版本控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#教程博客与参考链接"><span class="toc-number">5.0.1.</span> <span class="toc-text">教程博客与参考链接</span></a></li></ol></li></ol>
-        
+          
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li></ul>
     </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
 
-    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
         </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Git基本命令及使用　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2019/02/25/phpcms9-6-1/" title="上一篇: PHPCMSv9.6.1任意文件下载漏洞复现">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2019/02/22/干货杂项收集/" title="下一篇: 干货杂项收集">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">0x00-SQL注入系列之MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">Chapter 2：XSS学习系列之漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
