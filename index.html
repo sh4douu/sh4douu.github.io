@@ -283,7 +283,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/18/01python基础学习系列之字符串/">01python基础学习系列之字符串</a>
+      <a class="article-title" href="/2019/03/18/01python基础学习系列之字符串/">Chapter 2：python基础学习系列之字符串</a>
     </h1>
   
 
@@ -293,94 +293,30 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="0x00-字符串概述"><a href="#0x00-字符串概述" class="headerlink" title="0x00 字符串概述"></a>0x00 字符串概述</h3><p>字符串是不可变的序列。</p>
+              <h3 id="0x00-字符串概述"><a href="#0x00-字符串概述" class="headerlink" title="0x00 字符串概述"></a>0x00 字符串概述</h3><p>字符串是不可变的序列。</p>
 <p>Python3.0字符串分3中类型：str用于Unicode文本；bytes用于二进制文本；bytearray是bytes的变体。</p>
 <h3 id="0x01-字符串"><a href="#0x01-字符串" class="headerlink" title="0x01 字符串"></a>0x01 字符串</h3><h4 id="1-字符串常量："><a href="#1-字符串常量：" class="headerlink" title="1.字符串常量："></a>1.字符串常量：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;string&apos;</span><br><span class="line">&quot;string&quot;</span><br><span class="line">&apos;&apos;&apos;string&apos;&apos;&apos;</span><br><span class="line">&quot;&quot;&quot;string&quot;&quot;&quot;</span><br><span class="line">r&apos;string&apos;     #Raw字符串</span><br><span class="line">b&apos;string&apos;     #bytes字符串</span><br></pre></td></tr></table></figure>
-<h4 id="2-字符串操作"><a href="#2-字符串操作" class="headerlink" title="2.字符串操作"></a>2.字符串操作</h4><ul>
-<li>索引：<code>str[下标]</code></li>
-<li>切片：<code>str[下标开始:下标结束：步长]</code>    #步长默认为1</li>
-<li>合并：<code>+</code>、<code>*</code></li>
-<li>类型强制转换：<code>str()</code></li>
-<li>修改字符串：可以通过产生新对象后重新赋值给原变量。</li>
-</ul>
-<h4 id="3-字符串格式化："><a href="#3-字符串格式化：" class="headerlink" title="3.字符串格式化："></a>3.字符串格式化：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;this is %s&quot; %&apos;collision&apos;               #字符串形式</span><br><span class="line">&quot;%s is %s boy&quot;%(&quot;collision&quot;,&quot;good&quot;)     #元组形式</span><br><span class="line">&quot;%(x)d,%(y)d&quot;%&#123;&quot;x&quot;:1,&quot;y&quot;:2&#125;             #字典形式</span><br></pre></td></tr></table></figure>
-<p>format格式化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;a&#123;&#125;c&#123;&#125;&apos;.format(&apos;b&apos;,&apos;d&apos;)</span><br><span class="line">&apos;a&#123;0&#125;c&#123;1&#125;&apos;.format(&apos;b&apos;,&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format(name=&apos;b&apos;,age=&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format_map(&#123;&apos;name&apos;:&apos;b&apos;,&apos;age&apos;=&apos;d&apos;&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="0x02-字符串方法："><a href="#0x02-字符串方法：" class="headerlink" title="0x02 字符串方法："></a>0x02 字符串方法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">查找：</span><br><span class="line">	count()          #返回字符或字符串在字符串中出现的次数</span><br><span class="line">	find()、rfind()  #查找字符或字符串返回第一次出现时的下标</span><br><span class="line">	index()          #返回字符或字符串在字符串中的下标	</span><br><span class="line">	</span><br><span class="line">	PS:find()与index()区别在于，find对不存在的字符串查找会返回-1，而index会报错。</span><br><span class="line"></span><br><span class="line">判断：</span><br><span class="line">	startswith()、endswith()     #判断字符或字符串的开始与结尾</span><br><span class="line">	</span><br><span class="line">	isalpha()        #判断字符串是否是字母组成	</span><br><span class="line">	isnumeric()      #字符串只包含数字字符	</span><br><span class="line">	isalnum()        #判断字符串是否是字母或数字组</span><br><span class="line">	</span><br><span class="line">	isdecimal()      #判断字符串是否是十进制数字</span><br><span class="line">	isdigit()        #判断字符串是否是数字组成</span><br><span class="line">	islower()        #字母字符是否都是小写字母</span><br><span class="line">	isupper()        #都是大写</span><br><span class="line">		</span><br><span class="line">操作：</span><br><span class="line">	join()     #将字符串作为分隔符，合并一个序列为一个字符串。	</span><br><span class="line">		PS：序列的元素要求是字符串才可以。</span><br><span class="line">		</span><br><span class="line">	split()    #以指定字符串为分隔符分割一个字符串为一个列表	</span><br><span class="line">	replace()  #对应替换								</span><br><span class="line">	strip()    #脱掉字符串两端的指定字符串（默认脱空格）		</span><br><span class="line">	</span><br><span class="line">	lower()    #将字符串中的字母字符变为小写</span><br><span class="line">	upper()    #变大写</span><br><span class="line"></span><br><span class="line">编码：</span><br><span class="line">	&apos;abc&apos;.encode(&apos;utf-8&apos;)</span><br></pre></td></tr></table></figure>
-<h4 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h4><h4 id="C"><a href="#C" class="headerlink" title="C"></a>C</h4><h5 id="capitalize-将字符串首字符大写"><a href="#capitalize-将字符串首字符大写" class="headerlink" title="capitalize() #将字符串首字符大写"></a>capitalize() #将字符串首字符大写</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.capitalize() #返回&apos;Abc&apos;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>若首字符是字母之外的则不做改变。</li>
-</ul>
-<h5 id="center-居中字符串并填充"><a href="#center-居中字符串并填充" class="headerlink" title="center() #居中字符串并填充"></a>center() #居中字符串并填充</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.center(50)#居中字符串，不足50个字符用空格填充</span><br><span class="line">&apos;abc&apos;.center(50,&apos;-&apos;) #字符串不足50个字符时，用&apos;-&apos;在两边进行填充</span><br></pre></td></tr></table></figure>
-<ul>
-<li>数量为奇数时，优先填充右边。</li>
-<li>ljust()为左对齐填充。</li>
-<li>rjust()为右对齐填充。</li>
-</ul>
-<h5 id="count-返回字符或字符串在字符串中出现的次数"><a href="#count-返回字符或字符串在字符串中出现的次数" class="headerlink" title="count() #返回字符或字符串在字符串中出现的次数"></a>count() #返回字符或字符串在字符串中出现的次数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abcac&apos;.count(&apos;a&apos;)#返回2</span><br><span class="line">&apos;abcacac&apos;.count(&apos;ac&apos;)#返回2</span><br></pre></td></tr></table></figure>
-<h4 id="E"><a href="#E" class="headerlink" title="E"></a>E</h4><h5 id="encode-对字符串进行编码"><a href="#encode-对字符串进行编码" class="headerlink" title="encode() #对字符串进行编码"></a>encode() #对字符串进行编码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.encode(&apos;utf-8&apos;)#等同于b&apos;abc&apos;,因为默认编码utf-8</span><br><span class="line">&apos;abc&apos;.encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编码即将字符串以特定编码方式转为二进制。</li>
-</ul>
-<h5 id="startwith-、endwith-判断字符串开始与结尾"><a href="#startwith-、endwith-判断字符串开始与结尾" class="headerlink" title="startwith()、endwith() #判断字符串开始与结尾"></a>startwith()、endwith() #判断字符串开始与结尾</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.startwith(&apos;ab&apos;)#返回True</span><br><span class="line">&apos;abc&apos;.endwith(&apos;bc&apos;)#返回True</span><br></pre></td></tr></table></figure>
-<h4 id="F"><a href="#F" class="headerlink" title="F"></a>F</h4><h5 id="find-、rfind-查找字符串返回下标"><a href="#find-、rfind-查找字符串返回下标" class="headerlink" title="find()、rfind() #查找字符串返回下标"></a>find()、rfind() #查找字符串返回下标</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abcd&apos;.find(&apos;bc&apos;)#返回2</span><br><span class="line">&apos;abccd&apos;.rfind(&apos;c&apos;)#返回最右边c的下标3</span><br></pre></td></tr></table></figure>
-<ul>
-<li>rfind()返回的是最右边匹配的字符串的下标。</li>
-</ul>
-<h5 id="format-、format-map-字符串格式化"><a href="#format-、format-map-字符串格式化" class="headerlink" title="format()、format_map()#字符串格式化"></a>format()、format_map()#字符串格式化</h5><ul>
-<li>查找的字符串不存在时，返回-1</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;a&#123;&#125;c&#123;&#125;&apos;.format(&apos;b&apos;,&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format(name=&apos;b&apos;,age=&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format_map(&#123;&apos;name&apos;:&apos;b&apos;,&apos;age&apos;:&apos;d&apos;&#125;)</span><br></pre></td></tr></table></figure>
-<h4 id="I"><a href="#I" class="headerlink" title="I"></a>I</h4><h5 id="index-返回字符或字符串在字符串中的下标"><a href="#index-返回字符或字符串在字符串中的下标" class="headerlink" title="index() #返回字符或字符串在字符串中的下标"></a>index() #返回字符或字符串在字符串中的下标</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.index(&apos;b&apos;)#返回1</span><br></pre></td></tr></table></figure>
-<ul>
-<li>与find()区别在于，不存在字符串时会报错</li>
-</ul>
-<h5 id="isalnum-判断字符串是否是字母或数字组成"><a href="#isalnum-判断字符串是否是字母或数字组成" class="headerlink" title="isalnum() #判断字符串是否是字母或数字组成"></a>isalnum() #判断字符串是否是字母或数字组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc123&apos;.isalnum()#True</span><br><span class="line">&apos;abc&apos;.isalnum()#True</span><br><span class="line">&apos;123&apos;.isalnum()#True</span><br><span class="line">&apos;abc\n1&apos;.isalnum()#False</span><br><span class="line">&apos;abc1.1&apos;.isalnum()#False</span><br></pre></td></tr></table></figure>
-<h5 id="isalpha-判断字符串是否是字母组成"><a href="#isalpha-判断字符串是否是字母组成" class="headerlink" title="isalpha() #判断字符串是否是字母组成"></a>isalpha() #判断字符串是否是字母组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;aBc&apos;.isalpha()#True</span><br><span class="line">&apos;aB2&apos;.isalpha()#False</span><br></pre></td></tr></table></figure>
-<h5 id="isdecimal-判断字符串是否是十进制数字"><a href="#isdecimal-判断字符串是否是十进制数字" class="headerlink" title="isdecimal() #判断字符串是否是十进制数字"></a>isdecimal() #判断字符串是否是十进制数字</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;12&apos;.isdecimal()#True</span><br></pre></td></tr></table></figure>
-<h5 id="isdigit-判断字符串是否是数字组成"><a href="#isdigit-判断字符串是否是数字组成" class="headerlink" title="isdigit() #判断字符串是否是数字组成"></a>isdigit() #判断字符串是否是数字组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;123&apos;.digit()#True</span><br><span class="line">&apos;a1x2&apos;.digit()#False</span><br></pre></td></tr></table></figure>
-<h5 id="islower-字母字符是否都是小写字母"><a href="#islower-字母字符是否都是小写字母" class="headerlink" title="islower() #字母字符是否都是小写字母"></a>islower() #字母字符是否都是小写字母</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc123&apos;.islower() #True</span><br><span class="line">&apos;Aabc&apos;.islower() #False</span><br></pre></td></tr></table></figure>
-<ul>
-<li>字符串可以存在其他字符，只要字母字符是小写即可True.</li>
-<li>isupper()与之相反，不在赘述</li>
-</ul>
-<h5 id="isidentifier-判断字符串可否符合变量名命名规则"><a href="#isidentifier-判断字符串可否符合变量名命名规则" class="headerlink" title="isidentifier()#判断字符串可否符合变量名命名规则"></a>isidentifier()#判断字符串可否符合变量名命名规则</h5><h5 id="isnumeric-字符串只包含数字字符"><a href="#isnumeric-字符串只包含数字字符" class="headerlink" title="isnumeric() #字符串只包含数字字符"></a>isnumeric() #字符串只包含数字字符</h5><h5 id="isspace-字符串只包含空格"><a href="#isspace-字符串只包含空格" class="headerlink" title="isspace()#字符串只包含空格"></a>isspace()#字符串只包含空格</h5><h5 id="istitle-字符串是否是标题化的"><a href="#istitle-字符串是否是标题化的" class="headerlink" title="istitle()#字符串是否是标题化的"></a>istitle()#字符串是否是标题化的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;This Is Op&apos;.istitle()#True</span><br><span class="line">&apos;this Is Op&apos;.istitle()#False</span><br></pre></td></tr></table></figure>
-<ul>
-<li>title()用于将字符串标题化，即单词首字母大写</li>
-</ul>
-<h4 id="J"><a href="#J" class="headerlink" title="J"></a>J</h4><h5 id="join-将一个序列以分隔符分割合并为一个字符串"><a href="#join-将一个序列以分隔符分割合并为一个字符串" class="headerlink" title="join()  #将一个序列以分隔符分割合并为一个字符串"></a>join()  #将一个序列以分隔符分割合并为一个字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;.join((&apos;a&apos;,&apos;b&apos;,&apos;c&apos;)) #&apos;abc&apos;</span><br><span class="line">&apos;_&apos;.join([&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]) #&apos;a_b_c&apos;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>即以字符串为分隔符，将一个序列合并为一个字符串</li>
-</ul>
-<h5 id="split-以指定字符串为分隔符分割一个字符串为一个列表"><a href="#split-以指定字符串为分隔符分割一个字符串为一个列表" class="headerlink" title="split() #以指定字符串为分隔符分割一个字符串为一个列表"></a>split() #以指定字符串为分隔符分割一个字符串为一个列表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.split(&apos;b&apos;) #[&apos;a&apos;,&apos;c&apos;]</span><br><span class="line">&apos;a_b_c&apos;.split(&apos;_&apos;) #[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]</span><br><span class="line">&apos;a_b_c&apos;.split(&apos;_&apos;,1) #[&apos;a&apos;,&apos;b_c&apos;]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一个参数是分隔符，第二个参数是分割的次数</li>
-<li>splitlines() #默认是以\n、\r、\r\n作为分隔符</li>
-<li>rsplit()表示从右边开始进行分割</li>
-</ul>
-<h4 id="L"><a href="#L" class="headerlink" title="L"></a>L</h4><h5 id="lower-将字符串中的字母字符变为小写"><a href="#lower-将字符串中的字母字符变为小写" class="headerlink" title="lower() #将字符串中的字母字符变为小写"></a>lower() #将字符串中的字母字符变为小写</h5><h5 id="upper-变大写"><a href="#upper-变大写" class="headerlink" title="upper() #变大写"></a>upper() #变大写</h5><h4 id="M"><a href="#M" class="headerlink" title="M"></a>M</h4><h5 id="maketrans-设置转换规则"><a href="#maketrans-设置转换规则" class="headerlink" title="maketrans() #设置转换规则"></a>maketrans() #设置转换规则</h5><h5 id="translate-根据规则进行转换"><a href="#translate-根据规则进行转换" class="headerlink" title="translate() #根据规则进行转换"></a>translate() #根据规则进行转换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res=str.maketrans(&apos;abcd&apos;,&apos;1234&apos;) #设置规则</span><br><span class="line">&apos;abcd&apos;.translate(res) #&apos;1234&apos;</span><br><span class="line">&apos;abcA&apos;.translate(res) #&apos;123A&apos;</span><br></pre></td></tr></table></figure>
-<h4 id="R"><a href="#R" class="headerlink" title="R"></a>R</h4><h5 id="replace-对应替换"><a href="#replace-对应替换" class="headerlink" title="replace() #对应替换"></a>replace() #对应替换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.replace(&apos;b&apos;,&apos;B&apos;) #&apos;aBc&apos;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>本质是产生了一个新的字符串，因为字符串时不可变对象</li>
-</ul>
-<h4 id="S"><a href="#S" class="headerlink" title="S"></a>S</h4><h5 id="strip-脱掉字符串两端的指定字符串"><a href="#strip-脱掉字符串两端的指定字符串" class="headerlink" title="strip() #脱掉字符串两端的指定字符串"></a>strip() #脱掉字符串两端的指定字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc\n&apos;.strip() #&apos;abc&apos;</span><br><span class="line">&apos;abca&apos;.strip(&apos;a&apos;) #&apos;bc&apos;</span><br><span class="line"></span><br><span class="line">a=&apos;abc&apos;</span><br><span class="line">a.strip(&apos;c&apos;) #&apos;ab&apos;</span><br><span class="line">print(a) #&apos;abc&apos;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>不指定字符串默认脱掉换行符、制表符等</li>
-<li>脱掉并返回脱掉后剩下的字符串</li>
-<li>==该操作不会对原字符串产生影响，因为字符串是不可变的。该操作只是产生一个新的字符串，原字符串仍然未变，效果就是字符串只是暂时脱掉而已==</li>
-<li>lstrip()表示只脱掉最左端的</li>
-<li>rstrip()表示只脱最右边的</li>
-</ul>
-<h5 id="swapcase-大小写翻转，大写变小写，小变大"><a href="#swapcase-大小写翻转，大写变小写，小变大" class="headerlink" title="swapcase()#大小写翻转，大写变小写，小变大"></a>swapcase()#大小写翻转，大写变小写，小变大</h5><h5 id="zfill-右对齐，不足填0"><a href="#zfill-右对齐，不足填0" class="headerlink" title="zfill()#右对齐，不足填0"></a>zfill()#右对齐，不足填0</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.zfill(5) #&apos;00abc&apos;</span><br></pre></td></tr></table></figure>
-
+          
       
     </div>
     
     <div class="article-info article-info-index">
       
       
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/语言/">语言</a>
+    </div>
+
 
       
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python基础/">Python基础</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/03/18/01python基础学习系列之字符串/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
