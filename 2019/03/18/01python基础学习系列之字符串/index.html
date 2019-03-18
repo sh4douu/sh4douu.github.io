@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="0x00 字符串概述字符串是不可变的序列。 Python3.0字符串分3中类型：str用于Unicode文本；bytes用于二进制文本；bytearray是bytes的变体。 0x01 字符串1.字符串常量：123456&amp;apos;string&amp;apos;&amp;quot;string&amp;quot;&amp;apos;&amp;apos;&amp;apos;string&amp;apos;&amp;apos;&amp;apos;&amp;quot;&amp;quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01python基础学习系列之字符串">
+<meta property="og:url" content="https://sakuxa.com/2019/03/18/01python基础学习系列之字符串/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="0x00 字符串概述字符串是不可变的序列。 Python3.0字符串分3中类型：str用于Unicode文本；bytes用于二进制文本；bytearray是bytes的变体。 0x01 字符串1.字符串常量：123456&amp;apos;string&amp;apos;&amp;quot;string&amp;quot;&amp;apos;&amp;apos;&amp;apos;string&amp;apos;&amp;apos;&amp;apos;&amp;quot;&amp;quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-18T09:19:06.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01python基础学习系列之字符串">
+<meta name="twitter:description" content="0x00 字符串概述字符串是不可变的序列。 Python3.0字符串分3中类型：str用于Unicode文本；bytes用于二进制文本；bytearray是bytes的变体。 0x01 字符串1.字符串常量：123456&amp;apos;string&amp;apos;&amp;quot;string&amp;quot;&amp;apos;&amp;apos;&amp;apos;string&amp;apos;&amp;apos;&amp;apos;&amp;quot;&amp;quot;">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>01python基础学习系列之字符串 | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-01python基础学习系列之字符串" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/18/01python基础学习系列之字符串/" class="article-date">
+      <time datetime="2019-03-18T08:50:44.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      01python基础学习系列之字符串
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="0x00-字符串概述"><a href="#0x00-字符串概述" class="headerlink" title="0x00 字符串概述"></a>0x00 字符串概述</h3><p>字符串是不可变的序列。</p>
+<p>Python3.0字符串分3中类型：str用于Unicode文本；bytes用于二进制文本；bytearray是bytes的变体。</p>
+<h3 id="0x01-字符串"><a href="#0x01-字符串" class="headerlink" title="0x01 字符串"></a>0x01 字符串</h3><h4 id="1-字符串常量："><a href="#1-字符串常量：" class="headerlink" title="1.字符串常量："></a>1.字符串常量：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;string&apos;</span><br><span class="line">&quot;string&quot;</span><br><span class="line">&apos;&apos;&apos;string&apos;&apos;&apos;</span><br><span class="line">&quot;&quot;&quot;string&quot;&quot;&quot;</span><br><span class="line">r&apos;string&apos;     #Raw字符串</span><br><span class="line">b&apos;string&apos;     #bytes字符串</span><br></pre></td></tr></table></figure>
+<h4 id="2-字符串操作"><a href="#2-字符串操作" class="headerlink" title="2.字符串操作"></a>2.字符串操作</h4><ul>
+<li>索引：<code>str[下标]</code></li>
+<li>切片：<code>str[下标开始:下标结束：步长]</code>    #步长默认为1</li>
+<li>合并：<code>+</code>、<code>*</code></li>
+<li>类型强制转换：<code>str()</code></li>
+<li>修改字符串：可以通过产生新对象后重新赋值给原变量。</li>
+</ul>
+<h4 id="3-字符串格式化："><a href="#3-字符串格式化：" class="headerlink" title="3.字符串格式化："></a>3.字符串格式化：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;this is %s&quot; %&apos;collision&apos;               #字符串形式</span><br><span class="line">&quot;%s is %s boy&quot;%(&quot;collision&quot;,&quot;good&quot;)     #元组形式</span><br><span class="line">&quot;%(x)d,%(y)d&quot;%&#123;&quot;x&quot;:1,&quot;y&quot;:2&#125;             #字典形式</span><br></pre></td></tr></table></figure>
+<p>format格式化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;a&#123;&#125;c&#123;&#125;&apos;.format(&apos;b&apos;,&apos;d&apos;)</span><br><span class="line">&apos;a&#123;0&#125;c&#123;1&#125;&apos;.format(&apos;b&apos;,&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format(name=&apos;b&apos;,age=&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format_map(&#123;&apos;name&apos;:&apos;b&apos;,&apos;age&apos;=&apos;d&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-字符串方法："><a href="#0x02-字符串方法：" class="headerlink" title="0x02 字符串方法："></a>0x02 字符串方法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">查找：</span><br><span class="line">	count()          #返回字符或字符串在字符串中出现的次数</span><br><span class="line">	find()、rfind()  #查找字符或字符串返回第一次出现时的下标</span><br><span class="line">	index()          #返回字符或字符串在字符串中的下标	</span><br><span class="line">	</span><br><span class="line">	PS:find()与index()区别在于，find对不存在的字符串查找会返回-1，而index会报错。</span><br><span class="line"></span><br><span class="line">判断：</span><br><span class="line">	startswith()、endswith()     #判断字符或字符串的开始与结尾</span><br><span class="line">	</span><br><span class="line">	isalpha()        #判断字符串是否是字母组成	</span><br><span class="line">	isnumeric()      #字符串只包含数字字符	</span><br><span class="line">	isalnum()        #判断字符串是否是字母或数字组</span><br><span class="line">	</span><br><span class="line">	isdecimal()      #判断字符串是否是十进制数字</span><br><span class="line">	isdigit()        #判断字符串是否是数字组成</span><br><span class="line">	islower()        #字母字符是否都是小写字母</span><br><span class="line">	isupper()        #都是大写</span><br><span class="line">		</span><br><span class="line">操作：</span><br><span class="line">	join()     #将字符串作为分隔符，合并一个序列为一个字符串。	</span><br><span class="line">		PS：序列的元素要求是字符串才可以。</span><br><span class="line">		</span><br><span class="line">	split()    #以指定字符串为分隔符分割一个字符串为一个列表	</span><br><span class="line">	replace()  #对应替换								</span><br><span class="line">	strip()    #脱掉字符串两端的指定字符串（默认脱空格）		</span><br><span class="line">	</span><br><span class="line">	lower()    #将字符串中的字母字符变为小写</span><br><span class="line">	upper()    #变大写</span><br><span class="line"></span><br><span class="line">编码：</span><br><span class="line">	&apos;abc&apos;.encode(&apos;utf-8&apos;)</span><br></pre></td></tr></table></figure>
+<h4 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a>字符串方法</h4><h4 id="C"><a href="#C" class="headerlink" title="C"></a>C</h4><h5 id="capitalize-将字符串首字符大写"><a href="#capitalize-将字符串首字符大写" class="headerlink" title="capitalize() #将字符串首字符大写"></a>capitalize() #将字符串首字符大写</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.capitalize() #返回&apos;Abc&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若首字符是字母之外的则不做改变。</li>
+</ul>
+<h5 id="center-居中字符串并填充"><a href="#center-居中字符串并填充" class="headerlink" title="center() #居中字符串并填充"></a>center() #居中字符串并填充</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.center(50)#居中字符串，不足50个字符用空格填充</span><br><span class="line">&apos;abc&apos;.center(50,&apos;-&apos;) #字符串不足50个字符时，用&apos;-&apos;在两边进行填充</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数量为奇数时，优先填充右边。</li>
+<li>ljust()为左对齐填充。</li>
+<li>rjust()为右对齐填充。</li>
+</ul>
+<h5 id="count-返回字符或字符串在字符串中出现的次数"><a href="#count-返回字符或字符串在字符串中出现的次数" class="headerlink" title="count() #返回字符或字符串在字符串中出现的次数"></a>count() #返回字符或字符串在字符串中出现的次数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abcac&apos;.count(&apos;a&apos;)#返回2</span><br><span class="line">&apos;abcacac&apos;.count(&apos;ac&apos;)#返回2</span><br></pre></td></tr></table></figure>
+<h4 id="E"><a href="#E" class="headerlink" title="E"></a>E</h4><h5 id="encode-对字符串进行编码"><a href="#encode-对字符串进行编码" class="headerlink" title="encode() #对字符串进行编码"></a>encode() #对字符串进行编码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.encode(&apos;utf-8&apos;)#等同于b&apos;abc&apos;,因为默认编码utf-8</span><br><span class="line">&apos;abc&apos;.encode(&apos;gb2312&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编码即将字符串以特定编码方式转为二进制。</li>
+</ul>
+<h5 id="startwith-、endwith-判断字符串开始与结尾"><a href="#startwith-、endwith-判断字符串开始与结尾" class="headerlink" title="startwith()、endwith() #判断字符串开始与结尾"></a>startwith()、endwith() #判断字符串开始与结尾</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.startwith(&apos;ab&apos;)#返回True</span><br><span class="line">&apos;abc&apos;.endwith(&apos;bc&apos;)#返回True</span><br></pre></td></tr></table></figure>
+<h4 id="F"><a href="#F" class="headerlink" title="F"></a>F</h4><h5 id="find-、rfind-查找字符串返回下标"><a href="#find-、rfind-查找字符串返回下标" class="headerlink" title="find()、rfind() #查找字符串返回下标"></a>find()、rfind() #查找字符串返回下标</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abcd&apos;.find(&apos;bc&apos;)#返回2</span><br><span class="line">&apos;abccd&apos;.rfind(&apos;c&apos;)#返回最右边c的下标3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>rfind()返回的是最右边匹配的字符串的下标。</li>
+</ul>
+<h5 id="format-、format-map-字符串格式化"><a href="#format-、format-map-字符串格式化" class="headerlink" title="format()、format_map()#字符串格式化"></a>format()、format_map()#字符串格式化</h5><ul>
+<li>查找的字符串不存在时，返回-1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;a&#123;&#125;c&#123;&#125;&apos;.format(&apos;b&apos;,&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format(name=&apos;b&apos;,age=&apos;d&apos;)</span><br><span class="line">&apos;a&#123;name&#125;c&#123;age&#125;&apos;.format_map(&#123;&apos;name&apos;:&apos;b&apos;,&apos;age&apos;:&apos;d&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="I"><a href="#I" class="headerlink" title="I"></a>I</h4><h5 id="index-返回字符或字符串在字符串中的下标"><a href="#index-返回字符或字符串在字符串中的下标" class="headerlink" title="index() #返回字符或字符串在字符串中的下标"></a>index() #返回字符或字符串在字符串中的下标</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.index(&apos;b&apos;)#返回1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与find()区别在于，不存在字符串时会报错</li>
+</ul>
+<h5 id="isalnum-判断字符串是否是字母或数字组成"><a href="#isalnum-判断字符串是否是字母或数字组成" class="headerlink" title="isalnum() #判断字符串是否是字母或数字组成"></a>isalnum() #判断字符串是否是字母或数字组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc123&apos;.isalnum()#True</span><br><span class="line">&apos;abc&apos;.isalnum()#True</span><br><span class="line">&apos;123&apos;.isalnum()#True</span><br><span class="line">&apos;abc\n1&apos;.isalnum()#False</span><br><span class="line">&apos;abc1.1&apos;.isalnum()#False</span><br></pre></td></tr></table></figure>
+<h5 id="isalpha-判断字符串是否是字母组成"><a href="#isalpha-判断字符串是否是字母组成" class="headerlink" title="isalpha() #判断字符串是否是字母组成"></a>isalpha() #判断字符串是否是字母组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;aBc&apos;.isalpha()#True</span><br><span class="line">&apos;aB2&apos;.isalpha()#False</span><br></pre></td></tr></table></figure>
+<h5 id="isdecimal-判断字符串是否是十进制数字"><a href="#isdecimal-判断字符串是否是十进制数字" class="headerlink" title="isdecimal() #判断字符串是否是十进制数字"></a>isdecimal() #判断字符串是否是十进制数字</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;12&apos;.isdecimal()#True</span><br></pre></td></tr></table></figure>
+<h5 id="isdigit-判断字符串是否是数字组成"><a href="#isdigit-判断字符串是否是数字组成" class="headerlink" title="isdigit() #判断字符串是否是数字组成"></a>isdigit() #判断字符串是否是数字组成</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;123&apos;.digit()#True</span><br><span class="line">&apos;a1x2&apos;.digit()#False</span><br></pre></td></tr></table></figure>
+<h5 id="islower-字母字符是否都是小写字母"><a href="#islower-字母字符是否都是小写字母" class="headerlink" title="islower() #字母字符是否都是小写字母"></a>islower() #字母字符是否都是小写字母</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc123&apos;.islower() #True</span><br><span class="line">&apos;Aabc&apos;.islower() #False</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串可以存在其他字符，只要字母字符是小写即可True.</li>
+<li>isupper()与之相反，不在赘述</li>
+</ul>
+<h5 id="isidentifier-判断字符串可否符合变量名命名规则"><a href="#isidentifier-判断字符串可否符合变量名命名规则" class="headerlink" title="isidentifier()#判断字符串可否符合变量名命名规则"></a>isidentifier()#判断字符串可否符合变量名命名规则</h5><h5 id="isnumeric-字符串只包含数字字符"><a href="#isnumeric-字符串只包含数字字符" class="headerlink" title="isnumeric() #字符串只包含数字字符"></a>isnumeric() #字符串只包含数字字符</h5><h5 id="isspace-字符串只包含空格"><a href="#isspace-字符串只包含空格" class="headerlink" title="isspace()#字符串只包含空格"></a>isspace()#字符串只包含空格</h5><h5 id="istitle-字符串是否是标题化的"><a href="#istitle-字符串是否是标题化的" class="headerlink" title="istitle()#字符串是否是标题化的"></a>istitle()#字符串是否是标题化的</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;This Is Op&apos;.istitle()#True</span><br><span class="line">&apos;this Is Op&apos;.istitle()#False</span><br></pre></td></tr></table></figure>
+<ul>
+<li>title()用于将字符串标题化，即单词首字母大写</li>
+</ul>
+<h4 id="J"><a href="#J" class="headerlink" title="J"></a>J</h4><h5 id="join-将一个序列以分隔符分割合并为一个字符串"><a href="#join-将一个序列以分隔符分割合并为一个字符串" class="headerlink" title="join()  #将一个序列以分隔符分割合并为一个字符串"></a>join()  #将一个序列以分隔符分割合并为一个字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;.join((&apos;a&apos;,&apos;b&apos;,&apos;c&apos;)) #&apos;abc&apos;</span><br><span class="line">&apos;_&apos;.join([&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]) #&apos;a_b_c&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>即以字符串为分隔符，将一个序列合并为一个字符串</li>
+</ul>
+<h5 id="split-以指定字符串为分隔符分割一个字符串为一个列表"><a href="#split-以指定字符串为分隔符分割一个字符串为一个列表" class="headerlink" title="split() #以指定字符串为分隔符分割一个字符串为一个列表"></a>split() #以指定字符串为分隔符分割一个字符串为一个列表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.split(&apos;b&apos;) #[&apos;a&apos;,&apos;c&apos;]</span><br><span class="line">&apos;a_b_c&apos;.split(&apos;_&apos;) #[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]</span><br><span class="line">&apos;a_b_c&apos;.split(&apos;_&apos;,1) #[&apos;a&apos;,&apos;b_c&apos;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一个参数是分隔符，第二个参数是分割的次数</li>
+<li>splitlines() #默认是以\n、\r、\r\n作为分隔符</li>
+<li>rsplit()表示从右边开始进行分割</li>
+</ul>
+<h4 id="L"><a href="#L" class="headerlink" title="L"></a>L</h4><h5 id="lower-将字符串中的字母字符变为小写"><a href="#lower-将字符串中的字母字符变为小写" class="headerlink" title="lower() #将字符串中的字母字符变为小写"></a>lower() #将字符串中的字母字符变为小写</h5><h5 id="upper-变大写"><a href="#upper-变大写" class="headerlink" title="upper() #变大写"></a>upper() #变大写</h5><h4 id="M"><a href="#M" class="headerlink" title="M"></a>M</h4><h5 id="maketrans-设置转换规则"><a href="#maketrans-设置转换规则" class="headerlink" title="maketrans() #设置转换规则"></a>maketrans() #设置转换规则</h5><h5 id="translate-根据规则进行转换"><a href="#translate-根据规则进行转换" class="headerlink" title="translate() #根据规则进行转换"></a>translate() #根据规则进行转换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res=str.maketrans(&apos;abcd&apos;,&apos;1234&apos;) #设置规则</span><br><span class="line">&apos;abcd&apos;.translate(res) #&apos;1234&apos;</span><br><span class="line">&apos;abcA&apos;.translate(res) #&apos;123A&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="R"><a href="#R" class="headerlink" title="R"></a>R</h4><h5 id="replace-对应替换"><a href="#replace-对应替换" class="headerlink" title="replace() #对应替换"></a>replace() #对应替换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.replace(&apos;b&apos;,&apos;B&apos;) #&apos;aBc&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>本质是产生了一个新的字符串，因为字符串时不可变对象</li>
+</ul>
+<h4 id="S"><a href="#S" class="headerlink" title="S"></a>S</h4><h5 id="strip-脱掉字符串两端的指定字符串"><a href="#strip-脱掉字符串两端的指定字符串" class="headerlink" title="strip() #脱掉字符串两端的指定字符串"></a>strip() #脱掉字符串两端的指定字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc\n&apos;.strip() #&apos;abc&apos;</span><br><span class="line">&apos;abca&apos;.strip(&apos;a&apos;) #&apos;bc&apos;</span><br><span class="line"></span><br><span class="line">a=&apos;abc&apos;</span><br><span class="line">a.strip(&apos;c&apos;) #&apos;ab&apos;</span><br><span class="line">print(a) #&apos;abc&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不指定字符串默认脱掉换行符、制表符等</li>
+<li>脱掉并返回脱掉后剩下的字符串</li>
+<li>==该操作不会对原字符串产生影响，因为字符串是不可变的。该操作只是产生一个新的字符串，原字符串仍然未变，效果就是字符串只是暂时脱掉而已==</li>
+<li>lstrip()表示只脱掉最左端的</li>
+<li>rstrip()表示只脱最右边的</li>
+</ul>
+<h5 id="swapcase-大小写翻转，大写变小写，小变大"><a href="#swapcase-大小写翻转，大写变小写，小变大" class="headerlink" title="swapcase()#大小写翻转，大写变小写，小变大"></a>swapcase()#大小写翻转，大写变小写，小变大</h5><h5 id="zfill-右对齐，不足填0"><a href="#zfill-右对齐，不足填0" class="headerlink" title="zfill()#右对齐，不足填0"></a>zfill()#右对齐，不足填0</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;abc&apos;.zfill(5) #&apos;00abc&apos;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/18/01python基础学习系列之字符串/">01python基础学习系列之字符串</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-03-18, 16:50:44</p>
+        <p><span>最后更新:</span>2019-03-18, 17:19:06</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/18/01python基础学习系列之字符串/" title="01python基础学习系列之字符串">https://sakuxa.com/2019/03/18/01python基础学习系列之字符串/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/18/01python基础学习系列之字符串/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/18/00python基础学习系列之动态类型/">
+                    Chapter 1：Python基础学习系列之动态类型
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-字符串概述"><span class="toc-number">1.</span> <span class="toc-text">0x00 字符串概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-字符串"><span class="toc-number">2.</span> <span class="toc-text">0x01 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-字符串常量："><span class="toc-number">2.1.</span> <span class="toc-text">1.字符串常量：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-字符串操作"><span class="toc-number">2.2.</span> <span class="toc-text">2.字符串操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-字符串格式化："><span class="toc-number">2.3.</span> <span class="toc-text">3.字符串格式化：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-字符串方法："><span class="toc-number">3.</span> <span class="toc-text">0x02 字符串方法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串方法"><span class="toc-number">3.1.</span> <span class="toc-text">字符串方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C"><span class="toc-number">3.2.</span> <span class="toc-text">C</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#capitalize-将字符串首字符大写"><span class="toc-number">3.2.1.</span> <span class="toc-text">capitalize() #将字符串首字符大写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#center-居中字符串并填充"><span class="toc-number">3.2.2.</span> <span class="toc-text">center() #居中字符串并填充</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#count-返回字符或字符串在字符串中出现的次数"><span class="toc-number">3.2.3.</span> <span class="toc-text">count() #返回字符或字符串在字符串中出现的次数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E"><span class="toc-number">3.3.</span> <span class="toc-text">E</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#encode-对字符串进行编码"><span class="toc-number">3.3.1.</span> <span class="toc-text">encode() #对字符串进行编码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#startwith-、endwith-判断字符串开始与结尾"><span class="toc-number">3.3.2.</span> <span class="toc-text">startwith()、endwith() #判断字符串开始与结尾</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F"><span class="toc-number">3.4.</span> <span class="toc-text">F</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#find-、rfind-查找字符串返回下标"><span class="toc-number">3.4.1.</span> <span class="toc-text">find()、rfind() #查找字符串返回下标</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#format-、format-map-字符串格式化"><span class="toc-number">3.4.2.</span> <span class="toc-text">format()、format_map()#字符串格式化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I"><span class="toc-number">3.5.</span> <span class="toc-text">I</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#index-返回字符或字符串在字符串中的下标"><span class="toc-number">3.5.1.</span> <span class="toc-text">index() #返回字符或字符串在字符串中的下标</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isalnum-判断字符串是否是字母或数字组成"><span class="toc-number">3.5.2.</span> <span class="toc-text">isalnum() #判断字符串是否是字母或数字组成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isalpha-判断字符串是否是字母组成"><span class="toc-number">3.5.3.</span> <span class="toc-text">isalpha() #判断字符串是否是字母组成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isdecimal-判断字符串是否是十进制数字"><span class="toc-number">3.5.4.</span> <span class="toc-text">isdecimal() #判断字符串是否是十进制数字</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isdigit-判断字符串是否是数字组成"><span class="toc-number">3.5.5.</span> <span class="toc-text">isdigit() #判断字符串是否是数字组成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#islower-字母字符是否都是小写字母"><span class="toc-number">3.5.6.</span> <span class="toc-text">islower() #字母字符是否都是小写字母</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isidentifier-判断字符串可否符合变量名命名规则"><span class="toc-number">3.5.7.</span> <span class="toc-text">isidentifier()#判断字符串可否符合变量名命名规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isnumeric-字符串只包含数字字符"><span class="toc-number">3.5.8.</span> <span class="toc-text">isnumeric() #字符串只包含数字字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isspace-字符串只包含空格"><span class="toc-number">3.5.9.</span> <span class="toc-text">isspace()#字符串只包含空格</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#istitle-字符串是否是标题化的"><span class="toc-number">3.5.10.</span> <span class="toc-text">istitle()#字符串是否是标题化的</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#J"><span class="toc-number">3.6.</span> <span class="toc-text">J</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#join-将一个序列以分隔符分割合并为一个字符串"><span class="toc-number">3.6.1.</span> <span class="toc-text">join()  #将一个序列以分隔符分割合并为一个字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#split-以指定字符串为分隔符分割一个字符串为一个列表"><span class="toc-number">3.6.2.</span> <span class="toc-text">split() #以指定字符串为分隔符分割一个字符串为一个列表</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#L"><span class="toc-number">3.7.</span> <span class="toc-text">L</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#lower-将字符串中的字母字符变为小写"><span class="toc-number">3.7.1.</span> <span class="toc-text">lower() #将字符串中的字母字符变为小写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#upper-变大写"><span class="toc-number">3.7.2.</span> <span class="toc-text">upper() #变大写</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#M"><span class="toc-number">3.8.</span> <span class="toc-text">M</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#maketrans-设置转换规则"><span class="toc-number">3.8.1.</span> <span class="toc-text">maketrans() #设置转换规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#translate-根据规则进行转换"><span class="toc-number">3.8.2.</span> <span class="toc-text">translate() #根据规则进行转换</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R"><span class="toc-number">3.9.</span> <span class="toc-text">R</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#replace-对应替换"><span class="toc-number">3.9.1.</span> <span class="toc-text">replace() #对应替换</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S"><span class="toc-number">3.10.</span> <span class="toc-text">S</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#strip-脱掉字符串两端的指定字符串"><span class="toc-number">3.10.1.</span> <span class="toc-text">strip() #脱掉字符串两端的指定字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#swapcase-大小写翻转，大写变小写，小变大"><span class="toc-number">3.10.2.</span> <span class="toc-text">swapcase()#大小写翻转，大写变小写，小变大</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#zfill-右对齐，不足填0"><span class="toc-number">3.10.3.</span> <span class="toc-text">zfill()#右对齐，不足填0</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"01python基础学习系列之字符串　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/18/00python基础学习系列之动态类型/" title="下一篇: Chapter 1：Python基础学习系列之动态类型">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">01python基础学习系列之字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Chapter 1：Python基础学习系列之动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">Chapter 1：SQL注入系列之MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">Chapter 3：XSS学习系列之prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">Chapter 2：XSS学习系列之漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">Chapter 1：XSS学习系列之浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
