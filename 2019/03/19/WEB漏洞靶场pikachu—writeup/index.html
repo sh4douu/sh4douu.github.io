@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="一、前面的话0x00 Whatever无意间发现了pikachu这个WEB漏洞靶场，发现靶场涉及到的漏洞类型蛮多的，练练手挺合适的。 看到靶场介绍里有一句话：  “如果你想搞懂一个漏洞，比较好的方法是：你可以自己先制造出这个漏洞（用代码编写），然后再利用它，最后再修复它”。  觉得很是这么个道理，因此在使用该靶场时，大概的思路如下：   证明漏洞存在。 分析源码找出漏洞产生的原因。 尽可能的漏洞利">
+<meta name="keywords" content="靶场,WEB安全,暴力破解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解">
+<meta property="og:url" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="一、前面的话0x00 Whatever无意间发现了pikachu这个WEB漏洞靶场，发现靶场涉及到的漏洞类型蛮多的，练练手挺合适的。 看到靶场介绍里有一句话：  “如果你想搞懂一个漏洞，比较好的方法是：你可以自己先制造出这个漏洞（用代码编写），然后再利用它，最后再修复它”。  觉得很是这么个道理，因此在使用该靶场时，大概的思路如下：   证明漏洞存在。 分析源码找出漏洞产生的原因。 尽可能的漏洞利">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319090517.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319090805.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093205.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093646.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093717.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093939.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319094111.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319104247.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319094958.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319095233.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319101955.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319103538.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319103611.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319103858.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319104637.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319110240.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319114454.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319115718.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319125134.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319125941.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319130503.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319130947.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319131320.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319131802.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319132139.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319132951.png">
+<meta property="og:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319133447.png">
+<meta property="og:updated_time" content="2019-03-19T08:00:26.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解">
+<meta name="twitter:description" content="一、前面的话0x00 Whatever无意间发现了pikachu这个WEB漏洞靶场，发现靶场涉及到的漏洞类型蛮多的，练练手挺合适的。 看到靶场介绍里有一句话：  “如果你想搞懂一个漏洞，比较好的方法是：你可以自己先制造出这个漏洞（用代码编写），然后再利用它，最后再修复它”。  觉得很是这么个道理，因此在使用该靶场时，大概的思路如下：   证明漏洞存在。 分析源码找出漏洞产生的原因。 尽可能的漏洞利">
+<meta name="twitter:image" content="https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319090517.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解 | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-WEB漏洞靶场pikachu—writeup" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/19/WEB漏洞靶场pikachu—writeup/" class="article-date">
+      <time datetime="2019-03-19T01:03:38.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Pikachu/">Pikachu</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/靶场/">靶场</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="一、前面的话"><a href="#一、前面的话" class="headerlink" title="一、前面的话"></a>一、前面的话</h2><h3 id="0x00-Whatever"><a href="#0x00-Whatever" class="headerlink" title="0x00 Whatever"></a>0x00 Whatever</h3><p>无意间发现了pikachu这个WEB漏洞靶场，发现靶场涉及到的漏洞类型蛮多的，练练手挺合适的。</p>
+<p>看到靶场介绍里有一句话：</p>
+<blockquote>
+<p>“如果你想搞懂一个漏洞，比较好的方法是：你可以自己先制造出这个漏洞（用代码编写），然后再利用它，最后再修复它”。</p>
+</blockquote>
+<p>觉得很是这么个道理，因此在使用该靶场时，大概的思路如下：</p>
+<blockquote>
+<ul>
+<li>证明漏洞存在。</li>
+<li>分析源码找出漏洞产生的原因。</li>
+<li>尽可能的漏洞利用。</li>
+<li>修复漏洞。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h3 id="0x01-靶机介绍"><a href="#0x01-靶机介绍" class="headerlink" title="0x01 靶机介绍"></a>0x01 靶机介绍</h3><p>Pikachu源码：<a href="https://github.com/zhuifengshaonianhanlu/pikachu" target="_blank" rel="noopener">https://github.com/zhuifengshaonianhanlu/pikachu</a></p>
+<p>Pikachu是一个带有漏洞的Web应用系统，包含了常见的web安全漏洞。</p>
+<p>包含：</p>
+<blockquote>
+<ul>
+<li>Burt Force(暴力破解漏洞)</li>
+<li>XSS(跨站脚本漏洞)</li>
+<li>CSRF(跨站请求伪造)</li>
+<li>SQL-Inject(SQL注入漏洞)</li>
+<li>RCE(远程命令/代码执行)</li>
+<li>Files Inclusion(文件包含漏洞)</li>
+<li>Unsafe file downloads(不安全的文件下载)</li>
+<li>Unsafe file uploads(不安全的文件上传)</li>
+<li>Over Permisson(越权漏洞)</li>
+<li>../../../(目录遍历)</li>
+<li>I can see your ABC(敏感信息泄露)</li>
+<li>PHP反序列化漏洞</li>
+<li>XXE(XML External Entity attack)</li>
+<li>不安全的URL重定向</li>
+<li>SSRF(Server-Side Request Forgery)</li>
+<li>管理工具</li>
+<li>More…(找找看?..有彩蛋!)</li>
+</ul>
+</blockquote>
+<h2 id="二、暴力破解"><a href="#二、暴力破解" class="headerlink" title="二、暴力破解"></a>二、暴力破解</h2><h3 id="0x00-简单表单爆破"><a href="#0x00-简单表单爆破" class="headerlink" title="0x00 简单表单爆破"></a>0x00 简单表单爆破</h3><p>打开页面，是一个登录表单页面。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319090517.png" alt></p>
+<p>输入admin/admin作为用户名/密码，点击Login，并使用burp进行抓包拦截。</p>
+<p>在burp右键抓到的数据包，然后<code>Send to Intruder</code>。或者直接<code>Ctrl + I</code>发送到intuder爆破模块。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319090805.png" alt></p>
+<p>转到<code>intruder</code>模块，在<code>Positions</code>按钮下，先点击右侧的<code>Clear $</code>清除变量，然后选中用户名和密码位置点击<code>ADD $</code>将用户名和密码位置作为变量。<code>Attack type</code>就使用<code>Cluster bomb</code>模式。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093205.png" alt></p>
+<p>点击<code>Positions</code>按钮旁边的<code>Payloads</code>按钮进入设置Payload，由于我们设置了两个变量，所以需要设置两个Payload。</p>
+<p>选择<code>Payload set</code>为1，<code>Payload Type</code>使用默认的<code>Simple list</code>，然后点击<code>Load</code>导入用户名字典文件。</p>
+<p>选择<code>Payload set</code>为2，<code>Payload Type</code>使用默认的<code>Simple list</code>，然后点击<code>Load</code>导入密码字典文件。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093646.png" alt></p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093717.png" alt></p>
+<p>设置好之后，点击右上角<code>Start Attack</code>。</p>
+<p>在爆破时，点击<code>Length</code>字段进行排序，可发现有不同大小的数据包，点击查看数据包发现爆破成功。密码：admin/123456</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319093939.png" alt></p>
+<h3 id="0x01-服务器端验证码绕过"><a href="#0x01-服务器端验证码绕过" class="headerlink" title="0x01 服务器端验证码绕过"></a>0x01 服务器端验证码绕过</h3><p>打开页面，还是一个登录表单页面，但是增加了验证码。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319094111.png" alt></p>
+<p>接下来尝试绕过验证码。</p>
+<p>首先先确定，验证码是服务器生成的，还是客户端JS生成的。</p>
+<p>在网页上按下<code>F12</code>按钮，定位验证码图片，图片由<code>&lt;img&gt;</code>标签加载，可以确定验证码由服务器生成。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319104247.png" alt></p>
+<p>确定了验证码是由服务器生成了之后，再确定服务器是否真的对验证码做了验证。</p>
+<p>输入用户名密码及验证码然后点击Login，并使用Burp进行抓包。</p>
+<p>右击抓到的数据包，选择<code>Send to Repeater</code>发送到重放模块。或者直接<code>Ctrl + R</code>。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319094958.png" alt></p>
+<p>点击进入<code>Repeater</code>模块，将验证码修改为任意值后，点击<code>Go</code>按钮进行重放。发现返回验证码输入错误，证明服务器对验证码做了验证。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319095233.png" alt></p>
+<p>接下来，将验证码设置为正确的值，然后发送数据包，发现验证码验证成功。然后再继续重放该正确验证码的数据包几次，发现即使由于用户名密码不正确，导致页面刷新了验证码，但是并不需要再次输入验证码。即服务器只验证了一次验证码，验证成功的验证码可以一直重复使用。</p>
+<p>我们只需要验证正确一次验证码，就可以一直使用该验证码，然后就可以进行爆破了。爆破的流程同上一节，不再赘述。</p>
+<p><strong>漏洞分析：</strong></p>
+<p>接下来，让我们来分析一下源码，看漏洞是如何产生的（只截取部分关键代码）：</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319101955.png" alt></p>
+<p>通过源码分析，我们可以得知，我们提交的验证码会被与存储在服务器session中的验证码做验证，但是由于在验证完成后，没有及时的销毁session，导致存储在session中的验证码在session生存周期内可以一直被重复使用。</p>
+<p><strong>漏洞修复方法</strong>：</p>
+<p>在验证完成之后，销毁验证码session：<code>unset($_SESSION[&#39;vcode&#39;]);</code></p>
+<p>另，</p>
+<p>通过分析验证码生成的源码，还发现了一个问题，生成的验证码会被以明文方式作为Cookie返回给客户端。这会导致直接可以进行爆破，爆破方法参照下面0x03节的内容。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319103538.png" alt></p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319103611.png" alt></p>
+<h3 id="0x02-客户端验证码绕过"><a href="#0x02-客户端验证码绕过" class="headerlink" title="0x02 客户端验证码绕过"></a>0x02 客户端验证码绕过</h3><p>打开页面，是一个包含验证码的表单登录页面。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319103858.png" alt></p>
+<p>还是先确定验证码是由JS生成还是由服务器生成。</p>
+<p>继续在页面<code>F12</code>,然后定位找到元素，可以确定是由客户端JS的<code>createCode()</code>函数生成。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319104637.png" alt></p>
+<p>输入用户名密码及验证码，点击Login并使用Burp抓包。将验证码删除并进行重放，发现没有影响。可以确定服务器并未对验证码进行验证。接下来直接进行爆破即可，爆破流程参考前面。</p>
+<p><strong>漏洞分析</strong></p>
+<p>前端JS生成验证码且前端JS进行验证码的校验，对使用Burp抓包爆破而言形同虚设。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319110240.png" alt></p>
+<h3 id="0x03-Token防爆破"><a href="#0x03-Token防爆破" class="headerlink" title="0x03 Token防爆破"></a>0x03 Token防爆破</h3><p>首先，先给出结论，表单token的作用是防止重复提交和CSRF。但不要认为有防止重复提交在防爆破上就有作用。</p>
+<p>因为表单Token是作为一个隐藏的<code>&lt;input /&gt;</code>标签的值输出在返回给用户的页面的，是可以直接从页面读取获取的，所以是防不了爆破的。如果还有疑问，继续往下看使用Burp进行爆破。</p>
+<p>还是继续登录并抓包的操作，可以发现POST提交的数据中存在Token，第一次放行数据包，返回用户名密码不存在。接着再连续重放该数据包，发现只是刷新的页面，返回消息没有再报用户名密码不存在。因此可以猜测到，服务器对Token做了验证，由于Token不正确所以没有进行用户名密码验证的逻辑，所以仅刷新了页面。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319114454.png" alt></p>
+<p>接下来使用Burp进行爆破，先将数据包发送到Intruder模块。</p>
+<p>将用户名、密码、Token作为变量，<code>Attack Type</code>使用<code>Pitch fork</code>模式。（注意，只能使用该模式）</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319115718.png" alt></p>
+<p>转到<code>Options</code>按钮下，找到<code>Grep-Extract</code>，勾选<code>Extract the following items from response</code>，然后点击<code>ADD</code>。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319125134.png" alt></p>
+<p>点击<code>ADD</code>后会弹出一个框，按下图步骤方式配置，配置完成点击<code>OK</code>。作用就是可以从响应消息（Response）中提取一段数据作为下一次请求信息（Request）的Payload。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319125941.png" alt></p>
+<p>接着转到<code>Payloads</code>按钮下设置Payload</p>
+<p>选择<code>Payload set</code>为1，<code>Payload Type</code>使用默认的<code>Simple list</code>，然后点击Load导入用户名字典文件。</p>
+<p>选择<code>Payload set</code>为2，<code>Payload Type</code>使用默认的<code>Simple list</code>，然后点击Load导入密码字典文件。</p>
+<p>选择<code>Payload set</code>为3，<code>Payload Type</code>选择<code>Recursive grep</code>，然后输入第一个请求要使用的Payload(可以不设)。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319130503.png" alt></p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319130947.png" alt></p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319131320.png" alt></p>
+<p>设置完成后，点击<code>Start attack</code>，发现报错。这是因为不能使用多线程爆破，因为每次爆破其中一个Payload需要从前一个响应消息中提取。因此再次转到<code>Options</code>按钮下，找到<code>Request Engine</code>，修改线程数为单线程。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319131802.png" alt></p>
+<p>再次点击<code>Start attack</code>，进行爆破即可。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319132139.png" alt></p>
+<p>点击<code>Length</code>按钮进行排序，发现一个长度与其他不一致的数据包，点击数据包查看，爆破成功。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319132951.png" alt></p>
+<p><strong>漏洞分析</strong></p>
+<p>查看源码发现服务器端在进行用户名密码验证的逻辑之前，先验证了token。印证了我们之前的猜想。</p>
+<p><img src="/2019/03/19/WEB漏洞靶场pikachu—writeup/QQ截图20190319133447.png" alt></p>
+<p>但是使用Token进行防爆破的漏洞不在于是否对Token进行了验证，而在于Token会返回在页面中被读取。</p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><blockquote>
+<p>防暴力破解应该理解成防止自动化脚本快速请求以达到破解的目的。</p>
+</blockquote>
+<p><strong>表单暴力破解防范</strong>：</p>
+<blockquote>
+<ol>
+<li>使用安全的验证码进行验证（滑动验证码…）。</li>
+<li>在某段单位时间内，用户登录失败达到一定次数时，锁定用户或限制短时间内不允许登录。</li>
+<li>对IP进行单位时间内登录请求数的限制。</li>
+</ol>
+</blockquote>
+<p><strong>参考链接：</strong></p>
+<p><a href="https://www.cnblogs.com/KbCat/p/9317545.html" target="_blank" rel="noopener">https://www.cnblogs.com/KbCat/p/9317545.html</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-03-19, 09:03:38</p>
+        <p><span>最后更新:</span>2019-03-19, 16:00:26</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/" title="WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解">https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/19/WEB漏洞靶场pikachu—writeup/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/19/02python基础学习系列之列表/">
+                    Python基础学习系列Chapter 3：列表
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/18/01python基础学习系列之字符串/">
+                    Python基础学习系列Chapter 2：字符串
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、前面的话"><span class="toc-number">1.</span> <span class="toc-text">一、前面的话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Whatever"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 Whatever</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-靶机介绍"><span class="toc-number">1.2.</span> <span class="toc-text">0x01 靶机介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、暴力破解"><span class="toc-number">2.</span> <span class="toc-text">二、暴力破解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-简单表单爆破"><span class="toc-number">2.1.</span> <span class="toc-text">0x00 简单表单爆破</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-服务器端验证码绕过"><span class="toc-number">2.2.</span> <span class="toc-text">0x01 服务器端验证码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-客户端验证码绕过"><span class="toc-number">2.3.</span> <span class="toc-text">0x02 客户端验证码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-Token防爆破"><span class="toc-number">2.4.</span> <span class="toc-text">0x03 Token防爆破</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、总结"><span class="toc-number">3.</span> <span class="toc-text">三、总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/03/19/02python基础学习系列之列表/" title="上一篇: Python基础学习系列Chapter 3：列表">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/18/01python基础学习系列之字符串/" title="下一篇: Python基础学习系列Chapter 2：字符串">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
