@@ -16,13 +16,14 @@
 
 
 <meta name="description" content="一、概述0x00 什么是XSS漏洞？ XSS，即跨站脚本（Cross Site Script），是由于网站对用户输入过滤不严而造成的漏洞。攻击者可以通过提交恶意JS代码，把恶意的脚本代码注入到网页之中，当其他用户浏览这些带有恶意代码的网页时就会执行其中的恶意代码导致被攻击。">
+<meta name="keywords" content="XSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS学习系列Chapter 2：漏洞原理">
 <meta property="og:url" content="https://sakuxa.com/2019/03/11/0x01-XSS学习系列之漏洞原理/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="一、概述0x00 什么是XSS漏洞？ XSS，即跨站脚本（Cross Site Script），是由于网站对用户输入过滤不严而造成的漏洞。攻击者可以通过提交恶意JS代码，把恶意的脚本代码注入到网页之中，当其他用户浏览这些带有恶意代码的网页时就会执行其中的恶意代码导致被攻击。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-19T08:00:09.610Z">
+<meta property="og:updated_time" content="2019-03-21T05:44:09.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS学习系列Chapter 2：漏洞原理">
 <meta name="twitter:description" content="一、概述0x00 什么是XSS漏洞？ XSS，即跨站脚本（Cross Site Script），是由于网站对用户输入过滤不严而造成的漏洞。攻击者可以通过提交恶意JS代码，把恶意的脚本代码注入到网页之中，当其他用户浏览这些带有恶意代码的网页时就会执行其中的恶意代码导致被攻击。">
@@ -294,6 +295,10 @@
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -315,6 +320,7 @@
 </blockquote>
 <p><strong>3.DOM XSS</strong></p>
 <blockquote>
+<p>DOM XSS是由于前端的JS操作DOM时存在漏洞。</p>
 <p>与前两种的主要区别在于，DOM XSS是不与服务端交互的，触发XSS靠的只是客户端DOM解析，DOM XSS是在浏览器的解析中改变页面DOM树，且恶意代码并不在返回页面源码中回显。</p>
 </blockquote>
 <h3 id="0x02-XSS特点"><a href="#0x02-XSS特点" class="headerlink" title="0x02 XSS特点"></a>0x02 XSS特点</h3><ol>
@@ -375,7 +381,7 @@
         <p><span>本文标题:</span><a href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-11, 09:42:09</p>
-        <p><span>最后更新:</span>2019-03-19, 16:00:09</p>
+        <p><span>最后更新:</span>2019-03-21, 13:44:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/" title="XSS学习系列Chapter 2：漏洞原理">https://sakuxa.com/2019/03/11/0x01-XSS学习系列之漏洞原理/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/11/0x01-XSS学习系列之漏洞原理/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -481,7 +487,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 
