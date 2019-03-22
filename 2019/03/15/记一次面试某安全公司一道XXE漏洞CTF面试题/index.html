@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/04readpasswd.png">
 <meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/06readindex.png">
 <meta property="og:image" content="https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/flag.png">
-<meta property="og:updated_time" content="2019-03-18T02:40:32.146Z">
+<meta property="og:updated_time" content="2019-03-22T03:59:12.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次面试某安全公司一道XXE漏洞CTF面试题">
 <meta name="twitter:description" content="0x00 说在前面的话最近面试一家安全公司，拿到一套CTF题目作为面试前的技术能力测试。其中有一道XEE漏洞的题目，碰巧最近正在研究学习XXE漏洞，过程中遇到了一些坑，隧做个记录。 下面直接进入主题…">
@@ -371,7 +371,7 @@
 <p>修改好evil.xml文件后，继续让目标服务器请求。发现被压缩加密的<code>index.php</code>文件内容被成功发送到我们的服务器。</p>
 <p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/06readindex.png" alt></p>
 <p>接下来就是将压缩编码内容进行解压解码。此处可以编写一个接收的页面进行解压解码。由于环境原因，我的操作是将压缩编码的文件内容复制保存到一个文件中，文件名tmp.txt。然后创建一个php文件，内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">echo file_get_contents(&quot;php://filter/read=convert.base64-decode/zlib.inflate/resource=tmp.txt&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="keyword">echo</span> file_get_contents(<span class="string">"php://filter/read=convert.base64-decode/zlib.inflate/resource=tmp.txt"</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>将该php文件放到phpstudy的web根目录下并访问，就可以在页面中找到flag。</p>
 <p><img src="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/flag.png" alt></p>
 <h3 id="0x03-总结"><a href="#0x03-总结" class="headerlink" title="0x03 总结"></a>0x03 总结</h3><p>做下来之后，题目的难度不算高，但是期间遇到了一个坑，感觉payload什么的都设置的没有问题了，但是一直读取不了文件，为此花了很长时间，最终查了一下资料才知道，使用 libxml 读取文件内容的时候，文件不能过大，如果太大就会报错。</p>
@@ -392,7 +392,7 @@
         <p><span>本文标题:</span><a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-03-15, 15:54:09</p>
-        <p><span>最后更新:</span>2019-03-18, 10:40:32</p>
+        <p><span>最后更新:</span>2019-03-22, 11:59:12</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/" title="记一次面试某安全公司一道XXE漏洞CTF面试题">https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
