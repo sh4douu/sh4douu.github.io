@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="0x00 函数概述 def是可执行语句，即运行def语句后，函数才会存在于内存。 def创建一个函数对象并将其赋值给某一变量名（函数名）。该变量是函数对象的一个引用。 return语句会将一个结果对象返回给调用者，没有return语句默认返回NONE。也表示函数的调用结束。 lambda可以创建函数并自动将结果返回。（def需要用return返回） yield语句也会将结果返回调用函数者，并且会记">
+<meta name="keywords" content="Python基础,Language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础学习系列Chapter 7：函数">
+<meta property="og:url" content="https://sakuxa.com/2019/03/29/06python基础学习系列之函数/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="0x00 函数概述 def是可执行语句，即运行def语句后，函数才会存在于内存。 def创建一个函数对象并将其赋值给某一变量名（函数名）。该变量是函数对象的一个引用。 return语句会将一个结果对象返回给调用者，没有return语句默认返回NONE。也表示函数的调用结束。 lambda可以创建函数并自动将结果返回。（def需要用return返回） yield语句也会将结果返回调用函数者，并且会记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-30T00:59:48.339Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础学习系列Chapter 7：函数">
+<meta name="twitter:description" content="0x00 函数概述 def是可执行语句，即运行def语句后，函数才会存在于内存。 def创建一个函数对象并将其赋值给某一变量名（函数名）。该变量是函数对象的一个引用。 return语句会将一个结果对象返回给调用者，没有return语句默认返回NONE。也表示函数的调用结束。 lambda可以创建函数并自动将结果返回。（def需要用return返回） yield语句也会将结果返回调用函数者，并且会记">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Python基础学习系列Chapter 7：函数 | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-06python基础学习系列之函数" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/29/06python基础学习系列之函数/" class="article-date">
+      <time datetime="2019-03-29T07:19:43.000Z" itemprop="datePublished">2019-03-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python基础学习系列Chapter 7：函数
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python基础/">Python基础</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h4 id="0x00-函数概述"><a href="#0x00-函数概述" class="headerlink" title="0x00 函数概述"></a>0x00 函数概述</h4><ul>
+<li>def是可执行语句，即运行def语句后，函数才会存在于内存。</li>
+<li>def创建一个函数对象并将其赋值给某一变量名（函数名）。该变量是函数对象的一个引用。</li>
+<li>return语句会将一个结果对象返回给调用者，没有return语句默认返回NONE。也表示函数的调用结束。</li>
+<li>lambda可以创建函数并自动将结果返回。（def需要用return返回）</li>
+<li>yield语句也会将结果返回调用函数者，并且会记住它离开的地方。</li>
+<li>global语句用于声明一个模块级的变量。</li>
+<li>参数是通过对象引用赋值传递的。</li>
+</ul>
+<a id="more"></a>
+<h4 id="0x01-def-函数定义"><a href="#0x01-def-函数定义" class="headerlink" title="0x01 def 函数定义"></a>0x01 def 函数定义</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> &lt;<span class="title">name</span>&gt;<span class="params">(arg1,arg2,arg3.....)</span></span></span><br><span class="line"><span class="function">    &lt;<span class="title">statements</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>def是实时运行的，运行def语句后才会创建函数对象（封装函数代码并将这个对象赋值给变量名）。 因此运行了def后（运行模块、导入模块等），才能调用函数。(注：调用不能在定义之前，因为Python不像C等语言，有先全部编译的过程，Python的语句都是实时运行的）</li>
+<li>def语句定义的函数名是对象引用赋值，函数名是指向函数对象所在内存的一个引用而已。</li>
+<li>def语句在运行时才会评估（执行），而函数的主体内容在函数调用时才会评估（执行）。</li>
+<li>可以有0个或以上个参数，称为形参</li>
+<li>function_name（）——函数名加上（args….）表示函数的调用，每调用一次就会运行函数主体代码。</li>
+</ul>
+<h4 id="0x02-return-函数返回值"><a href="#0x02-return-函数返回值" class="headerlink" title="0x02 return 函数返回值"></a>0x02 return 函数返回值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>，<span class="string">'a'</span>,&#123;<span class="string">'b'</span>:<span class="number">2</span>&#125;,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]，x+y</span><br></pre></td></tr></table></figure>
+<ul>
+<li>return是可选的，没有时默认返回none</li>
+<li>可以返回任意类型的值，但只能返回表达式，而不能是语句。返回多个值时，这些值将被放入一个元组中。</li>
+</ul>
+<h4 id="0x03-变量作用域（LEGB法则）"><a href="#0x03-变量作用域（LEGB法则）" class="headerlink" title="0x03 变量作用域（LEGB法则）"></a>0x03 变量作用域（LEGB法则）</h4><ul>
+<li>作用域（命名空间） 即能访问到该变量的范围；变量赋值的位置决定了它所在的命名空间。</li>
+<li>Python创建、查找、修改变量名都是在命名空间进行的。不同命名空间的同名变量名不会冲突。</li>
+<li>函数定义本地作用域，模块定义全局作用域。</li>
+<li>变量的作用域由赋值的位置决定，分为三种作用域：</li>
+</ul>
+<blockquote>
+<p>对于每个def内的，叫本地作用域。</p>
+<p>函数嵌套了函数，那么对于被嵌套函数而言，嵌套函数的变量是非本地的（nonlocal）。</p>
+<p>在def外的（包括函数名），叫全局作用域。</p>
+</blockquote>
+<ul>
+<li>全局作用域的作用范围仅限于单个文件（模块），导入模块会得到被导入模块的全局变量访问权。</li>
+<li>只有对变量赋值才会产生本地变量。如对列表进行索引修改、执行append（）等的这种原处修改的对象不会产生本地变量。</li>
+<li>默认情况下：<ul>
+<li>每一个函数内的变量（赋值操作）、形参、被此函数嵌套的函数名、函数内import 模块名都是属于此函数的本地作用域。      </li>
+<li>通过 global 【scope】声明变量为全局变量。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span><span class="params">()</span>:</span></span><br><span class="line">    a=<span class="number">2</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fun2</span><span class="params">()</span>:</span></span><br><span class="line">    	<span class="keyword">global</span> a</span><br><span class="line">    	<span class="keyword">print</span> (a)</span><br><span class="line">    fun2()    		</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用函数fun1后，打印的值是1，因为声明了a为全局变量。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过 nonlocal 【scope】声明变量为非本地变量。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">1</span>   <span class="comment">#全局变量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span><span class="params">()</span>:</span></span><br><span class="line">   a=<span class="number">2</span> <span class="comment">#本地变量</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">fun2</span><span class="params">()</span>:</span><span class="comment">#fun1下的a对于fun2为非本地变量。</span></span><br><span class="line">        a=<span class="number">5</span> <span class="comment">#本地变量</span></span><br><span class="line">    	<span class="keyword">nonlocal</span> a</span><br><span class="line">    	<span class="keyword">print</span> (a)</span><br><span class="line">   fun2()</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用函数fun1后，打印的值是2，因为声明了a为非本地变量。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>变量名查找法则（LEGB/LNGB)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">L：首先先查找本地作用域。</span><br><span class="line">E/N：若有嵌套，（被嵌套函数）其次查找嵌套函数的作用域（即嵌套函数的本地作用域）</span><br><span class="line">G：再次，查找全局作用域。</span><br><span class="line">B：最后查找内置作用域。</span><br><span class="line"></span><br><span class="line">依次按顺序查找，不可逆向查找。</span><br><span class="line">查找到第一个结果后不再继续查找，会将第一个查找结果作为结果。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每一次函数的调用都会产生一个新的作用域。（这点对去理解函数递归很重要）</li>
+<li>函数执行完毕后，本次函数调用产生的本地作用域也将消失，意味着变量将消失，但是变量的状态会被记住。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#闭包（Closure）是词法闭包（Lexical Closure）的简称，是引用了自由变量的函数。这个被引用的自由变量将和这个函数一同存在，即使已经离开了创造它的环境也不例外。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#闭包/工厂函数：一个能记住嵌套作用域变量值的函数，尽管那个作用域或许已经不存在。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">act</span><span class="params">(y)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x*y</span><br><span class="line">    <span class="keyword">return</span> act</span><br><span class="line">f1=make(<span class="number">2</span>)</span><br><span class="line">f2=make(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">f1(<span class="number">2</span>) <span class="comment">#返回4，f1记住了x=2的这个状态</span></span><br><span class="line">f2(<span class="number">2</span>) <span class="comment">#返回8，f2记住了x=4的这个状态</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>除了上面的闭包，可以让Python函数保存状态的方法还有：共享全局变量、参数使用默认值。最好的方法是OOP。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数使用默认值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">act</span><span class="params">(y,x=x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x*y</span><br><span class="line">    <span class="keyword">return</span> act</span><br><span class="line"><span class="comment">#效果等同于闭包，该方法适用于全部Python版本</span></span><br></pre></td></tr></table></figure>
+<h4 id="0x04-参数"><a href="#0x04-参数" class="headerlink" title="0x04 参数"></a>0x04 参数</h4><ul>
+<li>参数是通过引用赋值的，被传递的参数从来不自动拷贝。</li>
+<li>赋值的变量，即形参，是属于本地作用域的。</li>
+<li>因为是引用赋值传递，因此在函数内对传入的可变对象参数进行修改，会对其他引用影响。</li>
+<li>通常情况下，参数通过位置从左到右赋值传递给形参，传递的参数要与形参数量对应。也可以使用name=value的关键字传参赋值方法。位置参数必须在关键字参数之前。</li>
+<li>可以为形参指定默认值。</li>
+<li>实参与形参传递规则：         <ul>
+<li>通过位置分配非关键字参数。    </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">通过匹配变量名（形参名）分配关键字参数。</span><br><span class="line"></span><br><span class="line">其他没有分配的非关键字参数分配到 *args的元组中。</span><br><span class="line"></span><br><span class="line">其他没有匹配的关键字参数分配到**args的字典中。</span><br><span class="line"></span><br><span class="line">没有分配到参数的形参使用默认值参数。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>*与 **：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*、**在实参前表示对传递的参数对象进行解包。	</span><br><span class="line">	*的参数对象必须为序列，**的为参数对象必须为字典。</span><br><span class="line">	 </span><br><span class="line">*、**在形参前表示让形参接收所有没有匹配其他形参的参数。</span><br><span class="line">	 *将接收的参数放入一个元组。</span><br><span class="line">	 **将接受的关键字赋值参数放入一个字典。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义函数时使用 * ，则它之后的形参在函数调用时都必须使用关键字赋值。（keyword-only）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def fun1（a,*b,c,d,e）:</span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">fun1（<span class="number">1</span>,<span class="number">2</span>,c=<span class="number">3</span>,d=<span class="number">4</span>,e=<span class="number">5</span>） <span class="comment"># *之后的必须用关键字赋值</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>定义函数时使用**的形参位置必须是最后一个。</li>
+<li>事实上。*对所有可迭代对象有用。</li>
+<li>name=value在调用中表示关键字参数；name=value在函数定义中表示默认值。</li>
+</ul>
+<h4 id="0x05-匿名函数-lambda"><a href="#0x05-匿名函数-lambda" class="headerlink" title="0x05 匿名函数 lambda"></a>0x05 匿名函数 lambda</h4><ul>
+<li>是def外，另一种生成函数对象的方式。</li>
+<li>lambda是表达式而不是语句，因此可以用于def不能用于的地方。</li>
+<li>lambda主体是表达式，而不是代码块，意味着只能写于一行。</li>
+<li>lambda同样遵循LEGB法则，因此也支持闭包。</li>
+<li>默认会返回结果。</li>
+</ul>
+<h5 id="0x06-函数定义"><a href="#0x06-函数定义" class="headerlink" title="0x06 函数定义"></a>0x06 函数定义</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> &lt;arg1,arg2...&gt; : expression</span><br><span class="line"></span><br><span class="line">f = <span class="keyword">lambda</span> x,y : x+y</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>) <span class="comment">#返回3</span></span><br><span class="line">(<span class="keyword">lambda</span> x,y:x+y)(<span class="number">1</span>,<span class="number">2</span>) <span class="comment">#返回3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>lambda会创建并返回一个函数对象。</li>
+<li>lambda也可以使用默认参数。</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-03-29, 15:19:43</p>
+        <p><span>最后更新:</span>2019-03-30, 08:59:48</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/29/06python基础学习系列之函数/" title="Python基础学习系列Chapter 7：函数">https://sakuxa.com/2019/03/29/06python基础学习系列之函数/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/29/06python基础学习系列之函数/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/29/07python基础学习系列之迭代器、生成器/">
+                    Python基础学习系列Chapter 8：迭代器与生成器
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/03/29/文件描述符、重定向、管道浅析/">
+                    文件描述符、重定向、管道浅析
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-函数概述"><span class="toc-number">1.</span> <span class="toc-text">0x00 函数概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-def-函数定义"><span class="toc-number">2.</span> <span class="toc-text">0x01 def 函数定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-return-函数返回值"><span class="toc-number">3.</span> <span class="toc-text">0x02 return 函数返回值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-变量作用域（LEGB法则）"><span class="toc-number">4.</span> <span class="toc-text">0x03 变量作用域（LEGB法则）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-参数"><span class="toc-number">5.</span> <span class="toc-text">0x04 参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-匿名函数-lambda"><span class="toc-number">6.</span> <span class="toc-text">0x05 匿名函数 lambda</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#0x06-函数定义"><span class="toc-number">6.1.</span> <span class="toc-text">0x06 函数定义</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Python基础学习系列Chapter 7：函数　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/03/29/07python基础学习系列之迭代器、生成器/" title="上一篇: Python基础学习系列Chapter 8：迭代器与生成器">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/03/29/文件描述符、重定向、管道浅析/" title="下一篇: 文件描述符、重定向、管道浅析">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/My Ubuntu/">My Ubuntu</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

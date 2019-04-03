@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="0x00 Kerberos Kerberos起源于希腊神话，是一支守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
+<meta name="keywords" content="Kerberos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows认证之Kerberos">
+<meta property="og:url" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="0x00 Kerberos Kerberos起源于希腊神话，是一支守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/cerberus.jpg">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/1070321-20180417175541960-360210611.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403201648.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403202909.png">
+<meta property="og:updated_time" content="2019-04-03T12:50:36.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows认证之Kerberos">
+<meta name="twitter:description" content="0x00 Kerberos Kerberos起源于希腊神话，是一支守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
+<meta name="twitter:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/cerberus.jpg">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Windows认证之Kerberos | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-02-Windows认证之Kerberos" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/03/02-Windows认证之Kerberos/" class="article-date">
+      <time datetime="2019-04-03T03:58:35.000Z" itemprop="datePublished">2019-04-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Windows认证之Kerberos
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/内网渗透/">内网渗透</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kerberos/">Kerberos</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="0x00-Kerberos"><a href="#0x00-Kerberos" class="headerlink" title="0x00 Kerberos"></a>0x00 Kerberos</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/cerberus.jpg" alt></p>
+<p>Kerberos起源于希腊神话，是一支守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。</p>
+<p>Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。</p>
+<p>Windows的AD域环境使用Kerberos来进行验证。</p>
+<a id="more"></a>
+<h3 id="0x01-Long-term-Key与Short-term-Key"><a href="#0x01-Long-term-Key与Short-term-Key" class="headerlink" title="0x01 Long-term Key与Short-term Key"></a>0x01 Long-term Key与Short-term Key</h3><p>在 Security 领域中，有的密钥可能长期保持不变，比如你的密码，可能几年都不曾改变，这样的 Key 被称为 <code>Long-term Key</code>。</p>
+<p>使用<code>Long-term Key</code>应该有以下原则：</p>
+<blockquote>
+<p>1.被<code>Long-term Key</code>加密的数据包不应在网络中传输，或者说不要用<code>Long-term Key</code>加密数据包。原因在于如果加密的数据包被攻击者抓包截取，那么只要时间充足，密钥被爆破出来的风险是很大的。</p>
+<p>2.<code>Long-term Key</code>不应该使用明文方式存储，好的方法是用摘要算法计算其Hash值，从而保存Hash值。因为我们知道Hash算法是不可逆的，且不同输入计算出来的Hash是不同的，因此理论上拥有Hash值是不可能逆向破解获得明文Key，除非进行Hash碰撞，即对Hash算法尝试不同的输入，然后将算法输出Hash值与我们要破解的Hash值对比，本质是暴力破解。</p>
+</blockquote>
+<p>我们一般会使用 <code>Short-term Key</code> 来加密需要进行网络传输的数据。顾名思义，这种 Key 只在短时间内有效，因此即使被加密的数据包被黑客截获，等他把 Key 计算出来的时候，这个 Key 也早就已经失效了。</p>
+<p>由此我们也引出一个问题：</p>
+<p>我们知道加密通信数据应该使用<code>Short-term Key</code>，但是<code>Short-term Key</code>作为一个短期有效的密钥，其管理分发是一个问题，即通信双方该如何即安全又便捷的协商出一个只有双方知道的<code>Short-term Key</code>呢？</p>
+<p>Kerberos认证的第一阶段和第二阶段其实就是协商出通信所需的<code>Short-term Key</code>的过程。</p>
+<p>在Kerberos认证中，<code>Short-term Ke</code>被称为<code>Session Key</code>。而Windows用户的密码就是我们前面说的<code>Long-term Key</code>，它以<code>NTLM Hash</code>方式存储在服务器中。</p>
+<h3 id="0x02-KDC-Key-Distribution-Center"><a href="#0x02-KDC-Key-Distribution-Center" class="headerlink" title="0x02 KDC(Key Distribution Center)"></a>0x02 KDC(Key Distribution Center)</h3><p>KDC(Key Distribution Center)，即密钥分发中心，作为第三方信任机构为C/S提供认证。</p>
+<p>担任KDC的角色在物理层面上与DC(Domain Controller)，即域控所属同一主机。</p>
+<p>KDC负责管理票据、认证票据、分发票据，但是KDC不是一个独立的服务，它由以下部分组成：</p>
+<blockquote>
+<ul>
+<li>AS（Authentication Service）：主要用于生成Client与TGS通信的<code>Session Key</code>，记<code>K(c,tgs)</code>以及TGT。</li>
+<li>TGS（Ticket Granting Service）：主要用于生成Client与Server通信的<code>Session Key</code>，记<code>K(c,s)</code>以及Tiket。</li>
+</ul>
+</blockquote>
+<p>AD(Account Database)，它作为账户管理数据库，用与存储用户认证信息，即密码的<code>NTLM Hash</code>等。</p>
+<h3 id="0x03-Kerberos认证大致流程"><a href="#0x03-Kerberos认证大致流程" class="headerlink" title="0x03 Kerberos认证大致流程"></a>0x03 Kerberos认证大致流程</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/1070321-20180417175541960-360210611.png" alt></p>
+<p>第一阶段（AS Exchange）：生成一个用于加密Client与TGS的通信的<code>Session Key</code>。</p>
+<blockquote>
+<p>生成<code>K(c,tgs)</code>的两份Copy，一份加密用于给Client，一份加密为TGT用于给TGS（但先发给Client，让其发给TGS）。</p>
+</blockquote>
+<p>第二阶段（TGS Exchange）：生成一个用于加密Client与Server通信的<code>Session Key</code>。</p>
+<blockquote>
+<p>生成<code>K(c,s)</code>的两份Copy，一份加密用于给Client，一份加密为TGT用于给Server（但先发给Client，让其发给Server）。</p>
+</blockquote>
+<p>第三阶段（CS EXchange）：Client与Server之间验证并使用<code>K(c,s)</code>加密通信。</p>
+<h3 id="0x04-Kerberos认证第一阶段：Authentication-Service-Exchange"><a href="#0x04-Kerberos认证第一阶段：Authentication-Service-Exchange" class="headerlink" title="0x04 Kerberos认证第一阶段：Authentication Service Exchange"></a>0x04 Kerberos认证第一阶段：Authentication Service Exchange</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403201648.png" alt></p>
+<p><strong>KRB_AS_REQ</strong></p>
+<p>首先，客户端发送请求给KDC AS，请求消息包含以下三部分：</p>
+<blockquote>
+<ul>
+<li><code>Pre-authentication data</code>：用以证明Client身份的信息，它的内容是一般是被Client的<code>NTLM Hash</code>加密的 <code>Timestamp</code>。</li>
+<li><code>Client name &amp; realm</code>：Client自身信息，简单地说就是 <code>DomainName\Username</code>，KDC AS用其查找AD数据库看用户是否存在。</li>
+<li><code>Server Name</code>：注意这里的ServerName并不是Client实际想要通信的Server，而是KDC TGS服务器的名称。</li>
+</ul>
+</blockquote>
+<p><strong>KRB_AS_REP</strong></p>
+<p>KDC收到请求消息后，根据提供的用户名在<code>AD(Account Database)</code>中寻找是否存在。</p>
+<p>若存在，则将产生一个<code>Session Key</code>，记<code>K(c,tgs)</code>，并且将其生成两份Copy，分别用于给Client和KDC TGS。</p>
+<p>对于给Client的那份<code>Session Key</code>，KDS AS会从<code>AD(Account Database)</code>中获取Client的<code>NTLM Hash</code>对其进行加密。</p>
+<p>对于给KDC TGS的那份<code>Session Key</code>，KDS AS会从<code>AD(Account Database)</code>中获取<code>krbtgt</code>用户的<code>NTLM Hash</code>对其及其它信息进行加密，称为TGT（Ticket Granting Ticket）。</p>
+<blockquote>
+<ul>
+<li>TGT中除了<code>Session Key</code>，还包括一些Client的用户名（DomainName\Username）、End time（TGT 到期的时间）等信息。</li>
+<li><code>krbtgt</code>用户是在新建一台域控制器时，由系统自动创建使得，用于Kerberos认证用的。因此TGT只有KDC能解密。</li>
+</ul>
+</blockquote>
+<p>虽然产生的TGT是用于给KDC TGS的，但是KDC还是会把两份都发给Client，KDC TGS那份由Client发给KDC TGS。之所以这样做的目的是：</p>
+<blockquote>
+<ul>
+<li>首先Server不用维护一张庞大的会话密钥列表来应付不同的Client的访问，降低了Server的负荷；</li>
+<li>其次避免出现因为网络延时，Client的认证请求比Server的会话密钥早到达Server端，进而导致认证失败的情况。</li>
+</ul>
+</blockquote>
+<h3 id="0x05-Kerberos认证第二阶段：Ticket-Granting-Service-Exchange"><a href="#0x05-Kerberos认证第二阶段：Ticket-Granting-Service-Exchange" class="headerlink" title="0x05 Kerberos认证第二阶段：Ticket Granting Service Exchange"></a>0x05 Kerberos认证第二阶段：Ticket Granting Service Exchange</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403202909.png" alt></p>
+<p><strong>KRB_TGS_REQ</strong></p>
+<p>根据前面我们可以知道，此时Client拥有两份加密的<code>Session Key</code>，分别是</p>
+<blockquote>
+<ul>
+<li>用自己<code>NTLM Hash</code>加密的<code>Session Key</code>。</li>
+<li>用<code>krbtgt</code>用户的<code>NTLM Hash</code>加密的TGT。</li>
+</ul>
+</blockquote>
+<p>首先，Client会使用自己的<code>NTLM Hash</code>解密属于自己的那份，解密后获得<code>Session Key</code>。</p>
+<p>接着，Client会生成鉴别码（Authenticator），并使用<code>Session Key</code>对鉴别码进行加密。</p>
+<blockquote>
+<p>鉴别码实际主要是Client的信息（DomainName\Username）、ServerName(DomainName\Server)以及当前时间的时间戳。</p>
+<p>此处的ServerName是Client真正想访问的Server。</p>
+<p>鉴别码的作用主要是为了证明该消息是Client自己发的。</p>
+</blockquote>
+<p>最后，Client将加密的鉴别码与TGT发给KDC TGS。</p>
+<p><strong>KRB_TGS_REP</strong></p>
+<p>KDC TGS收到消息后，先使用自己（krbtgt）的<code>NTLM Hash</code>对TGT进行解密，获得<code>Session Key</code>、Client信息、TGT过期时间等信息。</p>
+<p>然后使用<code>Session Key</code>解密被Client加密的鉴别码，获得Client信息、时间戳等信息。</p>
+<p>比对两次解密得到的时间戳，确保在可允许的范围。</p>
+<p>验证通过后，KDC TGS会生成一个<code>Session Key</code>，记<code>K(c,s)</code>，该<code>Session Key</code>用于给Client和Server通信使用。</p>
+<p>将<code>K(c,tgs)</code>加密<code>K(c,s)</code>，用于给Client。</p>
+<p>同时也会生成一个Tiket用于给Server，并用Server的<code>NTLM Hash</code>加密该Tiket。Tiket包含：</p>
+<blockquote>
+<ul>
+<li>用于给Client和Server通信使用<code>Session key</code>，即<code>K(c,s)</code>。</li>
+<li>Client的一些信息，如用户名。</li>
+<li>Tiket过期时间。</li>
+</ul>
+</blockquote>
+<p>可以发现这个阶段与上一个阶段是类似，KDC同样会把这两份加密了的<code>Session Key</code>都发给Client。</p>
+<h3 id="0x06-Kerberos认证第三阶段：Client-Server-Exchange"><a href="#0x06-Kerberos认证第三阶段：Client-Server-Exchange" class="headerlink" title="0x06 Kerberos认证第三阶段：Client/Server Exchange"></a>0x06 Kerberos认证第三阶段：Client/Server Exchange</h3><p><strong>KRB_AP_REQ</strong></p>
+<p>此时Client同样拥有两份加密的<code>Session Key</code>，<code>K(c,s)</code>。分别是</p>
+<blockquote>
+<ul>
+<li>用自己<code>NTLM Hash</code>加密的<code>Session Key</code>。</li>
+<li>用Server的<code>NTLM Hash</code>加密的Tiket。</li>
+</ul>
+</blockquote>
+<p>接着Client会使用自己的<code>NTLM Hash</code>解密属于自己的那份，解密后获得<code>K(c,s)</code>。</p>
+<p>使用<code>K(c,s)</code>加密鉴别码，将加密的鉴别码同Tiket发给服务器。</p>
+<p><strong>KRB_AP_REP</strong></p>
+<p>Server收到消息后，先使用自己的<code>NTLM Hash</code>对Tiket进行解密，获得<code>Session Key</code>、Client信息、TGT过期时间等信息。</p>
+<p>然后使用<code>Session Key</code>解密被Client加密的鉴别码，获得Client信息、时间戳等信息。</p>
+<p>过程与<code>KRB_TGS_REP</code>阶段差不多，不再赘述。</p>
+<p>但有一点是，</p>
+<p>如果Client需要进行双向验证，Server从鉴别码中提取时间戳，使用<code>K(c,s)</code>进行加密，并将其发送给Client用于Client验证Server的身份。</p>
+<p><strong>参考资料：</strong></p>
+<p><a href="https://blog.csdn.net/lengxiao1993/article/details/20458809" target="_blank" rel="noopener">https://blog.csdn.net/lengxiao1993/article/details/20458809</a></p>
+<p><a href="https://payloads.online/archivers/2018-11-30/1?tdsourcetag=s_pcqq_aiomsg#%E5%9F%9F%E8%AE%A4%E8%AF%81%E4%BD%93%E7%B3%BB---kerbroes" target="_blank" rel="noopener">https://payloads.online/archivers/2018-11-30/1?tdsourcetag=s_pcqq_aiomsg#%E5%9F%9F%E8%AE%A4%E8%AF%81%E4%BD%93%E7%B3%BB---kerbroes</a></p>
+<p><a href="https://blog.csdn.net/wulantian/article/details/42418231" target="_blank" rel="noopener">https://blog.csdn.net/wulantian/article/details/42418231</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-04-03, 11:58:35</p>
+        <p><span>最后更新:</span>2019-04-03, 20:50:36</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/03/02-Windows认证之Kerberos/" title="Windows认证之Kerberos">https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/04/03/01-Windows认证之NTLM/">
+                    Windows认证之NTLM
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Kerberos"><span class="toc-number">1.</span> <span class="toc-text">0x00 Kerberos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-Long-term-Key与Short-term-Key"><span class="toc-number">2.</span> <span class="toc-text">0x01 Long-term Key与Short-term Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-KDC-Key-Distribution-Center"><span class="toc-number">3.</span> <span class="toc-text">0x02 KDC(Key Distribution Center)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-Kerberos认证大致流程"><span class="toc-number">4.</span> <span class="toc-text">0x03 Kerberos认证大致流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Kerberos认证第一阶段：Authentication-Service-Exchange"><span class="toc-number">5.</span> <span class="toc-text">0x04 Kerberos认证第一阶段：Authentication Service Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-Kerberos认证第二阶段：Ticket-Granting-Service-Exchange"><span class="toc-number">6.</span> <span class="toc-text">0x05 Kerberos认证第二阶段：Ticket Granting Service Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x06-Kerberos认证第三阶段：Client-Server-Exchange"><span class="toc-number">7.</span> <span class="toc-text">0x06 Kerberos认证第三阶段：Client/Server Exchange</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Windows认证之Kerberos　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/04/03/01-Windows认证之NTLM/" title="下一篇: Windows认证之NTLM">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/My Ubuntu/">My Ubuntu</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

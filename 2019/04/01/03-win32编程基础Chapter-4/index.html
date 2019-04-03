@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="sh4douu">
+
+
+
+<meta name="description" content="0x00 全局变量全局变量的作用域是整个程序。 全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在.data?段中定义变量时不能初始化值，只能使用?预留空间。使用?时，编译器实际是用0替代的。 可以同时定义变量的类型和长度。 12变量名  类型  初始值1，初始值2...变量名  类型  重复数量 dup(初始值1,初始值2...)">
+<meta name="keywords" content="Win32,汇编语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Win32编程基础Chapter 4：调用约定">
+<meta property="og:url" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/index.html">
+<meta property="og:site_name" content="IT技术学习分享自留地">
+<meta property="og:description" content="0x00 全局变量全局变量的作用域是整个程序。 全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在.data?段中定义变量时不能初始化值，只能使用?预留空间。使用?时，编译器实际是用0替代的。 可以同时定义变量的类型和长度。 12变量名  类型  初始值1，初始值2...变量名  类型  重复数量 dup(初始值1,初始值2...)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154311.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154931.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155014.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155645.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155758.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155812.png">
+<meta property="og:updated_time" content="2019-04-01T12:06:54.539Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Win32编程基础Chapter 4：调用约定">
+<meta name="twitter:description" content="0x00 全局变量全局变量的作用域是整个程序。 全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在.data?段中定义变量时不能初始化值，只能使用?预留空间。使用?时，编译器实际是用0替代的。 可以同时定义变量的类型和长度。 12变量名  类型  初始值1，初始值2...变量名  类型  重复数量 dup(初始值1,初始值2...)">
+<meta name="twitter:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154311.png">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/LimeWire.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Win32编程基础Chapter 4：调用约定 | IT技术学习分享自留地</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: false
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/tx.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">sh4douu</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">努力成为自己认可的黑客...</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" href="/about/" title="微信"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">致力于网络安全</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/tx.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">努力成为自己认可的黑客...</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
+                            
+                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-03-win32编程基础Chapter-4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/01/03-win32编程基础Chapter-4/" class="article-date">
+      <time datetime="2019-04-01T06:22:00.000Z" itemprop="datePublished">2019-04-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Win32编程基础Chapter 4：调用约定
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Win32/">Win32</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win32/">Win32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/汇编语言/">汇编语言</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h4 id="0x00-全局变量"><a href="#0x00-全局变量" class="headerlink" title="0x00 全局变量"></a>0x00 全局变量</h4><p>全局变量的作用域是整个程序。</p>
+<p>全局变量在<code>.data</code>或<code>.data?</code>段中定义。在<code>.data</code>段中定义变量时可以指定初值，也可以用<code>?</code>表示预留。在<code>.data?</code>段中定义变量时不能初始化值，只能使用<code>?</code>预留空间。使用<code>?</code>时，编译器实际是用0替代的。</p>
+<p>可以同时定义变量的类型和长度。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名  类型  初始值1，初始值2...</span><br><span class="line">变量名  类型  重复数量 dup(初始值1,初始值2...)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>常用类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db  定义字节类型，1B。</span><br><span class="line">dw  定义字类型，2B。</span><br><span class="line">dd  定义双字类型，4B。</span><br><span class="line">df  定义三字类型，6B。</span><br><span class="line">dq  定义四字类型，8B。</span><br><span class="line"></span><br><span class="line">;注意，只有在定义全局变量的时候才能使用类型的简写。</span><br></pre></td></tr></table></figure>
+<h4 id="0x01-局部变量"><a href="#0x01-局部变量" class="headerlink" title="0x01 局部变量"></a>0x01 局部变量</h4><p>局部变量的作用域只在当前子程序中。</p>
+<p>局部变量存储在栈空间中。</p>
+<p>局部变量定义在子程序定义位置的proc之后，子程序内部其他指令前。</p>
+<p>局部变量名不能与全局变量名同名。</p>
+<p>局部变量定义时不能直接初始化值，因为local伪指令的作用只是预留相应的栈空间给局部变量。</p>
+<p>局部变量定义：</p>
+<p>MASM提供的伪指令local定义局部变量。</p>
+<p>格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local 变量名 [[重复数量]] [:类型]</span><br></pre></td></tr></table></figure>
+<p>类型有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:数据结构名   ;数据结构</span><br><span class="line">:byte       ;字节型</span><br><span class="line">:word       ;字型</span><br><span class="line">:dword      ;双字型,默认就是dw，所以可以省略.</span><br></pre></td></tr></table></figure>
+<p><strong>局部变量也存储在堆栈中，进入（执行）子程序时，会修改堆栈指针ESP来预留给局部变量的空间。</strong></p>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TestPro proc                   ;定义一个子程序</span><br><span class="line"></span><br><span class="line">local str1:dword,str2:word     ;定义两个变量，str1时双字型，str2是字型。</span><br><span class="line">local str3:byte                ;定义一个变量，str3是字节型。</span><br><span class="line"></span><br><span class="line">mov eax,str1</span><br><span class="line">mov bx,str2</span><br><span class="line">mov cl,str3</span><br><span class="line">ret </span><br><span class="line"></span><br><span class="line">TestPro proc endp  ;子程序结束</span><br></pre></td></tr></table></figure>
+<p>将上面代码进行编译然后再反汇编得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">push ebp              ;先保存ebp寄存器的原始值。</span><br><span class="line">mov  ebp,esp          ;将此时的esp指针地址给ebp。</span><br><span class="line">add  esp,FFFFFFF8     ;调整esp以预留局部变量所需的空间，上面程序定义的局部变量共需7B,但预留了8B，是因为esp操作都是按dword,就像sp都是+2或-2一样。</span><br><span class="line">                      ;FFFFFFF8是-8,之所以是-8是因为栈是由大往小开始的。</span><br><span class="line"></span><br><span class="line">mov  eax,dword ptr [ebp-4]    ;在[ebp-4]内存单元取双字数据（4byte）给eax</span><br><span class="line">mov bx,word ptr [ebp-6]       ;在[ebp-6]内存单元取字数据（2byte）给bx</span><br><span class="line">mov cl,byte ptr [ebp-7]       ;在[ebp-7]内存单元取字数据（2byte）给cl</span><br><span class="line"></span><br><span class="line">leave    ;等同于：mov esp,ebp 、 pop ebp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：ebp之后没有任何更改，而是作为一个参考点。ebp指向压入局部变量之前的栈顶元素。</li>
+</ul>
+<h4 id="0x02-数据结构"><a href="#0x02-数据结构" class="headerlink" title="0x02 数据结构"></a>0x02 数据结构</h4><p>数据结构实际上是包含多个字段的模板，字段的类型可以是任意的（byte、word、dword….）</p>
+<p>定义数据结构格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">结构名 struct                例子：</span><br><span class="line">                              WNDCLASS struct             </span><br><span class="line">字段1  类型  ？                     str1  byte  ?</span><br><span class="line">字段2  类型  ？                     str2  dword ?</span><br><span class="line">   ...                        WNDCLASS ends</span><br><span class="line"></span><br><span class="line">结构名 ends</span><br></pre></td></tr></table></figure>
+<p>可以把数据类型当作是一种自定义类型，因此定义了数据结构后，可以使用数据结构作为创建变量类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.data?</span><br><span class="line">szWndClass  WNDCLASS  &lt;&gt;      ;未初始化值的结构。</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.data</span><br><span class="line">szWndClass  WNDCLASS  &lt;1,2&gt;    ;结构的两个字段分别赋值1,2</span><br></pre></td></tr></table></figure>
+<p>PS：这样来看定义的结构类似于类，利用结构定义的变量类似于类的实例。</p>
+<p>数据结构的字段访问：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">szWndClass.str1</span><br><span class="line">szWndClass.str2</span><br></pre></td></tr></table></figure>
+<h4 id="0x03-变量访问"><a href="#0x03-变量访问" class="headerlink" title="0x03 变量访问"></a>0x03 变量访问</h4><p>在MASM中，如果要以变量类型长度以外的长度去访问变量，必须要显式的指明访问长度。（否则操作的寄存器与变量类型长度不一致时，将会报错）</p>
+<p>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类型  ptr 变量名</span><br></pre></td></tr></table></figure>
+<p>避免寄存器长度与变量类型长度不一致，可以使用movz指令。</p>
+<p>变量尺寸或数据项数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sizeof    变量/数据类型/数据结构      ;取得字节数。</span><br><span class="line">lengthof  变量/数据类型/数据结构      ;变量中的数据项数。</span><br></pre></td></tr></table></figure>
+<p>获取变量地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">offset 变量名</span><br></pre></td></tr></table></figure>
+<p>offset只能用于全局变量，因为局部变量的地址在编译时是不能确定的，因此使用lea指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lea eax,[ebp-4]    ;取得ebp-4的内存地址并存储到EAX</span><br></pre></td></tr></table></figure>
+<p>addr用于在参数时使用，addr 全局变量时，会编译成offset;addr 局部变量时，会编译为lea，但能addr的局部变量，必须是在参数中的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addr 局部变量/全局变量</span><br></pre></td></tr></table></figure>
+<h4 id="0x04-参数传递与堆栈平衡"><a href="#0x04-参数传递与堆栈平衡" class="headerlink" title="0x04 参数传递与堆栈平衡"></a>0x04 参数传递与堆栈平衡</h4><p>我们知道，参数是通过栈来传递的，那么完成函数调用后，参数就已经没有作用了，因此要把栈恢复到压入参数前的状态，这个过程就是堆栈平衡。</p>
+<p>参数传递约定：</p>
+<blockquote>
+<ul>
+<li>C与Stdcall采用从右往左开始压入栈中。</li>
+</ul>
+</blockquote>
+<p>平衡堆栈：</p>
+<blockquote>
+<ul>
+<li>C由调用者平衡堆栈。</li>
+<li>Stdcall由被调用者平衡堆栈。</li>
+</ul>
+</blockquote>
+<p>Win32使用Stdcall调用约定。</p>
+<p><strong>C调用方式：</strong></p>
+<p>子程序定义及调用（传入参数：1、2）：            <img src="/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154311.png" alt>                     </p>
+<p>编译子程序后再反汇编：</p>
+<p><img src="/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154931.png" alt>      </p>
+<p><img src="/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155014.png" alt></p>
+<ul>
+<li>可以看到参数<code>2</code>先被压入栈中，然后才压入<code>1</code>，即从右到左。</li>
+<li>而平衡堆栈是在call之后使用<code>add esp,0000008</code>，因此是调用者平衡的堆栈。</li>
+</ul>
+<p><strong>Stdcal调用方式：</strong></p>
+<p>子程序定义及调用（传入参数：1、2）： </p>
+<p><img src="/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155645.png" alt></p>
+<p>编译子程序后再反汇编：</p>
+<p><img src="/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155758.png" alt></p>
+<p><img src="/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155812.png" alt></p>
+<ul>
+<li>可以看到参数<code>2</code>先被压入栈中，然后才压入<code>1</code>，即从右到左。</li>
+<li>但平衡堆栈是在子程序中使用了<code>ret 0008</code>，即被调用者平衡的堆栈。</li>
+</ul>
+<blockquote>
+<p>ret指令后加一个操作数表示，在ret后，使用esp+操作数。</p>
+</blockquote>
+<h4 id="0x05-完整的栈操作过程"><a href="#0x05-完整的栈操作过程" class="headerlink" title="0x05 完整的栈操作过程"></a>0x05 完整的栈操作过程</h4><p>设最初的栈状态为esp。</p>
+<p>首先，调用函数并传入参数<code>invoke 函数名,参数1,参数2</code>：</p>
+<ul>
+<li>将两个参数依次压入栈中：<ul>
+<li><code>push 参数2</code></li>
+<li><code>push 参数1</code></li>
+<li>此时esp-4-4。</li>
+</ul>
+</li>
+<li>然后<code>call  函数定义地址</code>。<ul>
+<li>将此时的EIP压入栈中：<code>push eip</code><ul>
+<li>此时esp-8-4</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>进入函数内部执行函数：</p>
+<ul>
+<li>保存当前ebp的数据：<code>push ebp</code><ul>
+<li>此时esp-12-4。</li>
+</ul>
+</li>
+<li>将当前esp的值给ebp：<code>mov ebp,esp</code></li>
+<li>为局部变量留空间：<code>add esp,fffffff8</code><ul>
+<li>此时esp-16-8</li>
+</ul>
+</li>
+<li>使用ebp获取参数、局部变量。</li>
+<li>销毁局部变量：<code>leave</code><ul>
+<li>恢复esp状态到为局部变量留空间前：<code>mov esp,ebp</code><ul>
+<li>此时esp-24+8</li>
+</ul>
+</li>
+<li>恢复ebp：<code>pop ebp</code><ul>
+<li>此时esp-16+4</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>函数返回：<code>ret 8</code><ul>
+<li><code>add esp,8</code><ul>
+<li>此时esp-12+8</li>
+</ul>
+</li>
+<li><code>pop eip</code><ul>
+<li>此时esp-4+4。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
+        <p><span>发布时间:</span>2019-04-01, 14:22:00</p>
+        <p><span>最后更新:</span>2019-04-01, 20:06:54</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/01/03-win32编程基础Chapter-4/" title="Win32编程基础Chapter 4：调用约定">https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/04/02/04-win32编程基础Chapter-5/">
+                    Win32编程基础Chapter 5：分支和循环
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/04/01/02-win32编程基础Chapter-3/">
+                    Win32编程基础Chapter 3：Win API
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#0x00-全局变量"><span class="toc-number">1.</span> <span class="toc-text">0x00 全局变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x01-局部变量"><span class="toc-number">2.</span> <span class="toc-text">0x01 局部变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x02-数据结构"><span class="toc-number">3.</span> <span class="toc-text">0x02 数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x03-变量访问"><span class="toc-number">4.</span> <span class="toc-text">0x03 变量访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x04-参数传递与堆栈平衡"><span class="toc-number">5.</span> <span class="toc-text">0x04 参数传递与堆栈平衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#0x05-完整的栈操作过程"><span class="toc-number">6.</span> <span class="toc-text">0x05 完整的栈操作过程</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Win32编程基础Chapter 4：调用约定　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/04/02/04-win32编程基础Chapter-5/" title="上一篇: Win32编程基础Chapter 5：分支和循环">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/04/01/02-win32编程基础Chapter-3/" title="下一篇: Win32编程基础Chapter 3：Win API">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/My Ubuntu/">My Ubuntu</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 sh4douu
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 3;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
