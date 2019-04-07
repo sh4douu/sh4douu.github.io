@@ -15,18 +15,24 @@
 
 
 
-<meta name="description" content="待续。。。">
+<meta name="description" content="0x00 Windows密码存储We all konw，明文存储密码是很愚蠢的行为，因为如果系统被攻破，明文密码被拿到，那么意味就全完了，但是如果是先加密再进行存储的话，即使黑客拿到加密的密码，破解也是需要费很大功夫和时间的。 而现在采用的加密算法基本都是Hash摘要算法，Hash算法可以把任意长度的输入通过散列算法输出一串固定长度的值。 常见的Hash算法诸如md5、SHA等，Hash算法有如下">
 <meta name="keywords" content="NTLM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows认证之NTLM">
 <meta property="og:url" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="待续。。。">
+<meta property="og:description" content="0x00 Windows密码存储We all konw，明文存储密码是很愚蠢的行为，因为如果系统被攻破，明文密码被拿到，那么意味就全完了，但是如果是先加密再进行存储的话，即使黑客拿到加密的密码，破解也是需要费很大功夫和时间的。 而现在采用的加密算法基本都是Hash摘要算法，Hash算法可以把任意长度的输入通过散列算法输出一串固定长度的值。 常见的Hash算法诸如md5、SHA等，Hash算法有如下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T11:11:19.197Z">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E6%88%AA%E5%9B%BE20190405092904.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E6%88%AA%E5%9B%BE20190404133112.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E5%9B%BE%E7%89%8720190406111646.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E5%9B%BE%E7%89%8720190406112000.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E5%9B%BE%E7%89%8720190406112206.png">
+<meta property="og:updated_time" content="2019-04-07T02:23:35.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows认证之NTLM">
-<meta name="twitter:description" content="待续。。。">
+<meta name="twitter:description" content="0x00 Windows密码存储We all konw，明文存储密码是很愚蠢的行为，因为如果系统被攻破，明文密码被拿到，那么意味就全完了，但是如果是先加密再进行存储的话，即使黑客拿到加密的密码，破解也是需要费很大功夫和时间的。 而现在采用的加密算法基本都是Hash摘要算法，Hash算法可以把任意长度的输入通过散列算法输出一串固定长度的值。 常见的Hash算法诸如md5、SHA等，Hash算法有如下">
+<meta name="twitter:image" content="https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E6%88%AA%E5%9B%BE20190405092904.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -185,7 +191,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pass-The-Hash/">Pass The Hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
                     </div>
                 </section>
                 
@@ -306,7 +312,176 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>待续。。。</p>
+        <h3 id="0x00-Windows密码存储"><a href="#0x00-Windows密码存储" class="headerlink" title="0x00 Windows密码存储"></a>0x00 Windows密码存储</h3><p>We all konw，明文存储密码是很愚蠢的行为，因为如果系统被攻破，明文密码被拿到，那么意味就全完了，但是如果是先加密再进行存储的话，即使黑客拿到加密的密码，破解也是需要费很大功夫和时间的。</p>
+<p>而现在采用的加密算法基本都是Hash摘要算法，Hash算法可以把任意长度的输入通过散列算法输出一串固定长度的值。</p>
+<p>常见的Hash算法诸如md5、SHA等，Hash算法有如下特点：</p>
+<blockquote>
+<ul>
+<li>单向不可逆性：通过Hash值无法反向推导出输入的值。</li>
+<li>如果两个哈希值相同，两个输入值很可能(极大概率)是相同的，但也可能不同，这种情况称为“哈希碰撞”</li>
+</ul>
+</blockquote>
+<p>说了那么多就是为了表明一点，Windows在存储用户密码时也不直接存储明文密码，存储的是明文密码经过Hash计算得到的Hash值，Windows存储的Hash称为<code>NTLM Hash</code>，或者<code>NTLM</code>。</p>
+<a id="more"></a>
+<p><strong>存储路径：</strong></p>
+<p>首先用户密码的Hash肯定需要存储在系统的某个文件或数据库中，Windows将用户密码计算得到的Hash存储在：</p>
+<blockquote>
+<ul>
+<li>工作组或本地环境中，存储在一个名为<code>SAM</code>的文件内，文件路径为：<code>%SystemRoot%\system32\config\sam</code></li>
+<li>如果是域环境，它们还存储在NTDS.dit数据库中。</li>
+</ul>
+</blockquote>
+<p><strong>存储格式：</strong></p>
+<p>Windows会存储用户密码对应的两种Hash，分别是<code>LM Hash</code>和<code>NT Hash</code>，它们是如何计算的，我们下节讨论。但要注意的一点是，从Windows Vista 和 Windows Server 2008开始，默认情况下只存储<code>NT Hash</code>，<code>LM Hash</code>将不再存储。</p>
+<p>格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username : unique_identifier : LM hash : NT hash</span><br></pre></td></tr></table></figure>
+<p>username即用户名。</p>
+<p>unique_identifier即盐（salt）。</p>
+<p>Windows将用户的密码计算为<code>LM Hash</code>和<code>NT Hash</code>，然后将它们使用冒号<code>:</code>分割存储在数据库中。</p>
+<h3 id="0x01-NT-Hash与LM-Hash"><a href="#0x01-NT-Hash与LM-Hash" class="headerlink" title="0x01 NT Hash与LM Hash"></a>0x01 NT Hash与LM Hash</h3><p><code>LM Hash</code>是早期Windows存储的Hash格式，从Windows Vista/Server 2008开始默认是关闭的。</p>
+<p><code>NT Hash</code>是现在Windows主要的存储的Hash。</p>
+<p><strong>NT Hash算法：</strong></p>
+<p>1.先将用户密码转换为十六进制格式。</p>
+<p>2.将十六进制格式的密码进行Unicode编码。</p>
+<p>3.使用MD4摘要算法对Unicode编码数据进行Hash计算，得到结果就是<code>NT Hash</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin -&gt; hex(16进制编码) = 61646d696e</span><br><span class="line">61646d696e -&gt; Unicode = 610064006d0069006e00</span><br><span class="line">610064006d0069006e00 -&gt; MD4 = 209c6174da490caeb422f3fa5a7ae634</span><br></pre></td></tr></table></figure>
+<p>破解方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">john --format=nt hash.txt</span><br><span class="line">hashcat -m 1000 -a 3 hash.txt</span><br></pre></td></tr></table></figure>
+<p><strong>LM Hash算法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">将所有小写字母转换为大写字母</span><br><span class="line">&gt;123ABC    // 未达到7个字符</span><br><span class="line"></span><br><span class="line">将密码转化为16进制，分两组，填充为14个字符,空余位使用0x00字符填补</span><br><span class="line">&gt;31323341424300000000000000</span><br><span class="line"></span><br><span class="line">将密码分割为两组7个字符</span><br><span class="line">&gt;31323341424300 00000000000000   //16进制</span><br><span class="line"></span><br><span class="line">将每组转化为比特流，不足56Bit则在左边加0</span><br><span class="line">&gt;31323341424300 -&gt;(转换为二进制) 110001001100100011001101000001010000100100001100000000-&gt; (补足56Bit) 00110001001100100011001101000001010000100100001100000000</span><br><span class="line"></span><br><span class="line">将比特流按照7比特一组，分出8组，末尾加0</span><br><span class="line">由于后者都为0，结果可想而知，那就都是0;</span><br><span class="line">将每组比特流转换为16进制作为被加密的值，使用DES加密，字符串 “KGS!@#$%”为Key(0x4B47532140232425)，得到8个结果 ，每个结果转换为16进制。</span><br><span class="line">-&gt; 00110000100110001000110001101000000101000001001000001100 00000000</span><br><span class="line">-&gt;30988C6814120C00 -&gt; DES(30988C6814120C00) -&gt; 48-D7-EB-91- 2F-5E-69-7C</span><br><span class="line"></span><br><span class="line">由于我们的密码不超过7字节，所以后面的一半是固定的:</span><br><span class="line">AA-D3-B4-35-B5-14-04-EE</span><br><span class="line"></span><br><span class="line">连接两个DES加密字符串。得到LM哈希。</span><br><span class="line">48-D7-EB-91-2F-5E-69-7C-AA-D3-B4-35-B5-14-04-EE</span><br></pre></td></tr></table></figure>
+<p>通过算法我们可以看到<code>LM Hash</code>脆弱点就在于DES的Key（<code>KGS!@#$%</code>）是固定的，也就是说，有了Key就能够解出原文。</p>
+<p>并且根据<code>LM Hash</code>特征，也能够判断用户的密码是否是大于等于7位。</p>
+<p>破解方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">john --format=lm hash.txt</span><br><span class="line">hashcat -m 3000 -a 3 hash.txt</span><br></pre></td></tr></table></figure>
+<p><strong>用Python计算Hash并与系统(win10)内存存储的Hash对比：</strong></p>
+<p><img src="/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E6%88%AA%E5%9B%BE20190405092904.png" alt></p>
+<h3 id="0x02-NTLM-v1-v2（AKA-Net-NTLM-v1-v2）"><a href="#0x02-NTLM-v1-v2（AKA-Net-NTLM-v1-v2）" class="headerlink" title="0x02 NTLM v1/v2（AKA Net-NTLM v1/v2）"></a>0x02 NTLM v1/v2（AKA Net-NTLM v1/v2）</h3><blockquote>
+<p><code>NTLM（NT LAN Manager）</code>，又称为<code>Net-NTLM</code>，是一个网络认证协议，他是一种用于在Client和Server之间进行Challenge/Response验证的协议。</p>
+</blockquote>
+<p><strong>NTLM v1/v2与LM、NT Hash的关系：</strong></p>
+<p>NTLM是一个认证协议，使用LM Hash或NT Hash来进行验证。</p>
+<blockquote>
+<ul>
+<li>在NTLM v1中，使用LM Hash和NT Hash来进行验证，如今v1已被废弃。</li>
+<li>自从Windows 2000之后，NTLM v2是默认的认证协议。</li>
+</ul>
+</blockquote>
+<p>NTLM v1与NTLM v2之间的区别我们放在网络认证的章节来讨论。</p>
+<h3 id="0x03-本地认证"><a href="#0x03-本地认证" class="headerlink" title="0x03 本地认证"></a>0x03 本地认证</h3><blockquote>
+<p>所谓的本地认证即在物理主机上直接进行登录的认证过程。</p>
+</blockquote>
+<p><strong>本地认证的大致流程：</strong></p>
+<blockquote>
+<p>winlogon.exe -&gt; 接收用户输入 -&gt; lsass.exe -&gt; (认证)</p>
+</blockquote>
+<ul>
+<li>Windows Logon Process(即 winlogon.exe)，是Windows NT 用户登 陆程序，用于管理用户登录和退出。</li>
+<li>LSASS用于微软Windows系统的安全机制。它用于本地安全和登陆策略。</li>
+</ul>
+<p><strong>具体流程：</strong></p>
+<p>1.当我们刚开机、注销等操作后，<code>winlogon.exe</code>进程会显示一个登录界面要求我们输入用户名和密码。</p>
+<p>2.我们输入用户名和密码后，会被<code>winlogon.exe</code>获取，然后将其发送给<code>lsass.exe</code>进程。</p>
+<p>3.<code>lsass.exe</code>将明文密码计算得到<code>NT Hash</code>（不考虑LM）。</p>
+<p>4.之后会将用户名和计算得到的<code>NT Hash</code>拿到<code>SAM</code>数据库去查找比对。</p>
+<h3 id="0x04-网络认证"><a href="#0x04-网络认证" class="headerlink" title="0x04 网络认证"></a>0x04 网络认证</h3><blockquote>
+<p>网络认证，顾名思义即通过网络进行认证，常见于工作组环境中，例如访问共享时进行的认证就是网络认证。网络认证使用的协议为NTLM协议。</p>
+</blockquote>
+<p><strong>NTLM v2认证流程：</strong></p>
+<p>认证流程大致可以分为三步：</p>
+<blockquote>
+<ul>
+<li>协商：主要用于确认双方协议版本。</li>
+<li>质询：进行挑战（Chalenge）/响应（Response）认证机制的阶段，是最重要的阶段，也是我们主要讨论的环节。</li>
+<li>验证：质询完成后，验证结果。</li>
+</ul>
+</blockquote>
+<p><img src="/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E6%88%AA%E5%9B%BE20190404133112.png" alt></p>
+<p>质询的完整过程：</p>
+<p>客户端向服务器端发送包含用户信息(用户名)的请求。</p>
+<p>服务器接受到请求后，先使用接收到用户名到<code>SAM</code>数据库中查找看是否存在，若存在则提取对应的<code>NT Hash</code>。</p>
+<p>然后服务器会生成一个16位的随机数，称之为“Challenge”，并使用提取的<code>NT Hash</code>加密<code>Challenge</code>(16位随机字符)，得到加密结果记作<code>Challenge2</code>存储在内存中。同时，将Challenge(16位随机字符)发送给客户端。</p>
+<p>客户端接受到<code>Challenge</code>后，使用将要登录的账户对应的<code>NT Hash</code>加密(HAMC-MD5算法)<code>Challenge</code>生成<code>Response</code>(将明文密码计算为<code>NT Hash</code>是客户端计算机接收到用户输入的密码后自动做的事情)，然后将<code>Response</code>发送至服务器端。</p>
+<p>验证： 服务器端收到客户端的<code>Response</code>后，比对<code>Chanllenge2</code>与<code>Response</code>是否相等，若相等，则认证通过。</p>
+<p><strong>抓包分析认证过程：</strong></p>
+<p>实验环境介绍：</p>
+<blockquote>
+<p>w2k8 r2建立一个文件共享，Win 10客户端访问文件共享，访问共享时需要进行登录认证，在Win 10客户机使用Wireshark进行抓包。</p>
+</blockquote>
+<ul>
+<li>w2k8 r2：192.168.1.102</li>
+<li>Win 10：192.168.1.101</li>
+<li>用户名：administrator</li>
+<li>密码：@superwu123</li>
+</ul>
+<p>抓包分析：</p>
+<p>先来看一下抓到的包总体情况,如下图。</p>
+<p><img src="/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E5%9B%BE%E7%89%8720190406111646.png" alt></p>
+<p>接下来我们直接看NTLM认证过程的第二个数据包，可以看到服务器返回了Challenge，记作<code>NTLM Server Challenge</code>，值为：<code>79f3c64adead4f15</code>。</p>
+<p><img src="/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E5%9B%BE%E7%89%8720190406112000.png" alt></p>
+<p><strong>Net-NTLM Hash</strong></p>
+<p>这里插入一段介绍Net-NTLM Hash。</p>
+<blockquote>
+<p>Net-NTLM Hash用于Net-NTLM协议进行网络身份验证（它们来自质询/响应算法，并基于用户的<code>NT Hash</code>）。</p>
+<p>Net-NTLM Hash我认为并不是具体的一种Hash值，而是一种格式，从NTLM认证过程数据包中提取一些信息拼凑起来得到的格式。</p>
+<p>根据协议版本的不同，Net-NTLM Hash又分为<code>Net-NTLMv1 Hash</code>和<code>Net-NTLMv2 Hash</code>。</p>
+</blockquote>
+<p><code>Net-NTLMv2 Hash</code>格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username::hostname:challenge:HMAC-MD5:blob</span><br></pre></td></tr></table></figure>
+<p>username即用户名。</p>
+<p>hostname即服务器IP（或主机名）。</p>
+<p>challenge是Server Challenge，即服务器返回的随机数。</p>
+<p>HMAC-MD5对应数据包中的<code>NTProofStr</code>字段。</p>
+<p>blob对应数据包中<code>NTLMv2 Response</code>的<code>NTProofStr</code>之后的部分。</p>
+<p>紧接着我们看下一个数据包（Response），可以先看到有一个<code>NTLM v2 Response</code>，然后<code>NTLMv2 Client Challenge</code>就是客户端加密<code>Server Challenge</code>得到的。</p>
+<blockquote>
+<ul>
+<li>NTLM v2 Response值为：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt; 09 68 4a af 9d 32 8a 4c c2 3c 30 1d 70 61 23 2d</span><br><span class="line">&gt; 01 01 00 00 00 00 00 00 32 3b 26 fa 22 ec d4 01</span><br><span class="line">&gt; ae d4 bf 39 51 49 f6 4e 00 00 00 00 02 00 1e 00</span><br><span class="line">&gt; 57 00 49 00 4e 00 2d 00 55 00 52 00 41 00 55 00</span><br><span class="line">&gt; 30 00 4c 00 4a 00 42 00 37 00 52 00 31 00 01 00</span><br><span class="line">&gt; 1e 00 57 00 49 00 4e 00 2d 00 55 00 52 00 41 00</span><br><span class="line">&gt; 55 00 30 00 4c 00 4a 00 42 00 37 00 52 00 31 00</span><br><span class="line">&gt; 04 00 1e 00 57 00 49 00 4e 00 2d 00 55 00 52 00</span><br><span class="line">&gt; 41 00 55 00 30 00 4c 00 4a 00 42 00 37 00 52 00</span><br><span class="line">&gt; 31 00 03 00 1e 00 57 00 49 00 4e 00 2d 00 55 00</span><br><span class="line">&gt; 52 00 41 00 55 00 30 00 4c 00 4a 00 42 00 37 00</span><br><span class="line">&gt; 52 00 31 00 07 00 08 00 32 3b 26 fa 22 ec d4 01</span><br><span class="line">&gt; 06 00 04 00 02 00 00 00 08 00 30 00 30 00 00 00</span><br><span class="line">&gt; 00 00 00 00 01 00 00 00 00 20 00 00 83 61 12 00</span><br><span class="line">&gt; 1b 95 5a d5 09 15 f1 c9 06 70 51 a1 67 f3 56 d3</span><br><span class="line">&gt; 3e 2b ab 5f b2 63 49 b2 ca 9f 05 49 0a 00 10 00</span><br><span class="line">&gt; 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">&gt; 09 00 24 00 63 00 69 00 66 00 73 00 2f 00 31 00</span><br><span class="line">&gt; 39 00 32 00 2e 00 31 00 36 00 38 00 2e 00 31 00</span><br><span class="line">&gt; 2e 00 31 00 30 00 32 00 00 00 00 00 00 00 00 00</span><br><span class="line">&gt; 00 00 00 00</span><br><span class="line">&gt; </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ul>
+<li>NTLMv2 Client Challenge值为：<code>aed4bf395149f64e</code></li>
+</ul>
+</blockquote>
+<p><img src="/2019/04/03/01-Windows认证之NTLM/V:/hexo/myblog/source/_posts/01-Windows%E8%AE%A4%E8%AF%81%E4%B9%8BNTLM/QQ%E5%9B%BE%E7%89%8720190406112206.png" alt></p>
+<p>我们可以从数据包中提取并构建出<code>Net-NTLM Hash</code>：</p>
+<p>username即<code>administrator</code>。</p>
+<p>hostname即<code>192.168.1.102</code>。</p>
+<p>challenge即<code>79f3c64adead4f15</code>。（这里要注意的是是Server Challenge，而不是Client Challenge）</p>
+<p>HMAC-MD5即<code>09684aaf9d328a4cc23c301d7061232d</code>。</p>
+<p>blob即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">01 01 00 00 00 00 00 00 32 3b 26 fa 22 ec d4 01</span><br><span class="line">ae d4 bf 39 51 49 f6 4e 00 00 00 00 02 00 1e 00</span><br><span class="line">57 00 49 00 4e 00 2d 00 55 00 52 00 41 00 55 00</span><br><span class="line">30 00 4c 00 4a 00 42 00 37 00 52 00 31 00 01 00</span><br><span class="line">1e 00 57 00 49 00 4e 00 2d 00 55 00 52 00 41 00</span><br><span class="line">55 00 30 00 4c 00 4a 00 42 00 37 00 52 00 31 00</span><br><span class="line">04 00 1e 00 57 00 49 00 4e 00 2d 00 55 00 52 00</span><br><span class="line">41 00 55 00 30 00 4c 00 4a 00 42 00 37 00 52 00</span><br><span class="line">31 00 03 00 1e 00 57 00 49 00 4e 00 2d 00 55 00</span><br><span class="line">52 00 41 00 55 00 30 00 4c 00 4a 00 42 00 37 00</span><br><span class="line">52 00 31 00 07 00 08 00 32 3b 26 fa 22 ec d4 01</span><br><span class="line">06 00 04 00 02 00 00 00 08 00 30 00 30 00 00 00</span><br><span class="line">00 00 00 00 01 00 00 00 00 20 00 00 83 61 12 00</span><br><span class="line">1b 95 5a d5 09 15 f1 c9 06 70 51 a1 67 f3 56 d3</span><br><span class="line">3e 2b ab 5f b2 63 49 b2 ca 9f 05 49 0a 00 10 00</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">09 00 24 00 63 00 69 00 66 00 73 00 2f 00 31 00</span><br><span class="line">39 00 32 00 2e 00 31 00 36 00 38 00 2e 00 31 00</span><br><span class="line">2e 00 31 00 30 00 32 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00</span><br></pre></td></tr></table></figure>
+<p>最终结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">administrator::192.168.1.102:79f3c64adead4f15:09684aaf9d328a4cc23c301d7061232d:0101000000000000323b26fa22ecd401aed4bf395149f64e0000000002001e00570049004e002d00550052004100550030004c004a00420037005200310001001e00570049004e002d00550052004100550030004c004a00420037005200310004001e00570049004e002d00550052004100550030004c004a00420037005200310003001e00570049004e002d00550052004100550030004c004a00420037005200310007000800323b26fa22ecd40106000400020000000800300030000000000000000100000000200000836112001b955ad50915f1c9067051a167f356d33e2bab5fb26349b2ca9f05490a001000000000000000000000000000000000000900240063006900660073002f003100390032002e003100360038002e0031002e00310030003200000000000000000000000000</span><br></pre></td></tr></table></figure>
+<p><strong>使用中间人攻击的方式可以获取Net-NTLM hash，常用工具为Responder和Inveigh。</strong></p>
+<p><strong>NTLM v1/v2区别：</strong></p>
+<p>认证的流程是一样的，不同的地方在于：</p>
+<blockquote>
+<ul>
+<li>Challage长度：NTLM v1的Challenge有8位，NTLM v2的Challenge为16位。</li>
+<li>加密Challenge的算法：NTLM v1的主要加密算法是DES，NTLM v2的主要加密算法是HMAC-MD5。</li>
+</ul>
+</blockquote>
+<h3 id="0x05-Pass-The-Hash"><a href="#0x05-Pass-The-Hash" class="headerlink" title="0x05 Pass The Hash"></a>0x05 Pass The Hash</h3><p>观察NTLM认证的过程可以发现，整个过程中实际上并没有进行明文密码的传递，也没有使用明文密码来加密Challenge，而是用明文密码对应<code>NT Hash</code>来加密<code>Challenge</code>，那么就意味着：</p>
+<blockquote>
+<p>只要我们知道相应用户密码的<code>NT Hash</code>，我们就可以自己构造出<code>Response</code>发送给服务器，从而通过验证。我们并不需要知道用户的明文密码。这种攻击方式就称之为哈希传递（Pass The Hash）。</p>
+</blockquote>
+<p>常用哈希传递攻击的工具：</p>
+<ul>
+<li>Smbmap</li>
+<li>Smbexec</li>
+<li>Metasploit psexec</li>
+<li>CrackMapExec</li>
+</ul>
+<p><strong>参考资料</strong></p>
+<p><a href="https://medium.com/@petergombos/lm-ntlm-net-ntlmv2-oh-my-a9b235c58ed4" target="_blank" rel="noopener">https://medium.com/@petergombos/lm-ntlm-net-ntlmv2-oh-my-a9b235c58ed4</a></p>
+<p><a href="https://byt3bl33d3r.github.io/practical-guide-to-ntlm-relaying-in-2017-aka-getting-a-foothold-in-under-5-minutes.html" target="_blank" rel="noopener">https://byt3bl33d3r.github.io/practical-guide-to-ntlm-relaying-in-2017-aka-getting-a-foothold-in-under-5-minutes.html</a></p>
+<p><a href="http://www.adshotgyan.com/2012/02/lm-hash-and-nt-hash.html" target="_blank" rel="noopener">http://www.adshotgyan.com/2012/02/lm-hash-and-nt-hash.html</a></p>
+<p><a href="https://payloads.online/archivers/2018-11-30/1?tdsourcetag=s_pcqq_aiomsg#0x00-%E6%9C%AC%E5%9C%B0%E8%AE%A4%E8%AF%81" target="_blank" rel="noopener">https://payloads.online/archivers/2018-11-30/1?tdsourcetag=s_pcqq_aiomsg#0x00-%E6%9C%AC%E5%9C%B0%E8%AE%A4%E8%AF%81</a></p>
+<p><a href="https://3gstudent.github.io/3gstudent.github.io/Windows%E4%B8%8B%E7%9A%84%E5%AF%86%E7%A0%81hash-NTLM-hash%E5%92%8CNet-NTLM-hash%E4%BB%8B%E7%BB%8D/" target="_blank" rel="noopener">https://3gstudent.github.io/3gstudent.github.io/Windows%E4%B8%8B%E7%9A%84%E5%AF%86%E7%A0%81hash-NTLM-hash%E5%92%8CNet-NTLM-hash%E4%BB%8B%E7%BB%8D/</a></p>
+<p><a href="https://xz.aliyun.com/t/2205" target="_blank" rel="noopener">https://xz.aliyun.com/t/2205</a></p>
+<p><a href="https://github.com/crazywa1ker/DarthSidious-Chinese/blob/master/getting-started/intro-to-windows-hashes.md" target="_blank" rel="noopener">https://github.com/crazywa1ker/DarthSidious-Chinese/blob/master/getting-started/intro-to-windows-hashes.md</a></p>
 
       
     </div>
@@ -318,7 +493,7 @@
         <p><span>本文标题:</span><a href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-04-03, 11:58:18</p>
-        <p><span>最后更新:</span>2019-04-03, 19:11:19</p>
+        <p><span>最后更新:</span>2019-04-07, 10:23:35</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/03/01-Windows认证之NTLM/" title="Windows认证之NTLM">https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/04/03/01-Windows认证之NTLM/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -354,7 +529,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-Windows密码存储"><span class="toc-number">1.</span> <span class="toc-text">0x00 Windows密码存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-NT-Hash与LM-Hash"><span class="toc-number">2.</span> <span class="toc-text">0x01 NT Hash与LM Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-NTLM-v1-v2（AKA-Net-NTLM-v1-v2）"><span class="toc-number">3.</span> <span class="toc-text">0x02 NTLM v1/v2（AKA Net-NTLM v1/v2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-本地认证"><span class="toc-number">4.</span> <span class="toc-text">0x03 本地认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-网络认证"><span class="toc-number">5.</span> <span class="toc-text">0x04 网络认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-Pass-The-Hash"><span class="toc-number">6.</span> <span class="toc-text">0x05 Pass The Hash</span></a></li></ol>
         
     </div>
     <style>
@@ -424,7 +599,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/windows认证攻击/">Windows认证攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 
