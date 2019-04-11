@@ -264,6 +264,152 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-03-python模块之subprocess" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/11/03-python模块之subprocess/" class="article-date">
+      <time datetime="2019-04-11T12:25:26.000Z" itemprop="datePublished">2019-04-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/11/03-python模块之subprocess/">Python模块 Chapter 3：subprocess</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="0x00-概述"><a href="#0x00-概述" class="headerlink" title="0x00 概述"></a>0x00 概述</h3><p><code>subprocess</code>模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。</p>
+<p>这个模块是为了取代下面这些比较老的模块功能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.system</span><br><span class="line">os.spawn*</span><br></pre></td></tr></table></figure>
+<p>subprocess模块提供两种方法来创建新的进程：</p>
+<ul>
+<li><code>subprocess.run()</code></li>
+<li><code>subprocess.Popen()</code></li>
+</ul>
+<blockquote>
+<p>使用<code>run()</code>方法创建新进程可以满足绝大多数需求，但<code>Popen（）</code>类提供比<code>run()</code>更高级更灵活的用法。</p>
+</blockquote>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python模块/">Python模块</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/11/03-python模块之subprocess/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-02python模块之re" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/09/02python模块之re/" class="article-date">
+      <time datetime="2019-04-09T07:32:30.000Z" itemprop="datePublished">2019-04-09</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/09/02python模块之re/">Python模块 Chapter 2：RE</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="0x00-规则"><a href="#0x00-规则" class="headerlink" title="0x00 规则"></a>0x00 规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.      元字符.表示匹配任何字符，除\n之外。</span><br><span class="line">*      表示匹配前面的字符或分组0次或多次。</span><br><span class="line">+      表示匹配前面的字符或分组1次或多次。</span><br><span class="line">？     表示匹配前面的字符或分组0次或1次。 </span><br><span class="line">&#123;x&#125;    表示匹配前面的字符或分组x次。</span><br><span class="line">&#123;x,y&#125;  表示匹配前面的字符或分组x次至y次之间。</span><br><span class="line"></span><br><span class="line">^      表示匹配开始为^之后的。\A同样作用。</span><br><span class="line">$      表示匹配结束为$之前的。\Z同样作用</span><br><span class="line"></span><br><span class="line">[abcd] 表示匹配其中的任意之一。</span><br><span class="line">[1-9]  表示匹配1-9范围内的任意之一，也可以用[A-Z]、[a-z]、[0-9a-zA-Z]。</span><br><span class="line">[^abc] 脱字符出现在[]中意义为‘非’，即不匹配其中的任何一个。也可用于范围[^1-9]、[^a-z]</span><br><span class="line"></span><br><span class="line">  \d   表示匹配任何一个十进制数字。与[0-9]等同。</span><br><span class="line">  \D   表示匹配任何一个非十进制数字。与[^0-9]等同。</span><br><span class="line"></span><br><span class="line">  \w   表示匹配任何一个十进制数字和字母。与[0-9a-zA-Z]等同。</span><br><span class="line">  \W   表示匹配任何一个除十进制数字和字母。与\w相反</span><br><span class="line"></span><br><span class="line">  \s   表示匹配任何一个空格字符。与[\n\t\r\v\f]等同。</span><br><span class="line">  \S   表示与\s相反。与[^\n\t\r\v\f]等同。</span><br><span class="line"></span><br><span class="line">  \b   表示匹配任何单词边界。边界即空白或非字母数字字符</span><br><span class="line">  \B   表示与\b相反。</span><br><span class="line"></span><br><span class="line">  |    表示‘或’，匹配其中之一。</span><br></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python模块/">Python模块</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2019/04/09/02python模块之re/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-windows认证攻击" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -814,149 +960,6 @@
       
         <p class="article-more-link">
           <a href="/2019/04/01/01-win32编程基础Chapter-2/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-00-win32编程基础Chapter-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/04/01/00-win32编程基础Chapter-1/" class="article-date">
-      <time datetime="2019-04-01T01:37:37.000Z" itemprop="datePublished">2019-04-01</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h4 id="0x00-80386处理器有三种工作模式"><a href="#0x00-80386处理器有三种工作模式" class="headerlink" title="0x00 80386处理器有三种工作模式"></a>0x00 80386处理器有三种工作模式</h4><ul>
-<li>实模式：为兼容8086处理器的模式，该模式下80386与8086工作等同。DOS操作系统运行于该模式下。</li>
-<li>保护模式：32位寻址，寻址空间4GB，支持内存分页，多任务等。Windows操作系统运行于该模式下。</li>
-<li>虚拟86模式：为了在保护模式下运行8086程序而产生的模式。</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Win32/">Win32</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win32/">Win32</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/汇编语言/">汇编语言</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/04/01/00-win32编程基础Chapter-1/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-01python模块之Base64" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/29/01python模块之Base64/" class="article-date">
-      <time datetime="2019-03-29T08:22:48.000Z" itemprop="datePublished">2019-03-29</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h3><h4 id="0x00-Base64编码概述"><a href="#0x00-Base64编码概述" class="headerlink" title="0x00 Base64编码概述"></a>0x00 Base64编码概述</h4><ul>
-<li>Base64字符集共64个ASCII字符，Base64编码即用这64个ASCII字符来表示任意二进制数据的方法。</li>
-<li>Base64主要是为了解决有些非打印字符二进制无法正常显示。比如我们使用notepad打开图片，会有乱码。通过对任何二进制数据进行Base64编码后，该数据都可以以字符的形式表现。</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python模块/">Python模块</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/03/29/01python模块之Base64/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

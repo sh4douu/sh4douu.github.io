@@ -28,7 +28,10 @@
 <meta property="og:image" content="https://sakuxa.com/2019/04/06/windows认证攻击/QQ截图20190407105139.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/06/windows认证攻击/QQ截图20190406101732.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/06/windows认证攻击/QQ截图20190405101817.png">
-<meta property="og:updated_time" content="2019-04-07T02:51:56.946Z">
+<meta property="og:image" content="https://sakuxa.com/2019/04/06/windows认证攻击/QQ截图20190408140244.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/06/windows认证攻击/QQ截图20190408141317.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/06/windows认证攻击/QQ截图20190408141627.png">
+<meta property="og:updated_time" content="2019-04-09T12:45:00.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows认证攻击">
 <meta name="twitter:description" content="0x00 窃取Windows凭证Mimikatz 我们在前面的文章已经提到过，当用户输入用户名密码登录时，用户名密码会被发送到lsass.exe进程中，然后lsass.exe会将明文密码计算为NTLM Hash，在用户登录期间一直保存在内存中。 Mimikatz是法国人Gentil Kiwi编写的一款Windows平台下的神器，它具备很多功能，其中最亮的功能是直接从lsass.exe进程里获取Wi">
@@ -359,6 +362,50 @@
 <p>攻击演示：</p>
 <p>使用Hash值进行攻击，让目标计算机执行<code>msg adminitrator hacked</code>命令，执行成功后，目标计算机administrator用户的桌面会弹出一个消息框。</p>
 <p><img src="/2019/04/06/windows认证攻击/QQ截图20190405101817.png" alt></p>
+<h3 id="0x02-毒化与中间人攻击"><a href="#0x02-毒化与中间人攻击" class="headerlink" title="0x02 毒化与中间人攻击"></a>0x02 毒化与中间人攻击</h3><p>在同一内网环境下，当一台Win机器向另一台Win机器以主机名（hostname）的形式请求相应的资源时,正常的通信大致流程如下：</p>
+<blockquote>
+<p>1、首先,Windows会先去查找自己hosts文件,无法解析主机名则继续往下。（C:\Windows\System32\drivers\etc\hosts）</p>
+<p>2、检查本地的dns缓存。（ipconfig /displaydns）</p>
+<p>3、如果本地缓存不存在记录,则继续向本地网络中配置的dns服务器去请求。</p>
+<p>4、最后,如果DNS服务器也解析失败,它就会被交给<code>LLMNR</code>和<code>NetBios-NS</code>协议去处理解析。</p>
+</blockquote>
+<p><strong>LLMNR</strong></p>
+<blockquote>
+<p><code>LLMNR</code>，（Link-Local Multicast Name Resolution），链路本地多播名称解析，是一个基于DNS协议数据包格式的名称解析协议，在DNS不能解析出结果时，最后会使用该协议（以及NBNS）。它存在Windows Vista、Windows Server 2008、Win7、Win8和Win10中。</p>
+</blockquote>
+<p><code>LLMNR</code>与<code>NBNS</code>对比：</p>
+<blockquote>
+<p>1、NetBIOS基于广播，而LLMNR基于多播（224.0.0.251、UDP 5353）；</p>
+<p>2、NetBIOS在WindowsNT以后的所有操作系统上均可用，而只有Windows Vista和更高版本才支持LLMNR；</p>
+<p>3、LLMNR还支持IPv6，而NetBIOS不支持。</p>
+</blockquote>
+<p><strong>Responder</strong></p>
+<p>Responder是由LaurentGaffie发布的一款功能强大且简单易用的内网渗透工具，将NetBIOS名称服务（NBNS）、LLMNR和MDNS欺骗集于一身。<a href="https://github.com/SpiderLabs/Responder" target="_blank" rel="noopener">工具Github地址。</a></p>
+<p>Responder内置了SMB认证服务器、MSSQL认证服务器、HTTP认证服务器、HTTPS认证服务器、LDAP认证服务器，DNS服务器、WPAD代理服务器，内建FTP、POP3、IMAP、SMTP服务器用于收集明文的凭据。</p>
+<p>当我们启动responder时，它会侦听网络中所有的<code>LLMNR</code>、<code>NBNS</code>名称解析请求数据包，并对请求进行类似于“你要找的机器就是我”的响应，从而将数据引到自己来，并且responder在监听数据包的同时也开启的诸如smb认证服务器等服务，以便在验证中窃取<code>NetNTLM Hash</code>。</p>
+<p>这意味着，当用户输入不存在、包含错误或者DNS中没有的主机名时，就会使用<code>LLMNR</code>、<code>NBNS</code>协议在网络中解析主机名，Responder就可以针对这些协议的请求进行响应，并使用内置的认证服务器与用户完成认证交互，然后窃取到<code>NTLMv2 Hash</code>。</p>
+<p>工具使用</p>
+<p>工具安装：<code>apt-get isntall responder</code></p>
+<p>Responder会将所有抓取到的hash打印到标准输出接口上同时会以下面的格式存储到安装目录下的<code>logs/</code>文件夹下。</p>
+<ul>
+<li><code>(MODULE_NAME)-(HASH_TYPE)-(CLIENT_IP).txt</code></li>
+</ul>
+<p>参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">简单启用：responder -I eth0 -v</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --version          工具版本。</span><br><span class="line">  -h, --help         帮助信息。</span><br><span class="line">  -A, --analyze      分析模式。会抓取NBNS、LLMNR、浏览器请求，但不会对请求进行响应，可以用于分析目标网络情况。</span><br><span class="line">  </span><br><span class="line">  -I eth0, --interface=eth0      指定网络接口，可以指定&apos;ALL&apos;来使用所有接口。</span><br><span class="line">  -i 10.0.0.21, --ip=10.0.0.21   Local IP to use (only for OSX)</span><br><span class="line">  </span><br><span class="line">  -e 10.0.0.22, --externalip=10.0.0.22   以另一个外部机器的IP进行响应，意味着后面的数据会被引到该IP机器。</span><br><span class="line">  </span><br><span class="line">  -b, --basic           Return a Basic HTTP authentication. Default: NTLM</span><br><span class="line">  -r, --wredir          Enable answers for netbios wredir suffix queries.</span><br><span class="line">                        Answering to wredir will likely break stuff on the</span><br><span class="line">                        network. Default: False</span><br><span class="line">                        </span><br><span class="line">  -d, --NBTNSdomain     Enable answers for netbios domain suffix queries.</span><br><span class="line">                        Answering to domain suffixes will likely break stuff</span><br><span class="line">                        on the network. Default: False</span><br><span class="line">                        </span><br><span class="line">  -f, --fingerprint     This option allows you to fingerprint a host that</span><br><span class="line">                        issued an NBT-NS or LLMNR query.</span><br><span class="line">                        </span><br><span class="line">  -w, --wpad            Start the WPAD rogue proxy server. Default value is</span><br><span class="line">                        False</span><br><span class="line">                        </span><br><span class="line">  -u UPSTREAM_PROXY, --upstream-proxy=UPSTREAM_PROXY</span><br><span class="line">                        Upstream HTTP proxy used by the rogue WPAD Proxy for</span><br><span class="line">                        outgoing requests (format: host:port)</span><br><span class="line">                        </span><br><span class="line">  -F, --ForceWpadAuth   Force NTLM/Basic authentication on wpad.dat file</span><br><span class="line">                        retrieval. This may cause a login prompt. Default:</span><br><span class="line">                        False</span><br><span class="line">                        </span><br><span class="line">  -P, --ProxyAuth       Force NTLM (transparently)/Basic (prompt)</span><br><span class="line">                        authentication for the proxy. WPAD doesn&apos;t need to be</span><br><span class="line">                        ON. This option is highly effective when combined with</span><br><span class="line">                        -r. Default: False</span><br><span class="line">                        </span><br><span class="line">  --lm                  Force LM hashing downgrade for Windows XP/2003 and</span><br><span class="line">                        earlier. Default: False</span><br><span class="line">                        </span><br><span class="line">  -v, --verbose         Increase verbosity.</span><br></pre></td></tr></table></figure>
+<p>工具配置文件路径：<code>/usr/share/responder/Responder.conf</code></p>
+<p>修改配置文件只针对特定主机响应：</p>
+<p><img src="/2019/04/06/windows认证攻击/QQ截图20190408140244.png" alt></p>
+<p>工具演示：</p>
+<p>在网络中启用工具。</p>
+<p><img src="/2019/04/06/windows认证攻击/QQ截图20190408141317.png" alt></p>
+<p>抓取到Hash：</p>
+<p><img src="/2019/04/06/windows认证攻击/QQ截图20190408141627.png" alt></p>
+<p>使用Hashcat破解：</p>
+<p><strong>参考链接：</strong></p>
+<p><a href="https://www.secpulse.com/archives/65503.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/65503.html</a></p>
+<p><a href="http://baijiahao.baidu.com/s?id=1599333064699003609&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">http://baijiahao.baidu.com/s?id=1599333064699003609&amp;wfr=spider&amp;for=pc</a></p>
+<p><a href="https://www.jianshu.com/p/1b545a8b8b1e" target="_blank" rel="noopener">https://www.jianshu.com/p/1b545a8b8b1e</a></p>
+<p><a href="https://blog.csdn.net/vevenlcf/article/details/80887753" target="_blank" rel="noopener">https://blog.csdn.net/vevenlcf/article/details/80887753</a></p>
 
       
     </div>
@@ -370,7 +417,7 @@
         <p><span>本文标题:</span><a href="/2019/04/06/windows认证攻击/">Windows认证攻击</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-04-06, 10:25:26</p>
-        <p><span>最后更新:</span>2019-04-07, 10:51:56</p>
+        <p><span>最后更新:</span>2019-04-09, 20:45:00</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/06/windows认证攻击/" title="Windows认证攻击">https://sakuxa.com/2019/04/06/windows认证攻击/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/04/06/windows认证攻击/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -384,6 +431,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/04/09/02python模块之re/">
+                    Python模块 Chapter 2：RE
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -400,7 +453,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-窃取Windows凭证"><span class="toc-number">1.</span> <span class="toc-text">0x00 窃取Windows凭证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-Pass-The-Hash"><span class="toc-number">2.</span> <span class="toc-text">0x01 Pass The Hash</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-窃取Windows凭证"><span class="toc-number">1.</span> <span class="toc-text">0x00 窃取Windows凭证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-Pass-The-Hash"><span class="toc-number">2.</span> <span class="toc-text">0x01 Pass The Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-毒化与中间人攻击"><span class="toc-number">3.</span> <span class="toc-text">0x02 毒化与中间人攻击</span></a></li></ol>
         
     </div>
     <style>
@@ -456,7 +509,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/04/09/02python模块之re/" title="上一篇: Python模块 Chapter 2：RE">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -468,7 +523,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/windows认证攻击/">Windows认证攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/03-python模块之subprocess/">Python模块 Chapter 3：subprocess</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/02python模块之re/">Python模块 Chapter 2：RE</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/windows认证攻击/">Windows认证攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
 
 
 
