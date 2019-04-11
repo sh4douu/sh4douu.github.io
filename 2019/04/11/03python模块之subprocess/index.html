@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411161550.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411162626.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411164318.png">
-<meta property="og:updated_time" content="2019-04-11T12:39:39.426Z">
+<meta property="og:updated_time" content="2019-04-11T15:41:09.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python模块 Chapter 3：subprocess">
 <meta name="twitter:description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
@@ -371,6 +371,7 @@
 </ul>
 <blockquote>
 <p><code>communicate()</code>函数返回值为元组 (stdout_data, stderr_data)。</p>
+<p>要使用该方法向子进程写入数据或读取标准输出和标准错误输出，在实例化Popen类时，要指定<code>stdin=PIPE</code>、<code>stdout=PIPE</code>、<code>stderr=PIPE</code>。</p>
 </blockquote>
 <ul>
 <li><code>Popen.send_signal(signal)</code>：发送信号到子进程。</li>
@@ -415,6 +416,7 @@
 <li><code>Popen.pid</code>：获取子进程的PID。如果<code>shell=True</code>，返回则是系统shell进程的PID。</li>
 <li><code>Popen.returncode</code>：返回码。</li>
 </ul>
+<p><strong>使用<code>communicate()</code>而不是<code>.stdin.write</code>, <code>.stdout.read</code> or <code>.stderr.read</code>以避免由于管道缓冲区填满阻塞子进程而导致的死锁。</strong> </p>
 <p><strong>上下文管理：</strong></p>
 <blockquote>
 <p>Popen对象支持<code>with</code>语句进行上下文管理。</p>
@@ -457,7 +459,7 @@
         <p><span>本文标题:</span><a href="/2019/04/11/03python模块之subprocess/">Python模块 Chapter 3：subprocess</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
         <p><span>发布时间:</span>2019-04-11, 20:25:26</p>
-        <p><span>最后更新:</span>2019-04-11, 20:39:39</p>
+        <p><span>最后更新:</span>2019-04-11, 23:41:09</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/04/11/03python模块之subprocess/" title="Python模块 Chapter 3：subprocess">https://sakuxa.com/2019/04/11/03python模块之subprocess/</a>
             <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/04/11/03python模块之subprocess/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
