@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
-
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no">
-<meta name="author" content="sh4douu">
-
-
-
-<meta name="description" content="Aabs() #绝对值all() #序列的元素全真为真(负数也算真)any() #序列的元素任一为真则真max() #方法返回给定参数的最大值，参数可以为序列。min() #方法返回给定参数的最小值，参数可以为序列。pow() #方法返回 xy（x的y次方） 的值。sum() #对可迭代对象求和。divmod(a, b) #给定被除数和除数，返回商和余数在元组中。">
+  <meta charset="utf-8">
+  
+  <title>Python基础学习系列Chapter 9：内置方法 | IT技术学习分享自留地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="MinHow's Blog">
+  
+  <meta name="description" content="Aabs() #绝对值all() #序列的元素全真为真(负数也算真)any() #序列的元素任一为真则真max() #方法返回给定参数的最大值，参数可以为序列。min() #方法返回给定参数的最小值，参数可以为序列。pow() #方法返回 xy（x的y次方） 的值。sum() #对可迭代对象求和。divmod(a, b) #给定被除数和除数，返回商和余数在元组中。">
 <meta name="keywords" content="Python基础,Language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python基础学习系列Chapter 9：内置方法">
@@ -27,286 +20,133 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基础学习系列Chapter 9：内置方法">
 <meta name="twitter:description" content="Aabs() #绝对值all() #序列的元素全真为真(负数也算真)any() #序列的元素任一为真则真max() #方法返回给定参数的最大值，参数可以为序列。min() #方法返回给定参数的最小值，参数可以为序列。pow() #方法返回 xy（x的y次方） 的值。sum() #对可迭代对象求和。divmod(a, b) #给定被除数和除数，返回商和余数在元组中。">
+  
+  
+    <link rel="icon" href="/LimeWire.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
 
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
 
-
-    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/LimeWire.png">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>Python基础学习系列Chapter 9：内置方法 | IT技术学习分享自留地</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: false
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-
-</head></html>
+</head>
+</html>
 <body>
   <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/tx.jpg" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">sh4douu</a></h1>
-        </hgroup>
-
-        
-        <p class="header-subtitle">努力成为自己认可的黑客...</p>
-        
-
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">sh4dow&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
                     
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="/about/" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
-                            
-                                <a class="fa 微信" href="/about/" title="微信"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gnome/">Gnome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pass-The-Hash/">Pass The Hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SecTools/">SecTools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu-2-Mac/">Ubuntu 2 Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">致力于网络安全</div>
-                </section>
-                
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
         </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/tx.jpg" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
-            </hgroup>
-            
-            <p class="header-subtitle">努力成为自己认可的黑客...</p>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        sh4dow&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        黑客技术学习自留地
+                    </h3>
+                    
+                </div>
+            </div>
             <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
-                            
-                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
-                            
-                        </ul>
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/sh4douu">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
             </nav>
-        </header>                
+        </div>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
-</nav>
-      <div class="body-wrap"><article id="post-08python基础学习系列之内置函数" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/29/08python基础学习系列之内置函数/" class="article-date">
-      <time datetime="2019-03-29T07:56:48.000Z" itemprop="datePublished">2019-03-29</time>
-</a>
-
-
-    </div>
-  
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-08python基础学习系列之内置函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
+    <h1 class="post-title" itemprop="name">
       Python基础学习系列Chapter 9：内置方法
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Python/">Python</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-29
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python基础/">Python基础</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
           
-        <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><h4 id="abs-绝对值"><a href="#abs-绝对值" class="headerlink" title="abs() #绝对值"></a>abs() #绝对值</h4><h5 id="all-序列的元素全真为真-负数也算真"><a href="#all-序列的元素全真为真-负数也算真" class="headerlink" title="all() #序列的元素全真为真(负数也算真)"></a>all() #序列的元素全真为真(负数也算真)</h5><h5 id="any-序列的元素任一为真则真"><a href="#any-序列的元素任一为真则真" class="headerlink" title="any() #序列的元素任一为真则真"></a>any() #序列的元素任一为真则真</h5><h5 id="max-方法返回给定参数的最大值，参数可以为序列。"><a href="#max-方法返回给定参数的最大值，参数可以为序列。" class="headerlink" title="max() #方法返回给定参数的最大值，参数可以为序列。"></a>max() #方法返回给定参数的最大值，参数可以为序列。</h5><h5 id="min-方法返回给定参数的最小值，参数可以为序列。"><a href="#min-方法返回给定参数的最小值，参数可以为序列。" class="headerlink" title="min() #方法返回给定参数的最小值，参数可以为序列。"></a>min() #方法返回给定参数的最小值，参数可以为序列。</h5><h5 id="pow-方法返回-xy（x的y次方）-的值。"><a href="#pow-方法返回-xy（x的y次方）-的值。" class="headerlink" title="pow() #方法返回 xy（x的y次方） 的值。"></a>pow() #方法返回 xy（x的y次方） 的值。</h5><h5 id="sum-对可迭代对象求和。"><a href="#sum-对可迭代对象求和。" class="headerlink" title="sum() #对可迭代对象求和。"></a>sum() #对可迭代对象求和。</h5><h5 id="divmod-a-b-给定被除数和除数，返回商和余数在元组中。"><a href="#divmod-a-b-给定被除数和除数，返回商和余数在元组中。" class="headerlink" title="divmod(a, b) #给定被除数和除数，返回商和余数在元组中。"></a>divmod(a, b) #给定被除数和除数，返回商和余数在元组中。</h5><a id="more"></a>
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><h4 id="abs-绝对值"><a href="#abs-绝对值" class="headerlink" title="abs() #绝对值"></a>abs() #绝对值</h4><h5 id="all-序列的元素全真为真-负数也算真"><a href="#all-序列的元素全真为真-负数也算真" class="headerlink" title="all() #序列的元素全真为真(负数也算真)"></a>all() #序列的元素全真为真(负数也算真)</h5><h5 id="any-序列的元素任一为真则真"><a href="#any-序列的元素任一为真则真" class="headerlink" title="any() #序列的元素任一为真则真"></a>any() #序列的元素任一为真则真</h5><h5 id="max-方法返回给定参数的最大值，参数可以为序列。"><a href="#max-方法返回给定参数的最大值，参数可以为序列。" class="headerlink" title="max() #方法返回给定参数的最大值，参数可以为序列。"></a>max() #方法返回给定参数的最大值，参数可以为序列。</h5><h5 id="min-方法返回给定参数的最小值，参数可以为序列。"><a href="#min-方法返回给定参数的最小值，参数可以为序列。" class="headerlink" title="min() #方法返回给定参数的最小值，参数可以为序列。"></a>min() #方法返回给定参数的最小值，参数可以为序列。</h5><h5 id="pow-方法返回-xy（x的y次方）-的值。"><a href="#pow-方法返回-xy（x的y次方）-的值。" class="headerlink" title="pow() #方法返回 xy（x的y次方） 的值。"></a>pow() #方法返回 xy（x的y次方） 的值。</h5><h5 id="sum-对可迭代对象求和。"><a href="#sum-对可迭代对象求和。" class="headerlink" title="sum() #对可迭代对象求和。"></a>sum() #对可迭代对象求和。</h5><h5 id="divmod-a-b-给定被除数和除数，返回商和余数在元组中。"><a href="#divmod-a-b-给定被除数和除数，返回商和余数在元组中。" class="headerlink" title="divmod(a, b) #给定被除数和除数，返回商和余数在元组中。"></a>divmod(a, b) #给定被除数和除数，返回商和余数在元组中。</h5><a id="more"></a>
 <hr>
 <h5 id="ascii-类似-repr-函数-返回一个表示对象的字符串"><a href="#ascii-类似-repr-函数-返回一个表示对象的字符串" class="headerlink" title="ascii() #类似 repr() 函数,返回一个表示对象的字符串"></a>ascii() #类似 repr() 函数,返回一个表示对象的字符串</h5><hr>
 <h5 id="bin-返回十进制数的二进制"><a href="#bin-返回十进制数的二进制" class="headerlink" title="bin() #返回十进制数的二进制"></a>bin() #返回十进制数的二进制</h5><h5 id="oct-函数将一个整数转换成8进制字符串。"><a href="#oct-函数将一个整数转换成8进制字符串。" class="headerlink" title="oct() #函数将一个整数转换成8进制字符串。"></a>oct() #函数将一个整数转换成8进制字符串。</h5><h5 id="hex-函数用于将10进制整数转换成16进制整数。"><a href="#hex-函数用于将10进制整数转换成16进制整数。" class="headerlink" title="hex() #函数用于将10进制整数转换成16进制整数。"></a>hex() #函数用于将10进制整数转换成16进制整数。</h5><hr>
@@ -370,216 +210,264 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import os &lt;==&gt; __import__(&apos;os&apos;)</span><br></pre></td></tr></table></figure>
 <h6 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>反射：利用字符串的形式去对象中操作（获取，查询，设置，删除）属性.</span><br><span class="line">	getattr(module,attr)：到module对象（可以是模块等）查询attr属性并返回（可以是函数等）。</span><br><span class="line">	hasattr(module,attr)：判断module对象是否有attr属性，有返回<span class="keyword">True</span>,没有false。</span><br><span class="line">	setattr(module,attr)：到module对象设置属性（导入模块会存在内存中，只会影响内存中的模块。）</span><br><span class="line">	delattr(module,attr)：删除module对象的attr属性（在内存中而不会影响原模块 ）。</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>例子：例如通过反射实现用户输入URL自动跳转到相应页面。</span><br><span class="line">	<span class="keyword">import</span> modul</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">f1</span><span class="params">()</span>:</span></span><br><span class="line">    	user_input = input(<span class="string">'please input url:'</span>)</span><br><span class="line">    	<span class="keyword">if</span> hasattr(modul,user_input):</span><br><span class="line">        	fun=getattr(modul,user_input)<span class="comment">#返回函数体（函数名），而不是执行结果</span></span><br><span class="line">        	fun()</span><br><span class="line">    	<span class="keyword">else</span>:</span><br><span class="line">        	print(<span class="string">'not found'</span>)</span><br><span class="line">	f1()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#当需要的属性处于不同对象（模块）时，需要导入很多模块，不现实</span></span><br><span class="line"><span class="comment">#可以通过根据用户输入的判断导入哪个模块及其属性</span></span><br><span class="line"><span class="comment">#用户输入类型为str,但import module  ！=  import ’module‘</span></span><br><span class="line"><span class="comment">#但mod=__import__('mudule')等价于import module as mod</span></span><br><span class="line"><span class="comment">#提供了通过字符串导入模块的功能</span></span><br><span class="line">	user_input=input(<span class="string">'please input url(xx/xx):'</span>)<span class="comment">#输入格式为【模块名/属性】</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">f2</span><span class="params">()</span>:</span></span><br><span class="line">    	mod_name,attr_name=user_input.split(<span class="string">'/'</span>)</span><br><span class="line">    	modu=__import__(mod_name) <span class="comment">#引入模块命名为modu</span></span><br><span class="line">    	<span class="keyword">if</span> hasattr(modu,attr_name):</span><br><span class="line">        	fun=getattr(modu,attr_name)</span><br><span class="line">        	fun()</span><br><span class="line">    	<span class="keyword">else</span>:</span><br><span class="line">        	print(<span class="number">404</span>)</span><br><span class="line">	f2()</span><br><span class="line"></span><br><span class="line"><span class="comment">#若要导入模块不在当前目录下，而是某目录下（如abc目录下）</span></span><br><span class="line"><span class="comment">#__import__（'abc.module'）导入只会到abc，而不会到module</span></span><br><span class="line"><span class="comment">#__import__（'abc.module'，fromlist=True）加了该参数便可以</span></span><br></pre></td></tr></table></figure>
 
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月30日 08:59</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/29/08python基础学习系列之内置函数/" title="Python基础学习系列Chapter 9：内置方法">https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/</a></p>
+        <footer>
+            <a href="https://sakuxa.com">
+                <img src="/images/logo.png" alt="sh4douu">
+                sh4douu
+            </a>
+        </footer>
+    </div>
+</div>
+
       
+        
+            
+
+        
     </div>
-    
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/&title=《Python基础学习系列Chapter 9：内置方法》 — IT技术学习分享自留地&pic=https://sakuxa.comimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/&title=《Python基础学习系列Chapter 9：内置方法》 — IT技术学习分享自留地&source=Aabs() #绝对值all() #序列的元素全真为真(负数也算真)any() #序列的元素任一为真则真max() #方法返回给定参数的最大值，参数可以为..." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python基础学习系列Chapter 9：内置方法》 — IT技术学习分享自留地&url=https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/&via=https://sakuxa.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python基础/" class="color4">Python基础</a>
+      
+    <a href="/tags/Language/" class="color4">Language</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
-        <p><span>发布时间:</span>2019-03-29, 15:56:48</p>
-        <p><span>最后更新:</span>2019-03-30, 08:59:48</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/29/08python基础学习系列之内置函数/" title="Python基础学习系列Chapter 9：内置方法">https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/29/08python基础学习系列之内置函数/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/29/09python基础学习系列之装饰器/">
-                    Python基础学习系列Chapter 10：装饰器
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/29/07python基础学习系列之迭代器、生成器/">
-                    Python基础学习系列Chapter 8：迭代器与生成器
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
 
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#A"><span class="toc-number">1.</span> <span class="toc-text">A</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#abs-绝对值"><span class="toc-number">1.1.</span> <span class="toc-text">abs() #绝对值</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#all-序列的元素全真为真-负数也算真"><span class="toc-number">1.1.1.</span> <span class="toc-text">all() #序列的元素全真为真(负数也算真)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#any-序列的元素任一为真则真"><span class="toc-number">1.1.2.</span> <span class="toc-text">any() #序列的元素任一为真则真</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#max-方法返回给定参数的最大值，参数可以为序列。"><span class="toc-number">1.1.3.</span> <span class="toc-text">max() #方法返回给定参数的最大值，参数可以为序列。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#min-方法返回给定参数的最小值，参数可以为序列。"><span class="toc-number">1.1.4.</span> <span class="toc-text">min() #方法返回给定参数的最小值，参数可以为序列。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pow-方法返回-xy（x的y次方）-的值。"><span class="toc-number">1.1.5.</span> <span class="toc-text">pow() #方法返回 xy（x的y次方） 的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sum-对可迭代对象求和。"><span class="toc-number">1.1.6.</span> <span class="toc-text">sum() #对可迭代对象求和。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#divmod-a-b-给定被除数和除数，返回商和余数在元组中。"><span class="toc-number">1.1.7.</span> <span class="toc-text">divmod(a, b) #给定被除数和除数，返回商和余数在元组中。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ascii-类似-repr-函数-返回一个表示对象的字符串"><span class="toc-number">1.1.8.</span> <span class="toc-text">ascii() #类似 repr() 函数,返回一个表示对象的字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bin-返回十进制数的二进制"><span class="toc-number">1.1.9.</span> <span class="toc-text">bin() #返回十进制数的二进制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#oct-函数将一个整数转换成8进制字符串。"><span class="toc-number">1.1.10.</span> <span class="toc-text">oct() #函数将一个整数转换成8进制字符串。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hex-函数用于将10进制整数转换成16进制整数。"><span class="toc-number">1.1.11.</span> <span class="toc-text">hex() #函数用于将10进制整数转换成16进制整数。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B"><span class="toc-number">2.</span> <span class="toc-text">B</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#bool-返回给定对象的布尔值"><span class="toc-number">2.0.1.</span> <span class="toc-text">bool() #返回给定对象的布尔值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bytearray-返回一个新字节数组。数组里的元素是可变的"><span class="toc-number">2.0.2.</span> <span class="toc-text">bytearray() #返回一个新字节数组。数组里的元素是可变的</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#callable-检查一个对象是否是可调用的。"><span class="toc-number">2.0.3.</span> <span class="toc-text">callable() #检查一个对象是否是可调用的。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#chr-返回值是当前整数对应的ascii字符。"><span class="toc-number">2.0.4.</span> <span class="toc-text">chr() # 返回值是当前整数对应的ascii字符。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ord-返回字符对应的十进制整数。"><span class="toc-number">2.0.5.</span> <span class="toc-text">ord() # 返回字符对应的十进制整数。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#compile-将一个字符串编译为字节代码。"><span class="toc-number">2.0.6.</span> <span class="toc-text">compile() #将一个字符串编译为字节代码。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#eval-执行一个字符串表达式，并返回表达式的值。"><span class="toc-number">2.0.7.</span> <span class="toc-text">eval() #执行一个字符串表达式，并返回表达式的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#exec-执行储存在字符串或文件中的-Python-语句。"><span class="toc-number">2.0.8.</span> <span class="toc-text">exec() #执行储存在字符串或文件中的 Python 语句。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#frozenset-返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。"><span class="toc-number">2.0.9.</span> <span class="toc-text">frozenset() #返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enumerate"><span class="toc-number">2.0.10.</span> <span class="toc-text">enumerate()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#filter-函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的迭代器。"><span class="toc-number">2.0.11.</span> <span class="toc-text">filter() #函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的迭代器。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#map-迭代序列的每个结果作为参数传入函数中，执行函数的返回值放入一个迭代器。"><span class="toc-number">2.0.12.</span> <span class="toc-text">map() #迭代序列的每个结果作为参数传入函数中，执行函数的返回值放入一个迭代器。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#zip-分别迭代序列，并将每次结果先放入一个元组，最终放入迭代器。"><span class="toc-number">2.0.13.</span> <span class="toc-text">zip() #分别迭代序列，并将每次结果先放入一个元组，最终放入迭代器。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#globals-以字典类型返回当前位置的全部全局变量。"><span class="toc-number">2.0.14.</span> <span class="toc-text">globals() #以字典类型返回当前位置的全部全局变量。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#locals-函数会以字典类型返回当前位置的全部局部变量。"><span class="toc-number">2.0.15.</span> <span class="toc-text">locals() #函数会以字典类型返回当前位置的全部局部变量。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#hash-获取取一个对象（字符串或者数值等）的哈希值。"><span class="toc-number">2.0.16.</span> <span class="toc-text">hash() #获取取一个对象（字符串或者数值等）的哈希值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dir"><span class="toc-number">2.0.17.</span> <span class="toc-text">dir()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#id-函数用于获取对象的内存地址。"><span class="toc-number">2.0.18.</span> <span class="toc-text">id() #函数用于获取对象的内存地址。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#type-返回对象的类型。"><span class="toc-number">2.0.19.</span> <span class="toc-text">type() #返回对象的类型。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isinstance-判断对象是否为另一对象的实例。"><span class="toc-number">2.0.20.</span> <span class="toc-text">isinstance() #判断对象是否为另一对象的实例。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#issubclass-判断对象是否为另一对象的子类。"><span class="toc-number">2.0.21.</span> <span class="toc-text">issubclass() #判断对象是否为另一对象的子类。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#len-返回对象（字符、列表、元组等）长度或项目个数。"><span class="toc-number">2.0.22.</span> <span class="toc-text">len() #返回对象（字符、列表、元组等）长度或项目个数。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#memoryview-返回给定参数的内存查看对象-Momory-view-。"><span class="toc-number">2.0.23.</span> <span class="toc-text">memoryview() # 返回给定参数的内存查看对象(Momory view)。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#range-函数可创建一个整数列表，一般用在-for-循环中。"><span class="toc-number">2.0.24.</span> <span class="toc-text">range() 函数可创建一个整数列表，一般用在 for 循环中。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#reversed-返回一个反转的迭代器。"><span class="toc-number">2.0.25.</span> <span class="toc-text">reversed() #返回一个反转的迭代器。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#round-方法返回浮点数x的四舍五入值。"><span class="toc-number">2.0.26.</span> <span class="toc-text">round() #方法返回浮点数x的四舍五入值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#sorted-函数对所有可迭代的对象进行排序操作。"><span class="toc-number">2.0.27.</span> <span class="toc-text">sorted() 函数对所有可迭代的对象进行排序操作。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vars-函数返回对象object的属性和属性值的字典对象。"><span class="toc-number">2.0.28.</span> <span class="toc-text">vars() #函数返回对象object的属性和属性值的字典对象。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#import-用于动态导入模块-。"><span class="toc-number">2.0.29.</span> <span class="toc-text">__import__()  #用于动态导入模块 。</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#反射"><span class="toc-number">2.0.29.1.</span> <span class="toc-text">反射</span></a></li></ol></li></ol></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
 
-    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#A"><span class="post-toc-text">A</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#abs-绝对值"><span class="post-toc-text">abs() #绝对值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#all-序列的元素全真为真-负数也算真"><span class="post-toc-text">all() #序列的元素全真为真(负数也算真)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#any-序列的元素任一为真则真"><span class="post-toc-text">any() #序列的元素任一为真则真</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#max-方法返回给定参数的最大值，参数可以为序列。"><span class="post-toc-text">max() #方法返回给定参数的最大值，参数可以为序列。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#min-方法返回给定参数的最小值，参数可以为序列。"><span class="post-toc-text">min() #方法返回给定参数的最小值，参数可以为序列。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#pow-方法返回-xy（x的y次方）-的值。"><span class="post-toc-text">pow() #方法返回 xy（x的y次方） 的值。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#sum-对可迭代对象求和。"><span class="post-toc-text">sum() #对可迭代对象求和。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#divmod-a-b-给定被除数和除数，返回商和余数在元组中。"><span class="post-toc-text">divmod(a, b) #给定被除数和除数，返回商和余数在元组中。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#ascii-类似-repr-函数-返回一个表示对象的字符串"><span class="post-toc-text">ascii() #类似 repr() 函数,返回一个表示对象的字符串</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#bin-返回十进制数的二进制"><span class="post-toc-text">bin() #返回十进制数的二进制</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#oct-函数将一个整数转换成8进制字符串。"><span class="post-toc-text">oct() #函数将一个整数转换成8进制字符串。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#hex-函数用于将10进制整数转换成16进制整数。"><span class="post-toc-text">hex() #函数用于将10进制整数转换成16进制整数。</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#B"><span class="post-toc-text">B</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#bool-返回给定对象的布尔值"><span class="post-toc-text">bool() #返回给定对象的布尔值</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#bytearray-返回一个新字节数组。数组里的元素是可变的"><span class="post-toc-text">bytearray() #返回一个新字节数组。数组里的元素是可变的</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#callable-检查一个对象是否是可调用的。"><span class="post-toc-text">callable() #检查一个对象是否是可调用的。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#chr-返回值是当前整数对应的ascii字符。"><span class="post-toc-text">chr() # 返回值是当前整数对应的ascii字符。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#ord-返回字符对应的十进制整数。"><span class="post-toc-text">ord() # 返回字符对应的十进制整数。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#compile-将一个字符串编译为字节代码。"><span class="post-toc-text">compile() #将一个字符串编译为字节代码。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#eval-执行一个字符串表达式，并返回表达式的值。"><span class="post-toc-text">eval() #执行一个字符串表达式，并返回表达式的值。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#exec-执行储存在字符串或文件中的-Python-语句。"><span class="post-toc-text">exec() #执行储存在字符串或文件中的 Python 语句。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#frozenset-返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。"><span class="post-toc-text">frozenset() #返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#enumerate"><span class="post-toc-text">enumerate()</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#filter-函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的迭代器。"><span class="post-toc-text">filter() #函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的迭代器。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#map-迭代序列的每个结果作为参数传入函数中，执行函数的返回值放入一个迭代器。"><span class="post-toc-text">map() #迭代序列的每个结果作为参数传入函数中，执行函数的返回值放入一个迭代器。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#zip-分别迭代序列，并将每次结果先放入一个元组，最终放入迭代器。"><span class="post-toc-text">zip() #分别迭代序列，并将每次结果先放入一个元组，最终放入迭代器。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#globals-以字典类型返回当前位置的全部全局变量。"><span class="post-toc-text">globals() #以字典类型返回当前位置的全部全局变量。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#locals-函数会以字典类型返回当前位置的全部局部变量。"><span class="post-toc-text">locals() #函数会以字典类型返回当前位置的全部局部变量。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#hash-获取取一个对象（字符串或者数值等）的哈希值。"><span class="post-toc-text">hash() #获取取一个对象（字符串或者数值等）的哈希值。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#dir"><span class="post-toc-text">dir()</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#id-函数用于获取对象的内存地址。"><span class="post-toc-text">id() #函数用于获取对象的内存地址。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#type-返回对象的类型。"><span class="post-toc-text">type() #返回对象的类型。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#isinstance-判断对象是否为另一对象的实例。"><span class="post-toc-text">isinstance() #判断对象是否为另一对象的实例。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#issubclass-判断对象是否为另一对象的子类。"><span class="post-toc-text">issubclass() #判断对象是否为另一对象的子类。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#len-返回对象（字符、列表、元组等）长度或项目个数。"><span class="post-toc-text">len() #返回对象（字符、列表、元组等）长度或项目个数。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#memoryview-返回给定参数的内存查看对象-Momory-view-。"><span class="post-toc-text">memoryview() # 返回给定参数的内存查看对象(Momory view)。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#range-函数可创建一个整数列表，一般用在-for-循环中。"><span class="post-toc-text">range() 函数可创建一个整数列表，一般用在 for 循环中。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#reversed-返回一个反转的迭代器。"><span class="post-toc-text">reversed() #返回一个反转的迭代器。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#round-方法返回浮点数x的四舍五入值。"><span class="post-toc-text">round() #方法返回浮点数x的四舍五入值。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#sorted-函数对所有可迭代的对象进行排序操作。"><span class="post-toc-text">sorted() 函数对所有可迭代的对象进行排序操作。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#vars-函数返回对象object的属性和属性值的字典对象。"><span class="post-toc-text">vars() #函数返回对象object的属性和属性值的字典对象。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#import-用于动态导入模块-。"><span class="post-toc-text">__import__()  #用于动态导入模块 。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#反射"><span class="post-toc-text">反射</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
 
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
+<nav id="article-nav">
+  
+    <a href="/2019/03/29/09python基础学习系列之装饰器/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Python基础学习系列Chapter 10：装饰器
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/03/29/07python基础学习系列之迭代器、生成器/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Python基础学习系列Chapter 8：迭代器与生成器</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 
     
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Python基础学习系列Chapter 9：内置方法　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
+</section>
         
-            <a href="/2019/03/29/09python基础学习系列之装饰器/" title="上一篇: Python基础学习系列Chapter 10：装饰器">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2019/03/29/07python基础学习系列之迭代器、生成器/" title="下一篇: Python基础学习系列Chapter 8：迭代器与生成器">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/my-ubuntu-config-sectools/">My-ubuntu之安装安全工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/14/my-ubuntu-config-2mac/">Ubuntu 18.04之Gnome美化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/03python模块之subprocess/">Python模块 Chapter 3：subprocess</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/02python模块之re/">Python模块 Chapter 2：RE</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/windows认证攻击/">Windows认证攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
-</div>
+      </div>
       <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2019 sh4douu
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style="display:none">
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style="display:none">
-                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 sh4douu<br>
+      </p>
     </div>
+  </div>
 </footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 3;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
+  var mihoConfig = {
+      root: "https://sakuxa.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
   </div>
 </body>
 </html>

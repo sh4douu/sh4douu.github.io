@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html>
 <head><meta name="generator" content="Hexo 3.8.0">
-
-    <!--[if lt IE 9]>
-        <style>body {display: none; background: none !important} </style>
-        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
-    <![endif]-->
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="format-detection" content="telephone=no">
-<meta name="author" content="sh4douu">
-
-
-
-<meta name="description" content="可变类型与不可变类型Python的对象都可分为可变性对象和不可变性对象。 可变性：可以原处修改。即修改这个对象。  list = [1,2,3]     #这是一个列表对象list list[0]=0          #此时list内容变成了[0,2,3]，但还是之前的列表对象list。  不可变性：不可原处修改。即不能修改该对象，换句话说，修改了，那就不是原来的那个对象了。">
+  <meta charset="utf-8">
+  
+  <title>Python基础学习系列Chapter 1：动态类型 | IT技术学习分享自留地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="MinHow's Blog">
+  
+  <meta name="description" content="可变类型与不可变类型Python的对象都可分为可变性对象和不可变性对象。 可变性：可以原处修改。即修改这个对象。  list = [1,2,3]     #这是一个列表对象list list[0]=0          #此时list内容变成了[0,2,3]，但还是之前的列表对象list。  不可变性：不可原处修改。即不能修改该对象，换句话说，修改了，那就不是原来的那个对象了。">
 <meta name="keywords" content="Python基础,Language">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python基础学习系列Chapter 1：动态类型">
@@ -27,286 +20,133 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基础学习系列Chapter 1：动态类型">
 <meta name="twitter:description" content="可变类型与不可变类型Python的对象都可分为可变性对象和不可变性对象。 可变性：可以原处修改。即修改这个对象。  list = [1,2,3]     #这是一个列表对象list list[0]=0          #此时list内容变成了[0,2,3]，但还是之前的列表对象list。  不可变性：不可原处修改。即不能修改该对象，换句话说，修改了，那就不是原来的那个对象了。">
+  
+  
+    <link rel="icon" href="/LimeWire.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
 
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
 
-
-    <link rel="alternate" href="/atom.xml" title="IT技术学习分享自留地" type="application/atom+xml">
-
-
-
-    <link rel="shortcut icon" href="/LimeWire.png">
-
-
-
-    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
-
-
-
-    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
-
-
-
-    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
-
-
-<link rel="stylesheet" href="/css/style.css">
-
-
-
-<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
-
-<title>Python基础学习系列Chapter 1：动态类型 | IT技术学习分享自留地</title>
-
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-
-<script>
-    var yiliaConfig = {
-        fancybox: true,
-        animate: true,
-        isHome: false,
-        isPost: true,
-        isArchive: false,
-        isTag: false,
-        isCategory: false,
-        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
-        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: false
-    }
-</script>
-
-
-    <script> yiliaConfig.jquery_ui = [false]; </script>
-
-
-
-    <script> yiliaConfig.rootUrl = "\/";</script>
-
-
-
-
-
-
-</head></html>
+</head>
+</html>
 <body>
   <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            <img src="/img/tx.jpg" class="animated zoomIn">
-        </a>
-        <hgroup>
-          <h1 class="header-author"><a href="/">sh4douu</a></h1>
-        </hgroup>
-
-        
-        <p class="header-subtitle">努力成为自己认可的黑客...</p>
-        
-
-        
-
-
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">sh4dow&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
                     
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
-
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="/">主页</a></li>
-                        
-                            <li><a href="/archives/">所有文章</a></li>
-                        
-                            <li><a href="/tags/">标签云</a></li>
-                        
-                            <li><a href="/about/">关于我</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" href="/about/" title="Email"></a>
-                            
-                                <a class="fa GitHub" href="https://github.com/sh4douu" title="GitHub"></a>
-                            
-                                <a class="fa 微信" href="/about/" title="微信"></a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF/">CTF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cheatsheet/">Cheatsheet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Getshell/">Getshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gnome/">Gnome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML文档解析/">HTML文档解析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kerberos/">Kerberos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Language/">Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NTLM/">NTLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NetBIOS/">NetBIOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP-Top10-2017/">OWASP Top10 2017</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPCMSv9/">PHPCMSv9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pass-The-Hash/">Pass The Hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Payload/">Payload</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python基础/">Python基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python模块/">Python模块</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SMB/">SMB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SecTools/">SecTools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu-2-Mac/">Ubuntu 2 Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WEB安全/">WEB安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Win32/">Win32</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Winodows/">Winodows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML注入/">XML注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XSS/">XSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XXE/">XXE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/任意文件下载/">任意文件下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/干货/">干货</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/必会技能/">必会技能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/收集/">收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件上传/">文件上传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件包含/">文件包含</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件描述符/">文件描述符</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件权限/">文件权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/权限提升/">权限提升</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汇编语言/">汇编语言</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/管道/">管道</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码与解码/">编码与解码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨站请求伪造/">跨站请求伪造</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/过滤与绕过/">过滤与绕过</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重定向/">重定向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶场/">靶场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/靶机/">靶机</a></li></ul>
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
                     
-                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
-                    
-                    </div>
-                </section>
-                
-
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">致力于网络安全</div>
-                </section>
-                
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
         </div>
-    </header>                
-</div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">sh4douu</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                <img src="/img/tx.jpg" class="animated zoomIn">
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="回到主页">sh4douu</a></h1>
-            </hgroup>
-            
-            <p class="header-subtitle">努力成为自己认可的黑客...</p>
-            
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="/">主页</a></li>
-                
-                    <li><a href="/archives/">所有文章</a></li>
-                
-                    <li><a href="/tags/">标签云</a></li>
-                
-                    <li><a href="/about/">关于我</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        sh4dow&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        黑客技术学习自留地
+                    </h3>
+                    
+                </div>
+            </div>
             <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fa Email" target="_blank" href="/about/" title="Email"></a>
-                            
-                                <a class="fa GitHub" target="_blank" href="https://github.com/sh4douu" title="GitHub"></a>
-                            
-                                <a class="fa 微信" target="_blank" href="/about/" title="微信"></a>
-                            
-                        </ul>
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/sh4douu">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
             </nav>
-        </header>                
+        </div>
     </div>
-    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
-</nav>
-      <div class="body-wrap"><article id="post-00python基础学习系列之动态类型" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/03/18/00python基础学习系列之动态类型/" class="article-date">
-      <time datetime="2019-03-18T08:24:35.000Z" itemprop="datePublished">2019-03-18</time>
-</a>
-
-
-    </div>
-  
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-00python基础学习系列之动态类型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
+    <h1 class="post-title" itemprop="name">
       Python基础学习系列Chapter 1：动态类型
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Python/">Python</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-03-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Language/">Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python基础/">Python基础</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
           
-        <h3 id="可变类型与不可变类型"><a href="#可变类型与不可变类型" class="headerlink" title="可变类型与不可变类型"></a>可变类型与不可变类型</h3><p>Python的对象都可分为可变性对象和不可变性对象。</p>
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="可变类型与不可变类型"><a href="#可变类型与不可变类型" class="headerlink" title="可变类型与不可变类型"></a>可变类型与不可变类型</h3><p>Python的对象都可分为可变性对象和不可变性对象。</p>
 <p>可变性：可以原处修改。即修改这个对象。</p>
 <blockquote>
 <pre><code>list = [1,2,3]     #这是一个列表对象list
@@ -366,216 +206,267 @@ list[0]=0          #此时list内容变成了[0,2,3]，但还是之前的列表�
 <p><strong>True/False</strong></p>
 <p>Python把非0数字和非空数据结构视为真，0和空数据结构视为假。</p>
 
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年03月30日 08:59</p>
+        <p>原始链接： <a class="post-url" href="/2019/03/18/00python基础学习系列之动态类型/" title="Python基础学习系列Chapter 1：动态类型">https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/</a></p>
+        <footer>
+            <a href="https://sakuxa.com">
+                <img src="/images/logo.png" alt="sh4douu">
+                sh4douu
+            </a>
+        </footer>
+    </div>
+</div>
+
       
+        
+            
+
+        
     </div>
-    
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/&title=《Python基础学习系列Chapter 1：动态类型》 — IT技术学习分享自留地&pic=https://sakuxa.comimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/&title=《Python基础学习系列Chapter 1：动态类型》 — IT技术学习分享自留地&source=可变类型与不可变类型Python的对象都可分为可变性对象和不可变性对象。
+可变性：可以原处修改。即修改这个对象。
+
+list = [1,2,3]     ..." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python基础学习系列Chapter 1：动态类型》 — IT技术学习分享自留地&url=https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/&via=https://sakuxa.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Python基础/" class="color4">Python基础</a>
+      
+    <a href="/tags/Language/" class="color4">Language</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
   </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">sh4douu</a></p>
-        <p><span>发布时间:</span>2019-03-18, 16:24:35</p>
-        <p><span>最后更新:</span>2019-03-30, 08:59:48</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/03/18/00python基础学习系列之动态类型/" title="Python基础学习系列Chapter 1：动态类型">https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://sakuxa.com/2019/03/18/00python基础学习系列之动态类型/　　作者: sh4douu" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/03/18/01python基础学习系列之字符串/">
-                    Python基础学习系列Chapter 2：字符串
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">
-                    记一次面试某安全公司一道XXE漏洞CTF面试题
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
 
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#可变类型与不可变类型"><span class="toc-number">1.</span> <span class="toc-text">可变类型与不可变类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态类型"><span class="toc-number">2.</span> <span class="toc-text">动态类型</span></a></li></ol>
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
 
-    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可变类型与不可变类型"><span class="post-toc-text">可变类型与不可变类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动态类型"><span class="post-toc-text">动态类型</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
+<nav id="article-nav">
+  
+    <a href="/2019/03/18/01python基础学习系列之字符串/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Python基础学习系列Chapter 2：字符串
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">记一次面试某安全公司一道XXE漏洞CTF面试题</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 
     
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
-        </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Python基础学习系列Chapter 1：动态类型　| IT技术学习分享自留地　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
+</section>
         
-            <a href="/2019/03/18/01python基础学习系列之字符串/" title="上一篇: Python基础学习系列Chapter 2：字符串">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/" title="下一篇: 记一次面试某安全公司一道XXE漏洞CTF面试题">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/16/my-ubuntu-config-sectools/">My-ubuntu之安装安全工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/14/my-ubuntu-config-2mac/">Ubuntu 18.04之Gnome美化</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/03python模块之subprocess/">Python模块 Chapter 3：subprocess</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/09/02python模块之re/">Python模块 Chapter 2：RE</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/windows认证攻击/">Windows认证攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/02-Windows认证之Kerberos/">Windows认证之Kerberos</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/03/01-Windows认证之NTLM/">Windows认证之NTLM</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/06-win32编程基础Chapter-6/">Win32编程基础Chapter 6：第一个窗口程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/04-win32编程基础Chapter-5/">Win32编程基础Chapter 5：分支和循环</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/03-win32编程基础Chapter-4/">Win32编程基础Chapter 4：调用约定</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/02-win32编程基础Chapter-3/">Win32编程基础Chapter 3：Win API</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/01-win32编程基础Chapter-2/">Win32编程基础Chapter 2：Win32程序结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/00-win32编程基础Chapter-1/">Win32编程基础Chapter 1：80386 CPU</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/09python基础学习系列之装饰器/">Python基础学习系列Chapter 10：装饰器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/08python基础学习系列之内置函数/">Python基础学习系列Chapter 9：内置方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/07python基础学习系列之迭代器、生成器/">Python基础学习系列Chapter 8：迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/06python基础学习系列之函数/">Python基础学习系列Chapter 7：函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/29/文件描述符、重定向、管道浅析/">文件描述符、重定向、管道浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/WEB漏洞靶场pikachu-CSRF/">WEB漏洞靶场Pikachu Writeup Chapter 3：CSRF</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/CSRF/">CSRF （Cross Site Request Forgery）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/23/NetBIOS、SMB浅析/">NetBIOS、SMB浅析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Linux/">Amazing Command -Linux篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/22/Amazing-Command-Windows/">Amazing Command -Windows篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/WEB漏洞靶场pikachu-xss/">WEB漏洞靶场Pikachu Writeup Chapter 2：XSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/05python基础学习系列之文件/">Python基础学习系列Chapter 6：文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/04python基础学习系列之集合/">Python基础学习系列Chapter 5：集合</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/03python基础学习系列之字典/">Python基础学习系列Chapter 4：字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/02python基础学习系列之列表/">Python基础学习系列Chapter 3：列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/19/WEB漏洞靶场pikachu—writeup/">WEB漏洞靶场Pikachu Writeup Chapter 1：表单暴力破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/01python基础学习系列之字符串/">Python基础学习系列Chapter 2：字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/18/00python基础学习系列之动态类型/">Python基础学习系列Chapter 1：动态类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/记一次面试某安全公司一道XXE漏洞CTF面试题/">记一次面试某安全公司一道XXE漏洞CTF面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/12/0x00-SQL注入系列之Mysql基础知识/">SQL注入系列Chapter 1：MySQL基础知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x02-XSS学习系列之练习靶场01/">XSS学习系列Chapter 3：prompt(1) XSS挑战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/11/0x01-XSS学习系列之漏洞原理/">XSS学习系列Chapter 2：漏洞原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/07/0x00-XSS学习系列之解析HTML文档/">XSS学习系列Chapter 1：浏览器解析HTML文档</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/05/文件上传漏洞/">文件上传漏洞（File Upload）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/04/xxe-tool/">XXE漏洞利用工具及其资源</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/XXE/">XXE（XML External Entity）漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/xml/">XML基本知识学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/28/文件与目录权限/">文件与目录权限</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/26/hack-zico/">Vulnhub靶机渗透笔记——Zico2</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/phpcms9-6-1/">PHPCMSv9.6.1任意文件下载漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/GitNote/">Git基本命令及使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/22/干货杂项收集/">干货杂项收集</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/21/build-blog/">博客搭建记录 Node.js + Hexo + Yelee + Git Pages</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
-</div>
+      </div>
       <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
-                2019 sh4douu
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
-            </div>
-        </div>
-        
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style="display:none">
-                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>| </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style="display:none">
-                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
-        
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 sh4douu<br>
+      </p>
     </div>
+  </div>
 </footer>
-    </div>
-    
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            var iPad = window.navigator.userAgent.indexOf('iPad');
-            if (iPad > -1 || $(".left-col").css("display") === "none") {
-                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
-                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
-                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
-            }
-            else {
-                var backgroundnum = 3;
-                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
-            }
-        })
-    </script>
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
-</div>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    // Open in New Window
-    
-        var oOpenInNew = {
-            
-            
-            
-            
-            
-            
-             archives: ".archive-article-title", 
-             miniArchives: "a.post-list-link", 
-            
-             friends: "#js-friends a", 
-             socail: ".social a" 
-        }
-        for (var x in oOpenInNew) {
-            $(oOpenInNew[x]).attr("target", "_blank");
-        }
-    
+  var mihoConfig = {
+      root: "https://sakuxa.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
 </script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
   </div>
 </body>
 </html>
