@@ -3,18 +3,18 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>无线渗透：Chapter 1-基础知识 | IT技术学习分享自留地</title>
+  <title>无线渗透：Chapter 1-基础知识 | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="MinHow's Blog">
   
-  <meta name="description" content="0x00 802.11协议簇802.11a/b/g/n/ac   协议 频率 信号 最大传输速率     802.11 2.4Ghz FHSS 或 DSSS 2Mps   802.11a 5GHz OFDM 54Mps   802.11b 2.4GHz HR-DSSS 11Mps   802.11g 2.4GHz OFDM 54Mps   802.11n 2.4GHz或5GHz OFDM 540M">
+  <meta name="description" content="该篇为无线渗透系列的第一篇文章，主要介绍802.11协议族、2.4Ghz频谱、无线网络架构、无线网卡的基本配置以及困扰本人许久了无线认证与加密。 内容并不是很全面很深入，仅作为开启无线渗透的铺垫。">
 <meta name="keywords" content="WLAN,802.11,无线渗透">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无线渗透：Chapter 1-基础知识">
 <meta property="og:url" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/index.html">
-<meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 802.11协议簇802.11a/b/g/n/ac   协议 频率 信号 最大传输速率     802.11 2.4Ghz FHSS 或 DSSS 2Mps   802.11a 5GHz OFDM 54Mps   802.11b 2.4GHz HR-DSSS 11Mps   802.11g 2.4GHz OFDM 54Mps   802.11n 2.4GHz或5GHz OFDM 540M">
+<meta property="og:site_name" content="黑客技术学习分享自留地">
+<meta property="og:description" content="该篇为无线渗透系列的第一篇文章，主要介绍802.11协议族、2.4Ghz频谱、无线网络架构、无线网卡的基本配置以及困扰本人许久了无线认证与加密。 内容并不是很全面很深入，仅作为开启无线渗透的铺垫。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/1346404436_6510.PNG">
 <meta property="og:image" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/QQ截图20190519104412.png">
@@ -23,10 +23,10 @@
 <meta property="og:image" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/2019-05xx.png">
 <meta property="og:image" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/QQ截图20190519174407.png">
 <meta property="og:image" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/5435faa45775c.png">
-<meta property="og:updated_time" content="2019-05-20T16:00:09.347Z">
+<meta property="og:updated_time" content="2019-05-21T01:11:14.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="无线渗透：Chapter 1-基础知识">
-<meta name="twitter:description" content="0x00 802.11协议簇802.11a/b/g/n/ac   协议 频率 信号 最大传输速率     802.11 2.4Ghz FHSS 或 DSSS 2Mps   802.11a 5GHz OFDM 54Mps   802.11b 2.4GHz HR-DSSS 11Mps   802.11g 2.4GHz OFDM 54Mps   802.11n 2.4GHz或5GHz OFDM 540M">
+<meta name="twitter:description" content="该篇为无线渗透系列的第一篇文章，主要介绍802.11协议族、2.4Ghz频谱、无线网络架构、无线网卡的基本配置以及困扰本人许久了无线认证与加密。 内容并不是很全面很深入，仅作为开启无线渗透的铺垫。">
 <meta name="twitter:image" content="https://sakuxa.com/2019/05/19/01无线渗透-基础知识/1346404436_6510.PNG">
   
   
@@ -154,7 +154,12 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="0x00-802-11协议簇"><a href="#0x00-802-11协议簇" class="headerlink" title="0x00 802.11协议簇"></a>0x00 802.11协议簇</h3><h4 id="802-11a-b-g-n-ac"><a href="#802-11a-b-g-n-ac" class="headerlink" title="802.11a/b/g/n/ac"></a>802.11a/b/g/n/ac</h4><table>
+            <blockquote>
+<p>该篇为无线渗透系列的第一篇文章，主要介绍802.11协议族、2.4Ghz频谱、无线网络架构、无线网卡的基本配置以及困扰本人许久了无线认证与加密。</p>
+<p>内容并不是很全面很深入，仅作为开启无线渗透的铺垫。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="0x00-802-11协议簇"><a href="#0x00-802-11协议簇" class="headerlink" title="0x00 802.11协议簇"></a>0x00 802.11协议簇</h3><h4 id="802-11a-b-g-n-ac"><a href="#802-11a-b-g-n-ac" class="headerlink" title="802.11a/b/g/n/ac"></a>802.11a/b/g/n/ac</h4><table>
 <thead>
 <tr>
 <th>协议</th>
@@ -209,10 +214,9 @@
 <p>目前最快的传输协议是802.11ac。如果想要体验高速上网，那么选择电子产品的时候一定要留意，查看电子产品是否支持802.11ac协议。尤其是手机，电脑，路由器。如今千兆网络已经开始普及，如果不支持802.11ac协议的电子设备，是无法享受千兆网络的。
 　　</p>
 </blockquote>
-<a id="more"></a>
 <h3 id="0x01-无线频谱"><a href="#0x01-无线频谱" class="headerlink" title="0x01 无线频谱"></a>0x01 无线频谱</h3><p><img src="/2019/05/19/01无线渗透-基础知识/1346404436_6510.PNG" alt></p>
 <blockquote>
-<p>1.每个子信道宽度为22MHz<br>2.相邻信道的中心频点间隔5MHz<br>3.相邻的多个信道存在频率重叠(如1信道与2、3、4、5信道有频率重叠)<br>4.整个频段内只有3个（1、6、11）互不干扰信道。</p>
+<p>1.每个子信道宽度为22MHz。<br>2.相邻信道的中心频点间隔5MHz 。<br>3.相邻的多个信道存在频率重叠(如1信道与2、3、4、5信道有频率重叠)。<br>4.整个频段内只有3个（1、6、11）互不干扰信道。</p>
 </blockquote>
 <h3 id="0x02-无线网络架构及术语"><a href="#0x02-无线网络架构及术语" class="headerlink" title="0x02 无线网络架构及术语"></a>0x02 无线网络架构及术语</h3><p><img src="/2019/05/19/01无线渗透-基础知识/QQ截图20190519104412.png" alt></p>
 <ul>
@@ -231,7 +235,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">iwlist      [interface] scanning [essid NNN] [last]</span><br><span class="line">            [interface] frequency       #网卡支持的频率。</span><br><span class="line">            [interface] channel         #网卡支持的信道。 </span><br><span class="line">            [interface] bitrate         #网卡支持的比特率。</span><br><span class="line">            [interface] rate            #网卡支持的速率。</span><br><span class="line">            [interface] encryption </span><br><span class="line">            [interface] keys </span><br><span class="line">            [interface] power </span><br><span class="line">            [interface] txpower </span><br><span class="line">            [interface] retry </span><br><span class="line">            [interface] ap </span><br><span class="line">            [interface] accesspoints </span><br><span class="line">            [interface] peers </span><br><span class="line">            [interface] event </span><br><span class="line">            [interface] auth </span><br><span class="line">            [interface] wpakeys </span><br><span class="line">            [interface] genie </span><br><span class="line">            [interface] modulation</span><br></pre></td></tr></table></figure>
 <h4 id="iw"><a href="#iw" class="headerlink" title="iw"></a>iw</h4><ul>
-<li><code>iw dev wlan0 scan</code>  #使用wlan0网卡扫描附近的无线网络,可以获得无线网络的详细信息(所在信道/beacon帧的周期/信号/SSID/加密方式/…..).</li>
+<li><code>iw dev wlan0 scan</code>  #使用wlan0网卡扫描附近的无线网络,可以获得无线网络的详细信息(所在信道/beacon帧的周期/信号/SSID/加密方式等).</li>
 </ul>
 <blockquote>
 <ul>
@@ -240,19 +244,19 @@
 <li>iwlist wlan2 scanning | egrep “ESSID|Channel”</li>
 </ul>
 </blockquote>
-<h3 id="0x04-无线网卡模式：monitor"><a href="#0x04-无线网卡模式：monitor" class="headerlink" title="0x04 无线网卡模式：monitor"></a>0x04 无线网卡模式：monitor</h3><blockquote>
-<p>我们可以发现,即使我们使用抓包工具(如Wireshark)对无线网卡抓包,抓到的数据包是不包含802.11帧头的,这是因为系统内核默认会将数据包的802.11帧头去掉.</p>
-<p>如果我们想要抓取包含802.11帧头数据包,我们需要将无线网卡设置为<code>monitor</code>模式(默认是managed模式).</p>
-<p>而且设置为monitor模式后,无线网卡可以监听到广播域中的所有数据包,类似有线网卡的混杂模式.</p>
-</blockquote>
+<h3 id="0x04-无线网卡模式：monitor"><a href="#0x04-无线网卡模式：monitor" class="headerlink" title="0x04 无线网卡模式：monitor"></a>0x04 无线网卡模式：monitor</h3><p>如果你有尝试过抓无线包，你会发现,即使我们使用抓包工具(如Wireshark)对无线网卡抓包,抓到的数据包是不包含802.11帧头的,这是因为系统内核默认会将数据包的802.11帧头去掉。</p>
+<p>如果我们想要抓取包含802.11帧头数据包,我们需要将无线网卡设置为<code>monitor</code>模式(默认是managed模式)。</p>
+<p>而且设置为monitor模式后,无线网卡可以监听到广播域中的所有数据包,类似有线网卡的混杂模式。</p>
 <p><img src="/2019/05/19/01无线渗透-基础知识/2019-05-19_11-34.png" alt></p>
 <h4 id="无线网卡设置monitor"><a href="#无线网卡设置monitor" class="headerlink" title="无线网卡设置monitor"></a>无线网卡设置monitor</h4><ul>
-<li><code>iw dev wlan0 interface add wlan0mon type monitor</code>    #将wlan0网卡设置为monitor模式.</li>
+<li><code>iw dev wlan0 interface add wlan0mon type monitor</code>    #将wlan0网卡设置为monitor模式。</li>
 </ul>
 <blockquote>
-<p>1.<code>wlan0</code>将会生成一个别名网卡<code>wlan0mon</code>.在kali中,网卡别名的格式是严格规定为:<code>wlanXmon</code>(X为数字).</p>
-<p>2.别名网卡需要使用命令启用:<code>sudo ifconfig wlan0mon up</code></p>
-<p>3.删除monitor模式的别名网卡:<code>iw dev wlan0mon interface del</code></p>
+<ul>
+<li><code>wlan0</code>将会生成一个别名网卡<code>wlan0mon</code>。在kali中,网卡别名的格式是严格规定为:<code>wlanXmon</code>(X为数字)。</li>
+<li>别名网卡需要使用命令启用:<code>sudo ifconfig wlan0mon up</code></li>
+<li>删除monitor模式的别名网卡:<code>iw dev wlan0mon interface del</code></li>
+</ul>
 </blockquote>
 <p><img src="/2019/05/19/01无线渗透-基础知识/2019-05-19.png" alt></p>
 <p>对别名网卡进行抓包,成功抓到802.11数据包:</p>
@@ -270,44 +274,44 @@
 <p><img src="/2019/05/19/01无线渗透-基础知识/5435faa45775c.png" alt></p>
 <p>一种加密算法：</p>
 <blockquote>
-<p>WEP:有线等效保密（Wired Equivalent Privacy）</p>
+<p>WEP:有线等效保密（Wired Equivalent Privacy）。</p>
 </blockquote>
 <p>安全策略：</p>
 <blockquote>
 <ul>
-<li>对于开放系统认证，在设置时也可以启用WEP(WEP-open)，此时，WEP用于在传输数据时加密，对认证没有任何作用。若不启用WEP则不进行验证也不进行加密.</li>
+<li>对于开放系统认证，在设置时也可以启用WEP(WEP-open)，此时，WEP用于在传输数据时加密，对认证没有任何作用。若不启用WEP则不进行验证也不进行加密。</li>
 <li>对于共享密钥认证，必须启用WEP，WEP不仅用于认证加密，也用于在传输数据时加密。</li>
 </ul>
 </blockquote>
 <h4 id="3-WPA"><a href="#3-WPA" class="headerlink" title="3.WPA"></a>3.WPA</h4><blockquote>
-<p>由于WEP有一些严重安全缺陷,Wi-Fi联盟与IEEE一起开发了Wi-Fi受保护的访问（Wi-Fi Protected Access – WPA）以解决WEP的缺陷.</p>
+<p>由于WEP有一些严重安全缺陷,Wi-Fi联盟与IEEE一起开发了Wi-Fi受保护的访问（Wi-Fi Protected Access – WPA）以解决WEP的缺陷。</p>
 </blockquote>
 <p><strong>WPA</strong></p>
 <blockquote>
 <ul>
-<li>WPA不同于WEP，WPA同时提供认证（基于802.1x可扩展认证协议 – Extensible Authentiation Protocl - EAP的认证）和加密（临时密钥完整性协议 – Temporal Key Integrity Protocol – TKIP）</li>
-<li>TKIP是加密套件(协议),使用对称加密算法RC4，TKIP使用128位临时密钥和48位初始化向量（IV）.</li>
+<li>WPA不同于WEP，WPA同时提供认证（基于802.1x可扩展认证协议 – Extensible Authentiation Protocl - EAP的认证）和加密（临时密钥完整性协议 – Temporal Key Integrity Protocol – TKIP）。</li>
+<li>TKIP是加密套件(协议),使用对称加密算法RC4，TKIP使用128位临时密钥和48位初始化向量（IV）。</li>
 </ul>
 </blockquote>
 <p><strong>WPA2</strong></p>
 <blockquote>
 <ul>
 <li>由于WPA1使用RC4算法,存在安全隐患.因此开发出WPA2,WPA2使用CCMP加密套件(协议)。</li>
-<li>CCMP使用对称加密算法AES.</li>
+<li>CCMP使用对称加密算法AES。</li>
 </ul>
 </blockquote>
 <p>PS:WPA1和WPA2验证需要基于802.1x协议,需要有验证服务器.</p>
 <p><strong>WPA/WPA2-Personal或WPA/WPA2 Pre-Shared Key或WPA/WPA2-PSK…</strong></p>
 <blockquote>
 <ul>
-<li>由于需要独立的认证服务器对于个人/家庭显然成本过高,不太实际,因此产生使用共享密钥验证方式的WPA/WPA2加密策略.</li>
+<li>由于需要独立的认证服务器对于个人/家庭显然成本过高,不太实际,因此产生使用共享密钥验证方式的WPA/WPA2加密策略。</li>
 <li>注意，WPA的共享密钥认证是WPA策略是内置的，与802.11最初定义的共享密钥认证是无关的。</li>
 </ul>
 </blockquote>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月21日 00:00</p>
+        <p>最后更新： 2019年05月21日 09:11</p>
         <p>原始链接： <a class="post-url" href="/2019/05/19/01无线渗透-基础知识/" title="无线渗透：Chapter 1-基础知识">https://sakuxa.com/2019/05/19/01无线渗透-基础知识/</a></p>
         <footer>
             <a href="https://sakuxa.com">
@@ -334,7 +338,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/05/19/01无线渗透-基础知识/&title=《无线渗透：Chapter 1-基础知识》 — IT技术学习分享自留地&pic=images/timg.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/05/19/01无线渗透-基础知识/&title=《无线渗透：Chapter 1-基础知识》 — 黑客技术学习分享自留地&pic=images/timg.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -344,20 +348,9 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/05/19/01无线渗透-基础知识/&title=《无线渗透：Chapter 1-基础知识》 — IT技术学习分享自留地&source=0x00 802.11协议簇802.11a/b/g/n/ac
-
-
-协议
-频率
-信号
-最大传输速率
-
-
-
-
-802.11
-2.4Ghz
-FHSS 或 DSS..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/05/19/01无线渗透-基础知识/&title=《无线渗透：Chapter 1-基础知识》 — 黑客技术学习分享自留地&source=
+该篇为无线渗透系列的第一篇文章，主要介绍802.11协议族、2.4Ghz频谱、无线网络架构、无线网卡的基本配置以及困扰本人许久了无线认证与加密。
+内容并..." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -367,7 +360,7 @@ FHSS 或 DSS..." data-title="QQ">
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《无线渗透：Chapter 1-基础知识》 — IT技术学习分享自留地&url=https://sakuxa.com/2019/05/19/01无线渗透-基础知识/&via=https://sakuxa.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《无线渗透：Chapter 1-基础知识》 — 黑客技术学习分享自留地&url=https://sakuxa.com/2019/05/19/01无线渗透-基础知识/&via=https://sakuxa.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -418,19 +411,9 @@ FHSS 或 DSS..." data-title="QQ">
 
 <nav id="article-nav">
   
-    <a href="/2019/05/20/test/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          &#39;test&#39;
-        
-      </span>
-    </a>
-  
   
     <a href="/2019/05/16/my-ubuntu-config-sectools/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">My-ubuntu之安装安全工具</span>
+      <span class="article-nav-title">My-ubuntu之常用安全工具</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -495,7 +478,7 @@ FHSS 或 DSS..." data-title="QQ">
             <a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -528,7 +511,7 @@ FHSS 或 DSS..." data-title="QQ">
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
 </div>

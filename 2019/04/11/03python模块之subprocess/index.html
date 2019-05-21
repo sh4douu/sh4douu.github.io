@@ -3,18 +3,18 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Python模块 Chapter 3：subprocess | IT技术学习分享自留地</title>
+  <title>Python模块 Chapter 3：subprocess | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="MinHow's Blog">
   
-  <meta name="description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
-<meta name="keywords" content="Language,Python模块">
+  <meta name="description" content="subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。">
+<meta name="keywords" content="Python模块,subprocess">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python模块 Chapter 3：subprocess">
 <meta property="og:url" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/index.html">
-<meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
+<meta property="og:site_name" content="黑客技术学习分享自留地">
+<meta property="og:description" content="subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411201111.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411202330.png">
@@ -23,10 +23,10 @@
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411161550.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411162626.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411164318.png">
-<meta property="og:updated_time" content="2019-04-11T16:03:08.430Z">
+<meta property="og:updated_time" content="2019-05-21T01:52:25.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python模块 Chapter 3：subprocess">
-<meta name="twitter:description" content="0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。 这个模块是为了取代下面这些比较老的模块功能： 12os.systemos.spawn* subprocess模块提供两种方法来创建新的进程：  subprocess.run() subprocess.Pope">
+<meta name="twitter:description" content="subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。">
 <meta name="twitter:image" content="https://sakuxa.com/2019/04/11/03python模块之subprocess/QQ截图20190411201111.png">
   
   
@@ -154,8 +154,11 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="0x00-概述"><a href="#0x00-概述" class="headerlink" title="0x00 概述"></a>0x00 概述</h3><p><code>subprocess</code>模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。</p>
-<p>这个模块是为了取代下面这些比较老的模块功能：</p>
+            <blockquote>
+<p><code>subprocess</code>模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且可以获取到它们的返回码。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="0x00-概述"><a href="#0x00-概述" class="headerlink" title="0x00 概述"></a>0x00 概述</h3><p>这个模块是为了取代下面这些比较老的模块功能：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.system</span><br><span class="line">os.spawn*</span><br></pre></td></tr></table></figure>
 <p>subprocess模块提供两种方法来创建新的进程：</p>
 <ul>
@@ -165,38 +168,42 @@
 <blockquote>
 <p>使用<code>run()</code>方法创建新进程可以满足绝大多数需求，但<code>Popen（）</code>类提供比<code>run()</code>更高级更灵活的用法。</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="0x01-subprocess-Popen"><a href="#0x01-subprocess-Popen" class="headerlink" title="0x01 subprocess.Popen()"></a>0x01 subprocess.Popen()</h3><blockquote>
-<p>产生一个子进程执行程序：</p>
+<h3 id="0x01-subprocess-Popen"><a href="#0x01-subprocess-Popen" class="headerlink" title="0x01 subprocess.Popen()"></a>0x01 subprocess.Popen()</h3><p>产生一个子进程执行程序：</p>
+<blockquote>
 <ul>
 <li>对于 POSIX 系统, 该类调用<code>os.execvp()</code>函数来创建子进程。</li>
 <li>对于 Windows 系统,该类调用Windows API函数 <code>CreateProcess()</code> 来创建子进程。</li>
 </ul>
 </blockquote>
-<p><strong>Popen类的构造方法：</strong></p>
+<p>Popen类的构造方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, args, bufsize=<span class="number">-1</span>, executable=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 stdin=None, stdout=None, stderr=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 preexec_fn=None, close_fds=_PLATFORM_DEFAULT_CLOSE_FDS,</span></span></span><br><span class="line"><span class="function"><span class="params">                 shell=False, cwd=None, env=None, universal_newlines=False,</span></span></span><br><span class="line"><span class="function"><span class="params">                 startupinfo=None, creationflags=<span class="number">0</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 restore_signals=True, start_new_session=False,</span></span></span><br><span class="line"><span class="function"><span class="params">                 pass_fds=<span class="params">()</span>, *, encoding=None, errors=None)</span>:</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><strong>args</strong>：该参数要求是一个序列类型（list、tuple…）或字符串（str）。</li>
-</ul>
+<li><p><strong>args</strong>：该参数要求是一个序列类型（list、tuple…）或字符串（str）。</p>
 <blockquote>
-<p>如果<strong>args</strong>是一个序列，那么序列的第一个元素被作为程序名（路径），之后的作为参数。</p>
-<p>在Windows上时，如果<strong>args</strong>是一个序列，会被转换为字符串。</p>
-</blockquote>
 <ul>
-<li><strong>shell</strong>：为<code>True</code>时，使用系统shell执行<strong>args</strong>指定的程序，默认是<code>False</code>。</li>
+<li>如果<strong>args</strong>是一个序列，那么序列的第一个元素被作为程序名（路径），之后的作为参数。</li>
+<li>在Windows上时，如果<strong>args</strong>是一个序列，会被转换为字符串。</li>
 </ul>
-<blockquote>
-<p>On POSIX with <code>shell=True</code>, the shell defaults to <code>/bin/sh</code>.</p>
-<p>对于Windows，你只有在需要执行内置DOS命令时（例如，<code>dir</code>、<code>ipconfig</code>…），才使用<code>shell=True</code>。运行批处理文件（.bat）或可执行文件时没有必要将<code>shell</code>参数设为<code>True</code>。</p>
 </blockquote>
+</li>
+<li><p><strong>shell</strong>：为<code>True</code>时，使用系统shell执行<strong>args</strong>指定的程序，默认是<code>False</code>。</p>
+<blockquote>
 <ul>
-<li><strong>stdin、stdout、stderr</strong>： 指定执行程序的标准输入、标准输出、标准错误输出的文件句柄。</li>
+<li>On POSIX with <code>shell=True</code>, the shell defaults to <code>/bin/sh</code>.</li>
+<li>对于Windows，你只有在需要执行内置DOS命令时（例如，<code>dir</code>、<code>ipconfig</code>…），才使用<code>shell=True</code>。运行批处理文件（.bat）或可执行文件时没有必要将<code>shell</code>参数设为<code>True</code>。</li>
 </ul>
-<blockquote>
-<p>若不指定则默认都为<code>None</code>，表示不进行重定向，那么子进程会从父进程继承文件句柄。</p>
-<p>若指定了，即进行重定向。有效值可以为<code>subprocess.PIPE</code>、<code>subprocess.DEVNULL</code>、现有文件描述符（正整数）、现有文件对象（open()函数返回的对象）和<code>None</code>。 </p>
-<p>另外，<em>stderr</em>可以是 <code>subprocess.STDOUT</code>，表示应用程序的标准错误输出的文件句柄与标准输出的文件句柄相同。（相当于<code>2&gt;&amp;1</code>）</p>
 </blockquote>
+</li>
+<li><p><strong>stdin、stdout、stderr</strong>： 指定执行程序的标准输入、标准输出、标准错误输出的文件句柄。</p>
+<blockquote>
+<ul>
+<li>若不指定则默认都为<code>None</code>，表示不进行重定向，那么子进程会从父进程继承文件句柄。</li>
+<li>若指定了，即进行重定向。有效值可以为<code>subprocess.PIPE</code>、<code>subprocess.DEVNULL</code>、现有文件描述符（正整数）、现有文件对象（open()函数返回的对象）和<code>None</code>。 </li>
+<li>另外，<em>stderr</em>可以是 <code>subprocess.STDOUT</code>，表示应用程序的标准错误输出的文件句柄与标准输出的文件句柄相同。（相当于<code>2&gt;&amp;1</code>）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411201111.png" alt></p>
 <ul>
 <li><strong>cwd</strong>：如果<em>cwd</em>不是<code>None</code>，则在执行子进程程序之前先将工作目录更改为 <em>cwd</em>。</li>
@@ -205,49 +212,58 @@
 <p><img src="/2019/04/11/03python模块之subprocess/QQ截图20190411202330.png" alt></p>
 <p><strong>Popen类的实例有如下方法：</strong></p>
 <ul>
-<li><code>Popen.poll（）</code>：检查子进程是否已终止。</li>
-<li><code>Popen.wait(timeout=None)</code>：挂起等待子进程结束，若设置了<em>timeout</em>参数，超时但进程还未结束则抛出<code>TimeoutExpired</code>异常。</li>
-<li><code>Popen.communicate(input=None, timeout=None)</code>：与子进程进行交互，发送数据到标准输入、从标准输出或标准错误输出读取数据直到遇到EOF（end-of-file）。</li>
-</ul>
+<li><p><code>Popen.poll（）</code>：检查子进程是否已终止。</p>
+</li>
+<li><p><code>Popen.wait(timeout=None)</code>：挂起等待子进程结束，若设置了<em>timeout</em>参数，超时但进程还未结束则抛出<code>TimeoutExpired</code>异常。</p>
+</li>
+<li><p><code>Popen.communicate(input=None, timeout=None)</code>：与子进程进行交互，发送数据到标准输入、从标准输出或标准错误输出读取数据直到遇到EOF（end-of-file）。</p>
 <blockquote>
-<p><code>communicate()</code>函数返回值为元组 (stdout_data, stderr_data)。</p>
-<p>要使用该方法向子进程标准输入写入数据或读取标准输出和标准错误输出的数据，在实例化Popen类时，要指定<code>stdin=PIPE</code>、<code>stdout=PIPE</code>、<code>stderr=PIPE</code>。</p>
-</blockquote>
 <ul>
-<li><code>Popen.send_signal(signal)</code>：发送信号到子进程。</li>
-<li><code>Popen.terminate()</code>：终止子进程。</li>
+<li><code>communicate()</code>函数返回值为元组 (stdout_data, stderr_data)。</li>
+<li>要使用该方法向子进程标准输入写入数据或读取标准输出和标准错误输出的数据，在实例化Popen类时，要指定<code>stdin=PIPE</code>、<code>stdout=PIPE</code>、<code>stderr=PIPE</code>。</li>
 </ul>
-<blockquote>
-<p>On Posix OSs the method sends SIGTERM to the child. </p>
-<p>On Windows the Win32 API function <code>TerminateProcess()</code> is called to stop the child.</p>
 </blockquote>
+</li>
+<li><p><code>Popen.send_signal(signal)</code>：发送信号到子进程。</p>
+</li>
+<li><p><code>Popen.terminate()</code>：终止子进程。</p>
+<blockquote>
 <ul>
-<li><code>Popen.kill()</code></li>
+<li>On Posix OSs the method sends SIGTERM to the child. </li>
+<li>On Windows the Win32 API function <code>TerminateProcess()</code> is called to stop the child.</li>
 </ul>
-<blockquote>
-<p>Kills the child. On Posix OSs the function sends SIGKILL to the child. On Windows <code>kill()</code>is an alias for <code>terminate()</code>.</p>
 </blockquote>
+</li>
+<li><p><code>Popen.kill()</code></p>
+<blockquote>
+<ul>
+<li>Kills the child. On Posix OSs the function sends SIGKILL to the child. On Windows <code>kill()</code>is an alias for <code>terminate()</code>.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <p><strong>Popen类的实例的属性：</strong></p>
 <ul>
 <li><code>Popen.args</code>：获取<em>args</em>参数的值，是一个<code>list</code>或<code>str</code>。</li>
 <li><code>Popen.stdin</code>：</li>
 </ul>
 <blockquote>
-<p>如果实例化时，<em>stdin</em>参数是<code>PIPE</code>, 该属性会返回<code>open()</code>函数返回的可写的文件对象，该文件对象链接着子程序的标准输入。</p>
 <ul>
+<li>如果实例化时，<em>stdin</em>参数是<code>PIPE</code>, 该属性会返回<code>open()</code>函数返回的可写的文件对象，该文件对象链接着子程序的标准输入。<ul>
 <li>如果指定了<em>encoding</em>或<em>errors</em>参数或者<em>universal_newlines</em>参数为<code>True</code>, 文件流为文本（str）流, 否则为字节（byte）流。</li>
 </ul>
-<p>如果实例化时，<em>stdin</em>参数不是<code>PIPE</code>, 该属性返回 <code>None</code>。</p>
+</li>
+<li>如果实例化时，<em>stdin</em>参数不是<code>PIPE</code>, 该属性返回 <code>None</code>。</li>
+</ul>
 </blockquote>
 <ul>
 <li><code>Popen.stdout</code>：</li>
 </ul>
 <blockquote>
-<p>如果实例化时，<em>stdout</em>参数是<code>PIPE</code>, 该属性会返回<code>open()</code>函数返回的可读的文件对象，该文件对象链接着子程序的标准输出，读取该文件对象可以获得子程序的标准输出。</p>
 <ul>
-<li>如果指定了<em>encoding</em>或<em>errors</em>参数或者<em>universal_newlines</em>参数为<code>True</code>, 文件流为文本（str）流, 否则为字节（byte）流。</li>
+<li>如果实例化时，<em>stdout</em>参数是<code>PIPE</code>, 该属性会返回<code>open()</code>函数返回的可读的文件对象，该文件对象链接着子程序的标准输出，读取该文件对象可以获得子程序的标准输出。</li>
+<li>如果指定了<em>encoding</em>或<em>errors</em>参数或者<em>universal_newlines</em>参数为<code>True</code>, 文件流为文本（str）流, 否则为字节（byte）流。如果实例化时，<em>stdout</em>参数不是<code>PIPE</code>, 该属性返回 <code>None</code>。</li>
 </ul>
-<p>如果实例化时，<em>stdout</em>参数不是<code>PIPE</code>, 该属性返回 <code>None</code>。</p>
 </blockquote>
 <ul>
 <li><code>Popen.stderr</code>：同上，但是读取的是子进程的标准错误输出。</li>
@@ -293,7 +309,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月12日 00:03</p>
+        <p>最后更新： 2019年05月21日 09:52</p>
         <p>原始链接： <a class="post-url" href="/2019/04/11/03python模块之subprocess/" title="Python模块 Chapter 3：subprocess">https://sakuxa.com/2019/04/11/03python模块之subprocess/</a></p>
         <footer>
             <a href="https://sakuxa.com">
@@ -320,7 +336,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/04/11/03python模块之subprocess/&title=《Python模块 Chapter 3：subprocess》 — IT技术学习分享自留地&pic=https://sakuxa.comimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/04/11/03python模块之subprocess/&title=《Python模块 Chapter 3：subprocess》 — 黑客技术学习分享自留地&pic=images/timg3.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -330,7 +346,8 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/11/03python模块之subprocess/&title=《Python模块 Chapter 3：subprocess》 — IT技术学习分享自留地&source=0x00 概述subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pip..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/11/03python模块之subprocess/&title=《Python模块 Chapter 3：subprocess》 — 黑客技术学习分享自留地&source=
+subprocess模块允许你创建一个新的进程，新建进程是当前程序的子进程。可以连接到新建进程的input/output/error pipes, 并且..." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -340,7 +357,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python模块 Chapter 3：subprocess》 — IT技术学习分享自留地&url=https://sakuxa.com/2019/04/11/03python模块之subprocess/&via=https://sakuxa.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python模块 Chapter 3：subprocess》 — 黑客技术学习分享自留地&url=https://sakuxa.com/2019/04/11/03python模块之subprocess/&via=https://sakuxa.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -367,9 +384,9 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/Language/" class="color4">Language</a>
-      
     <a href="/tags/Python模块/" class="color4">Python模块</a>
+      
+    <a href="/tags/subprocess/" class="color1">subprocess</a>
       
   </li>
 
@@ -394,14 +411,14 @@
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          Ubuntu 18.04之Gnome美化
+          打造我的Ubuntu 18.04
         
       </span>
     </a>
   
   
     <a href="/2019/04/09/02python模块之re/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Python模块 Chapter 2：RE</span>
+      <span class="article-nav-title">Python模块 Chapter 2：re</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -466,7 +483,7 @@
             <a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -499,7 +516,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
 </div>

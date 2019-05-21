@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Python模块 Chapter 2：RE | IT技术学习分享自留地</title>
+  <title>Python模块 Chapter 2：re | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="MinHow's Blog">
   
-  <meta name="description" content="0x00 规则123456789101112131415161718192021222324252627.      元字符.表示匹配任何字符，除\n之外。*      表示匹配前面的字符或分组0次或多次。+      表示匹配前面的字符或分组1次或多次。？     表示匹配前面的字符或分组0次或1次。 &amp;#123;x&amp;#125;    表示匹配前面的字符或分组x次。&amp;#123;x,y&amp;#125;">
-<meta name="keywords" content="Language,Python模块">
+  <meta name="description" content="是   re是python下内置的正则匹配模块。">
+<meta name="keywords" content="Python模块,Re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python模块 Chapter 2：RE">
+<meta property="og:title" content="Python模块 Chapter 2：re">
 <meta property="og:url" content="https://sakuxa.com/2019/04/09/02python模块之re/index.html">
-<meta property="og:site_name" content="IT技术学习分享自留地">
-<meta property="og:description" content="0x00 规则123456789101112131415161718192021222324252627.      元字符.表示匹配任何字符，除\n之外。*      表示匹配前面的字符或分组0次或多次。+      表示匹配前面的字符或分组1次或多次。？     表示匹配前面的字符或分组0次或1次。 &amp;#123;x&amp;#125;    表示匹配前面的字符或分组x次。&amp;#123;x,y&amp;#125;">
+<meta property="og:site_name" content="黑客技术学习分享自留地">
+<meta property="og:description" content="是   re是python下内置的正则匹配模块。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/04/09/02python模块之re/QQ截图20190409170216.png">
-<meta property="og:updated_time" content="2019-04-09T12:45:00.262Z">
+<meta property="og:updated_time" content="2019-05-21T02:02:26.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python模块 Chapter 2：RE">
-<meta name="twitter:description" content="0x00 规则123456789101112131415161718192021222324252627.      元字符.表示匹配任何字符，除\n之外。*      表示匹配前面的字符或分组0次或多次。+      表示匹配前面的字符或分组1次或多次。？     表示匹配前面的字符或分组0次或1次。 &amp;#123;x&amp;#125;    表示匹配前面的字符或分组x次。&amp;#123;x,y&amp;#125;">
+<meta name="twitter:title" content="Python模块 Chapter 2：re">
+<meta name="twitter:description" content="是   re是python下内置的正则匹配模块。">
 <meta name="twitter:image" content="https://sakuxa.com/2019/04/09/02python模块之re/QQ截图20190409170216.png">
   
   
@@ -119,7 +119,7 @@
         
   
     <h1 class="post-title" itemprop="name">
-      Python模块 Chapter 2：RE
+      Python模块 Chapter 2：re
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -148,55 +148,76 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="0x00-规则"><a href="#0x00-规则" class="headerlink" title="0x00 规则"></a>0x00 规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.      元字符.表示匹配任何字符，除\n之外。</span><br><span class="line">*      表示匹配前面的字符或分组0次或多次。</span><br><span class="line">+      表示匹配前面的字符或分组1次或多次。</span><br><span class="line">？     表示匹配前面的字符或分组0次或1次。 </span><br><span class="line">&#123;x&#125;    表示匹配前面的字符或分组x次。</span><br><span class="line">&#123;x,y&#125;  表示匹配前面的字符或分组x次至y次之间。</span><br><span class="line"></span><br><span class="line">^      表示匹配开始为^之后的。\A同样作用。</span><br><span class="line">$      表示匹配结束为$之前的。\Z同样作用</span><br><span class="line"></span><br><span class="line">[abcd] 表示匹配其中的任意之一。</span><br><span class="line">[1-9]  表示匹配1-9范围内的任意之一，也可以用[A-Z]、[a-z]、[0-9a-zA-Z]。</span><br><span class="line">[^abc] 脱字符出现在[]中意义为‘非’，即不匹配其中的任何一个。也可用于范围[^1-9]、[^a-z]</span><br><span class="line"></span><br><span class="line">  \d   表示匹配任何一个十进制数字。与[0-9]等同。</span><br><span class="line">  \D   表示匹配任何一个非十进制数字。与[^0-9]等同。</span><br><span class="line"></span><br><span class="line">  \w   表示匹配任何一个十进制数字和字母。与[0-9a-zA-Z]等同。</span><br><span class="line">  \W   表示匹配任何一个除十进制数字和字母。与\w相反</span><br><span class="line"></span><br><span class="line">  \s   表示匹配任何一个空格字符。与[\n\t\r\v\f]等同。</span><br><span class="line">  \S   表示与\s相反。与[^\n\t\r\v\f]等同。</span><br><span class="line"></span><br><span class="line">  \b   表示匹配任何单词边界。边界即空白或非字母数字字符</span><br><span class="line">  \B   表示与\b相反。</span><br><span class="line"></span><br><span class="line">  |    表示‘或’，匹配其中之一。</span><br></pre></td></tr></table></figure>
+            <blockquote>
+<p>是</p>
+</blockquote>
+<blockquote>
+<p><code>re</code>是python下内置的正则匹配模块。</p>
+</blockquote>
 <a id="more"></a>
+<h3 id="0x00-规则"><a href="#0x00-规则" class="headerlink" title="0x00 规则"></a>0x00 规则</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">.      元字符.表示匹配任何字符，除\n之外。</span><br><span class="line">*      表示匹配前面的字符或分组0次或多次。</span><br><span class="line">+      表示匹配前面的字符或分组1次或多次。</span><br><span class="line">？     表示匹配前面的字符或分组0次或1次。 </span><br><span class="line">&#123;x&#125;    表示匹配前面的字符或分组x次。</span><br><span class="line">&#123;x,y&#125;  表示匹配前面的字符或分组x次至y次之间。</span><br><span class="line"></span><br><span class="line">^      表示匹配开始为^之后的。\A同样作用。</span><br><span class="line">$      表示匹配结束为$之前的。\Z同样作用</span><br><span class="line"></span><br><span class="line">[abcd] 表示匹配其中的任意之一。</span><br><span class="line">[1-9]  表示匹配1-9范围内的任意之一，也可以用[A-Z]、[a-z]、[0-9a-zA-Z]。</span><br><span class="line">[^abc] 脱字符出现在[]中意义为‘非’，即不匹配其中的任何一个。也可用于范围[^1-9]、[^a-z]</span><br><span class="line"></span><br><span class="line">  \d   表示匹配任何一个十进制数字。与[0-9]等同。</span><br><span class="line">  \D   表示匹配任何一个非十进制数字。与[^0-9]等同。</span><br><span class="line"></span><br><span class="line">  \w   表示匹配任何一个十进制数字和字母。与[0-9a-zA-Z]等同。</span><br><span class="line">  \W   表示匹配任何一个除十进制数字和字母。与\w相反</span><br><span class="line"></span><br><span class="line">  \s   表示匹配任何一个空格字符。与[\n\t\r\v\f]等同。</span><br><span class="line">  \S   表示与\s相反。与[^\n\t\r\v\f]等同。</span><br><span class="line"></span><br><span class="line">  \b   表示匹配任何单词边界。边界即空白或非字母数字字符</span><br><span class="line">  \B   表示与\b相反。</span><br><span class="line"></span><br><span class="line">  |    表示‘或’，匹配其中之一。</span><br></pre></td></tr></table></figure>
+<!-- more -->
 <h3 id="0x01-转义"><a href="#0x01-转义" class="headerlink" title="0x01 转义"></a>0x01 转义</h3><p>RE使用\来进行转义，而Python也使用\来进行转义，因此要进行双重的转义。<br>例如对<code>\</code>进行转义：</p>
 <blockquote>
-<p>首先RE先进行转义:<code>\\</code><br>然后Python也要对RE的两个<code>\\</code>转义：<code>\\\\</code></p>
+<ul>
+<li>首先RE先进行转义:<code>\\</code></li>
+<li>然后Python也要对RE的两个<code>\\</code>转义：<code>\\\\</code></li>
+</ul>
 </blockquote>
 <p>也可以在字符串前面加<code>r</code>表示这是个Raw字符串。</p>
 <h3 id="0x02-RE全局方法"><a href="#0x02-RE全局方法" class="headerlink" title="0x02 RE全局方法"></a>0x02 RE全局方法</h3><ul>
-<li><strong><code>re.match(pattern，string，flag=)</code></strong></li>
-</ul>
+<li><p><strong><code>re.match(pattern，string，flag=)</code></strong></p>
 <blockquote>
-<p>匹配从<strong><em>字符串开始</em></strong>就符合正则模式的字符串。</p>
-<p>匹配则返回<strong><em>匹配对象</em></strong>，否则返回none。</p>
-</blockquote>
 <ul>
-<li><strong><code>re.search(pattern，string，flag=)</code></strong></li>
+<li>匹配从<strong><em>字符串开始</em></strong>就符合正则模式的字符串。</li>
+<li>匹配则返回<strong><em>匹配对象</em></strong>，否则返回none。</li>
 </ul>
-<blockquote>
-<p>匹配第一个符合正则模式的字符串，即只匹配一次。</p>
-<p>匹配则返回<strong><em>匹配对象</em></strong>，否则返回none。</p>
 </blockquote>
+</li>
+<li><p><strong><code>re.search(pattern，string，flag=)</code></strong></p>
+<blockquote>
 <ul>
-<li><strong><code>findall(pattern，string，flag=)</code></strong></li>
+<li>匹配第一个符合正则模式的字符串，即只匹配一次。</li>
+<li>匹配则返回<strong><em>匹配对象</em></strong>，否则返回none。</li>
 </ul>
-<blockquote>
-<p>将字符串中所有匹配的部分作为元素放入一个<strong><em>列表</em></strong>并返回。</p>
 </blockquote>
+</li>
+<li><p><strong><code>findall(pattern，string，flag=)</code></strong></p>
+<blockquote>
 <ul>
-<li><strong><code>finditer(pattern，string，flag=)</code></strong></li>
+<li>将字符串中所有匹配的部分作为元素放入一个<strong><em>列表</em></strong>并返回。</li>
 </ul>
-<blockquote>
-<p>与上面一个不同的是，将每次匹配得到的匹配对象放入一个迭代器中，最后返回一个<strong><em>迭代器</em></strong>，而不是列表。</p>
-<p>遍历迭代器时，每次返回一个<strong><em>匹配对象</em></strong>。</p>
 </blockquote>
+</li>
+<li><p><strong><code>finditer(pattern，string，flag=)</code></strong></p>
+<blockquote>
 <ul>
-<li><strong><code>sub（pattern，repl，string，count=）</code></strong></li>
-<li><strong><code>subn（pattern，repl，string，count=）</code></strong></li>
+<li>与上面一个不同的是，将每次匹配得到的匹配对象放入一个迭代器中，最后返回一个<strong><em>迭代器</em></strong>，而不是列表。</li>
+<li>遍历迭代器时，每次返回一个<strong><em>匹配对象</em></strong>。</li>
 </ul>
-<blockquote>
-<p>匹配模式的字符串部分用<code>repl</code>字符串替代，<code>count</code>指明次数，缺省替换匹配的所有。<br><code>subn</code>与<code>sub</code>区别在于，<code>subn</code>会返回新字符串及替换次数。</p>
 </blockquote>
+</li>
+<li><p><strong><code>sub（pattern，repl，string，count=）</code></strong></p>
+</li>
+<li><p><strong><code>subn（pattern，repl，string，count=）</code></strong></p>
+<blockquote>
 <ul>
-<li><strong><code>re.split(pattern，string，max=)</code></strong>：用模式匹配的字符串作为分隔符，分割后返回的是一个列表。max表示最多分割的次数</li>
-<li><strong><code>re.compile(pattern)</code></strong>：对模式进行编译，之后直接使用编译好的模式对象作为模式，对复杂任务效率更高。</li>
+<li>匹配模式的字符串部分用<code>repl</code>字符串替代，<code>count</code>指明次数，缺省替换匹配的所有。</li>
+<li><code>subn</code>与<code>sub</code>区别在于，<code>subn</code>会返回新字符串及替换次数。</li>
 </ul>
-<blockquote>
-<p>可以用<code>re.compile()</code>函数对正则模式字符串进行编译，并返回一个模式类对象：<code>&lt;class &#39;re.Pattern&#39;&gt;</code></p>
-<p>模式类对象自己有<code>match()</code>、<code>search()</code>、<code>findall()</code>、<code>finditer()</code>方法，方法使用与前面的全局方法一样。</p>
 </blockquote>
+</li>
+<li><p><strong><code>re.split(pattern，string，max=)</code></strong>：用模式匹配的字符串作为分隔符，分割后返回的是一个列表。max表示最多分割的次数</p>
+</li>
+<li><p><strong><code>re.compile(pattern)</code></strong>：对模式进行编译，之后直接使用编译好的模式对象作为模式，对复杂任务效率更高。</p>
+<blockquote>
+<ul>
+<li>可以用<code>re.compile()</code>函数对正则模式字符串进行编译，并返回一个模式类对象：<code>&lt;class &#39;re.Pattern&#39;&gt;</code></li>
+<li>模式类对象自己有<code>match()</code>、<code>search()</code>、<code>findall()</code>、<code>finditer()</code>方法，方法使用与前面的全局方法一样。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <p><strong>上面的方法返回的匹配对象有如下方法：</strong></p>
 <ul>
 <li><strong><code>group()</code></strong>：返回匹配字符串。（其实默认传入0参数，意义为查看子组0）</li>
@@ -208,43 +229,60 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">re.ASCII             #\w、\s等转义字符只匹配ASCII符，仅对Unicode有效。</span><br><span class="line">re.DOTALL/re.S       #.可以匹配全部字符，包括换行符。</span><br><span class="line">re.IGNORECASE/re.I   #匹配时不区分大小写。</span><br><span class="line">re.MULTILINE/re.M    #^$将不止匹配字符串开头和结尾，还匹配每行的行首和行尾。</span><br><span class="line">re.VERBOSE/re.X      #模式的非转义字符的空格将会被忽略，可以用#进行注释。</span><br></pre></td></tr></table></figure>
 <h3 id="0x04-分组"><a href="#0x04-分组" class="headerlink" title="0x04 分组"></a>0x04 分组</h3><p><strong>分组的作用</strong>：    </p>
 <blockquote>
-<p>方面一： 跟数学上的一样，被括号括起来后，方便使用*、+、?、{}进行操作。<br>方面二： 可以对匹配字符串进行再操作、再匹配。</p>
+<ul>
+<li>方面一： 跟数学上的一样，被括号括起来后，方便使用*、+、?、{}进行操作。</li>
+<li>方面二： 可以对匹配字符串进行再操作、再匹配。</li>
+</ul>
 </blockquote>
 <p><strong>原理</strong>：</p>
 <blockquote>
-<p>首先，分组的作用只具有数学上的，将正则模式去匹配字符串，得到匹配字符串，并放入子组0中。<br>然后，再将每个分组作为模式去匹配第一次得到匹配字符串，得到的结果依次放入子组1,2,3….<br>有多少对括号就有多少个子组，子组号按从左到右的’(‘统计。</p>
+<ul>
+<li>首先，分组的作用只具有数学上的，将正则模式去匹配字符串，得到匹配字符串，并放入子组0中。</li>
+<li>然后，再将每个分组作为模式去匹配第一次得到匹配字符串，得到的结果依次放入子组1,2,3….<br>有多少对括号就有多少个子组，子组号按从左到右的’(‘统计。</li>
+</ul>
 </blockquote>
 <p><strong>group()与groups()</strong></p>
 <blockquote>
 <p>他们都是匹配对象的方法。</p>
 </blockquote>
 <ul>
-<li>group():用于获取指定子组里的匹配字符串。</li>
-</ul>
+<li><p>group():用于获取指定子组里的匹配字符串。</p>
 <blockquote>
-<p>正则模式匹配的匹配字符串放入子组0，且0是该方法的默认参数。<br>分组匹配的匹配字符串依次放入1，2，3…..子组<br>可以传入子组号查看指定子组的内容，且可以一次传入多个子组号，顺序也不要求。        </p>
-</blockquote>
 <ul>
-<li>groups():用于获取所有分组的匹配字符串，结果返回一个元组。</li>
+<li>正则模式匹配的匹配字符串放入子组0，且0是该方法的默认参数。</li>
+<li>分组匹配的匹配字符串依次放入1，2，3…..子组</li>
+<li>可以传入子组号查看指定子组的内容，且可以一次传入多个子组号，顺序也不要求。        </li>
 </ul>
-<blockquote>
-<p>只包含分组的匹配字符串，不包含正则模式匹配的匹配字符串。</p>
 </blockquote>
+</li>
+<li><p>groups():用于获取所有分组的匹配字符串，结果返回一个元组。</p>
+<blockquote>
+<ul>
+<li>只包含分组的匹配字符串，不包含正则模式匹配的匹配字符串。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <p>若使用了<code>findall()</code>方法，返回的将不是匹配对象，而是列表对象。如果也使用了分组，那返回的列表的每个元素是分组匹配的，而不包含正则模式匹配的。</p>
 <p><strong>其他</strong>：</p>
 <ul>
-<li>反向引用，在模式中可以用“[子组号]”来引用前面匹配成功的子组的匹配字符串。</li>
-<li>非捕获组：即让分组仅具有数学上意义，而不会再去匹配匹配字符串。</li>
-</ul>
+<li><p>反向引用，在模式中可以用“[子组号]”来引用前面匹配成功的子组的匹配字符串。</p>
+</li>
+<li><p>非捕获组：即让分组仅具有数学上意义，而不会再去匹配匹配字符串。</p>
 <blockquote>
-<p>通过在子组()中的最前面加：<code>?：</code> （如: <code>a(?:\d)+b</code> #<code>\d</code>将不会再作为模式去匹配）</p>
-</blockquote>
 <ul>
-<li>命名分组：可以给分组进行命名。</li>
+<li>通过在子组()中的最前面加：<code>?：</code> （如: <code>a(?:\d)+b</code> #<code>\d</code>将不会再作为模式去匹配）</li>
 </ul>
-<blockquote>
-<p>通过在子组()中的最前面加：<code>?P&lt;[name]&gt;</code> （如：<code>a(?P&lt;fz1&gt;\d)+b</code>）<br>命名后，group()方法可以通过名字也可以通过子组号。</p>
 </blockquote>
+</li>
+<li><p>命名分组：可以给分组进行命名。</p>
+<blockquote>
+<ul>
+<li>通过在子组()中的最前面加：<code>?P&lt;[name]&gt;</code> （如：<code>a(?P&lt;fz1&gt;\d)+b</code>）命名后，group()方法可以通过名字也可以通过子组号。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <p><strong>断言</strong>：</p>
 <ul>
 <li>前向肯定断言：如果此分组在此处匹配成功则成功，否则失败。<code>(?=...)</code> #<code>...</code>处是分组正则模式。</li>
@@ -267,8 +305,8 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月09日 20:45</p>
-        <p>原始链接： <a class="post-url" href="/2019/04/09/02python模块之re/" title="Python模块 Chapter 2：RE">https://sakuxa.com/2019/04/09/02python模块之re/</a></p>
+        <p>最后更新： 2019年05月21日 10:02</p>
+        <p>原始链接： <a class="post-url" href="/2019/04/09/02python模块之re/" title="Python模块 Chapter 2：re">https://sakuxa.com/2019/04/09/02python模块之re/</a></p>
         <footer>
             <a href="https://sakuxa.com">
                 <img src="/images/logo.png" alt="sh4douu">
@@ -294,7 +332,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/04/09/02python模块之re/&title=《Python模块 Chapter 2：RE》 — IT技术学习分享自留地&pic=https://sakuxa.comimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/04/09/02python模块之re/&title=《Python模块 Chapter 2：re》 — 黑客技术学习分享自留地&pic=images/timg3.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -304,7 +342,12 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/09/02python模块之re/&title=《Python模块 Chapter 2：RE》 — IT技术学习分享自留地&source=0x00 规则123456789101112131415161718192021222324252627.      元字符.表示匹配任何字符，除\n之外..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/09/02python模块之re/&title=《Python模块 Chapter 2：re》 — 黑客技术学习分享自留地&source=
+是
+
+
+re是python下内置的正则匹配模块。
+" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -314,7 +357,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python模块 Chapter 2：RE》 — IT技术学习分享自留地&url=https://sakuxa.com/2019/04/09/02python模块之re/&via=https://sakuxa.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python模块 Chapter 2：re》 — 黑客技术学习分享自留地&url=https://sakuxa.com/2019/04/09/02python模块之re/&via=https://sakuxa.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -341,9 +384,9 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/Language/" class="color4">Language</a>
-      
     <a href="/tags/Python模块/" class="color4">Python模块</a>
+      
+    <a href="/tags/Re/" class="color3">Re</a>
       
   </li>
 
@@ -440,7 +483,7 @@
             <a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -473,7 +516,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/Gnome/" style="font-size: 10px;">Gnome</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
 </div>
