@@ -8,23 +8,22 @@
   
     <meta name="keywords" content="MinHow's Blog">
   
-  <meta name="description" content="0x00 Kerberos Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
+  <meta name="description" content="Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
 <meta name="keywords" content="Kerberos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows认证之Kerberos">
 <meta property="og:url" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/index.html">
 <meta property="og:site_name" content="黑客技术学习分享自留地">
-<meta property="og:description" content="0x00 Kerberos Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
+<meta property="og:description" content="Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/cerberus.jpg">
 <meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/1070321-20180417175541960-360210611.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403201648.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403202909.png">
-<meta property="og:updated_time" content="2019-04-05T01:29:48.794Z">
+<meta property="og:updated_time" content="2019-05-21T02:23:00.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows认证之Kerberos">
-<meta name="twitter:description" content="0x00 Kerberos Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
-<meta name="twitter:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/cerberus.jpg">
+<meta name="twitter:description" content="Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。 Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。 Windows的AD域环境使用Kerberos来进行验证。">
+<meta name="twitter:image" content="https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/1070321-20180417175541960-360210611.png">
   
   
     <link rel="icon" href="/LimeWire.png">
@@ -151,23 +150,26 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="0x00-Kerberos"><a href="#0x00-Kerberos" class="headerlink" title="0x00 Kerberos"></a>0x00 Kerberos</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/cerberus.jpg" alt></p>
+            <blockquote>
 <p>Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Client、Server、KDC。</p>
 <p>Kerberos是一种网络认证协议，它允许某实体在非安全网络环境下，向另一个实体以一种安全的方式证明自己的身份。</p>
 <p>Windows的AD域环境使用Kerberos来进行验证。</p>
+</blockquote>
 <a id="more"></a>
-<h3 id="0x01-Long-term-Key与Short-term-Key"><a href="#0x01-Long-term-Key与Short-term-Key" class="headerlink" title="0x01 Long-term Key与Short-term Key"></a>0x01 Long-term Key与Short-term Key</h3><p>在 Security 领域中，有的密钥可能长期保持不变，比如你的密码，可能几年都不曾改变，这样的 Key 被称为 <code>Long-term Key</code>。</p>
+<h3 id="0x00-Long-term-Key与Short-term-Key"><a href="#0x00-Long-term-Key与Short-term-Key" class="headerlink" title="0x00 Long-term Key与Short-term Key"></a>0x00 Long-term Key与Short-term Key</h3><p>在 Security 领域中，有的密钥可能长期保持不变，比如你的密码，可能几年都不曾改变，这样的 Key 被称为 <code>Long-term Key</code>。</p>
 <p>使用<code>Long-term Key</code>应该有以下原则：</p>
 <blockquote>
-<p>1.被<code>Long-term Key</code>加密的数据包不应在网络中传输，或者说不要用<code>Long-term Key</code>加密数据包。原因在于如果加密的数据包被攻击者抓包截取，那么只要时间充足，密钥被爆破出来的风险是很大的。</p>
-<p>2.<code>Long-term Key</code>不应该使用明文方式存储，好的方法是用摘要算法计算其Hash值，从而保存Hash值。因为我们知道Hash算法是不可逆的，且不同输入计算出来的Hash是不同的，因此理论上拥有Hash值是不可能逆向破解获得明文Key，除非进行Hash碰撞，即对Hash算法尝试不同的输入，然后将算法输出Hash值与我们要破解的Hash值对比，本质是暴力破解。</p>
+<ul>
+<li>1.被<code>Long-term Key</code>加密的数据包不应在网络中传输，或者说不要用<code>Long-term Key</code>加密数据包。原因在于如果加密的数据包被攻击者抓包截取，那么只要时间充足，密钥被爆破出来的风险是很大的。</li>
+<li>2.<code>Long-term Key</code>不应该使用明文方式存储，好的方法是用摘要算法计算其Hash值，从而保存Hash值。因为我们知道Hash算法是不可逆的，且不同输入计算出来的Hash是不同的，因此理论上拥有Hash值是不可能逆向破解获得明文Key，除非进行Hash碰撞，即对Hash算法尝试不同的输入，然后将算法输出Hash值与我们要破解的Hash值对比，本质是暴力破解。</li>
+</ul>
 </blockquote>
 <p>我们一般会使用 <code>Short-term Key</code> 来加密需要进行网络传输的数据。顾名思义，这种 Key 只在短时间内有效，因此即使被加密的数据包被黑客截获，等他把 Key 计算出来的时候，这个 Key 也早就已经失效了。</p>
 <p>由此我们也引出一个问题：</p>
 <p>我们知道加密通信数据应该使用<code>Short-term Key</code>，但是<code>Short-term Key</code>作为一个短期有效的密钥，其管理分发是一个问题，即通信双方该如何即安全又便捷的协商出一个只有双方知道的<code>Short-term Key</code>呢？</p>
 <p>Kerberos认证的第一阶段和第二阶段其实就是协商出通信所需的<code>Short-term Key</code>的过程。</p>
 <p>在Kerberos认证中，<code>Short-term Ke</code>被称为<code>Session Key</code>。而Windows用户的密码就是我们前面说的<code>Long-term Key</code>，它以<code>NTLM Hash</code>方式存储在服务器中。</p>
-<h3 id="0x02-KDC-Key-Distribution-Center"><a href="#0x02-KDC-Key-Distribution-Center" class="headerlink" title="0x02 KDC(Key Distribution Center)"></a>0x02 KDC(Key Distribution Center)</h3><p>KDC(Key Distribution Center)，即密钥分发中心，作为第三方信任机构为C/S提供认证。</p>
+<h3 id="0x01-KDC-Key-Distribution-Center"><a href="#0x01-KDC-Key-Distribution-Center" class="headerlink" title="0x01 KDC(Key Distribution Center)"></a>0x01 KDC(Key Distribution Center)</h3><p>KDC(Key Distribution Center)，即密钥分发中心，作为第三方信任机构为C/S提供认证。</p>
 <p>担任KDC的角色在物理层面上与DC(Domain Controller)，即域控所属同一主机。</p>
 <p>KDC负责管理票据、认证票据、分发票据，但是KDC不是一个独立的服务，它由以下部分组成：</p>
 <blockquote>
@@ -180,11 +182,15 @@
 <h3 id="0x03-Kerberos认证大致流程"><a href="#0x03-Kerberos认证大致流程" class="headerlink" title="0x03 Kerberos认证大致流程"></a>0x03 Kerberos认证大致流程</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/1070321-20180417175541960-360210611.png" alt></p>
 <p>第一阶段（AS Exchange）：生成一个用于加密Client与TGS的通信的<code>Session Key</code>。</p>
 <blockquote>
-<p>生成<code>K(c,tgs)</code>的两份Copy，一份加密用于给Client，一份加密为TGT用于给TGS（但先发给Client，让其发给TGS）。</p>
+<ul>
+<li>生成<code>K(c,tgs)</code>的两份Copy，一份加密用于给Client，一份加密为TGT用于给TGS（但先发给Client，让其发给TGS）。</li>
+</ul>
 </blockquote>
 <p>第二阶段（TGS Exchange）：生成一个用于加密Client与Server通信的<code>Session Key</code>。</p>
 <blockquote>
-<p>生成<code>K(c,s)</code>的两份Copy，一份加密用于给Client，一份加密为Tiket用于给Server（但先发给Client，让其发给Server）。</p>
+<ul>
+<li>生成<code>K(c,s)</code>的两份Copy，一份加密用于给Client，一份加密为Tiket用于给Server（但先发给Client，让其发给Server）。</li>
+</ul>
 </blockquote>
 <p>第三阶段（CS EXchange）：Client与Server之间验证并使用<code>K(c,s)</code>加密通信。</p>
 <h3 id="0x04-Kerberos认证第一阶段：Authentication-Service-Exchange"><a href="#0x04-Kerberos认证第一阶段：Authentication-Service-Exchange" class="headerlink" title="0x04 Kerberos认证第一阶段：Authentication Service Exchange"></a>0x04 Kerberos认证第一阶段：Authentication Service Exchange</h3><p><img src="/2019/04/03/02-Windows认证之Kerberos/QQ截图20190403201648.png" alt></p>
@@ -227,9 +233,11 @@
 <p>首先，Client会使用自己的<code>NTLM Hash</code>解密属于自己的那份，解密后获得<code>Session Key</code>。</p>
 <p>接着，Client会生成鉴别码（Authenticator），并使用<code>Session Key</code>对鉴别码进行加密。</p>
 <blockquote>
-<p>鉴别码实际主要是Client的信息（DomainName\Username）、ServerName(DomainName\Server)以及当前时间的时间戳。</p>
-<p>此处的ServerName是Client真正想访问的Server。</p>
-<p>鉴别码的作用主要是为了证明该消息是Client自己发的。</p>
+<ul>
+<li>鉴别码实际主要是Client的信息（DomainName\Username）、ServerName(DomainName\Server)以及当前时间的时间戳。</li>
+<li>此处的ServerName是Client真正想访问的Server。</li>
+<li>鉴别码的作用主要是为了证明该消息是Client自己发的。</li>
+</ul>
 </blockquote>
 <p>最后，Client将加密的鉴别码与TGT发给KDC TGS。</p>
 <p><strong>KRB_TGS_REP</strong></p>
@@ -238,7 +246,9 @@
 <p>比对两次解密得到的时间戳，确保在可允许的范围。</p>
 <p>时间同步的重要性：</p>
 <blockquote>
-<p>我们知道不管是Session Key还是票据都是有时效性的，TGT通常是8个小时，时效性的判断主要是用数据包传递的时间戳（Timestamp）与本地的时间做比较，因此Client、Server、KDC三者的时间同步是很重要，否则可能会造成验证失败，通常它们都需要配置从同一时间服务器同步时间。</p>
+<ul>
+<li>我们知道不管是Session Key还是票据都是有时效性的，TGT通常是8个小时，时效性的判断主要是用数据包传递的时间戳（Timestamp）与本地的时间做比较，因此Client、Server、KDC三者的时间同步是很重要，否则可能会造成验证失败，通常它们都需要配置从同一时间服务器同步时间。</li>
+</ul>
 </blockquote>
 <p>验证通过后，KDC TGS会生成一个<code>Session Key</code>，记<code>K(c,s)</code>，该<code>Session Key</code>用于给Client和Server通信使用。</p>
 <p>将<code>K(c,tgs)</code>加密<code>K(c,s)</code>，用于给Client。</p>
@@ -291,7 +301,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年04月05日 09:29</p>
+        <p>最后更新： 2019年05月21日 10:23</p>
         <p>原始链接： <a class="post-url" href="/2019/04/03/02-Windows认证之Kerberos/" title="Windows认证之Kerberos">https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/</a></p>
         <footer>
             <a href="https://sakuxa.com">
@@ -318,7 +328,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/&title=《Windows认证之Kerberos》 — 黑客技术学习分享自留地&pic=https://sakuxa.comimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/&title=《Windows认证之Kerberos》 — 黑客技术学习分享自留地&pic=images/timg5.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -328,8 +338,8 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/&title=《Windows认证之Kerberos》 — 黑客技术学习分享自留地&source=0x00 Kerberos
-Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/03/02-Windows认证之Kerberos/&title=《Windows认证之Kerberos》 — 黑客技术学习分享自留地&source=
+Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神犬，在Kerberos认证中，Kerberos的3个头颅也代表认证过程中涉及的三方：Cl..." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -379,7 +389,7 @@ Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神�
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-Kerberos"><span class="post-toc-text">0x00 Kerberos</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-Long-term-Key与Short-term-Key"><span class="post-toc-text">0x01 Long-term Key与Short-term Key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-KDC-Key-Distribution-Center"><span class="post-toc-text">0x02 KDC(Key Distribution Center)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-Kerberos认证大致流程"><span class="post-toc-text">0x03 Kerberos认证大致流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-Kerberos认证第一阶段：Authentication-Service-Exchange"><span class="post-toc-text">0x04 Kerberos认证第一阶段：Authentication Service Exchange</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-Kerberos认证第二阶段：Ticket-Granting-Service-Exchange"><span class="post-toc-text">0x05 Kerberos认证第二阶段：Ticket Granting Service Exchange</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x06-Kerberos认证第三阶段：Client-Server-Exchange"><span class="post-toc-text">0x06 Kerberos认证第三阶段：Client/Server Exchange</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#白银票据（Silver-Tiket）"><span class="post-toc-text">白银票据（Silver Tiket）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#黄金票据（Golden-Tiket）"><span class="post-toc-text">黄金票据（Golden Tiket）</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-Long-term-Key与Short-term-Key"><span class="post-toc-text">0x00 Long-term Key与Short-term Key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-KDC-Key-Distribution-Center"><span class="post-toc-text">0x01 KDC(Key Distribution Center)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-Kerberos认证大致流程"><span class="post-toc-text">0x03 Kerberos认证大致流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-Kerberos认证第一阶段：Authentication-Service-Exchange"><span class="post-toc-text">0x04 Kerberos认证第一阶段：Authentication Service Exchange</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-Kerberos认证第二阶段：Ticket-Granting-Service-Exchange"><span class="post-toc-text">0x05 Kerberos认证第二阶段：Ticket Granting Service Exchange</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x06-Kerberos认证第三阶段：Client-Server-Exchange"><span class="post-toc-text">0x06 Kerberos认证第三阶段：Client/Server Exchange</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#白银票据（Silver-Tiket）"><span class="post-toc-text">白银票据（Silver Tiket）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#黄金票据（Golden-Tiket）"><span class="post-toc-text">黄金票据（Golden Tiket）</span></a></li></ol>
         </nav>
     </aside>
     
@@ -463,7 +473,7 @@ Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神�
             <a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -496,7 +506,7 @@ Kerberos起源于希腊神话，是一只守护着冥界长着3个头颅的神�
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Cheatsheet/" style="font-size: 10px;">Cheatsheet</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/MyUbuntu/" style="font-size: 10px;">MyUbuntu</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 12px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/SecTools/" style="font-size: 10px;">SecTools</a> <a href="/tags/Tools/" style="font-size: 10px;">Tools</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 12px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 14px;">XSS</a> <a href="/tags/XXE/" style="font-size: 12px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 14px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
 </div>

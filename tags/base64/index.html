@@ -3,23 +3,18 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Amazing Command -Linux篇 | 黑客技术学习分享自留地</title>
+  <title>Tag: base64 | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="MinHow's Blog">
   
-  <meta name="description" content="前面的话记录一些自己觉得有用或有趣的Linux命令的用法，持续更新…… 直接记录命令的某种用法，具体用法使用命令的-h的选项查看。">
-<meta name="keywords" content="Linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Amazing Command -Linux篇">
-<meta property="og:url" content="https://sakuxa.com/2019/03/22/Amazing-Command-Linux/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="黑客技术学习分享自留地">
+<meta property="og:url" content="https://sakuxa.com/tags/base64/index.html">
 <meta property="og:site_name" content="黑客技术学习分享自留地">
-<meta property="og:description" content="前面的话记录一些自己觉得有用或有趣的Linux命令的用法，持续更新…… 直接记录命令的某种用法，具体用法使用命令的-h的选项查看。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-30T00:59:48.358Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amazing Command -Linux篇">
-<meta name="twitter:description" content="前面的话记录一些自己觉得有用或有趣的Linux命令的用法，持续更新…… 直接记录命令的某种用法，具体用法使用命令的-h的选项查看。">
+<meta name="twitter:title" content="黑客技术学习分享自留地">
   
   
     <link rel="icon" href="/LimeWire.png">
@@ -110,203 +105,55 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-Amazing-Command-Linux" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+        <section id="main" class="body-wrap">
   
-    <h1 class="post-title" itemprop="name">
-      Amazing Command -Linux篇
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/03/29/01python模块之Base64/" class="archive-article-date">
+  <time datetime="2019-03-29T08:22:48.000Z" itemprop="datePublished">03-29</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/03/29/01python模块之Base64/">Python模块 Chapter 1：Base64</a>
     </h1>
-    <div class="post-title-bar">
-      <ul>
-          
-              <li>
-                  <i class="fa fa-book"></i>
-                  
-                      <a href="/categories/Misc/">Misc</a>
-                  
-              </li>
-          
-        <li>
-          <i class="fa fa-calendar"></i>  2019-03-22
-        </li>
-        <li>
-          <i class="fa fa-eye"></i>
-          <span id="busuanzi_value_page_pv"></span>
-        </li>
-      </ul>
-    </div>
   
 
-          
-      </header>
-    
-    <div class="article-entry post-content" itemprop="articleBody">
+    </header>
       
-            
-            <h3 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h3><p>记录一些自己觉得有用或有趣的Linux命令的用法，持续更新……</p>
-<p>直接记录命令的某种用法，具体用法使用命令的<code>-h</code>的选项查看。</p>
-<a id="more"></a>
-<h3 id="0x00-awk"><a href="#0x00-awk" class="headerlink" title="0x00 awk"></a>0x00 awk</h3><blockquote>
-<p>awk默认的行为是从标准输入中逐行（即每次读取直到遇到换行符<code>\n</code>停止）读入数据，并以空格为默认分隔符将读取的每行数据切片，<code>$0</code>指代整行数据，<code>$1</code>指代切片得到的第一部分，<code>$2</code>指代切片得到的第二部分，以此类推,<code>$n</code>指代切片得到的第n部分。</p>
-</blockquote>
-<p><strong>awk + action</strong>：对awk的默认行为得到的数据直接进行action。</p>
-<ul>
-<li>格式：<code>awk &#39;{action}&#39;</code></li>
-<li>last -n 2 | awk ‘{print $0}’ </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nick     :0           :0               Fri Mar 29 10:08   still logged in</span><br><span class="line">reboot   system boot  4.18.0-16-generi Fri Mar 29 10:07   still running</span><br></pre></td></tr></table></figure>
-<ul>
-<li>last -n 2 | awk ‘{print $1}’ </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nick  </span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
-<p><strong>awk + pattern + action</strong>：对读取的每行先使用pattern正则去匹配，满足正则的才进行awk的默认行为，然后进行action。</p>
-<ul>
-<li>格式：<code>awk &#39;/pattern/{action}&#39;</code></li>
-<li>last -n 4 | awk ‘/nick/{print $0}’</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nick     :0           :0               Fri Mar 29 10:08   still logged in</span><br><span class="line">nick     :0           :0               Thu Mar 28 10:48 - 17:16  (06:27)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>last -n 4 | awk ‘/^nick/‘</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot   system boot  4.18.0-16-generi Fri Mar 29 10:07   still running</span><br><span class="line">reboot   system boot  4.18.0-16-generi Thu Mar 28 10:47 - 17:16  (06:28)</span><br></pre></td></tr></table></figure>
-<p><code>-F</code> 用于指定分割符，默认是空格。printf()用来格式化输出。</p>
-<ul>
-<li>cat /etc/passwd | awk -F ‘:’ ‘/root/{printf(“%s,%s”,$1,$7)}’</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root,/bin/zsh%</span><br></pre></td></tr></table></figure>
-<h3 id="0x01-screenfetch"><a href="#0x01-screenfetch" class="headerlink" title="0x01 screenfetch"></a>0x01 screenfetch</h3><blockquote>
-<p>用于显示系统基本信息及其banner。</p>
-</blockquote>
-<ul>
-<li>直接<code>screenfetch</code>会显示系统基本信息及其对应的ASCII字符banner。</li>
-<li><code>screenfetch -A &#39;OS_name&#39;</code>：显示系统基本信息及指定系统的ASCII字符banner。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#用于你可能是ubuntu，但是却希望打印的图标是Mac或其他</span><br><span class="line">screenfetch -A &apos;Mac OS X&apos;</span><br><span class="line">screenfetch -A &apos;Kali Linux&apos;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>screenfetch -s</code>：屏幕快照，即截屏。</li>
-</ul>
-
-            <div class="post-copyright">
-    <div class="content">
-        <p>最后更新： 2019年03月30日 08:59</p>
-        <p>原始链接： <a class="post-url" href="/2019/03/22/Amazing-Command-Linux/" title="Amazing Command -Linux篇">https://sakuxa.com/2019/03/22/Amazing-Command-Linux/</a></p>
-        <footer>
-            <a href="https://sakuxa.com">
-                <img src="/images/logo.png" alt="sh4douu">
-                sh4douu
-            </a>
-        </footer>
-    </div>
-</div>
-
-      
-        
-            
-
-        
-    </div>
-    <footer class="article-footer">
-        
-        
-<div class="post-share">
-    <a href="javascript:;" id="share-sub" class="post-share-fab">
-        <i class="fa fa-share-alt"></i>
-    </a>
-    <div class="post-share-list" id="share-list">
-        <ul class="share-icons">
-          <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/03/22/Amazing-Command-Linux/&title=《Amazing Command -Linux篇》 — 黑客技术学习分享自留地&pic=https://sakuxa.comimages/logo.png" data-title="微博">
-              <i class="fa fa-weibo"></i>
-            </a>
-          </li>
-          <li>
-            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
-              <i class="fa fa-weixin"></i>
-            </a>
-          </li>
-          <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/03/22/Amazing-Command-Linux/&title=《Amazing Command -Linux篇》 — 黑客技术学习分享自留地&source=前面的话记录一些自己觉得有用或有趣的Linux命令的用法，持续更新……
-直接记录命令的某种用法，具体用法使用命令的-h的选项查看。" data-title="QQ">
-              <i class="fa fa-qq"></i>
-            </a>
-          </li>
-          <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sakuxa.com/2019/03/22/Amazing-Command-Linux/" data-title="Facebook">
-              <i class="fa fa-facebook"></i>
-            </a>
-          </li>
-          <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Amazing Command -Linux篇》 — 黑客技术学习分享自留地&url=https://sakuxa.com/2019/03/22/Amazing-Command-Linux/&via=https://sakuxa.com" data-title="Twitter">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sakuxa.com/2019/03/22/Amazing-Command-Linux/" data-title="Google+">
-              <i class="fa fa-google-plus"></i>
-            </a>
-          </li>
-        </ul>
-     </div>
-</div>
-<div class="post-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;" id="wxShare-close">×</a>
-    <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://sakuxa.com/2019/03/22/Amazing-Command-Linux/" alt="微信分享二维码">
-</div>
-
-<div class="mask"></div>
-
-        
-        <ul class="article-footer-menu">
-            
+        <div class="archive-post-footer">
             
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/Linux/" class="color1">Linux</a>
+    <a href="/tags/Python模块/" class="color4">Python模块</a>
+      
+    <a href="/tags/base64/" class="color2">base64</a>
       
   </li>
 
-        </ul>
-        
-    </footer>
+        </div>
+      
   </div>
 </article>
 
-
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#前面的话"><span class="post-toc-text">前面的话</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-awk"><span class="post-toc-text">0x00 awk</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-screenfetch"><span class="post-toc-text">0x01 screenfetch</span></a></li></ol>
-        </nav>
-    </aside>
-    
-
-<nav id="article-nav">
-  
-    <a href="/2019/03/23/NetBIOS、SMB浅析/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          NetBIOS、SMB浅析
-        
-      </span>
-    </a>
   
   
-    <a href="/2019/03/22/Amazing-Command-Windows/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Amazing Command -Windows篇</span>
-      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-
-    
 </section>
         
       </div>
