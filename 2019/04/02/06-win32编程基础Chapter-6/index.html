@@ -6,22 +6,22 @@
   <title>Win32编程基础Chapter 6：第一个窗口程序 | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="MinHow's Blog">
+    <meta name="keywords" content="Sh4dow's  Blog">
   
-  <meta name="description" content="0x00 程序与窗口的关系一个窗口不一定就是一个程序，它可能只是程序的一部分，一个程序可以有多个顶层窗口，一个顶层窗口又可以有多个子窗口，子窗口又可以有子窗口。 程序也不一定是窗口，如果一个程序不需要与用户进行交互，那么他可以不建立窗口。 DOS程序是过程驱动的。窗口程序是事件驱动的。">
+  <meta name="description" content="第一个窗口程序…">
 <meta name="keywords" content="Win32,汇编语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Win32编程基础Chapter 6：第一个窗口程序">
 <meta property="og:url" content="https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/index.html">
 <meta property="og:site_name" content="黑客技术学习分享自留地">
-<meta property="og:description" content="0x00 程序与窗口的关系一个窗口不一定就是一个程序，它可能只是程序的一部分，一个程序可以有多个顶层窗口，一个顶层窗口又可以有多个子窗口，子窗口又可以有子窗口。 程序也不一定是窗口，如果一个程序不需要与用户进行交互，那么他可以不建立窗口。 DOS程序是过程驱动的。窗口程序是事件驱动的。">
+<meta property="og:description" content="第一个窗口程序…">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/Image.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/Image%20[2].png">
-<meta property="og:updated_time" content="2019-05-21T03:02:06.938Z">
+<meta property="og:updated_time" content="2019-05-21T04:31:06.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win32编程基础Chapter 6：第一个窗口程序">
-<meta name="twitter:description" content="0x00 程序与窗口的关系一个窗口不一定就是一个程序，它可能只是程序的一部分，一个程序可以有多个顶层窗口，一个顶层窗口又可以有多个子窗口，子窗口又可以有子窗口。 程序也不一定是窗口，如果一个程序不需要与用户进行交互，那么他可以不建立窗口。 DOS程序是过程驱动的。窗口程序是事件驱动的。">
+<meta name="twitter:description" content="第一个窗口程序…">
 <meta name="twitter:image" content="https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/Image.png">
   
   
@@ -45,7 +45,7 @@
         <div id="header-menu" class="header-menu-pos animated">
             <div class="header-menu-container">
                 <a href="/" class="left">
-                    <span class="site-title">sh4dow&#39;s Blog</span>
+                    <span class="site-title">Sh4dow&#39;s Blog</span>
                 </a>
                 <nav id="header-menu-nav" class="right">
                     
@@ -73,15 +73,11 @@
         <div id="header-row">
             <div id="logo">
                 <a href="/">
-                    <img src="/images/logo.png" alt="logo">
+                    <img src="/images/avatar1.png" alt="logo">
                 </a>
             </div>
             <div class="header-info">
                 <div id="header-title">
-                    
-                    <h2>
-                        sh4dow&#39;s Blog
-                    </h2>
                     
                 </div>
                 <div id="header-description">
@@ -149,10 +145,13 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="0x00-程序与窗口的关系"><a href="#0x00-程序与窗口的关系" class="headerlink" title="0x00 程序与窗口的关系"></a>0x00 程序与窗口的关系</h4><p>一个窗口不一定就是一个程序，它可能只是程序的一部分，一个程序可以有多个顶层窗口，一个顶层窗口又可以有多个子窗口，子窗口又可以有子窗口。</p>
+            <blockquote>
+<p>第一个窗口程序…</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="0x00-程序与窗口的关系"><a href="#0x00-程序与窗口的关系" class="headerlink" title="0x00 程序与窗口的关系"></a>0x00 程序与窗口的关系</h4><p>一个窗口不一定就是一个程序，它可能只是程序的一部分，一个程序可以有多个顶层窗口，一个顶层窗口又可以有多个子窗口，子窗口又可以有子窗口。</p>
 <p>程序也不一定是窗口，如果一个程序不需要与用户进行交互，那么他可以不建立窗口。</p>
 <p>DOS程序是过程驱动的。窗口程序是事件驱动的。</p>
-<a id="more"></a>
 <p><img src="/2019/04/02/06-win32编程基础Chapter-6/Image.png" alt></p>
 <h4 id="0x01-消息队列"><a href="#0x01-消息队列" class="headerlink" title="0x01 消息队列"></a>0x01 消息队列</h4><p>Windows在系统内部有一个系统队列，当输入设备有所动作（键盘输入、鼠标移动/点击等），Winodws会产生相应的记录并放到系统消息队列中。同时，Windows还会为每个窗口程序（严格说是每个线程）维护一个消息队列。</p>
 <p><img src="/2019/04/02/06-win32编程基础Chapter-6/Image [2].png" alt></p>
@@ -258,11 +257,11 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月21日 11:02</p>
+        <p>最后更新： 2019年05月21日 12:31</p>
         <p>原始链接： <a class="post-url" href="/2019/04/02/06-win32编程基础Chapter-6/" title="Win32编程基础Chapter 6：第一个窗口程序">https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/</a></p>
         <footer>
             <a href="https://sakuxa.com">
-                <img src="/images/logo.png" alt="sh4douu">
+                <img src="/images/avatar1.png" alt="sh4douu">
                 sh4douu
             </a>
         </footer>
@@ -295,7 +294,9 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/&title=《Win32编程基础Chapter 6：第一个窗口程序》 — 黑客技术学习分享自留地&source=0x00 程序与窗口的关系一个窗口不一定就是一个程序，它可能只是程序的一部分，一个程序可以有多个顶层窗口，一个顶层窗口又可以有多个子窗口，子窗口又可以有子..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/02/06-win32编程基础Chapter-6/&title=《Win32编程基础Chapter 6：第一个窗口程序》 — 黑客技术学习分享自留地&source=
+第一个窗口程序…
+" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>

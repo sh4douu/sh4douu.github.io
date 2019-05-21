@@ -6,21 +6,21 @@
   <title>Win32编程基础Chapter 3：Win API | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="MinHow's Blog">
+    <meta name="keywords" content="Sh4dow's  Blog">
   
-  <meta name="description" content="0x00 Win API概述Win32 API实际是以一种新方法代替的DOS中用软中断的方式。 API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。 一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。 在PE文件的导出表">
+  <meta name="description" content="Win32 API实际是以一种新方法代替的DOS中用软中断的方式。 API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。 一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。 在PE文件的导出表中，会以字符串的形式指出该">
 <meta name="keywords" content="Win32,汇编语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Win32编程基础Chapter 3：Win API">
 <meta property="og:url" content="https://sakuxa.com/2019/04/01/02-win32编程基础Chapter-3/index.html">
 <meta property="og:site_name" content="黑客技术学习分享自留地">
-<meta property="og:description" content="0x00 Win API概述Win32 API实际是以一种新方法代替的DOS中用软中断的方式。 API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。 一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。 在PE文件的导出表">
+<meta property="og:description" content="Win32 API实际是以一种新方法代替的DOS中用软中断的方式。 API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。 一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。 在PE文件的导出表中，会以字符串的形式指出该">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/04/01/02-win32编程基础Chapter-3/图片1.png">
-<meta property="og:updated_time" content="2019-05-21T03:01:46.313Z">
+<meta property="og:updated_time" content="2019-05-21T04:28:44.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win32编程基础Chapter 3：Win API">
-<meta name="twitter:description" content="0x00 Win API概述Win32 API实际是以一种新方法代替的DOS中用软中断的方式。 API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。 一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。 在PE文件的导出表">
+<meta name="twitter:description" content="Win32 API实际是以一种新方法代替的DOS中用软中断的方式。 API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。 一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。 在PE文件的导出表中，会以字符串的形式指出该">
 <meta name="twitter:image" content="https://sakuxa.com/2019/04/01/02-win32编程基础Chapter-3/图片1.png">
   
   
@@ -44,7 +44,7 @@
         <div id="header-menu" class="header-menu-pos animated">
             <div class="header-menu-container">
                 <a href="/" class="left">
-                    <span class="site-title">sh4dow&#39;s Blog</span>
+                    <span class="site-title">Sh4dow&#39;s Blog</span>
                 </a>
                 <nav id="header-menu-nav" class="right">
                     
@@ -72,15 +72,11 @@
         <div id="header-row">
             <div id="logo">
                 <a href="/">
-                    <img src="/images/logo.png" alt="logo">
+                    <img src="/images/avatar1.png" alt="logo">
                 </a>
             </div>
             <div class="header-info">
                 <div id="header-title">
-                    
-                    <h2>
-                        sh4dow&#39;s Blog
-                    </h2>
                     
                 </div>
                 <div id="header-description">
@@ -148,10 +144,12 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="0x00-Win-API概述"><a href="#0x00-Win-API概述" class="headerlink" title="0x00 Win API概述"></a>0x00 Win API概述</h4><p>Win32 API实际是以一种新方法代替的DOS中用软中断的方式。</p>
+            <blockquote>
+<p>Win32 API实际是以一种新方法代替的DOS中用软中断的方式。</p>
 <p>API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需要调用对应的API函数，并传入相应的参数即可。</p>
 <p>一个个系统功能被封装成一个个API函数，最终放在Window的动态链接库（DLL）中。DLL是一种可执行文件，格式采用与.exe文件同样的PE文件格式。</p>
 <p>在PE文件的导出表中，会以字符串的形式指出该DLL能够提供的API函数的列表，只需要在应用程序中使用字符串形式的函数名进行API函数的调用即可。</p>
+</blockquote>
 <a id="more"></a>
 <h4 id="0x01-Win32-API的核心由3个DLL提供："><a href="#0x01-Win32-API的核心由3个DLL提供：" class="headerlink" title="0x01 Win32 API的核心由3个DLL提供："></a>0x01 Win32 API的核心由3个DLL提供：</h4><ul>
 <li>KERNEL32.DLL ：系统服务功能。包括内存管理、任务管理等。</li>
@@ -199,11 +197,11 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月21日 11:01</p>
+        <p>最后更新： 2019年05月21日 12:28</p>
         <p>原始链接： <a class="post-url" href="/2019/04/01/02-win32编程基础Chapter-3/" title="Win32编程基础Chapter 3：Win API">https://sakuxa.com/2019/04/01/02-win32编程基础Chapter-3/</a></p>
         <footer>
             <a href="https://sakuxa.com">
-                <img src="/images/logo.png" alt="sh4douu">
+                <img src="/images/avatar1.png" alt="sh4douu">
                 sh4douu
             </a>
         </footer>
@@ -236,8 +234,9 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/01/02-win32编程基础Chapter-3/&title=《Win32编程基础Chapter 3：Win API》 — 黑客技术学习分享自留地&source=0x00 Win API概述Win32 API实际是以一种新方法代替的DOS中用软中断的方式。
-API函数即将系统的功能的封装成模块（函数），在编程中，若..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/01/02-win32编程基础Chapter-3/&title=《Win32编程基础Chapter 3：Win API》 — 黑客技术学习分享自留地&source=
+Win32 API实际是以一种新方法代替的DOS中用软中断的方式。
+API函数即将系统的功能的封装成模块（函数），在编程中，若想要使用系统的某功能，只需..." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -289,7 +288,7 @@ API函数即将系统的功能的封装成模块（函数），在编程中，�
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x00-Win-API概述"><span class="post-toc-text">0x00 Win API概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x01-Win32-API的核心由3个DLL提供："><span class="post-toc-text">0x01 Win32 API的核心由3个DLL提供：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x02-函数原型"><span class="post-toc-text">0x02 函数原型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x03-API函数调用："><span class="post-toc-text">0x03 API函数调用：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x04-Invoke"><span class="post-toc-text">0x04 Invoke</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x05-API函数返回值"><span class="post-toc-text">0x05 API函数返回值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x06-include"><span class="post-toc-text">0x06 include</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x07-includelib"><span class="post-toc-text">0x07 includelib</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x01-Win32-API的核心由3个DLL提供："><span class="post-toc-text">0x01 Win32 API的核心由3个DLL提供：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x02-函数原型"><span class="post-toc-text">0x02 函数原型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x03-API函数调用："><span class="post-toc-text">0x03 API函数调用：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x04-Invoke"><span class="post-toc-text">0x04 Invoke</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x05-API函数返回值"><span class="post-toc-text">0x05 API函数返回值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x06-include"><span class="post-toc-text">0x06 include</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#0x07-includelib"><span class="post-toc-text">0x07 includelib</span></a></li></ol>
         </nav>
     </aside>
     

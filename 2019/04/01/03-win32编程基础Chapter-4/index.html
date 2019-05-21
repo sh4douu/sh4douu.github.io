@@ -6,15 +6,15 @@
   <title>Win32编程基础Chapter 4：调用约定 | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="MinHow's Blog">
+    <meta name="keywords" content="Sh4dow's  Blog">
   
-  <meta name="description" content="0x00 全局变量全局变量的作用域是整个程序。 全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在.data?段中定义变量时不能初始化值，只能使用?预留空间。使用?时，编译器实际是用0替代的。 可以同时定义变量的类型和长度。 12变量名  类型  初始值1，初始值2...变量名  类型  重复数量 dup(初始值1,初始值2...)">
+  <meta name="description" content="全局变量、局部变量、数据结构……">
 <meta name="keywords" content="Win32,汇编语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Win32编程基础Chapter 4：调用约定">
 <meta property="og:url" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/index.html">
 <meta property="og:site_name" content="黑客技术学习分享自留地">
-<meta property="og:description" content="0x00 全局变量全局变量的作用域是整个程序。 全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在.data?段中定义变量时不能初始化值，只能使用?预留空间。使用?时，编译器实际是用0替代的。 可以同时定义变量的类型和长度。 12变量名  类型  初始值1，初始值2...变量名  类型  重复数量 dup(初始值1,初始值2...)">
+<meta property="og:description" content="全局变量、局部变量、数据结构……">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154311.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154931.png">
@@ -22,10 +22,10 @@
 <meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155645.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155758.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401155812.png">
-<meta property="og:updated_time" content="2019-05-21T03:01:49.995Z">
+<meta property="og:updated_time" content="2019-05-21T04:30:06.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win32编程基础Chapter 4：调用约定">
-<meta name="twitter:description" content="0x00 全局变量全局变量的作用域是整个程序。 全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在.data?段中定义变量时不能初始化值，只能使用?预留空间。使用?时，编译器实际是用0替代的。 可以同时定义变量的类型和长度。 12变量名  类型  初始值1，初始值2...变量名  类型  重复数量 dup(初始值1,初始值2...)">
+<meta name="twitter:description" content="全局变量、局部变量、数据结构……">
 <meta name="twitter:image" content="https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/QQ截图20190401154311.png">
   
   
@@ -49,7 +49,7 @@
         <div id="header-menu" class="header-menu-pos animated">
             <div class="header-menu-container">
                 <a href="/" class="left">
-                    <span class="site-title">sh4dow&#39;s Blog</span>
+                    <span class="site-title">Sh4dow&#39;s Blog</span>
                 </a>
                 <nav id="header-menu-nav" class="right">
                     
@@ -77,15 +77,11 @@
         <div id="header-row">
             <div id="logo">
                 <a href="/">
-                    <img src="/images/logo.png" alt="logo">
+                    <img src="/images/avatar1.png" alt="logo">
                 </a>
             </div>
             <div class="header-info">
                 <div id="header-title">
-                    
-                    <h2>
-                        sh4dow&#39;s Blog
-                    </h2>
                     
                 </div>
                 <div id="header-description">
@@ -153,11 +149,14 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="0x00-全局变量"><a href="#0x00-全局变量" class="headerlink" title="0x00 全局变量"></a>0x00 全局变量</h4><p>全局变量的作用域是整个程序。</p>
+            <blockquote>
+<p>全局变量、局部变量、数据结构……</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="0x00-全局变量"><a href="#0x00-全局变量" class="headerlink" title="0x00 全局变量"></a>0x00 全局变量</h4><p>全局变量的作用域是整个程序。</p>
 <p>全局变量在<code>.data</code>或<code>.data?</code>段中定义。在<code>.data</code>段中定义变量时可以指定初值，也可以用<code>?</code>表示预留。在<code>.data?</code>段中定义变量时不能初始化值，只能使用<code>?</code>预留空间。使用<code>?</code>时，编译器实际是用0替代的。</p>
 <p>可以同时定义变量的类型和长度。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名  类型  初始值1，初始值2...</span><br><span class="line">变量名  类型  重复数量 dup(初始值1,初始值2...)</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <p>常用类型：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db  定义字节类型，1B。</span><br><span class="line">dw  定义字类型，2B。</span><br><span class="line">dd  定义双字类型，4B。</span><br><span class="line">df  定义三字类型，6B。</span><br><span class="line">dq  定义四字类型，8B。</span><br><span class="line"></span><br><span class="line">;注意，只有在定义全局变量的时候才能使用类型的简写。</span><br></pre></td></tr></table></figure>
 <h4 id="0x01-局部变量"><a href="#0x01-局部变量" class="headerlink" title="0x01 局部变量"></a>0x01 局部变量</h4><p>局部变量的作用域只在当前子程序中。</p>
@@ -293,11 +292,11 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月21日 11:01</p>
+        <p>最后更新： 2019年05月21日 12:30</p>
         <p>原始链接： <a class="post-url" href="/2019/04/01/03-win32编程基础Chapter-4/" title="Win32编程基础Chapter 4：调用约定">https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/</a></p>
         <footer>
             <a href="https://sakuxa.com">
-                <img src="/images/logo.png" alt="sh4douu">
+                <img src="/images/avatar1.png" alt="sh4douu">
                 sh4douu
             </a>
         </footer>
@@ -330,8 +329,9 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/&title=《Win32编程基础Chapter 4：调用约定》 — 黑客技术学习分享自留地&source=0x00 全局变量全局变量的作用域是整个程序。
-全局变量在.data或.data?段中定义。在.data段中定义变量时可以指定初值，也可以用?表示预留。在..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/01/03-win32编程基础Chapter-4/&title=《Win32编程基础Chapter 4：调用约定》 — 黑客技术学习分享自留地&source=
+全局变量、局部变量、数据结构……
+" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>

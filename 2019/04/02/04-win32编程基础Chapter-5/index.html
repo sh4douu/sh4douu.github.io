@@ -6,25 +6,25 @@
   <title>Win32编程基础Chapter 5：分支和循环 | 黑客技术学习分享自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="MinHow's Blog">
+    <meta name="keywords" content="Sh4dow's  Blog">
   
-  <meta name="description" content="0x00 分支语句语法格式： 12345678910.if 条件表达式	code[.elseif 条件表达式]	code[.else]	code.endif">
+  <meta name="description" content="分支与循环……">
 <meta name="keywords" content="Win32,汇编语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Win32编程基础Chapter 5：分支和循环">
 <meta property="og:url" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/index.html">
 <meta property="og:site_name" content="黑客技术学习分享自留地">
-<meta property="og:description" content="0x00 分支语句语法格式： 12345678910.if 条件表达式	code[.elseif 条件表达式]	code[.else]	code.endif">
+<meta property="og:description" content="分支与循环……">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402090659.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402091215.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402091227.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402091959.png">
 <meta property="og:image" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402092028.png">
-<meta property="og:updated_time" content="2019-05-21T03:02:03.192Z">
+<meta property="og:updated_time" content="2019-05-21T04:31:52.604Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Win32编程基础Chapter 5：分支和循环">
-<meta name="twitter:description" content="0x00 分支语句语法格式： 12345678910.if 条件表达式	code[.elseif 条件表达式]	code[.else]	code.endif">
+<meta name="twitter:description" content="分支与循环……">
 <meta name="twitter:image" content="https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402090659.png">
   
   
@@ -48,7 +48,7 @@
         <div id="header-menu" class="header-menu-pos animated">
             <div class="header-menu-container">
                 <a href="/" class="left">
-                    <span class="site-title">sh4dow&#39;s Blog</span>
+                    <span class="site-title">Sh4dow&#39;s Blog</span>
                 </a>
                 <nav id="header-menu-nav" class="right">
                     
@@ -76,15 +76,11 @@
         <div id="header-row">
             <div id="logo">
                 <a href="/">
-                    <img src="/images/logo.png" alt="logo">
+                    <img src="/images/avatar1.png" alt="logo">
                 </a>
             </div>
             <div class="header-info">
                 <div id="header-title">
-                    
-                    <h2>
-                        sh4dow&#39;s Blog
-                    </h2>
                     
                 </div>
                 <div id="header-description">
@@ -152,9 +148,12 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="0x00-分支语句"><a href="#0x00-分支语句" class="headerlink" title="0x00 分支语句"></a>0x00 分支语句</h4><p>语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.if 条件表达式</span><br><span class="line">	code</span><br><span class="line"></span><br><span class="line">[.elseif 条件表达式]</span><br><span class="line">	code</span><br><span class="line"></span><br><span class="line">[.else]</span><br><span class="line">	code</span><br><span class="line"></span><br><span class="line">.endif</span><br></pre></td></tr></table></figure>
+            <blockquote>
+<p>分支与循环……</p>
+</blockquote>
 <a id="more"></a>
+<h4 id="0x00-分支语句"><a href="#0x00-分支语句" class="headerlink" title="0x00 分支语句"></a>0x00 分支语句</h4><p>语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.if 条件表达式</span><br><span class="line">	code</span><br><span class="line"></span><br><span class="line">[.elseif 条件表达式]</span><br><span class="line">	code</span><br><span class="line"></span><br><span class="line">[.else]</span><br><span class="line">	code</span><br><span class="line"></span><br><span class="line">.endif</span><br></pre></td></tr></table></figure>
 <p>源程序：</p>
 <p><img src="/2019/04/02/04-win32编程基础Chapter-5/QQ截图20190402090659.png" alt></p>
 <p>编译后反编译：</p>
@@ -169,11 +168,11 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月21日 11:02</p>
+        <p>最后更新： 2019年05月21日 12:31</p>
         <p>原始链接： <a class="post-url" href="/2019/04/02/04-win32编程基础Chapter-5/" title="Win32编程基础Chapter 5：分支和循环">https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/</a></p>
         <footer>
             <a href="https://sakuxa.com">
-                <img src="/images/logo.png" alt="sh4douu">
+                <img src="/images/avatar1.png" alt="sh4douu">
                 sh4douu
             </a>
         </footer>
@@ -206,8 +205,9 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/&title=《Win32编程基础Chapter 5：分支和循环》 — 黑客技术学习分享自留地&source=0x00 分支语句语法格式：
-12345678910.if 条件表达式	code[.elseif 条件表达式]	code[.else]	code.endif" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/04/02/04-win32编程基础Chapter-5/&title=《Win32编程基础Chapter 5：分支和循环》 — 黑客技术学习分享自留地&source=
+分支与循环……
+" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
