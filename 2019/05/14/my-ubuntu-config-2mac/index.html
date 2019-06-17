@@ -3,24 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>打造我的Ubuntu 18.04 | 黑客技术学习记录自留地</title>
+  <title>Get Your Ubuntu to Look like Mac OS X | 黑客技术学习记录自留地</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ein's  Blog">
   
-  <meta name="description" content="最近终于受不了Windows动不动就程序未响应，加上在日常工作中，使用的大部分工具都是在Linux下的，总是打开Kali虚拟机也烦了，索性就将笔记本的主系统更换为Ubuntu 18.04。 更重要的是，Gnome可DIY的桌面对于拥有极客之心的人是无法拒绝的，本文记录了自己Ubuntu打造的过程，使用类似苹果的UI：Ubuntu 2 Mac。">
-<meta name="keywords" content="My Ubuntu,Ubuntu 2 Mac">
+  <meta name="description" content="ubuntu2mac — Ubuntu TLS 18.04美化Mac OS风格。">
+<meta name="keywords" content="ubuntu2mac,Ubuntu 18.04">
 <meta property="og:type" content="article">
-<meta property="og:title" content="打造我的Ubuntu 18.04">
+<meta property="og:title" content="Get Your Ubuntu to Look like Mac OS X">
 <meta property="og:url" content="https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/index.html">
 <meta property="og:site_name" content="黑客技术学习记录自留地">
-<meta property="og:description" content="最近终于受不了Windows动不动就程序未响应，加上在日常工作中，使用的大部分工具都是在Linux下的，总是打开Kali虚拟机也烦了，索性就将笔记本的主系统更换为Ubuntu 18.04。 更重要的是，Gnome可DIY的桌面对于拥有极客之心的人是无法拒绝的，本文记录了自己Ubuntu打造的过程，使用类似苹果的UI：Ubuntu 2 Mac。">
+<meta property="og:description" content="ubuntu2mac — Ubuntu TLS 18.04美化Mac OS风格。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/a.png">
-<meta property="og:updated_time" content="2019-05-21T02:15:47.990Z">
+<meta property="og:updated_time" content="2019-06-17T12:57:51.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="打造我的Ubuntu 18.04">
-<meta name="twitter:description" content="最近终于受不了Windows动不动就程序未响应，加上在日常工作中，使用的大部分工具都是在Linux下的，总是打开Kali虚拟机也烦了，索性就将笔记本的主系统更换为Ubuntu 18.04。 更重要的是，Gnome可DIY的桌面对于拥有极客之心的人是无法拒绝的，本文记录了自己Ubuntu打造的过程，使用类似苹果的UI：Ubuntu 2 Mac。">
+<meta name="twitter:title" content="Get Your Ubuntu to Look like Mac OS X">
+<meta name="twitter:description" content="ubuntu2mac — Ubuntu TLS 18.04美化Mac OS风格。">
 <meta name="twitter:image" content="https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/a.png">
   
   
@@ -115,7 +115,7 @@
         
   
     <h1 class="post-title" itemprop="name">
-      打造我的Ubuntu 18.04
+      Get Your Ubuntu to Look like Mac OS X
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -145,127 +145,148 @@
       
             
             <blockquote>
-<p>最近终于受不了Windows动不动就程序未响应，加上在日常工作中，使用的大部分工具都是在Linux下的，总是打开Kali虚拟机也烦了，索性就将笔记本的主系统更换为Ubuntu 18.04。</p>
-<p>更重要的是，Gnome可DIY的桌面对于拥有极客之心的人是无法拒绝的，本文记录了自己Ubuntu打造的过程，使用类似苹果的UI：Ubuntu 2 Mac。</p>
+<p>ubuntu2mac — Ubuntu TLS 18.04美化Mac OS风格。</p>
 </blockquote>
 <a id="more"></a>
 <p>最终效果图：</p>
 <p><img src="/2019/05/14/my-ubuntu-config-2mac/a.png" alt></p>
 <!-- more -->
-<h3 id="0x00-Mac主题"><a href="#0x00-Mac主题" class="headerlink" title="0x00 Mac主题"></a>0x00 Mac主题</h3><p>安装Tweak</p>
+<h3 id="0x00-修改Gnome主题"><a href="#0x00-修改Gnome主题" class="headerlink" title="0x00 修改Gnome主题"></a>0x00 修改Gnome主题</h3><p><a href="https://www.gnome-look.org/p/1275087/" target="_blank" rel="noopener">https://www.gnome-look.org/p/1275087/</a></p>
+<p><strong>安装Tweak</strong></p>
 <blockquote>
 <ul>
 <li>sudo apt-get install gnome-tweak-tool</li>
 </ul>
 </blockquote>
-<p>安装gnome-shell</p>
+<p><strong>安装chrome-gnome-shell</strong></p>
 <blockquote>
 <ul>
 <li>sudo apt-get install chrome-gnome-shell</li>
 </ul>
 </blockquote>
-<p>用浏览器打开<a href="https://extensions.gnome.org，点击页面的`Click" target="_blank" rel="noopener">https://extensions.gnome.org，点击页面的`Click</a> here to install browser extension`按钮。</p>
+<p>用浏览器打开地址<a href="https://extensions.gnome.org" target="_blank" rel="noopener">https://extensions.gnome.org</a> ，点击页面的<code>Click here to install browser extension</code>按钮进行扩展的安装。</p>
 <blockquote>
 <ul>
 <li>点击页面extensions，启用<code>User Themes</code>扩展。</li>
-<li>下载并启动<code>blyr</code>扩展。</li>
-<li>下载并启动<code>netspeed</code>扩展：显示网络速度。</li>
-<li>下载并启动<code>coverflow alt-tab</code>：切换窗口的主题。</li>
-<li>下载并启动<code>hide dash x</code>：隐藏搜索时左边的Dock。</li>
+<li>下载并启动<code>blyr</code>扩展：用于调整状态栏的透明度，Win键背景透明度。<ul>
+<li>解决点击设置时报错：<code>sudo apt install gir1.2-gtkclutter-1.0</code></li>
+</ul>
+</li>
+<li>下载并启动<code>netspeed</code>扩展：任务栏显示网络速度。</li>
+<li>下载并启动<code>coverflow alt-tab</code>：切换窗口(Win + Tab)的主题。</li>
+<li>下载并启动<code>hide dash x</code>：隐藏(Win键)搜索时左边出现的Dock。</li>
 </ul>
 </blockquote>
-<p>到<a href="https://www.gnome-look.org" target="_blank" rel="noopener">https://www.gnome-look.org</a> 下载MacOS 主题、图标、鼠标指针、GDM、Plymouth、字体</p>
+<p>到站点<a href="https://www.gnome-look.org" target="_blank" rel="noopener">https://www.gnome-look.org</a> 下载<code>Gnome Theme</code>、<code>icons</code>、鼠标指针、GDM、Plymouth、字体。</p>
 <blockquote>
 <ul>
-<li>MacOS UI主题</li>
-<li>Gnome-shell：按照<code>gnome-shell.css</code>文件渲染。</li>
-<li>icons：应用图标。</li>
-<li>GDM：锁屏时的主题。</li>
-<li>Plymouth：开机启动动画。</li>
+<li><code>Gnome Theme</code>：MacOS UI主题。</li>
+<li><code>Gnome-shell</code>：任务栏、Terminal的主题。（按照<code>gnome-shell.css</code>文件渲染。）</li>
+<li><code>icons</code>：应用程序图标。</li>
+<li><code>GDM</code>：锁屏界面的主题。<a href="https://www.gnome-look.org/p/1207015/" target="_blank" rel="noopener">https://www.gnome-look.org/p/1207015/</a></li>
+<li><code>Plymouth</code>：开机启动动画。</li>
 </ul>
 </blockquote>
-<p>将下载的主题文件（系统主题、gnome-shell主题）解压后放到用户家目录下的.themes目录下：<code>/home/.themes</code>。</p>
-<p>将下载的图标文件和鼠标指针文件解压后放到用户家目录下的.icons目录下：<code>/home/.icons</code>。</p>
-<p>把字体文件拷贝到~/.local/share/fonts目录下。</p>
+<ul>
+<li><p>将下载的主题文件（Gnome主题、Gnome-shell主题）解压后放到用户家目录下的.themes目录下：<code>~/.themes</code>。</p>
+</li>
+<li><p>将下载的图标文件(icons)和鼠标指针主题文件解压后放到用户家目录下的.icons目录下：<code>~/.icons</code>。</p>
+</li>
+<li><p>把字体文件拷贝到<code>~/.local/share/fonts</code>目录下。</p>
 <blockquote>
-<p>注：.themes和.icons需要自己创建。Ctrl+H可以显示目录下的隐藏文件。</p>
+<ul>
+<li>注：.themes和.icons需要自己创建。Ctrl+H可以显示目录下的隐藏文件。</li>
+</ul>
 </blockquote>
-<p>之后，打开tweak选择主题、游标、图标、字体。。。。</p>
+</li>
+</ul>
+<p><strong>之后，打开tweak选择主题、游标、图标、字体。。。。</strong></p>
 <p>设置窗口的按钮（最小化、最大化、关闭）在左边：</p>
 <blockquote>
-<p>Ubuntu：打开Tweak——Windows——Tilebar buttons——Placement——left</p>
-<p>Kali：打开Tweak——Windows Title——Tilebar buttons——Placement——left</p>
+<ul>
+<li>Ubuntu：打开Tweak——Windows——Tilebar buttons——Placement——left</li>
+<li>Kali：打开Tweak——Windows Title——Tilebar buttons——Placement——left</li>
+</ul>
 </blockquote>
 <p>壁纸网站（需科学上网）：<a href="https://wallpapersite.com/" target="_blank" rel="noopener">https://wallpapersite.com/</a></p>
-<h3 id="0x01-Dock"><a href="#0x01-Dock" class="headerlink" title="0x01 Dock"></a>0x01 Dock</h3><p>卸载Ubuntu自带的Dock、</p>
+<h3 id="0x01-Dock"><a href="#0x01-Dock" class="headerlink" title="0x01 Dock"></a>0x01 Dock</h3><blockquote>
+<p>Dock方面使用plank，并把默认的Dock卸载掉。</p>
+</blockquote>
+<p><strong>卸载Ubuntu自带的Dock:</strong></p>
 <blockquote>
 <ul>
 <li>sudo apt remove gnome-shell-extension-ubuntu-dock</li>
 </ul>
 </blockquote>
-<p>安装plank dock：</p>
+<p><strong>安装Plank dock：</strong></p>
 <blockquote>
 <ul>
 <li>sudo apt-get install plank</li>
 </ul>
 </blockquote>
-<p>设置开机启动：</p>
+<p><strong>设置Plank开机启动：</strong></p>
 <blockquote>
 <ul>
-<li><code>Win</code>键打开搜索 –&gt; 搜索startup –&gt; 打开startup application –&gt; add –&gt; command处输入plank即可。</li>
+<li><code>Win</code>键打开搜索 ==&gt; 搜索startup ==&gt; 打开startup application ==&gt; Add ==&gt; command处输入plank即可。</li>
 </ul>
 </blockquote>
-<p>plank主题：</p>
-<blockquote>
-<p>主题下载地址：<a href="https://www.gnome-look.org/p/1201720/" target="_blank" rel="noopener">https://www.gnome-look.org/p/1201720/</a></p>
-<p>将下载的文件放到：<code>~/.local/share/plank/theme/</code>目录下。</p>
-<p>在plank的preference选用主题即可。</p>
-</blockquote>
-<h3 id="0x02-Zsh"><a href="#0x02-Zsh" class="headerlink" title="0x02 Zsh"></a>0x02 Zsh</h3><p>查看系统已安装的shell有哪些：<code>cat /etc/shells</code></p>
-<p>查看系统当前shells：<code>echo $SHELL</code></p>
-<p>安装zsh：</p>
+<p><strong>更改Plank主题：</strong></p>
 <blockquote>
 <ul>
-<li>apt-get install zsh</li>
+<li>主题下载地址：<a href="https://www.gnome-look.org/p/1201720/" target="_blank" rel="noopener">https://www.gnome-look.org/p/1201720/</a></li>
+<li>将下载的主题文件放到：<code>~/.local/share/plank/theme/</code>目录下。</li>
+<li>在plank的preference里选用主题即可。</li>
 </ul>
 </blockquote>
-<p>安装zsh配置框架oh-my-zsh：<code>wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh</code></p>
-<blockquote>
+<h3 id="0x02-Zsh"><a href="#0x02-Zsh" class="headerlink" title="0x02 Zsh"></a>0x02 Zsh</h3><blockquote>
 <ul>
-<li>在以 root 用户为前提下，oh-my-zsh 的安装目录：/root/.oh-my-zsh</li>
-<li>在以 root 用户为前提下，Zsh 的配置文件位置：/root/.zshrc</li>
-<li>为 root 用户设置 zsh 为系统默认 shell：<code>chsh -s /bin/zsh root</code></li>
-<li>如果你要重新恢复到 bash：<code>chsh -s /bin/bash root</code></li>
+<li>查看系统已安装的shell有哪些：<code>cat /etc/shells</code></li>
+<li>查看系统当前shells：<code>echo $SHELL</code></li>
 </ul>
 </blockquote>
-<p>zsh配置</p>
-<p>主题配置：主题文件所在目录为<code>~/.oh-my-zsh/themes</code>。</p>
+<p><strong>1.安装zsh：</strong></p>
+<ul>
+<li><code>apt-get install zsh</code></li>
+</ul>
 <blockquote>
 <ul>
-<li>ls ~/.oh-my-zsh/themes | wc -l</li>
+<li>为user用户设置 zsh 为系统默认 shell：<code>chsh -s /bin/zsh user</code></li>
+<li>如果你要重新恢复到 bash：<code>chsh -s /bin/bash user</code></li>
+</ul>
+</blockquote>
+<p><strong>2.安装zsh配置框架oh-my-zsh：</strong></p>
+<ul>
+<li><code>wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh</code></li>
+</ul>
+<blockquote>
+<ul>
+<li>Oh-My-Zsh 的安装目录：<code>~/.oh-my-zsh</code></li>
+<li>Zsh 的配置文件位置：<code>~/.zshrc</code></li>
+</ul>
+</blockquote>
+<p><strong>3.Zsh主题配置：</strong></p>
+<p>主题文件所在目录为<code>~/.oh-my-zsh/themes</code>。</p>
+<blockquote>
+<ul>
+<li><code>ls ~/.oh-my-zsh/themes | wc -l</code></li>
 <li>主题介绍：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/wiki/Themes</a></li>
 </ul>
 </blockquote>
 <p>修改主题：<code>vim ~/.zshrc</code></p>
 <blockquote>
 <ul>
-<li>找到：ZSH_THEME=”robbyrossell”改为自己喜欢的，默认是robbyrossell，想随机就使用random。</li>
+<li>找到：<code>ZSH_THEME=&quot;robbyrossell&quot;</code>改为自己喜欢的，默认是robbyrossell，想随机就使用random。</li>
+<li>自用不错的主题：fino、agnoster<ul>
+<li>agnoster会出现箭头乱码，是因为没有安装powerline字体：<a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">https://github.com/powerline/fonts</a></li>
+</ul>
+</li>
 </ul>
 </blockquote>
-<p>假设使用agnoster主题：</p>
-<ul>
-<li>ZSH_THEME=”agnoster”</li>
-<li>会出现箭头乱码，是因为没有安装powerline字体：<a href="https://github.com/powerline/fonts" target="_blank" rel="noopener">https://github.com/powerline/fonts</a></li>
-</ul>
-<blockquote>
-<p>#克隆<br>git clone <a href="https://github.com/powerline/fonts.git" target="_blank" rel="noopener">https://github.com/powerline/fonts.git</a> –depth=1</p>
-<p>#安装<br>cd fonts<br>./install.sh</p>
-<p>#安装完成后可删除文件<br>cd ..<br>rm -rf fonts</p>
-</blockquote>
-<p>插件设置：插件文件所在目录为<code>~/.oh-my-zsh/plugins</code></p>
+<p><strong>4.Zsh插件配置：</strong></p>
+<p>插件文件所在目录为<code>~/.oh-my-zsh/plugins</code></p>
 <blockquote>
 <ul>
-<li>ls ~/.oh-my-zsh/plugins | wc -l</li>
+<li><code>ls ~/.oh-my-zsh/plugins | wc -l</code></li>
 <li>插件介绍：<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins</a></li>
 </ul>
 </blockquote>
@@ -276,25 +297,31 @@
 <li>修改启用插件后让配置文件生效：<code>source ~/.zshrc</code></li>
 </ul>
 </blockquote>
-<p>对于zsh没有自带的插件，可以将其下载放到：~/.oh-my-zsh/custom/plugins目录下，然后再在配置文件中启用。</p>
-<p>例如：</p>
+<p>对于Zsh没有自带的插件，可以将其下载放到：<code>~/.oh-my-zsh/custom/plugins</code>目录下，然后再在配置文件中启用，启用方法同上。</p>
+<p>安装两个常用的外部插件：</p>
 <blockquote>
 <p>#安装外部插件：zsh-syntax-highlighting，作用是zsh语法高亮。<br>cd  ~/.oh-my-zsh/custom/plugins<br>git clone <a href="https://github.com/zsh-users/zsh-syntax-highlighting.git" target="_blank" rel="noopener">https://github.com/zsh-users/zsh-syntax-highlighting.git</a></p>
 <p>#安装zsh-autosuggestions<br>cd  ~/.oh-my-zsh/custom/plugins<br>git clone <a href="https://github.com/zsh-users/zsh-autosuggestions.git" target="_blank" rel="noopener">https://github.com/zsh-users/zsh-autosuggestions.git</a></p>
 </blockquote>
-<h3 id="0x03-conky"><a href="#0x03-conky" class="headerlink" title="0x03 conky"></a>0x03 conky</h3><p>安装conky：</p>
+<p>下载完毕后，到配置文件启用即可。</p>
+<h3 id="0x03-conky"><a href="#0x03-conky" class="headerlink" title="0x03 conky"></a>0x03 conky</h3><p><strong>安装conky：</strong></p>
 <blockquote>
 <ul>
 <li>sudo apt-get install conky-all</li>
 </ul>
 </blockquote>
 <p>运行conky时，conky默认会使用<code>~/.conkyrc</code>作为配置文件。</p>
-<p>conky主题：</p>
+<p><strong>conky主题：</strong></p>
 <blockquote>
 <ul>
 <li><a href="https://www.deviantart.com/customization/skins/linuxutil/applications/conky/newest/?offset=0" target="_blank" rel="noopener">https://www.deviantart.com/customization/skins/linuxutil/applications/conky/newest/?offset=0</a></li>
 <li><a href="https://www.deviantart.com/custom-linux/gallery/39357745/Conky-Themes" target="_blank" rel="noopener">https://www.deviantart.com/custom-linux/gallery/39357745/Conky-Themes</a></li>
-<li>肥宅：<a href="https://www.deviantart.com/justhumans404/art/Natsuki-conky-ddlc-721176434&gt;" target="_blank" rel="noopener">https://www.deviantart.com/justhumans404/art/Natsuki-conky-ddlc-721176434&gt;</a></li>
+</ul>
+</blockquote>
+<p>两个自用主题：</p>
+<blockquote>
+<ul>
+<li>肥宅：<a href="https://www.deviantart.com/justhumans404/art/Natsuki-conky-ddlc-721176434" target="_blank" rel="noopener">https://www.deviantart.com/justhumans404/art/Natsuki-conky-ddlc-721176434</a></li>
 <li>简约：<a href="https://github.com/mr-mierzejewski/conkyrc" target="_blank" rel="noopener">https://github.com/mr-mierzejewski/conkyrc</a></li>
 </ul>
 </blockquote>
@@ -314,16 +341,19 @@
 <p><a href="https://www.google.cn/intl/zh-CN/chrome/" target="_blank" rel="noopener">https://www.google.cn/intl/zh-CN/chrome/</a></p>
 </blockquote>
 <p>4.安装JAVA</p>
+<ul>
+<li><p>安装Oracle Java：<a href="https://tecadmin.net/install-oracle-java-11-ubuntu-18-04-bionic/" target="_blank" rel="noopener">https://tecadmin.net/install-oracle-java-11-ubuntu-18-04-bionic/</a></p>
+</li>
+<li><p>安装OpenJDK：<code>sudo apt-get install openjdk-8-jdk</code></p>
 <blockquote>
 <ul>
-<li>安装Oracle Java：<a href="https://tecadmin.net/install-oracle-java-11-ubuntu-18-04-bionic/" target="_blank" rel="noopener">https://tecadmin.net/install-oracle-java-11-ubuntu-18-04-bionic/</a></li>
-<li>安装OpenJDK：<code>sudo apt-get install openjdk-8-jdk</code></li>
+<li>Oracle Java是Oracle官方的Java版本，但apt方式只能安装Java 11。OpenJDK Java是开源的Java版本。</li>
+<li>当系统安装了多个Java版本时，可以使用命令切换默认使用的Java：<code>sudo update-alternatives –config java</code></li>
+<li>使用<code>java -version</code>查看当前系统默认使用的Java版本信息。</li>
 </ul>
-<p>注：</p>
-<p>​    Oracle Java是Oracle官方的Java版本，但apt方式只能安装Java 11。OpenJDK Java是开源的Java版本。</p>
-<p>​    当系统安装了多个Java版本时，可以使用命令切换默认使用的Java：<code>sudo update-alternatives –config java</code></p>
-<p>​    使用<code>java -version</code>查看当前系统默认使用的Java版本信息。</p>
 </blockquote>
+</li>
+</ul>
 <p>5.Misc：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install </span><br><span class="line"></span><br><span class="line">proxychains            #代理工具</span><br><span class="line">meld                   #文件比较工具</span><br><span class="line">amule                  #电驴下载工具</span><br><span class="line">transmission           #种子下载工具</span><br><span class="line">ttf-wqy-microhei       #字体</span><br><span class="line">mtr                    #Traceroute工具（GUI）</span><br><span class="line">whois                  #域名信息查询工具</span><br><span class="line">git                    #版本管理工具</span><br><span class="line">curl                   #命令行HTTP请求工具</span><br><span class="line">obs-studio             #录屏、直播软件</span><br><span class="line">unrar unrar-free       #rar压缩包解压</span><br><span class="line">woeusb				   #刻录工具</span><br><span class="line">ascii                  #显示ascii表</span><br><span class="line">unicode                #字符对应的Unicode编码</span><br><span class="line">axel                   #命令行下载工具（类似wget）</span><br><span class="line">screefetch             #打印banner </span><br><span class="line">ubuntu-restricted-extras #视频解码器包</span><br><span class="line">libavcodec-extra         #视频解码相关</span><br><span class="line">libdvd-pkg               #dvd格式视频解码器</span><br></pre></td></tr></table></figure>
 <p>6.安装Tmux</p>
@@ -345,8 +375,8 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年05月21日 10:15</p>
-        <p>原始链接： <a class="post-url" href="/2019/05/14/my-ubuntu-config-2mac/" title="打造我的Ubuntu 18.04">https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/</a></p>
+        <p>最后更新： 2019年06月17日 20:57</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/14/my-ubuntu-config-2mac/" title="Get Your Ubuntu to Look like Mac OS X">https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/</a></p>
         <footer>
             <a href="https://sakuxa.com">
                 <img src="/images/avatar1.png" alt="Ein">
@@ -372,7 +402,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/&title=《打造我的Ubuntu 18.04》 — 黑客技术学习记录自留地&pic=images/timg2.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/&title=《Get Your Ubuntu to Look like Mac OS X》 — 黑客技术学习记录自留地&pic=images/timg2.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -382,8 +412,9 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/&title=《打造我的Ubuntu 18.04》 — 黑客技术学习记录自留地&source=
-最近终于受不了Windows动不动就程序未响应，加上在日常工作中，使用的大部分工具都是在Linux下的，总是打开Kali虚拟机也烦了，索性就将笔记本的主..." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/&title=《Get Your Ubuntu to Look like Mac OS X》 — 黑客技术学习记录自留地&source=
+ubuntu2mac — Ubuntu TLS 18.04美化Mac OS风格。
+" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -393,7 +424,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《打造我的Ubuntu 18.04》 — 黑客技术学习记录自留地&url=https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/&via=https://sakuxa.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Get Your Ubuntu to Look like Mac OS X》 — 黑客技术学习记录自留地&url=https://sakuxa.com/2019/05/14/my-ubuntu-config-2mac/&via=https://sakuxa.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -420,9 +451,9 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/MyUbuntu/" class="color5">My Ubuntu</a>
+    <a href="/tags/ubuntu2mac/" class="color1">ubuntu2mac</a>
       
-    <a href="/tags/Ubuntu2Mac/" class="color3">Ubuntu 2 Mac</a>
+    <a href="/tags/Ubuntu18.04/" class="color3">Ubuntu 18.04</a>
       
   </li>
 
@@ -435,7 +466,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-Mac主题"><span class="post-toc-text">0x00 Mac主题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-Dock"><span class="post-toc-text">0x01 Dock</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-Zsh"><span class="post-toc-text">0x02 Zsh</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-conky"><span class="post-toc-text">0x03 conky</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-基本工具软件安装"><span class="post-toc-text">0x04 基本工具软件安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-常用快捷键"><span class="post-toc-text">0x05 常用快捷键</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-修改Gnome主题"><span class="post-toc-text">0x00 修改Gnome主题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-Dock"><span class="post-toc-text">0x01 Dock</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-Zsh"><span class="post-toc-text">0x02 Zsh</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-conky"><span class="post-toc-text">0x03 conky</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-基本工具软件安装"><span class="post-toc-text">0x04 基本工具软件安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-常用快捷键"><span class="post-toc-text">0x05 常用快捷键</span></a></li></ol>
         </nav>
     </aside>
     
@@ -519,7 +550,7 @@
             <a class="category-link" href="/categories/Metasploit/">Metasploit</a><a class="category-link" href="/categories/Misc/">Misc</a><a class="category-link" href="/categories/Pikachu/">Pikachu</a><a class="category-link" href="/categories/Python/">Python</a><a class="category-link" href="/categories/Vulnhub/">Vulnhub</a><a class="category-link" href="/categories/WEB漏洞学习/">WEB漏洞学习</a><a class="category-link" href="/categories/内网渗透/">内网渗透</a><a class="category-link" href="/categories/无线渗透/">无线渗透</a><a class="category-link" href="/categories/漏洞复现/">漏洞复现</a><a class="category-link" href="/categories/语言/">语言</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 10px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Meterpreter/" style="font-size: 10px;">Meterpreter</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 13.33px;">Msfvenom</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Python模块/" style="font-size: 16.67px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-Shell-Cheat-Sheet/" style="font-size: 10px;">Reverse Shell Cheat Sheet</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 16.67px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 20px;">XSS</a> <a href="/tags/XXE/" style="font-size: 13.33px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 20px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 10px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Meterpreter/" style="font-size: 10px;">Meterpreter</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 13.33px;">Msfvenom</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Python模块/" style="font-size: 16.67px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-Shell-Cheat-Sheet/" style="font-size: 10px;">Reverse Shell Cheat Sheet</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-18-04/" style="font-size: 10px;">Ubuntu 18.04</a> <a href="/tags/WEB安全/" style="font-size: 16.67px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 20px;">XSS</a> <a href="/tags/XXE/" style="font-size: 13.33px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/ubuntu2mac/" style="font-size: 10px;">ubuntu2mac</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 20px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -552,7 +583,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 10px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Meterpreter/" style="font-size: 10px;">Meterpreter</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 13.33px;">Msfvenom</a> <a href="/tags/My-Ubuntu/" style="font-size: 10px;">My Ubuntu</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Python模块/" style="font-size: 16.67px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-Shell-Cheat-Sheet/" style="font-size: 10px;">Reverse Shell Cheat Sheet</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-2-Mac/" style="font-size: 10px;">Ubuntu 2 Mac</a> <a href="/tags/WEB安全/" style="font-size: 16.67px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 20px;">XSS</a> <a href="/tags/XXE/" style="font-size: 13.33px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 20px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
+            <a href="/tags/802-11/" style="font-size: 10px;">802.11</a> <a href="/tags/CSRF/" style="font-size: 10px;">CSRF</a> <a href="/tags/CTF/" style="font-size: 10px;">CTF</a> <a href="/tags/Getshell/" style="font-size: 10px;">Getshell</a> <a href="/tags/HTML文档解析/" style="font-size: 10px;">HTML文档解析</a> <a href="/tags/Kerberos/" style="font-size: 10px;">Kerberos</a> <a href="/tags/Language/" style="font-size: 10px;">Language</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Meterpreter/" style="font-size: 10px;">Meterpreter</a> <a href="/tags/Mimikatz/" style="font-size: 10px;">Mimikatz</a> <a href="/tags/Msfvenom/" style="font-size: 13.33px;">Msfvenom</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/NTLM/" style="font-size: 10px;">NTLM</a> <a href="/tags/NetBIOS/" style="font-size: 10px;">NetBIOS</a> <a href="/tags/OWASP-Top10-2017/" style="font-size: 10px;">OWASP Top10 2017</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPCMSv9/" style="font-size: 10px;">PHPCMSv9</a> <a href="/tags/Pass-The-Hash/" style="font-size: 10px;">Pass The Hash</a> <a href="/tags/Python模块/" style="font-size: 16.67px;">Python模块</a> <a href="/tags/Re/" style="font-size: 10px;">Re</a> <a href="/tags/Reverse-Shell-Cheat-Sheet/" style="font-size: 10px;">Reverse Shell Cheat Sheet</a> <a href="/tags/SMB/" style="font-size: 10px;">SMB</a> <a href="/tags/SQL注入/" style="font-size: 10px;">SQL注入</a> <a href="/tags/Ubuntu-18-04/" style="font-size: 10px;">Ubuntu 18.04</a> <a href="/tags/WEB安全/" style="font-size: 16.67px;">WEB安全</a> <a href="/tags/WLAN/" style="font-size: 10px;">WLAN</a> <a href="/tags/Winodows/" style="font-size: 10px;">Winodows</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/XML注入/" style="font-size: 10px;">XML注入</a> <a href="/tags/XSS/" style="font-size: 20px;">XSS</a> <a href="/tags/XXE/" style="font-size: 13.33px;">XXE</a> <a href="/tags/base64/" style="font-size: 10px;">base64</a> <a href="/tags/subprocess/" style="font-size: 10px;">subprocess</a> <a href="/tags/ubuntu2mac/" style="font-size: 10px;">ubuntu2mac</a> <a href="/tags/任意文件下载/" style="font-size: 10px;">任意文件下载</a> <a href="/tags/干货/" style="font-size: 10px;">干货</a> <a href="/tags/必会技能/" style="font-size: 10px;">必会技能</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/收集/" style="font-size: 10px;">收集</a> <a href="/tags/文件上传/" style="font-size: 10px;">文件上传</a> <a href="/tags/文件包含/" style="font-size: 10px;">文件包含</a> <a href="/tags/文件描述符/" style="font-size: 10px;">文件描述符</a> <a href="/tags/文件权限/" style="font-size: 10px;">文件权限</a> <a href="/tags/无线渗透/" style="font-size: 10px;">无线渗透</a> <a href="/tags/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tags/权限提升/" style="font-size: 10px;">权限提升</a> <a href="/tags/环境搭建/" style="font-size: 10px;">环境搭建</a> <a href="/tags/管道/" style="font-size: 10px;">管道</a> <a href="/tags/编码与解码/" style="font-size: 10px;">编码与解码</a> <a href="/tags/跨站请求伪造/" style="font-size: 10px;">跨站请求伪造</a> <a href="/tags/过滤与绕过/" style="font-size: 10px;">过滤与绕过</a> <a href="/tags/重定向/" style="font-size: 10px;">重定向</a> <a href="/tags/靶场/" style="font-size: 20px;">靶场</a> <a href="/tags/靶机/" style="font-size: 10px;">靶机</a>
         </div>
     </div>
 </div>
