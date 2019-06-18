@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/06/18/Python网络编程/socket.jpg">
 <meta property="og:image" content="https://sakuxa.com/2019/06/18/Python网络编程/socketserver.png">
-<meta property="og:updated_time" content="2019-06-18T11:55:49.671Z">
+<meta property="og:updated_time" content="2019-06-18T12:05:55.430Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python网络编程">
 <meta name="twitter:description" content="Socket模块使用及其socketserver模块分析。">
@@ -248,7 +248,7 @@
 <li><p><code>Sk.close()</code>        #关闭套接字。</p>
 </li>
 <li><p>其他</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Sk.getsockname()   #返回本地套接字的地址。(IP,PORT)</span><br><span class="line">  Sk.getpeername()   #返回远端连接过来的套接字的地址。(IP,PORT)</span><br><span class="line">  	</span><br><span class="line">  Sk.settimeout()    #设置套接字阻塞的超时时长，传入浮点型。如recv()的阻塞超时时长。</span><br><span class="line">Sk.setblocking()   #是否阻塞（默认True），如果传入False，那么accept和recv时一旦无数据，则报					错。</span><br><span class="line">  </span><br><span class="line">Sk.gethostname()   #获取本地主机名（不是IP）</span><br><span class="line">  Sk.gethostbyname(&apos;www.baidu.com&apos;)  #域名解析</span><br><span class="line"></span><br><span class="line">  sk.setsockopt(SOL_SOCKET,SO_REUSEADDR,1)   #可地址重用，在bind（）方法前使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sk.getsockname()   <span class="comment">#返回本地套接字的地址。(IP,PORT)</span></span><br><span class="line">  Sk.getpeername()   <span class="comment">#返回远端连接过来的套接字的地址。(IP,PORT)</span></span><br><span class="line">  	</span><br><span class="line">  Sk.settimeout()    <span class="comment">#设置套接字阻塞的超时时长，传入浮点型。如recv()的阻塞超时时长。</span></span><br><span class="line">	Sk.setblocking()   <span class="comment">#是否阻塞（默认True），如果传入False，那么accept和recv时一旦无数据，则报					错。</span></span><br><span class="line">  Sk.gethostname()   <span class="comment">#获取本地主机名（不是IP）</span></span><br><span class="line">  Sk.gethostbyname(<span class="string">'www.baidu.com'</span>)  <span class="comment">#域名解析</span></span><br><span class="line">  </span><br><span class="line">  sk.setsockopt(SOL_SOCKET,SO_REUSEADDR,<span class="number">1</span>)   <span class="comment">#可地址重用，在调用bind（）方法前使用。</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -286,7 +286,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年06月18日 19:55</p>
+        <p>最后更新： 2019年06月18日 20:05</p>
         <p>原始链接： <a class="post-url" href="/2019/06/18/Python网络编程/" title="Python网络编程">https://sakuxa.com/2019/06/18/Python网络编程/</a></p>
         <footer>
             <a href="https://sakuxa.com">
