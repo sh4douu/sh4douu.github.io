@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sakuxa.com/2019/06/18/Python网络编程/socket.jpg">
 <meta property="og:image" content="https://sakuxa.com/2019/06/18/Python网络编程/socketserver.png">
-<meta property="og:updated_time" content="2019-06-18T11:28:49.007Z">
+<meta property="og:updated_time" content="2019-06-18T11:55:49.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python网络编程">
 <meta name="twitter:description" content="Socket模块使用及其socketserver模块分析。">
@@ -207,26 +207,6 @@
 </ul>
 </blockquote>
 </li>
-</ul>
-</li>
-<li><p><strong>客户端</strong></p>
-<ul>
-<li><code>Sk.connect()</code>             #连接服务器。传入(IP,PORT)元组。</li>
-<li><code>Sk.connect_ex()</code>      #同上，但是会有返回值，连接成功时返回 0 ，连接失败时候返回错误码，而不是异常。</li>
-</ul>
-</li>
-<li><p><strong>通用方法</strong></p>
-<ul>
-<li><p><code>Sk.recv(Bufsize)</code>   #接收套接字的数据，通常是接收<code>accept()</code>返回的某套接字的消息。</p>
-<blockquote>
-<ul>
-<li>阻塞直到收到数据。</li>
-<li>接收到数据就会往下运行，因此要多次交互数据则需要不断循环运行该语句。</li>
-</ul>
-</blockquote>
-</li>
-<li><p><code>Sk.recvfrom(Bufsize)</code>    #同上，但是返回数据外加地址，<code>(data,(IP,PORT))</code>，通常用于UDP。</p>
-</li>
 <li><p><code>con.send()</code>       #向指定的连接对象发送数据。（只发一次发送缓存区大小就往下走）</p>
 <blockquote>
 <ul>
@@ -243,10 +223,32 @@
 </ul>
 </blockquote>
 </li>
+</ul>
+</li>
+<li><p><strong>客户端</strong></p>
+<ul>
+<li><code>Sk.connect()</code>             #连接服务器。传入(IP,PORT)元组。</li>
+<li><code>Sk.connect_ex()</code>      #同上，但是会有返回值，连接成功时返回 0 ，连接失败时候返回错误码，而不是异常。</li>
+<li><code>Sk.send()</code>    #同上面服务器send。</li>
+<li><code>Sk.sendall()</code>     #同上。</li>
+</ul>
+</li>
+<li><p><strong>通用方法</strong></p>
+<ul>
+<li><p><code>Sk.recv(Bufsize)</code>   #接收套接字的数据，通常是接收<code>accept()</code>返回的某套接字的消息。</p>
+<blockquote>
+<ul>
+<li>阻塞直到收到数据。</li>
+<li>接收到数据就会往下运行，因此要多次交互数据则需要不断循环运行该语句。</li>
+</ul>
+</blockquote>
+</li>
+<li><p><code>Sk.recvfrom(Bufsize)</code>    #同上，但是返回数据外加地址，<code>(data,(IP,PORT))</code>，通常用于UDP。</p>
+</li>
 <li><p><code>Sk.close()</code>        #关闭套接字。</p>
 </li>
 <li><p>其他</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Sk.getsockname()   #返回本地套接字的地址。(IP,PORT)</span><br><span class="line">Sk.getpeername()   #返回远端连接过来的套接字的地址。(IP,PORT)</span><br><span class="line">	</span><br><span class="line">Sk.settimeout()    #设置套接字阻塞的超时时长，传入浮点型。如recv()的阻塞超时时长。</span><br><span class="line">Sk.setblocking()   #是否阻塞（默认True），如果传入False，那么accept和recv时一旦无数据，则报					错。</span><br><span class="line"></span><br><span class="line">Sk.gethostname()   #获取本地主机名（不是IP）</span><br><span class="line">Sk.gethostbyname(&apos;www.baidu.com&apos;)  #域名解析</span><br><span class="line"></span><br><span class="line">sk.setsockopt(SOL_SOCKET,SO_REUSEADDR,1)   #可地址重用，在bind（）方法前使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Sk.getsockname()   #返回本地套接字的地址。(IP,PORT)</span><br><span class="line">  Sk.getpeername()   #返回远端连接过来的套接字的地址。(IP,PORT)</span><br><span class="line">  	</span><br><span class="line">  Sk.settimeout()    #设置套接字阻塞的超时时长，传入浮点型。如recv()的阻塞超时时长。</span><br><span class="line">Sk.setblocking()   #是否阻塞（默认True），如果传入False，那么accept和recv时一旦无数据，则报					错。</span><br><span class="line">  </span><br><span class="line">Sk.gethostname()   #获取本地主机名（不是IP）</span><br><span class="line">  Sk.gethostbyname(&apos;www.baidu.com&apos;)  #域名解析</span><br><span class="line"></span><br><span class="line">  sk.setsockopt(SOL_SOCKET,SO_REUSEADDR,1)   #可地址重用，在bind（）方法前使用</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -265,7 +267,7 @@
 </ul>
 <p><strong>样例源码：时间服务器</strong></p>
 <p>Server.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socketserver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myhander</span><span class="params">(socketserver.BaseRequestHandler)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle</span><span class="params">(self)</span>:</span></span><br><span class="line">        client_addr = self.client_address[<span class="number">0</span>]     <span class="comment">#获得连接的客户端IP</span></span><br><span class="line">        print(<span class="string">'[+]From %s Connect!!!'</span>%client_addr)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            self.data = self.request.recv(<span class="number">4096</span>)  <span class="comment">#获取客户端消息</span></span><br><span class="line">            print(<span class="string">'[+]From %s message ：%s'</span>%(client_addr,self.data.decode()))</span><br><span class="line">            nowtime = time.ctime()</span><br><span class="line">            self.request.sendall(<span class="string">b'Hello Friend ! Now Time:%s'</span>%nowtime.encode())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FSk= socketserver.TCPServer((<span class="string">'127.0.0.1'</span>,<span class="number">7777</span>),Myhander)</span><br><span class="line">print(<span class="string">"[-]%s : 时间服务器正在监听！！！"</span>%time.ctime())</span><br><span class="line"></span><br><span class="line">FSk.serve_forever()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socketserver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myhander</span><span class="params">(socketserver.BaseRequestHandler)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle</span><span class="params">(self)</span>:</span></span><br><span class="line">        client_addr = self.client_address[<span class="number">0</span>]     <span class="comment">#获得连接的客户端IP</span></span><br><span class="line">        print(<span class="string">'[+]From %s Connect!!!'</span>%client_addr)</span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            self.data = self.request.recv(<span class="number">4096</span>)  <span class="comment">#获取客户端消息</span></span><br><span class="line">            print(<span class="string">'[+]From %s message ：%s'</span>%(client_addr,self.data.decode()))</span><br><span class="line">            nowtime = time.ctime()</span><br><span class="line">            self.request.sendall(<span class="string">b'Hello Friend ! Now Time:%s'</span>%nowtime.encode())</span><br><span class="line"></span><br><span class="line">FSk= socketserver.TCPServer((<span class="string">'127.0.0.1'</span>,<span class="number">7777</span>),Myhander)</span><br><span class="line">print(<span class="string">"[-]%s : 时间服务器正在监听！！！"</span>%time.ctime())</span><br><span class="line"></span><br><span class="line">FSk.serve_forever()</span><br></pre></td></tr></table></figure>
 <p>Client.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">Sk = socket.socket()</span><br><span class="line"></span><br><span class="line">Sk.connect((<span class="string">'127.0.0.1'</span>,<span class="number">7777</span>))</span><br><span class="line"></span><br><span class="line">print(<span class="string">'[+]Connect success!!'</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    userinput = input(<span class="string">'[-]Please input:'</span>)</span><br><span class="line">    Sk.sendall(userinput.encode())</span><br><span class="line">    data = Sk.recv(<span class="number">4096</span>)</span><br><span class="line">    print(<span class="string">'[+]From server reply : %s '</span>%data.decode())</span><br></pre></td></tr></table></figure>
 <p><strong>socketserver.TCPServer()运行调用分析</strong></p>
@@ -284,7 +286,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年06月18日 19:28</p>
+        <p>最后更新： 2019年06月18日 19:55</p>
         <p>原始链接： <a class="post-url" href="/2019/06/18/Python网络编程/" title="Python网络编程">https://sakuxa.com/2019/06/18/Python网络编程/</a></p>
         <footer>
             <a href="https://sakuxa.com">
